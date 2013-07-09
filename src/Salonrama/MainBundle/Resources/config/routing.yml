@@ -1,0 +1,19 @@
+salonrama_main_index:
+    pattern:  /
+    defaults: { _controller: SalonramaMainBundle:Main:index }
+
+salonrama_main_contact:
+    pattern:  /contact/
+    defaults: { _controller: SalonramaMainBundle:Main:contact }
+
+salonrama_main_presse:
+    pattern:  /presse/
+    defaults: { _controller: SalonramaMainBundle:Main:presse }
+
+salonrama_main_apropos:
+    pattern:  /apropos/
+    defaults: { _controller: SalonramaMainBundle:Main:apropos }
+
+salonrama_main_mention-legale:
+    pattern:  /mention-legale/
+    defaults: { _controller: SalonramaMainBundle:Main:mentionLegale }

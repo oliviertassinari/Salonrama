@@ -1,0 +1,4 @@
+salonrama_main:
+    resource: "@SalonramaMainBundle/Resources/config/routing.yml"
+    prefix:   /
+

@@ -1,0 +1,7 @@
+parameters:
+#    salonrama_main.example.class: Salonrama\MainBundle\Example
+
+services:
+#    salonrama_main.example:
+#        class: %salonrama_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

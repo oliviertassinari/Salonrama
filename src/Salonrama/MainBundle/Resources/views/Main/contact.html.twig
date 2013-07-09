@@ -1,0 +1,70 @@
+{% set addNoscript = true %}
+
+{% extends "SalonramaMainBundle:Main:main.html.twig" %}
+
+{% block head %}
+    <title>Contact</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+{% endblock %}
+
+{% block body %}
+    <h1>Nous contacter</h1>
+
+	<div class="cadre-small cadre-small-orange">
+		<i class="icon-info-sign"></i>Réponse en moins de 24h.
+	</div>
+
+	<form method="post" action="contact.php" id="FormPost">
+	<fieldset>
+		<legend>Formulaire de contact</legend>
+
+		<fieldset class="form-fieldset">
+			<label for="contact-email">Adresse email<span class="form-required">*</span></label>
+			<div class="form-controls">
+				<input type="text" name="contact-email" id="contact-email">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="contact-nom">Nom</label>
+			<div class="form-controls">
+				<input type="text" name="contact-nom" id="contact-nom">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="contact-objet">Objet<span class="form-required">*</span></label>
+			<div class="form-controls">
+				<select id="contact-objet" name="contact-objet">
+					<option value="empty">Sélectionner un objet :</option>
+					<option value="creation">Création du site</option>
+					<option value="administration">Administration du site</option>
+					<option value="adresse">Adresse internet</option>
+					<option value="autres">Autres</option>
+				</select>
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="contact-sujet">Sujet<span class="form-required">*</span></label>
+			<div class="form-controls">
+				<input type="text" name="contact-sujet" id="contact-sujet">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="contact-message">Message<span class="form-required">*</span></label>
+			<div class="form-controls">
+				<textarea id="contact-message" name="contact-message"></textarea>
+			</div>
+		</fieldset>
+
+		<div class="form-actions">
+			<button type="submit" id="contact-submit" class="button-small-green"><i class="icon-ok"></i>Envoyer mon message</button>
+		</div>
+		<p class="form-required">* champ à remplir obligatoirement</p>
+	</fieldset> 
+<?php } ?>
+	</form>
+{% endblock %}

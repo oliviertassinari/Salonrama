@@ -1,0 +1,56 @@
+.form-fieldset{
+padding:0 !important;
+border:0 !important;
+margin:0 0 15px 0 !important;
+}
+.form-fieldset label{
+float:left;
+padding-top:5px;
+width:160px;
+cursor:pointer;
+display:block;
+margin-bottom:5px;
+text-align:right;
+}
+.form-fieldset .form-controls{
+margin-left:180px;
+}
+
+.form-fieldset input[type="text"], .form-fieldset select, .form-fieldset textarea{
+border:1px solid #C0C0C0;
+padding:4px;
+background:#fff;
+font-family:arial,verdana,tahoma,helvetica,sans-serif;
+font-size:13px;
+width:250px;
+outline:0;
+border-radius:3px;
+}
+.form-fieldset input[type="text"]:hover, .form-fieldset select:hover, .form-fieldset textarea:hover{
+border-color:#7e818a;
+box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset;
+}
+.form-fieldset input[type="text"]:focus, .form-fieldset select:focus, .form-fieldset textarea:focus{
+border-color:#51A7E8;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(82, 168, 236, 0.5);
+}
+
+.form-fieldset select{
+width:260px;
+}
+
+.form-fieldset textarea{
+width:400px;
+height:150px;
+}
+
+.form-actions{
+margin:20px 0 15px;
+padding-left:180px;
+}
+
+.form-required{
+color:#f00;
+font-weight:700;
+margin:0 0 0 4px;
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="{{ asset('bundles/salonramamain/images/favicon.ico') }}"/>
+
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/main.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/font-awesome.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/cadre.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/button.css') }}"/>
+
+	{% block head %}
+	{% endblock %}
+
+</head>
+<body>
+	{% if addNoscript|default(false) == true %}
+	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
+	{% endif %}
+
+	<div id="main">
+		<div id="header">
+			<a href="{{ path('salonrama_main_index') }}" title="Accueil"></a>
+		</div>
+
+		<div id="slogan">
+			<h1>Créez le site internet de votre salon de coiffure</h1>
+		</div>
+
+		<div id="menu">
+			<div id="nav">
+				<ul>
+				{% set nav = [
+					['Accueil', 'salonrama_main_index'],
+					['Notre concept', 'salonrama_main_contact'],
+					['Actualités', 'salonrama_main_contact'],
+					['Aide', 'salonrama_main_contact'],
+					['Mon compte', 'salonrama_main_contact']
+				]%}
+		        {% for item in nav %}
+		            <li>
+		            	<a href="{{ path(item[1]) }}" title="{{ item[0] }}" {% if item[1] == app.request.attributes.get('_route') %} class="select"{% endif %}>
+	            			{% if item[1] == 'salonrama_main_index'%}
+	            				<i class="icon-home"></i>
+	            			{% else %}
+	            				{{ item[0] }}
+	            			{% endif %}
+		            	</a>
+		           	</li>
+		        {% endfor %}
+		    	</ul>
+			</div>
+			<div id="nav-connexion">
+			{% if isLog|default(false) == true %}
+				<form method="post" action="/admin/logout.php">
+					<a href="/admin/index.php">Mon compte</a>  
+					<p style="margin-top:10px; padding-right:30px;">
+						Adresse e-mail : <ins id="ThemeEmail"><?php echo $_SESSION['Compte']['Email']; ?></ins>
+					</p>
+					<input type="submit" id="button-logout" value="Déconnexion"/>
+				</form>
+			{% else %}
+				<form method="post" action="/mon-compte.php">
+					<a href="/mon-compte.php" title="Accéder à l'administration de mon site"><i class="icon-user"></i>Mon compte</a>
+					<p>
+						<label for="nav-email">Adresse email :</label><input id="nav-email" name="email" type="text"/>
+						<label for="nav-passe">Mot de passe :</label><input id="nav-passe" name="passe" type="password"/>
+					</p>
+					<input type="submit" id="button-login" value="Connexion"/>
+				</form>
+			{% endif %}
+			</div>
+		</div>
+
+		<div id="corps">
+			{% block body %}
+			{% endblock %}
+		</div>
+
+		<div id="footer">
+			<div id="footer-link">
+				<a href="{{ path('salonrama_main_contact') }}">Contact</a>
+				| <a href="{{ path('salonrama_main_presse') }}">Presse</a>
+				| <a href="{{ path('salonrama_main_apropos') }}">A propos</a>
+				| <a href="{{ path('salonrama_main_mention-legale') }}">Mentions légales</a>
+			</div>
+			<div id="footer-copyright">
+				<a href="{{ path('salonrama_main_index') }}">Copyright © {{ 'now'|date("Y") }}<strong> - Salonrama v.1 beta</strong></a>
+			</div>
+			<div class="clear"></div>
+			<ul>
+				<li><a id="footer-facebook" href="http://www.facebook.com/pages/Salonrama/89244078471" title="Facebook"></a></li>
+				<li><a id="footer-twitter" href="https://twitter.com/salonrama" title="Twitter"></a></li>
+				<li><a id="footer-youtube" href="http://www.youtube.com/user/salonrmafr" title="Youtube"></a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+{{ include("SalonramaMainBundle:Main:google-analytics.html.twig") }}
+{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}
+
+</body>
+</html>
