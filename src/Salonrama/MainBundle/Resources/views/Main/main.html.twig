@@ -9,14 +9,6 @@
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/cadre.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/button.css') }}"/>
 
-	{% stylesheets '@SalonramaMainBundle/Resources/public/css/button.css' filter='cssrewrite' %}
-	    <link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
-
-	{% javascripts '@SalonramaMainBundle/Resources/public/js/*' %}
-	    <script type="text/javascript" src="{{ asset_url }}"></script>
-	{% endjavascripts %}
-
 	{% block head %}
 	{% endblock %}
 
