@@ -8,18 +8,40 @@ overflow:hidden;
 border-radius:4px;
 }
 .cadre-small i{
-color:#658FBE;
 font-size:16px;
 position:absolute;
 left:9px;
 top:6px;
 }
+.cadre-small i.icon-info-sign{
+color:#658FBE;
+}
+.cadre-small i.icon-warning-sign{
+color:#e8002a;
+}
+.cadre-small i.icon-spinner{
+color:#273b6e;
+}
+.cadre-small i.icon-ok{
+color:#529214;
+}
 
 .cadre-small-orange{
 border:1px solid #f9d5a1;
-background-color:#ffedd5;
+background:#ffedd5;
 }
-
+.cadre-small-red{
+border:1px solid #ff7b7b;
+background:#FFEBEB;
+}
+.cadre-small-blue{
+border:1px solid #87a5c6;
+background:#eef2f6;
+}
+.cadre-small-green{
+border:1px solid #C6D880;
+background:#E6EFC2;
+}
 
 /* Cadre Big */
 .cadre-big{

@@ -6,6 +6,54 @@
     <title>Contact</title>
 
     <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+
+    <script src="{{ asset('bundles/salonramamain/js/ot.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/json.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+<script>
+
+var Busy = false;
+
+$(document).ready(function(){
+	Form = new Form();
+	Form.addInput('contact-email', { regexp: 'email', maxLength: 320 });
+	Form.addInput('contact-nom', { isNeeded: false });
+	Form.addInput('contact-objet', {});
+	Form.addInput('contact-sujet', {});
+	Form.addInput('contact-message', {});
+	Form.init('contact-post', 'contact-submit', 'contact-global-state', function(result){
+		if(result == 0)
+		{
+			if(Busy == false)
+			{
+				Busy = true;
+				this.setGlobalState('wait', 'Envoi en cours...');
+
+				$.ajax({
+					type: "POST",
+					url: "contact/",
+					data: {
+
+					},
+					dataType: "json",
+					success: function(response) {
+						Busy = false;
+					},
+					error: function(rs, e) {
+						Busy = false;
+						console.log(rs.responseText);
+					},
+				});
+			}
+		}
+		else if(result == 1){ this.setGlobalState('error', 'Champ Invalide.'); }
+		else{ this.setGlobalState('error', 'Champs Invalides.'); }
+	});
+});
+
+</script>
+
 {% endblock %}
 
 {% block body %}
@@ -15,7 +63,7 @@
 		<i class="icon-info-sign"></i>Réponse en moins de 24h.
 	</div>
 
-	<form method="post" action="contact.php" id="FormPost">
+	<form method="post" action="contact.php" id="contact-post">
 	<fieldset>
 		<legend>Formulaire de contact</legend>
 
@@ -61,6 +109,7 @@
 		</fieldset>
 
 		<div class="form-actions">
+			<div id="contact-global-state" class="form-global-state cadre-small"></div>
 			<button type="submit" id="contact-submit" class="button-small-green"><i class="icon-ok"></i>Envoyer mon message</button>
 		</div>
 		<p class="form-required">* champ à remplir obligatoirement</p>
