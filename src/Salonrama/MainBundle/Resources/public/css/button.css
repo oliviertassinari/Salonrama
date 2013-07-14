@@ -85,7 +85,7 @@ color:#fff;
 
 
 /* Button Big */
-.button-big-blue, .button-big-green, .button-big-yellow{
+.button-big{
 display:inline-block;
 border-radius:5px;
 border-style:solid;
@@ -94,7 +94,7 @@ text-align:center;
 padding:8px 10px;
 text-decoration:none !important;
 font-weight:700;
-color:#fff;
+color:#fff !important;
 font-size:14px;
 cursor:pointer;
 }
@@ -116,7 +116,7 @@ border-color:#006baa #00619a #005486;
 .button-big-blue:active{
 background:#009df8;
 box-shadow:0 2px 4px #005b90 inset;
-color:#fff;
+color:#fff !important;
 }
 
 .button-big-green{
@@ -136,7 +136,7 @@ border-color:#537c2d #4b7029 #416223;
 .button-big-green:active{
 background:#7ab542;
 box-shadow:0 2px 4px #466926 inset;
-color:#fff;
+color:#fff !important;
 }
 
 .button-big-yellow{
@@ -146,7 +146,7 @@ background:-webkit-gradient(linear, center bottom, center top, from(#e8ae01), to
 border-color:#e8ae01 #b28601 #9f7700;
 text-shadow:0 -1px 0 #fedc74;
 box-shadow:0 1px #fedc75 inset;
-color:#312500;
+color:#312500 !important;
 }
 .button-big-yellow:hover{
 background:#a97f00;
@@ -157,5 +157,5 @@ border-color:#a97f00 #997300 #856400;
 .button-big-yellow:active{
 background:#f6b901;
 box-shadow:0 2px 4px #8f6b00 inset;
-color:#312500;
+color:#312500 !important;
 }

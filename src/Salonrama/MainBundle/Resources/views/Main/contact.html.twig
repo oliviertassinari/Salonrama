@@ -13,7 +13,7 @@
 
 <script>
 
-var Busy = false;
+var busy = false;
 
 $(document).ready(function()
 {
@@ -26,9 +26,9 @@ $(document).ready(function()
 	Form.init('contact-post', 'contact-submit', 'contact-global-state', function(result, values){
 		if(result == 0)
 		{
-			if(Busy == false)
+			if(busy == false)
 			{
-				Busy = true;
+				busy = true;
 				this.setGlobalState(2, 'Envoi en cours...');
 
 				$.ajax({
@@ -44,11 +44,11 @@ $(document).ready(function()
 							Form.empty();
 						}
 
-						Busy = false;
+						busy = false;
 					},
 					error: function(rs, e) {
 						Form.setGlobalState(1, "Échec lors de l'envoi de l'email");
-						Busy = false;
+						busy = false;
 					},
 				});
 			}

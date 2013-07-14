@@ -1,5 +1,89 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
+{% block head %}
+	<title>Salonrama - Créez le site internet de votre salon de coiffure</title>
+
+	<meta name="description" content="Créez le site internet de votre salon de coiffure en 5 minutes"/>
+	<meta name="keywords" content="création, créer, crée, site, internet, salon, coiffure, gratuit, coiffeur, web, vitrine, logiciel, en ligne, salonrama, tassi, conseil, agence, sans difficultés, facile, sans connaissances informatique, sans jargon informatique, simple, simplicité, hébergement, nom de domaine, outil, webmaster, gratuitement, construire, facile, débutant, pas cher, coder, programmer, propre, comment, annuaire, notoriété, pub"/>
+
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/slider.css') }}"/>
+	<script src="{{ asset('bundles/salonramamain/js/slider.js') }}"></script>
+
+<script>
+
+$(document).ready(function()
+{
+	new Slider('Slider', 6000);
+});
+
+</script>
+
+<style>
+
+#slider .div2{
+width:43%;
+margin:0 3%;
+float:left;
+}
+
+#bouton{
+text-align:center;
+margin-top:25px;
+}
+
+#free{
+position:absolute;
+left:547px;
+top:376px;
+}
+
+</style>
+
+{% endblock %}
+
 {% block body %}
-    <h1>index</h1>
+	<div id="Slider" class="slider">
+		<div class="slider-list">
+			<div class="slide">
+				<h1>Votre salon sur internet</h1>
+				<h2>Facile et intuitif, à vous de jouer !</h2>
+				<img src="{{ asset('bundles/salonramamain/images/index/sites.png') }}" width="573" height="281"/>
+			</div>
+			<div class="slide">
+				<h1>Démarquez vous de vos concurrents</h1>
+				<h2>Les salons de coiffure les plus recherchés ont un site internet,<br/> et vous ?</h2>
+				<img src="{{ asset('bundles/salonramamain/images/index/chart.png') }}" width="336" height="281"/>
+			</div>
+			<div class="slide">	
+				<h1>Spécialement conçu pour les salons<br/>de coiffure</h1>
+				<div class="div2">
+					<img src="{{ asset('bundles/salonramamain/images/index/hair.png') }}" width="359" height="281"/>
+				</div>
+				<div class="div2">
+					<a target="_blank" href="http://demo.salonrama.fr" class="button-big button-big-green" style="margin-top:130px;">
+						Voir la démonstration <br/>
+						<span style="font-size:18px;">Un site créé avec Salonrama</span>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="slider-paddle-left" title="précédente"><div></div></div>
+		<div class="slider-paddle-right" title="suivante"><div></div></div>
+		<div class="slider-dot">
+			<ul>
+				<li><a class="select"></a></li>
+				<li><a></a></li>
+				<li><a></a></li>
+			</ul>
+		</div>
+	</div>
+
+	<div id="bouton">
+		<a href="etape1.php" class="button-big button-big-blue" style="padding-left:90px; padding-right:90px;">
+			<span style="font-size:18px;">Créez le site de votre</span><br/>
+			<span style="font-size:25px;">Salon de coiffure</span>
+		</a>
+	</div>
+
+	<div id="free"><img src="{{ asset('bundles/salonramamain/images/index/free.png') }}"  width="98" height="98"/></div>
 {% endblock %}

@@ -9,16 +9,6 @@ margin:auto;
 font:13px arial,verdana,tahoma,helvetica,sans-serif;
 background:#fff url(../images/fond-content.png) repeat-y;
 }
-#main a{
-color:#0367CB;
-text-decoration:none;
-outline-style:none;
-cursor:pointer;
-}
-#main a:hover{
-color:#02509d;
-text-decoration:underline;
-}
 
 #header{
 padding-bottom:10px;
@@ -117,9 +107,11 @@ margin:4px 20px 0 0;
 font-size:14px;
 font-weight:700;
 color:#e0e9f3;
+text-decoration:none;
 }
 #nav-connexion a:hover{
 color:#c9d8ea;
+text-decoration:underline;
 }
 #nav-connexion a i{
 margin-right:5px;
@@ -150,8 +142,8 @@ border-color:#356098;
 box-shadow:0 1px 2px rgba(0, 0, 0, 0.2) inset;
 }
 #nav-connexion p input:focus{
-border-color:#4c8ffe;
-box-shadow:0 1px 2px rgba(0, 0, 0, 0.2) inset;
+border-color:#51A7E8;
+box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset, 0 0 6px rgba(82, 168, 236, 0.5);
 }
 #nav-email{
 width:170px;
@@ -159,32 +151,12 @@ width:170px;
 #nav-passe{
 width:120px;
 }
-
-#button-login, #button-logout{
-cursor:pointer;
-padding:3px 6px 5px 26px;
+#nav-connexion button{
+padding:4px 6px 5px 7px;
 font-size:13px;
 height:25px;
-color:#343434;
-border:1px solid #5f6c7d;
 float:right;
-text-align:left;
-border-radius:4px;
-}
-#button-login{
-background:#c8c8c8 url(../images/button-login.png) repeat-x 0 0;
-}
-#button-logout{
-background:#c8c8c8 url(../images/button-logou.png) repeat-x 0 0;
-}
-#button-login:hover, #button-logout:hover{
-background-position:0 -25px;
-color:#fff;
-}
-#button-login:active, #button-logout:active{
-background-position:0 -50px;
-padding:4px 4px 4px 26px;
-color:#fff;
+margin:0;
 }
 
 
@@ -193,33 +165,36 @@ position:relative;
 margin:0 45px;
 }
 
-#corps h1{
+.corps h1{
 color:#5A5A5A;
 font-size:25px;
 margin:0 0 16px 60px;
 }
-#corps h3{
+.corps h2{
+font-size:19px;
+}
+.corps h3{
 color:#6EA014;
 font-size:15px;
 font-weight:700;
 margin:15px 0 4px;
 }
-#corps p{
+.corps p{
 margin:0;
 }
-#corps hr{
+.corps hr{
 background:none repeat scroll 0 0 #7F7F7F;
 border:medium none;
 color:#7F7F7F;
 height:1px;
 width:95%;
 }
-#corps form fieldset{
+.corps form fieldset{
 background-color:#F7F7F7;
 border:1px solid #DEDEDE;
 padding:5px;
 }
-#corps form legend{
+.corps form legend{
 color:#519213;
 font-size:18px;
 font-weight:700;
@@ -227,6 +202,17 @@ margin-bottom:5px;
 margin-left:16px;
 background:#fff;
 }
+.corps a{
+color:#0367CB;
+text-decoration:none;
+outline-style:none;
+cursor:pointer;
+}
+.corps a:hover{
+color:#02509d;
+text-decoration:underline;
+}
+
 
 
 #footer{
@@ -239,10 +225,12 @@ text-shadow:1px 1px 1px #2c4c79;
 }
 #footer a{
 color:#fff;
+text-decoration:none;
 font-weight:700;
 }
 #footer a:hover{
 color:#BDE9F0;
+text-decoration:underline;
 }
 #footer-link{
 float:left;
