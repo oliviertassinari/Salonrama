@@ -47,8 +47,8 @@ $(document).ready(function()
 						Busy = false;
 					},
 					error: function(rs, e) {
+						Form.setGlobalState(1, "Échec lors de l'envoi de l'email");
 						Busy = false;
-						console.log(rs.responseText);
 					},
 				});
 			}

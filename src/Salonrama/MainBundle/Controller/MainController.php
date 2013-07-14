@@ -27,9 +27,16 @@ class MainController extends Controller
             if($email != '' && $objet != '' && $sujet != '' && $message != '')
             {
                 $mailer = $this->get('salonrama_main.mailer');
-                $mailer->send();
+                $state = $mailer->sendContact($email, $nom, $objet, $sujet, $message);
 
-                $state = array('state' => 0, 'text' => 'Votre message a bien été envoyé.');
+                if($state == 0)
+                {
+                    $state = array('state' => 0, 'text' => 'Votre message a bien été envoyé.');
+                }
+                else
+                {
+                    $state = array('state' => 1, 'text' => "Échec lors de l'envoi de l'email. (".$state.')');
+                }
             }
             else
             {
