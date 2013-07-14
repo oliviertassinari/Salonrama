@@ -15,29 +15,35 @@
 
 var Busy = false;
 
-$(document).ready(function(){
+$(document).ready(function()
+{
 	Form = new Form();
 	Form.addInput('contact-email', { regexp: 'email', maxLength: 320 });
 	Form.addInput('contact-nom', { isNeeded: false });
 	Form.addInput('contact-objet', {});
 	Form.addInput('contact-sujet', {});
 	Form.addInput('contact-message', {});
-	Form.init('contact-post', 'contact-submit', 'contact-global-state', function(result){
+	Form.init('contact-post', 'contact-submit', 'contact-global-state', function(result, values){
 		if(result == 0)
 		{
 			if(Busy == false)
 			{
 				Busy = true;
-				this.setGlobalState('wait', 'Envoi en cours...');
+				this.setGlobalState(2, 'Envoi en cours...');
 
 				$.ajax({
 					type: "POST",
-					url: "contact/",
-					data: {
-
-					},
+					url: "",
+					data: values,
 					dataType: "json",
-					success: function(response) {
+					success: function(response){
+						Form.setGlobalState(response.state, response.text);
+
+						if(response.state == 0)
+						{
+							Form.empty();
+						}
+
 						Busy = false;
 					},
 					error: function(rs, e) {
@@ -47,8 +53,8 @@ $(document).ready(function(){
 				});
 			}
 		}
-		else if(result == 1){ this.setGlobalState('error', 'Champ Invalide.'); }
-		else{ this.setGlobalState('error', 'Champs Invalides.'); }
+		else if(result == 1){ this.setGlobalState(1, 'Champ Invalide.'); }
+		else{ this.setGlobalState(1, 'Champs Invalides.'); }
 	});
 });
 
@@ -63,7 +69,7 @@ $(document).ready(function(){
 		<i class="icon-info-sign"></i>Réponse en moins de 24h.
 	</div>
 
-	<form method="post" action="contact.php" id="contact-post">
+	<form method="post" action="" id="contact-post">
 	<fieldset>
 		<legend>Formulaire de contact</legend>
 

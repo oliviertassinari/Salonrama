@@ -3,6 +3,7 @@
 namespace Salonrama\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class MainController extends Controller
 {
@@ -13,7 +14,34 @@ class MainController extends Controller
 
     public function contactAction()
     {
-        return $this->render('SalonramaMainBundle:Main:contact.html.twig');
+        $request = $this->get('request');
+
+        if($request->isXmlHttpRequest())
+        {
+            $email = $request->request->get('contact-email', '');
+            $nom = $request->request->get('contact-nom', '');
+            $objet = $request->request->get('contact-objet', '');
+            $sujet = $request->request->get('contact-sujet', '');
+            $message = $request->request->get('contact-message', '');
+
+            if($email != '' && $objet != '' && $sujet != '' && $message != '')
+            {
+                $mailer = $this->get('salonrama_main.mailer');
+                $mailer->send();
+
+                $state = array('state' => 0, 'text' => 'Votre message a bien été envoyé.');
+            }
+            else
+            {
+                $state = array('state' => 1, 'text' => 'Champs Invalides.');
+            }
+
+            return new JsonResponse($state);
+        }
+        else
+        {
+            return $this->render('SalonramaMainBundle:Main:contact.html.twig');
+        }
     }
 
     public function presseAction()
@@ -31,3 +59,5 @@ class MainController extends Controller
         return $this->render('SalonramaMainBundle:Main:mention-legale.html.twig');
     }
 }
+
+?>

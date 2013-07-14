@@ -14,6 +14,8 @@ init: function(formId, submitId, globalStateId, onSubmit)
 	document.getElementById(formId).action = 'javascript:;';
 	document.getElementById(submitId).onclick = function(){ self.valide(); };
 
+	this.formId = formId;
+	this.submitId = submitId;
 	this.globalState = $('#'+globalStateId);
 	this.onSubmit = onSubmit;
 },
@@ -64,17 +66,19 @@ addInput: function(inputId, param)
 
 setGlobalState: function(state, text)
 {
-	if(state == 'error')
+	this.globalState.removeClass('cadre-small-red cadre-small-blue cadre-small-green');
+
+	if(state == 1) //error
 	{
 		this.globalState.addClass('cadre-small-red');
 		this.globalState.html('<i class="icon-warning-sign"></i>'+text);
 	}
-	else if(state == 'wait')
+	else if(state == 2) //wait
 	{
 		this.globalState.addClass('cadre-small-blue');
 		this.globalState.html('<i class="icon-spinner icon-spin"></i>'+text);
 	}
-	else if(state == 'ok')
+	else if(state == 0) //ok
 	{
 		this.globalState.addClass('cadre-small-green');
 		this.globalState.html('<i class=icon-ok></i>'+text);
@@ -87,7 +91,7 @@ addInputState: function(input, state)
 
 	var span = document.createElement('span');
 
-	if(state.error == 0)
+	if(state.state == 0)
 	{
 		span.className = 'form-input-state-ok';
 		span.innerHTML = '<i class="icon-ok"></i>'+state.text;
@@ -119,32 +123,32 @@ valideInputText: function(item)
 	if(item.param.isNeeded || item.input.val().length > 0)
 	{
 		if(item.input.val().length > item.param.maxLength){
-			var state = { error: 1, text: 'Champ trop long ('+item.param.maxLength+' max)' };
+			var state = { state: 1, text: 'Champ trop long ('+item.param.maxLength+' max)' };
 		}
 		else if(item.input.val() < item.param.minLength)
 		{
 			if(item.input.val().length == 0){
-				var state = { error: 1, text: 'Champ vide' };
+				var state = { state: 1, text: 'Champ vide' };
 			}
 			else{
-				var state = { error: 1, text: 'Champ trop court ('+item.param.minLength+' min)' };
+				var state = { state: 1, text: 'Champ trop court ('+item.param.minLength+' min)' };
 			}
 		}
 		else if(item.param.isNeeded && item.input.val().length == 0)
 		{
-			var state = { error: 1, text: 'Champ vide' };
+			var state = { state: 1, text: 'Champ vide' };
 		}
 		else if(item.param.regexp && item.param.regexp.code.test(item.input.val()) == false)
 		{
-			var state = { error: 1, text: item.param.regexp.text };
+			var state = { state: 1, text: item.param.regexp.text };
 		}
 		else{
-			var state = { error: 0, text: 'Ok' };
+			var state = { state: 0, text: 'Ok' };
 		}
 
 		this.addInputState(item.input, state);
 
-		return state.error;
+		return state.state;
 	}
 	else
 	{
@@ -160,15 +164,15 @@ valideTextarea: function(item)
 	{
 		if(item.param.isNeeded && item.input.val().length == 0)
 		{
-			var state = { error: 1, text: 'Champ vide' };
+			var state = { state: 1, text: 'Champ vide' };
 		}
 		else{
-			var state = { error: 0, text: 'Ok' };
+			var state = { state: 0, text: 'Ok' };
 		}
 
 		this.addInputState(item.input, state);
 
-		return state.error;
+		return state.state;
 	}
 	else
 	{
@@ -184,16 +188,16 @@ valideSelect: function(item)
 	{
 		if(item.input.val() == null)
 		{
-			var state = { error: 1, text: 'Selectionner un element' };
+			var state = { state: 1, text: 'Selectionner un element' };
 		}
 		else
 		{
-			var state = { error: 0, text: 'Ok' };
+			var state = { state: 0, text: 'Ok' };
 		}
 
 		this.addInputState(item.input, state);
 
-		return state.error;
+		return state.state;
 	}
 	else
 	{
@@ -206,6 +210,7 @@ valideSelect: function(item)
 valide: function()
 {
 	var result = 0;
+	var values = {};
 
 	for(var inputId in this.list)
 	{
@@ -214,18 +219,26 @@ valide: function()
 		if(item.type == 'inputText')
 		{
 			result += this.valideInputText(item);
+			values[inputId] = item.input.val();
 		}
 		else if(item.type == 'textarea')
 		{
 			result += this.valideTextarea(item);
+			values[inputId] = item.input.val();
 		}
 		else if(item.type == 'select')
 		{
 			result += this.valideSelect(item);
+			values[inputId] = item.input.val();
 		}
 	}
 
-	this.onSubmit(result);
+	this.onSubmit(result, values);
+},
+
+empty: function()
+{
+	$('#'+this.formId).children().find('fieldset, p, button').remove();
 }
 
 });
