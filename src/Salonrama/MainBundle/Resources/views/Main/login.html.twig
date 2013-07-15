@@ -1,0 +1,64 @@
+{% extends "SalonramaMainBundle:Main:main.html.twig" %}
+
+{% block head %}
+	<title>Se connecter</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<style>
+
+	#login-post{
+	margin-bottom:50px;
+	}
+
+	</style>
+{% endblock %}
+
+{% block body %}
+	<form method="post" action="{{ path('salonrama_main_login') }}" id="login-post">
+	<fieldset>
+		<legend>Accéder à mon compte</legend>
+
+		<fieldset class="form-fieldset">
+			<label for="login-email">Adresse email</label>
+			<div class="form-controls">
+				<input type="text" name="email" id="login-email">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="login-password">Mot de passe</label>
+			<div class="form-controls">
+				<input type="password" name="password" id="login-password"><br><br>
+				<a href="mot-de-passe-oublie.php" tabindex="-1" style="font-size:12px;">J'ai oublié mon mot de passe</a>
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="login-remember">Se souvenir de moi</label>
+			<div class="form-controls">
+				<input type="checkbox" name="remember" id="login-remember"/>
+			</div>
+		</fieldset>
+
+		<div class="form-actions">
+			<div id="login-global-state" class="form-global-state cadre-small"></div>
+			<button type="submit" id="login-submit" class="button-small-green"><i class="icon-lock"></i>Se connecter</button>
+		</div>
+	</fieldset>
+	</form>
+
+	<form method="post" action="">
+	<fieldset>
+		<legend>Je ne suis pas encore inscrit</legend>
+		<p style="margin:10px 0 10px; text-align:center;">
+			<a href="etape1.php" class="button-big button-big-blue">
+				Créez maintenant le site de votre<br/>
+				<span style="font-size:18px;">Salon de coiffure</span>
+			</a>
+		</p>
+	</fieldset> 
+	</form>
+{% endblock %}

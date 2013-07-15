@@ -37,46 +37,47 @@ var Slider = function(sliderId, timeToWait)
 
 Slider.prototype = {
 
-	slideCurrent: 0,
+slideCurrent: 0,
 
-	setTimer: function(){
-		var self = this;
+setTimer: function(){
+	var self = this;
 
-		this.Timer = window.setInterval(function(){ self.setNext(); }, this.timeToWait);
-	},
+	this.Timer = window.setInterval(function(){ self.setNext(); }, this.timeToWait);
+},
 
-	setNext: function()
+setNext: function()
+{
+	var index = this.slideCurrent + 1;
+	index = (0 > index) ? this.sliderDotLi.length - 1 : index;
+	index = (this.sliderDotLi.length - 1 < index) ? 0 : index;
+
+	this.setSlide(index);
+},
+
+setPrevious: function()
+{
+	var index = this.slideCurrent - 1;
+	index = (0 > index) ? this.sliderDotLi.length - 1 : index;
+	index = (this.sliderDotLi.length - 1 < index) ? 0 : index;
+
+	this.setSlide(index);
+},
+
+setSlide: function(index)
+{
+	this.slideCurrent = index;
+
+	for(var i = 0; i < this.sliderDotLi.length; i++)
 	{
-		var index = this.slideCurrent + 1;
-		index = (0 > index) ? this.sliderDotLi.length - 1 : index;
-		index = (this.sliderDotLi.length - 1 < index) ? 0 : index;
-
-		this.setSlide(index);
-	},
-
-	setPrevious: function()
-	{
-		var index = this.slideCurrent - 1;
-		index = (0 > index) ? this.sliderDotLi.length - 1 : index;
-		index = (this.sliderDotLi.length - 1 < index) ? 0 : index;
-
-		this.setSlide(index);
-	},
-
-	setSlide: function(index)
-	{
-		this.slideCurrent = index;
-
-		for(var i = 0; i < this.sliderDotLi.length; i++)
-		{
-			if(i == index){
-				this.sliderDotLi[i].firstChild.className = 'select';
-			}
-			else{
-				this.sliderDotLi[i].firstChild.className = '';
-			}
+		if(i == index){
+			this.sliderDotLi[i].firstChild.className = 'select';
 		}
-
-		this.sliderList.css('left', -index*this.width);
+		else{
+			this.sliderDotLi[i].firstChild.className = '';
+		}
 	}
+
+	this.sliderList.css('left', -index*this.width);
+}
+
 };

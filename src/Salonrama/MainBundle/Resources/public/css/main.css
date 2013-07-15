@@ -80,8 +80,9 @@ text-align:center;
 text-decoration:none !important;
 text-shadow:0 -1px 0 rgba(0, 0, 180, 0.4);
 overflow:hidden;
+outline-style:none;
 }
-#nav a:hover{
+#nav a:hover, #nav a:focus{
 background:#3e72b8;
 color:#fff;
 background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAkCAQAAADifZiHAAAAJ0lEQVQIW2P4L8zE8JeJ4R8q%2Bo%2BKCIH%2FjEA1TAyMSIgJRkIQM9BYAGa0Dj%2FXpUiAAAAAAElFTkSuQmCC") repeat-x scroll 0 0, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAABCAQAAACvIOyMAAAAE0lEQVQIW2P8z8jAwMAIh0wICAAa0gETv9XXOgAAAABJRU5ErkJggg%3D%3D") repeat-y scroll 100% 0, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAABCAQAAACvIOyMAAAAEklEQVQIW2P8L8TwDwn%2Bh0MGAKnjDAIoAAlcAAAAAElFTkSuQmCC") repeat-y scroll 0 0, none repeat scroll 0 0 rgba(0, 0, 180, 0.4);
@@ -108,8 +109,9 @@ font-size:14px;
 font-weight:700;
 color:#e0e9f3;
 text-decoration:none;
+outline-style:none;
 }
-#nav-connexion a:hover{
+#nav-connexion a:hover, #nav-connexion a:focus{
 color:#c9d8ea;
 text-decoration:underline;
 }
@@ -148,7 +150,7 @@ box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) inset, 0 0 6px rgba(82, 168, 236, 0.5);
 #nav-email{
 width:170px;
 }
-#nav-passe{
+#nav-password{
 width:120px;
 }
 #nav-connexion button{
@@ -162,7 +164,7 @@ margin:0;
 
 #corps{
 position:relative;
-margin:0 45px;
+margin:20px 45px 0;
 }
 
 .corps h1{
@@ -208,7 +210,7 @@ text-decoration:none;
 outline-style:none;
 cursor:pointer;
 }
-.corps a:hover{
+.corps a:hover, .corps a:focus{
 color:#02509d;
 text-decoration:underline;
 }
@@ -227,8 +229,9 @@ text-shadow:1px 1px 1px #2c4c79;
 color:#fff;
 text-decoration:none;
 font-weight:700;
+outline-style:none;
 }
-#footer a:hover{
+#footer a:hover, #footer a:focus{
 color:#BDE9F0;
 text-decoration:underline;
 }

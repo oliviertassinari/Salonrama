@@ -1,7 +1,7 @@
 .form-fieldset{
 padding:0 !important;
 border:0 !important;
-margin:0 0 15px 0 !important;
+margin:10px 0 15px 0 !important;
 }
 .form-fieldset label{
 float:left;
@@ -16,7 +16,7 @@ text-align:right;
 margin-left:180px;
 }
 
-.form-fieldset input[type="text"], .form-fieldset select, .form-fieldset textarea{
+.form-fieldset input[type="text"], .form-fieldset input[type="password"], .form-fieldset select, .form-fieldset textarea{
 border:1px solid #C0C0C0;
 padding:4px;
 background:#fff;
@@ -27,13 +27,18 @@ outline:0;
 border-radius:3px;
 float:left;
 }
-.form-fieldset input[type="text"]:hover, .form-fieldset select:hover, .form-fieldset textarea:hover{
+.form-fieldset input[type="text"]:hover, .form-fieldset input[type="password"]:hover, .form-fieldset select:hover, .form-fieldset textarea:hover{
 border-color:#7e818a;
 box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset;
 }
-.form-fieldset input[type="text"]:focus, .form-fieldset select:focus, .form-fieldset textarea:focus{
+.form-fieldset input[type="text"]:focus, .form-fieldset input[type="password"]:focus, .form-fieldset select:focus, .form-fieldset textarea:focus{
 border-color:#51A7E8;
-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(82, 168, 236, 0.5);
+box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(82, 168, 236, 0.5);
+}
+
+.form-fieldset input[type="checkbox"]{
+cursor:pointer;
+margin:7px 0 0 4px;
 }
 
 .form-fieldset select{
@@ -77,4 +82,5 @@ margin-right:5px;
 
 .form-global-state{
 width:250px;
+display:none;
 }

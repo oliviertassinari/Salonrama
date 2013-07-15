@@ -1,0 +1,12 @@
+HTML : 
+<br>
+
+CSS : 
+minuscule
+séparateur : -
+anglais
+
+Noms des fichiers :
+minuscule
+séparateur : -
+anglais

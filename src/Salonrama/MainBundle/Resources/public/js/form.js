@@ -3,7 +3,7 @@ var Form = function()
 
 };
 
-Ot.Extend(Form, {
+Form.prototype = {
 
 list: {},
 
@@ -67,6 +67,7 @@ addInput: function(inputId, param)
 setGlobalState: function(state, text)
 {
 	this.globalState.removeClass('cadre-small-red cadre-small-blue cadre-small-green');
+	this.globalState.css('display', 'block');
 
 	if(state == 1) //error
 	{
@@ -241,4 +242,4 @@ empty: function()
 	$('#'+this.formId).children().find('fieldset, p, button').remove();
 }
 
-});
+};

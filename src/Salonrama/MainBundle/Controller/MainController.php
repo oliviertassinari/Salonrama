@@ -22,7 +22,7 @@ class MainController extends Controller
             $nom = $request->request->get('contact-nom', '');
             $objet = $request->request->get('contact-objet', '');
             $sujet = $request->request->get('contact-sujet', '');
-            $message = $request->request->get('contact-message', '');
+            $message = str_replace(array("\r\n", "\r", "\n"), "<br>", $request->request->get('contact-message', ''));
 
             if($email != '' && $objet != '' && $sujet != '' && $message != '')
             {
@@ -64,6 +64,11 @@ class MainController extends Controller
     public function mentionLegaleAction()
     {
         return $this->render('SalonramaMainBundle:Main:mention-legale.html.twig');
+    }
+
+    public function loginAction()
+    {
+        return $this->render('SalonramaMainBundle:Main:login.html.twig');
     }
 }
 
