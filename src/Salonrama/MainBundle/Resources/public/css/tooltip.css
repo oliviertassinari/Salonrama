@@ -1,0 +1,33 @@
+span.tooltip{
+position:relative;
+cursor:help;
+text-decoration:none;
+margin-left:3px;
+}
+span.tooltip i.icon-question-sign{
+font-size:17px;
+}
+span.tooltip span{
+display:none;
+}
+span.tooltip:hover{
+background:none;
+}
+span.tooltip:hover span{
+display:block;
+position:absolute;
+width:300px;
+top:25px;
+left:-10px;
+padding:5px 8px;
+text-decoration:none;
+color:#000;
+text-align:left;
+font-weight:400;
+line-height:15px;
+z-index:10;
+border:1px solid #e2bf00;
+background:#ffd;
+border-radius:5px;
+box-shadow:1px 1px 3px 1px rgba(0, 0, 0, 0.15);
+}

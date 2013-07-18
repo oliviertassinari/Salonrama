@@ -1,24 +1,19 @@
-var Form = function()
-{
-
-};
-
-Form.prototype = {
-
-list: {},
-
-init: function(formId, submitId, globalStateId, onSubmit)
+var Form = function(formId, submitId, globalStateId, onSubmit)
 {
 	var self = this;
 
-	document.getElementById(formId).action = 'javascript:;';
-	document.getElementById(submitId).onclick = function(){ self.valide(); };
-
-	this.formId = formId;
-	this.submitId = submitId;
+	this.form = $('#'+formId);
 	this.globalState = $('#'+globalStateId);
 	this.onSubmit = onSubmit;
-},
+	this.list = {};
+
+	$('#'+submitId).click(function(event){
+		event.preventDefault();
+		self.valide();
+	});
+};
+
+Form.prototype = {
 
 addInput: function(inputId, param)
 {
@@ -28,7 +23,7 @@ addInput: function(inputId, param)
 
 	param.isNeeded = (typeof param.isNeeded != 'undefined') ? param.isNeeded : true;
 
-	if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'text')
+	if(inputTagName == 'input' && (input.prop('type').toLowerCase() == 'text' || input.prop('type').toLowerCase() == 'password'))
 	{
 		param.minLength = (typeof param.minLength == 'number') ? param.minLength : 0;
 		param.maxLength = (typeof param.maxLength == 'number') ? param.maxLength : 40;
@@ -104,7 +99,7 @@ addInputState: function(input, state)
 		span.innerHTML = '<i class="icon-remove"></i>'+state.text;
 	}
 
-	input.parent().append($(span));
+	input.after($(span));
 },
 
 removeInputState: function(input)
@@ -126,7 +121,7 @@ valideInputText: function(item)
 		if(item.input.val().length > item.param.maxLength){
 			var state = { state: 1, text: 'Champ trop long ('+item.param.maxLength+' max)' };
 		}
-		else if(item.input.val() < item.param.minLength)
+		else if(item.input.val().length < item.param.minLength)
 		{
 			if(item.input.val().length == 0){
 				var state = { state: 1, text: 'Champ vide' };
@@ -234,12 +229,12 @@ valide: function()
 		}
 	}
 
-	this.onSubmit(result, values);
+	this.onSubmit(result, values, this.form);
 },
 
 empty: function()
 {
-	$('#'+this.formId).children().find('fieldset, p, button').remove();
+	this.form.children().find('fieldset, p, button').remove();
 }
 
 };

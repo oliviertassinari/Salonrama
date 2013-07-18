@@ -35,7 +35,7 @@
 					['Accueil', 'salonrama_main_index'],
 					['Notre concept', 'salonrama_main_contact'],
 					['Actualités', 'salonrama_main_contact'],
-					['Aide', 'salonrama_main_contact'],
+					['Aide', 'salonrama_main_help'],
 					['Mon compte', 'salonrama_main_contact']
 				]%}
 		        {% for item in nav %}
@@ -55,10 +55,10 @@
 			{% if isLog|default(false) == true %}
 				<form method="post" action="/admin/logout.php">
 					<a href="/admin/index.php">Mon compte</a>  
-					<p style="margin-top:10px; padding-right:30px;">
+					<p>
 						Adresse e-mail : <ins id="ThemeEmail"><?php echo $_SESSION['Compte']['Email']; ?></ins>
 					</p>
-					<input type="submit" id="button-logout" value="Déconnexion"/>
+					<button type="submit" class="button-small-blue"><i class="icon-unlock-alt"></i>Se déconnecter</button>
 				</form>
 			{% else %}
 				<form method="post" action="{{ path('salonrama_main_login') }}">
@@ -82,8 +82,8 @@
 			<div id="footer-link">
 				<a href="{{ path('salonrama_main_contact') }}">Contact</a>
 				| <a href="{{ path('salonrama_main_presse') }}">Presse</a>
-				| <a href="{{ path('salonrama_main_apropos') }}">A propos</a>
-				| <a href="{{ path('salonrama_main_mention-legale') }}">Mentions légales</a>
+				| <a href="{{ path('salonrama_main_about') }}">A propos</a>
+				| <a href="{{ path('salonrama_main_legal') }}">Mentions légales</a>
 			</div>
 			<div id="footer-copyright">
 				<a href="{{ path('salonrama_main_index') }}">Copyright © {{ 'now'|date("Y") }}<strong> - Salonrama v.1 beta</strong></a>

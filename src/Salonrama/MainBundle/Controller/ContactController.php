@@ -5,13 +5,8 @@ namespace Salonrama\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
-class MainController extends Controller
+class ContactController extends Controller
 {
-    public function indexAction()
-    {
-        return $this->render('SalonramaMainBundle:Main:index.html.twig');
-    }
-
     public function contactAction()
     {
         $request = $this->get('request');
@@ -49,26 +44,6 @@ class MainController extends Controller
         {
             return $this->render('SalonramaMainBundle:Main:contact.html.twig');
         }
-    }
-
-    public function presseAction()
-    {
-        return $this->render('SalonramaMainBundle:Main:presse.html.twig');
-    }
-
-    public function aproposAction()
-    {
-        return $this->render('SalonramaMainBundle:Main:apropos.html.twig');
-    }
-
-    public function mentionLegaleAction()
-    {
-        return $this->render('SalonramaMainBundle:Main:mention-legale.html.twig');
-    }
-
-    public function loginAction()
-    {
-        return $this->render('SalonramaMainBundle:Main:login.html.twig');
     }
 }
 

@@ -4,8 +4,25 @@
 	<title>Se connecter</title>
 
     <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/tooltip.css') }}"/>
 
 	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+		Form = new Form('login-post', 'login-submit', 'login-global-state', function(result, values, form){
+			if(result == 0)
+			{
+				form.submit();
+			}
+		});
+		Form.addInput('login-email', { regexp: 'email', maxLength: 320 });
+		Form.addInput('login-password', { minLength: 4, maxLength: 25 });
+	});
+
+	</script>
 
 	<style>
 
@@ -37,7 +54,14 @@
 		</fieldset>
 
 		<fieldset class="form-fieldset">
-			<label for="login-remember">Se souvenir de moi</label>
+			<label for="login-remember">
+				Se souvenir de moi
+				<span class="tooltip">
+					<i class="icon-question-sign"></i>
+					<span>En cochant cette case, vous resterez connecté sur cet ordinateur.<br/>
+					Dans le cas contraire, en fermant votre navigateur vous serez déconnecté.</span>
+				</span>
+			</label>
 			<div class="form-controls">
 				<input type="checkbox" name="remember" id="login-remember"/>
 			</div>

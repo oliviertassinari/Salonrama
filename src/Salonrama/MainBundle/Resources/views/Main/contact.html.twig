@@ -15,13 +15,7 @@
 
 	$(document).ready(function()
 	{
-		Form = new Form();
-		Form.addInput('contact-email', { regexp: 'email', maxLength: 320 });
-		Form.addInput('contact-nom', { isNeeded: false });
-		Form.addInput('contact-objet', {});
-		Form.addInput('contact-sujet', {});
-		Form.addInput('contact-message', {});
-		Form.init('contact-post', 'contact-submit', 'contact-global-state', function(result, values){
+		Form = new Form('contact-post', 'contact-submit', 'contact-global-state', function(result, values, form){
 			if(result == 0)
 			{
 				if(busy == false)
@@ -54,6 +48,11 @@
 			else if(result == 1){ this.setGlobalState(1, 'Champ Invalide.'); }
 			else{ this.setGlobalState(1, 'Champs Invalides.'); }
 		});
+		Form.addInput('contact-email', { regexp: 'email', maxLength: 320 });
+		Form.addInput('contact-nom', { isNeeded: false });
+		Form.addInput('contact-objet', {});
+		Form.addInput('contact-sujet', {});
+		Form.addInput('contact-message', {});
 	});
 
 	</script>
@@ -63,7 +62,8 @@
 	<h1>Nous contacter</h1>
 
 	<div class="cadre-small cadre-small-orange">
-		<i class="icon-info-sign"></i>Réponse en moins de 24h.
+		<i class="icon-info-sign"></i>Remplissez ce formulaire ou envoyez nous un email à <a href="mailto:contact@salonrama.fr">contact@salonrama.fr</a>.<br>
+		Réponse en moins de 24h.
 	</div>
 
 	<form method="post" action="" id="contact-post">
