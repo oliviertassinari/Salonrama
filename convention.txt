@@ -13,5 +13,5 @@ anglais
 
 BDD :
 minuscule
-séparateur : -
+séparateur : _
 anglais

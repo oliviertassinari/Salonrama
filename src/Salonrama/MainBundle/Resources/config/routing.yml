@@ -25,3 +25,7 @@ salonrama_main_legal:
 salonrama_main_help:
     pattern:  /help/
     defaults: { _controller: SalonramaMainBundle:Help:help }
+
+salonrama_main_account_index:
+    pattern:  /account/
+    defaults: { _controller: SalonramaMainBundle:Index:index }
