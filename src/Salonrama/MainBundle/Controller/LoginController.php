@@ -3,7 +3,7 @@
 namespace Salonrama\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class LoginController extends Controller
 {
@@ -13,39 +13,28 @@ class LoginController extends Controller
 
     	if($request->isMethod('POST'))
     	{
-            $session = $request->getSession();
+            $email = htmlspecialchars(strtolower(trim($request->request->get('email', ''))));
+    		$password = trim($request->request->get('password', ''));
 
-            if($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR))
-            {
-                $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
-            }
-            else{
-                $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
-                $session->remove(SecurityContext::AUTHENTICATION_ERROR);
-            }
+            $collectionConstraint = new Assert\Collection(array(
+                'email' => array(
+                            new Assert\NotBlank(),
+                            new Assert\Email()
+                            ),
+                'password' => array(
+                             new Assert\NotBlank(),
+                             new Assert\Length(array(
+                                'min' => 4,
+                                'max' => 25))
+                            )
+            ));
+ 
+            $errors = $this->container->get('validator')->validateValue(array('email' => $email, 'password' => $password), $collectionConstraint);
+     
+            echo count($errors);
 
-            echo $session->get(SecurityContext::LAST_USERNAME);
+            print_r($errors);
 
-            //$email = htmlspecialchars(strtolower(trim($request->request->get('email', ''))));
-    		//$password = trim($request->request->get('password', ''));
-
-            $form = $this->createFormBuilder(null)
-                    ->add('email', 'email', array('required' => true))
-                    ->add('password', 'password', array('required' => true))
-                    ->getForm();
-
-            $form->bind($request);
-
-            if($form->isValid())
-            {
-                echo '1';
-                $data = $form->getData();
-
-                print_r($data);
-            }
-            else{
-                echo '0';
-            }
     	}
 
         return $this->render('SalonramaMainBundle:Main:login.html.twig');
