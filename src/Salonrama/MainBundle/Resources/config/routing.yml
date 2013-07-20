@@ -3,29 +3,33 @@ salonrama_main_index:
     defaults: { _controller: SalonramaMainBundle:Index:index }
 
 salonrama_main_contact:
-    pattern:  /contact/
+    pattern:  /contact
     defaults: { _controller: SalonramaMainBundle:Contact:contact }
 
 salonrama_main_login:
-    pattern:  /login/
+    pattern:  /login
     defaults: { _controller: SalonramaMainBundle:Login:login }
 
 salonrama_main_presse:
-    pattern:  /presse/
+    pattern:  /presse
     defaults: { _controller: SalonramaMainBundle:Presse:presse }
 
 salonrama_main_about:
-    pattern:  /about/
+    pattern:  /about
     defaults: { _controller: SalonramaMainBundle:About:about }
 
 salonrama_main_legal:
-    pattern:  /legal/
+    pattern:  /legal
     defaults: { _controller: SalonramaMainBundle:Legal:legal }
 
 salonrama_main_help:
-    pattern:  /help/
+    pattern:  /help
     defaults: { _controller: SalonramaMainBundle:Help:help }
 
 salonrama_main_account_index:
     pattern:  /account/
     defaults: { _controller: SalonramaMainBundle:Index:index }
+
+salonrama_main_forgot_password:
+    pattern:  /forgot_password
+    defaults: { _controller: SalonramaMainBundle:ForgotPassword:forgotPassword }

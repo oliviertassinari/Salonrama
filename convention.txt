@@ -8,7 +8,7 @@ anglais
 
 Noms des fichiers :
 minuscule
-séparateur : -
+séparateur : _
 anglais
 
 BDD :

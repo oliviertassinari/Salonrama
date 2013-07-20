@@ -4,6 +4,7 @@ namespace Salonrama\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class ContactController extends Controller
 {
@@ -13,13 +14,30 @@ class ContactController extends Controller
 
         if($request->isXmlHttpRequest())
         {
-            $email = $request->request->get('contact-email', '');
-            $nom = $request->request->get('contact-nom', '');
-            $objet = $request->request->get('contact-objet', '');
-            $sujet = $request->request->get('contact-sujet', '');
-            $message = str_replace(array("\r\n", "\r", "\n"), "<br>", $request->request->get('contact-message', ''));
+            $email = trim($request->request->get('contact-email', ''));
+            $nom = trim($request->request->get('contact-nom', ''));
+            $objet = trim($request->request->get('contact-objet', ''));
+            $sujet = trim($request->request->get('contact-sujet', ''));
+            $message = trim(str_replace(array("\r\n", "\r", "\n"), "<br>", $request->request->get('contact-message', '')));
 
-            if($email != '' && $objet != '' && $sujet != '' && $message != '')
+            $collectionConstraint = new Assert\Collection(array(
+                'email' => array(
+                            new Assert\NotBlank(),
+                            new Assert\Email()
+                            ),
+                'objet' => array(new Assert\NotBlank()),
+                'sujet' => array(new Assert\NotBlank()),
+                'message' => array(new Assert\NotBlank())
+            ));
+
+            $errors = $this->container->get('validator')->validateValue(array(
+                'email' => $email,
+                'objet' => $objet,
+                'sujet' => $sujet,
+                'message' => $message
+            ), $collectionConstraint);
+
+            if(count($errors) == 0)
             {
                 $mailer = $this->get('salonrama_main.mailer');
                 $state = $mailer->sendContact($email, $nom, $objet, $sujet, $message);

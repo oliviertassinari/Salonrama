@@ -10,10 +10,11 @@ class LoginController extends Controller
     public function loginAction()
     {
     	$request = $this->getRequest();
+        $email = '';
 
     	if($request->isMethod('POST'))
     	{
-            $email = htmlspecialchars(strtolower(trim($request->request->get('email', ''))));
+            $email = strtolower(trim($request->request->get('email', '')));
     		$password = trim($request->request->get('password', ''));
 
             $collectionConstraint = new Assert\Collection(array(
@@ -29,15 +30,18 @@ class LoginController extends Controller
                             )
             ));
  
-            $errors = $this->container->get('validator')->validateValue(array('email' => $email, 'password' => $password), $collectionConstraint);
+            $errors = $this->container->get('validator')->validateValue(array(
+                'email' => $email,
+                'password' => $password
+            ), $collectionConstraint);
      
-            echo count($errors);
+            if(count($errors) == 0)
+            {
 
-            print_r($errors);
-
+            }
     	}
 
-        return $this->render('SalonramaMainBundle:Main:login.html.twig');
+        return $this->render('SalonramaMainBundle:Main:login.html.twig', array('email' => $email));
     }
 }
 

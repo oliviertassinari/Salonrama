@@ -41,7 +41,7 @@
 		<fieldset class="form-fieldset">
 			<label for="login-email">Adresse email</label>
 			<div class="form-controls">
-				<input type="text" name="email" id="login-email">
+				<input type="text" name="email" id="login-email" value="{{ email }}">
 			</div>
 		</fieldset>
 
@@ -49,7 +49,7 @@
 			<label for="login-password">Mot de passe</label>
 			<div class="form-controls">
 				<input type="password" name="password" id="login-password"><br><br>
-				<a href="mot-de-passe-oublie.php" tabindex="-1" style="font-size:12px;">J'ai oublié mon mot de passe</a>
+				<a href="{{ path('salonrama_main_forgot_password') }}" tabindex="-1" style="font-size:12px;">J'ai oublié mon mot de passe</a>
 			</div>
 		</fieldset>
 
