@@ -3,7 +3,6 @@
 namespace Salonrama\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Account
@@ -11,7 +10,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  * @ORM\Table(name="account")
  * @ORM\Entity(repositoryClass="Salonrama\MainBundle\Entity\AccountRepository")
  */
-class Account implements AdvancedUserInterface
+class Account
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -26,7 +25,7 @@ class Account implements AdvancedUserInterface
     private $email;
 
     /**
-     * @ORM\Column(name="password", type="string", length=255)
+     * @ORM\Column(name="password", type="string", length=40)
      */
     private $password;
 
@@ -36,57 +35,24 @@ class Account implements AdvancedUserInterface
     private $isActive;
 
     /**
-     * @ORM\Column(name="salt", type="string", length=32)
+     * @ORM\Column(name="last_login", type="datetime")
      */
-    private $salt;
+    private $lastLogin;
+
+    /**
+     * @ORM\Column(name="signin", type="datetime")
+     */
+    private $signin;
+
+    /**
+     * @ORM\Column(name="confirmation_token", type="string", length=32)
+     */
+    private $confirmationToken;
+
 
     public function __construct()
     {
         $this->isActive = false;
-        $this->salt = md5(uniqid(null, true));
-    }
-
-    public function getUsername()
-    {
-        return $this->email;
-    }
-
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    public function getSalt()
-    {
-        return $this->salt;
-    }
-
-    public function getRoles()
-    {
-        return array('ROLE_USER');
-    }
-
-    public function eraseCredentials()
-    {
-    }
-
-    public function isAccountNonExpired()
-    {
-        return true;
-    }
-
-    public function isAccountNonLocked()
-    {
-        return true;
-    }
-
-    public function isCredentialsNonExpired()
-    {
-        return true;
-    }
-
-    public function isEnabled()
-    {
-        return $this->isActive;
+        $this->confirmation_token = md5(uniqid(null, true));
     }
 }

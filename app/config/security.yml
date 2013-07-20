@@ -7,25 +7,15 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        account:
-            entity: { class: SalonramaMainBundle:Account, property: email }
+        in_memory:
+             memory:
+                users:
+                    ryan:  { password: ryanpass, roles: 'ROLE_USER' }
+                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
 
     firewalls:
-        account:
-            pattern:    ^/account/
-            form_login:
-                login_path: /login/
-                check_path: /login/
-            logout:
-                path:   /logout/
-                target: /
-            provider:  account
-
-            remember_me:
-                key:      "%secret%"
-                lifetime: 31536000 # 365 jours en secondes
-                path:     /
-                domain:   ~
+        secured_area:
+            pattern:    ^/
+            anonymous: ~
 
     access_control:
-        - { path: ^/account/, roles: ROLE_ADMIN }
