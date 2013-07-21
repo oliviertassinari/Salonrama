@@ -12,6 +12,8 @@
 
 	$(document).ready(function()
 	{
+		$('#login-email').focus();
+
 		Form = new Form('login-post', 'login-submit', 'login-global-state', function(result, values, form){
 			if(result == 0)
 			{

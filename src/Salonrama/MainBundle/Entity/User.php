@@ -33,4 +33,83 @@ class User
      * @ORM\Column(name="born", type="date")
      */
     private $born;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set born
+     *
+     * @param \DateTime $born
+     * @return User
+     */
+    public function setBorn($born)
+    {
+        $this->born = $born;
+    
+        return $this;
+    }
+
+    /**
+     * Get born
+     *
+     * @return \DateTime 
+     */
+    public function getBorn()
+    {
+        return $this->born;
+    }
 }

@@ -4,6 +4,7 @@ namespace Salonrama\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Validator\Constraints as Assert;
+use Salonrama\MainBundle\Encrypter;
 
 class LoginController extends Controller
 {
@@ -37,7 +38,20 @@ class LoginController extends Controller
      
             if(count($errors) == 0)
             {
+                $accountRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Account');
 
+                $account = $accountRepository->findOneByEmail($email);
+
+                if($account)
+                {
+                    if($password == Encrypter::decode($account->getPassword()))
+                    {
+                        if($account->getIsActive())
+                        {
+                            echo 'ok';
+                        }
+                    }
+                }
             }
     	}
 

@@ -5,3 +5,5 @@ php app/console doctrine:schema:update --dump-sql
 php app/console doctrine:schema:update --force
 
 php composer.phar update
+
+php app/console doctrine:generate:entities SalonramaMainBundle

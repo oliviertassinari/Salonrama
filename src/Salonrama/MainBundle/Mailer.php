@@ -28,7 +28,6 @@ class Mailer
 
 	    return $this->mailer->send($message);
 	}
-
 }
 
 ?>
