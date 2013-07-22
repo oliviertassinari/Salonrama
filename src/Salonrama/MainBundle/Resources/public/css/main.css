@@ -228,7 +228,6 @@ text-shadow:1px 1px 1px #2c4c79;
 #footer a{
 color:#fff;
 text-decoration:none;
-font-weight:700;
 outline-style:none;
 }
 #footer a:hover, #footer a:focus{
@@ -241,31 +240,24 @@ float:left;
 #footer-copyright{
 float:right;
 }
-#footer ul{
+#footer-social{
+margin-top:20px;
+}
+#footer-social ul{
 margin:0;
 padding:0;
 }
-#footer li{
+#footer-social li{
 float:left;
 list-style:none;
-margin:10px 6px 0 0;
+margin:5px 20px 0 0;
 }
-#footer li a{
-display:block;
-height:32px;
-width:32px;
+#footer-social li a{
+font-weight:400;
 }
-#footer-facebook, #footer-twitter, #footer-youtube{
-background:transparent url(../images/media.png) no-repeat;
-}
-#footer-facebook{
-background-position:0 0;
-}
-#footer-twitter{
-background-position:-32px 0;
-}
-#footer-youtube{
-background-position:-64px 0;
+#footer-social li i{
+margin-right:4px;
+font-size:16px;
 }
 
 .clear{
