@@ -5,8 +5,6 @@ namespace Salonrama\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Site
- *
  * @ORM\Table(name="site")
  * @ORM\Entity(repositoryClass="Salonrama\MainBundle\Entity\SiteRepository")
  */
@@ -40,12 +38,12 @@ class Site
     private $image;
 
     /**
-     * @ORM\Column(name="block", type="string", length=65535)
+     * @ORM\Column(name="block", type="string", length=16777215)
      */
     private $block;
 
     /**
-     * @ORM\Column(name="page", type="string", length=16777215)
+     * @ORM\Column(name="page", type="string", length=65535)
      */
     private $page;
 

@@ -59,7 +59,7 @@
 					<p>
 						Adresse e-mail : <ins id="ThemeEmail"><?php echo $_SESSION['Compte']['Email']; ?></ins>
 					</p>
-					<button type="submit" class="button-small-blue"><i class="icon-unlock-alt"></i>Se déconnecter</button>
+					<button type="submit" class="button-small button-small-blue"><i class="icon-unlock-alt"></i>Se déconnecter</button>
 				</form>
 			{% else %}
 				<form method="post" action="{{ path('salonrama_main_login') }}">
@@ -68,7 +68,7 @@
 						<label for="nav-email">Adresse email :</label><input id="nav-email" name="email" type="text"/>
 						<label for="nav-password">Mot de passe :</label><input id="nav-password" name="password" type="password"/>
 					</p>
-					<button type="submit" class="button-small-blue"><i class="icon-lock"></i>Se connecter</button>
+					<button type="submit" class="button-small button-small-blue"><i class="icon-lock"></i>Se connecter</button>
 				</form>
 			{% endif %}
 			</div>
@@ -95,7 +95,7 @@
 				<ul>
 					<li><a href="https://twitter.com/salonrama" target="_blank"><i class="icon-twitter"></i>Twitter</a></li>
 					<li><a href="https://www.facebook.com/salonrama" target="_blank"><i class="icon-facebook-sign"></i>Facebook</a></li>
-					<li><a href="http://www.youtube.com/user/salonrmafr" target="_blank"><i class="icon-youtube"></i>Youtube</a></li>
+					<li><a href="http://www.youtube.com/user/salonrama" target="_blank"><i class="icon-youtube"></i>Youtube</a></li>
 				</ul>
 				<div class="clear"></div>
 			</div>

@@ -185,11 +185,12 @@ margin:15px 0 4px;
 margin:0;
 }
 .corps hr{
-background:none repeat scroll 0 0 #7F7F7F;
-border:medium none;
-color:#7F7F7F;
-height:1px;
-width:95%;
+border-color:#ccc;
+border-image:none;
+border-style:solid;
+border-width:1px 0 0;
+clear:both;
+margin:10px 0;
 }
 .corps form fieldset{
 background-color:#F7F7F7;
@@ -262,4 +263,7 @@ font-size:16px;
 
 .clear{
 clear:both;
+}
+.center{
+text-align:center;
 }

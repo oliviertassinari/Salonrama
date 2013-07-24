@@ -3,11 +3,15 @@
 {% block head %}
 	<title>Aide</title>
 
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
 {% endblock %}
 
 {% block body %}
 	<h1>Aide</h1>
 
-
-	<input type="text" placeholder="Comment pouvons-nous vous aider ?">
+	<div class="help-search">
+		<input type="text" placeholder="Comment pouvons-nous vous aider ?">
+		<button title="Rechercher"><i class="icon-search"></i></button>
+		<div class="clear"></div>
+	</div>
 {% endblock %}

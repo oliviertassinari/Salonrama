@@ -5,8 +5,6 @@ namespace Salonrama\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Salon
- *
  * @ORM\Table(name="salon")
  * @ORM\Entity(repositoryClass="Salonrama\MainBundle\Entity\SalonRepository")
  */

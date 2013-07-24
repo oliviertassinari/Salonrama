@@ -26,6 +26,10 @@ salonrama_main_help:
     pattern:  /help
     defaults: { _controller: SalonramaMainBundle:Help:help }
 
+salonrama_main_help_articles:
+    pattern:  /help/article/{id}
+    defaults: { _controller: SalonramaMainBundle:Help:article }
+
 salonrama_main_account_index:
     pattern:  /account/
     defaults: { _controller: SalonramaMainBundle:Index:index }
