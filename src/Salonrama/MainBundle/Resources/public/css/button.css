@@ -100,7 +100,10 @@ cursor:pointer;
 }
 .button-big:focus{
 border-color:#51A7E8;
-box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(82, 168, 236, 0.5);
+box-shadow:0 0 0 1px rgba(255, 255, 255, 0.5) inset, 0 0 6px rgba(82, 168, 236, 0.5);
+}
+.button-big::-moz-focus-inner{
+border:0;
 }
 
 .button-big-blue{

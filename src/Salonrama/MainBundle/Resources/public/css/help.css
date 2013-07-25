@@ -1,12 +1,12 @@
 .help-search input{
 border:1px solid #C0C0C0;
-padding:4px;
+padding:6px 10px;
 background:#fff;
 font-family:arial,verdana,tahoma,helvetica,sans-serif;
-font-size:13px;
-width:250px;
+font-size:14px;
+width:70%;
 outline:0;
-border-radius:3px 0 0 3px;
+border-radius:5px 0 0 5px;
 float:left;
 }
 .help-search input:hover{
@@ -21,8 +21,9 @@ box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(82, 168, 236, 0.5);
 .help-search button{
 float:left;
 border:0;
-border-radius:0 3px 3px 0;
+border-radius:0 5px 5px 0;
 font-size:15px;
-height:26px;
-width:30px;
+height:31px;
+width:50px;
+padding:0;
 }
