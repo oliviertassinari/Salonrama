@@ -3,12 +3,13 @@
 namespace Salonrama\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Salonrama\MainBundle\Entity\UserRepository")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -47,11 +48,29 @@ class User
      */
     private $confirmationToken;
 
-
     public function __construct()
     {
         $this->isActive = false;
         $this->confirmation_token = md5(uniqid(null, true));
+    }
+
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
+    public function getSalt()
+    {
+        return '';
+    }
+
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    public function eraseCredentials()
+    {
     }
 
     /**

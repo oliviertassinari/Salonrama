@@ -23,7 +23,7 @@ class LoginController extends Controller
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-        return $this->render('SalonramaMainBundle:Main:login.html.twig', array('email' => $session->get(SecurityContext::LAST_USERNAME)));
+        return $this->render('SalonramaMainBundle:Main:login.html.twig', array('email' => $session->get(SecurityContext::LAST_USERNAME), 'error' => $error));
     }
 }
 

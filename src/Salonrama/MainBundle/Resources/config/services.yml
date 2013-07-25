@@ -5,3 +5,8 @@ services:
     salonrama_main_mailer:
         class: Salonrama\MainBundle\Mailer
         arguments: [@mailer, @templating]
+
+    salonrama_main_user_provider:
+        class: Salonrama\MainBundle\Security\ServiceUserProvider
+        arguments:
+            em: "@doctrine.orm.entity_manager"
