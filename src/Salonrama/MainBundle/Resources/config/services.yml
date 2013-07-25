@@ -2,6 +2,6 @@ parameters:
 #    salonrama_main.example.class: Salonrama\MainBundle\Example
 
 services:
-    salonrama_main.mailer:
+    salonrama_main_mailer:
         class: Salonrama\MainBundle\Mailer
         arguments: [@mailer, @templating]

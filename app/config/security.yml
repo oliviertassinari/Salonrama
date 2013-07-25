@@ -15,7 +15,11 @@ security:
 
     firewalls:
         secured_area:
-            pattern:    ^/
+            pattern:   ^/
             anonymous: ~
+            form_login:
+                login_path: salonrama_main_login
+                check_path: salonrama_main_login_check
 
     access_control:
+        - { path: ^/account/, roles: ROLE_ADMIN }

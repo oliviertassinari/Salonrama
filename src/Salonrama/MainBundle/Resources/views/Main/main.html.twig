@@ -62,11 +62,11 @@
 					<button type="submit" class="button-small button-small-blue"><i class="icon-unlock-alt"></i>Se déconnecter</button>
 				</form>
 			{% else %}
-				<form method="post" action="{{ path('salonrama_main_login') }}">
+				<form method="post" action="{{ path('salonrama_main_login_check') }}">
 					<a href="{{ path('salonrama_main_account_index') }}" title="Accéder à l'administration de mon site"><i class="icon-user"></i>Mon compte</a>
 					<p>
-						<label for="nav-email">Adresse email :</label><input id="nav-email" name="email" type="text"/>
-						<label for="nav-password">Mot de passe :</label><input id="nav-password" name="password" type="password"/>
+						<label for="nav-email">Adresse email :</label><input id="nav-email" name="_username" type="text"/>
+						<label for="nav-password">Mot de passe :</label><input id="nav-password" name="_password" type="password"/>
 					</p>
 					<button type="submit" class="button-small button-small-blue"><i class="icon-lock"></i>Se connecter</button>
 				</form>

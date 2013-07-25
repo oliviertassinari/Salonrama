@@ -6,7 +6,7 @@ minuscule
 séparateur : -
 anglais
 
-Noms des fichiers :
+Noms des fichiers static et chemin :
 minuscule
 séparateur : _
 anglais

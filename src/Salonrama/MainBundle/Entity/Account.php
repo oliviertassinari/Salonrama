@@ -18,41 +18,19 @@ class Account
     private $id;
 
     /**
-     * @ORM\Column(name="email", type="string", length=320)
+     * @ORM\Column(name="fist_name", type="string", length=40)
      */
-    private $email;
+    private $firstName;
 
     /**
-     * @ORM\Column(name="password", type="string", length=40)
+     * @ORM\Column(name="last_name", type="string", length=40)
      */
-    private $password;
+    private $lastName;
 
     /**
-     * @ORM\Column(name="is_active", type="boolean")
+     * @ORM\Column(name="born", type="date")
      */
-    private $isActive;
-
-    /**
-     * @ORM\Column(name="last_login", type="datetime")
-     */
-    private $lastLogin;
-
-    /**
-     * @ORM\Column(name="signin", type="datetime")
-     */
-    private $signin;
-
-    /**
-     * @ORM\Column(name="confirmation_token", type="string", length=32)
-     */
-    private $confirmationToken;
-
-
-    public function __construct()
-    {
-        $this->isActive = false;
-        $this->confirmation_token = md5(uniqid(null, true));
-    }
+    private $born;
 
     /**
      * Get id
@@ -65,140 +43,71 @@ class Account
     }
 
     /**
-     * Set email
+     * Set firstName
      *
-     * @param string $email
-     * @return Account
+     * @param string $firstName
+     * @return User
      */
-    public function setEmail($email)
+    public function setFirstName($firstName)
     {
-        $this->email = $email;
+        $this->firstName = $firstName;
     
         return $this;
     }
 
     /**
-     * Get email
+     * Get firstName
      *
      * @return string 
      */
-    public function getEmail()
+    public function getFirstName()
     {
-        return $this->email;
+        return $this->firstName;
     }
 
     /**
-     * Set password
+     * Set lastName
      *
-     * @param string $password
-     * @return Account
+     * @param string $lastName
+     * @return User
      */
-    public function setPassword($password)
+    public function setLastName($lastName)
     {
-        $this->password = $password;
+        $this->lastName = $lastName;
     
         return $this;
     }
 
     /**
-     * Get password
+     * Get lastName
      *
      * @return string 
      */
-    public function getPassword()
+    public function getLastName()
     {
-        return $this->password;
+        return $this->lastName;
     }
 
     /**
-     * Set isActive
+     * Set born
      *
-     * @param boolean $isActive
-     * @return Account
+     * @param \DateTime $born
+     * @return User
      */
-    public function setIsActive($isActive)
+    public function setBorn($born)
     {
-        $this->isActive = $isActive;
+        $this->born = $born;
     
         return $this;
     }
 
     /**
-     * Get isActive
-     *
-     * @return boolean 
-     */
-    public function getIsActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * Set lastLogin
-     *
-     * @param \DateTime $lastLogin
-     * @return Account
-     */
-    public function setLastLogin($lastLogin)
-    {
-        $this->lastLogin = $lastLogin;
-    
-        return $this;
-    }
-
-    /**
-     * Get lastLogin
+     * Get born
      *
      * @return \DateTime 
      */
-    public function getLastLogin()
+    public function getBorn()
     {
-        return $this->lastLogin;
-    }
-
-    /**
-     * Set signin
-     *
-     * @param \DateTime $signin
-     * @return Account
-     */
-    public function setSignin($signin)
-    {
-        $this->signin = $signin;
-    
-        return $this;
-    }
-
-    /**
-     * Get signin
-     *
-     * @return \DateTime 
-     */
-    public function getSignin()
-    {
-        return $this->signin;
-    }
-
-    /**
-     * Set confirmationToken
-     *
-     * @param string $confirmationToken
-     * @return Account
-     */
-    public function setConfirmationToken($confirmationToken)
-    {
-        $this->confirmationToken = $confirmationToken;
-    
-        return $this;
-    }
-
-    /**
-     * Get confirmationToken
-     *
-     * @return string 
-     */
-    public function getConfirmationToken()
-    {
-        return $this->confirmationToken;
+        return $this->born;
     }
 }

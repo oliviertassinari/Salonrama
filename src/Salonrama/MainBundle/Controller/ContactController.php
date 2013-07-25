@@ -39,7 +39,7 @@ class ContactController extends Controller
 
             if(count($errors) == 0)
             {
-                $mailer = $this->get('salonrama_main.mailer');
+                $mailer = $this->get('salonrama_main_mailer');
                 $state = $mailer->sendContact($email, $nom, $objet, $sujet, $message);
 
                 if($state == 0)
