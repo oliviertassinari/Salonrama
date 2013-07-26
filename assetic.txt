@@ -7,3 +7,5 @@ php app/console doctrine:schema:update --force
 php composer.phar update
 
 php app/console doctrine:generate:entities SalonramaMainBundle
+
+php app/console cache:clear

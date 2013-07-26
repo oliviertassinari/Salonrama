@@ -4,6 +4,7 @@ namespace Salonrama\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Salonrama\MainBundle\Encrypter;
 
 /**
  * @ORM\Table(name="user")
@@ -126,7 +127,7 @@ class User implements UserInterface
      */
     public function getPassword()
     {
-        return $this->password;
+        return Encrypter::decode($this->password);
     }
 
     /**

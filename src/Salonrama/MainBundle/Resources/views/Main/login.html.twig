@@ -43,14 +43,14 @@
 		<fieldset class="form-fieldset">
 			<label for="login-email">Adresse email</label>
 			<div class="form-controls">
-				<input type="text" name="_username" id="login-email" value="{{ email }}">
+				<input type="text" name="email" id="login-email" value="{{ email }}">
 			</div>
 		</fieldset>
 
 		<fieldset class="form-fieldset">
 			<label for="login-password">Mot de passe</label>
 			<div class="form-controls">
-				<input type="password" name="_password" id="login-password"><br><br>
+				<input type="password" name="password" id="login-password"><br><br>
 				<a href="{{ path('salonrama_main_forgot_password') }}" tabindex="-1" style="font-size:12px;">J'ai oublié mon mot de passe</a>
 			</div>
 		</fieldset>
@@ -65,12 +65,17 @@
 				</span>
 			</label>
 			<div class="form-controls">
-				<input type="checkbox" name="remember" id="login-remember"/>
+				<input type="checkbox" name="_remember_me" id="login-remember"/>
 			</div>
 		</fieldset>
-{{ error }}
 		<div class="form-actions">
+			{% if error %}
+			<div id="login-global-state" class="form-global-state cadre-small cadre-small-red" style="display:block;">
+				<i class="icon-warning-sign"></i>{{ error.message|trans([], 'error') }}
+			</div>
+			{% else %}
 			<div id="login-global-state" class="form-global-state cadre-small"></div>
+			{% endif %}
 			<button type="submit" id="login-submit" class="button-small button-small-green"><i class="icon-lock"></i>Se connecter</button>
 		</div>
 	</fieldset>

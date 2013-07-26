@@ -30,7 +30,7 @@ addInput: function(inputId, param)
 
 		if(param.regexp == 'email')
 		{
-			param.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: 'email invalide' };
+			param.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: 'Email invalide' };
 		}
 
 		input.focus(function(){
