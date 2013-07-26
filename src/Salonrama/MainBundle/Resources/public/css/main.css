@@ -128,6 +128,10 @@ display:inline-block;
 margin-top:5px;
 cursor:pointer;
 }
+#nav-connexion span{
+margin-top:5px;
+display:inline-block;
+}
 #nav-connexion p input{
 vertical-align:top;
 padding:3px 4px 3px 4px;

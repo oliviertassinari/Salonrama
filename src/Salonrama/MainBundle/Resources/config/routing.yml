@@ -13,6 +13,9 @@ salonrama_main_login:
 salonrama_main_login_check:
     pattern:  /login_check
 
+salonrama_main_logout:
+    pattern:  /logout
+
 salonrama_main_presse:
     pattern:  /presse
     defaults: { _controller: SalonramaMainBundle:Presse:presse }

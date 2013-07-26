@@ -33,10 +33,10 @@
 				<ul>
 				{% set nav = [
 					['Accueil', 'salonrama_main_index'],
-					['Notre concept', 'salonrama_main_contact'],
+					['Présentation', 'salonrama_main_contact'],
 					['Actualités', 'salonrama_main_contact'],
 					['Aide', 'salonrama_main_help'],
-					['Mon compte', 'salonrama_main_contact']
+					['Mon compte', 'salonrama_main_account_index']
 				]%}
 		        {% for item in nav %}
 		            <li>
@@ -53,12 +53,12 @@
 		    	<span class="clear"></span>
 			</div>
 			<div id="nav-connexion">
-			{% if isLog|default(false) == true %}
-				<form method="post" action="/admin/logout.php">
-					<a href="/admin/index.php">Mon compte</a>  
-					<p>
-						Adresse e-mail : <ins id="ThemeEmail"><?php echo $_SESSION['Compte']['Email']; ?></ins>
-					</p>
+			{% if is_granted('ROLE_USER') %}
+				<form method="post" action="{{ path('salonrama_main_logout') }}">
+					<a href="{{ path('salonrama_main_account_index') }}" title="Accéder à l'administration de mon site"><i class="icon-user"></i>Mon compte</a>
+					<span>
+						Adresse email : <ins id="ThemeEmail">{{ app.user.email }}</ins>
+					</span>
 					<button type="submit" class="button-small button-small-blue"><i class="icon-unlock-alt"></i>Se déconnecter</button>
 				</form>
 			{% else %}

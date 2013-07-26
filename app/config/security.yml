@@ -22,7 +22,7 @@ security:
             form_login:
                 login_path: salonrama_main_login
                 check_path: salonrama_main_login_check
-                provider: user_provider
+                provider:   user_provider
                 username_parameter: email
                 password_parameter: password
             remember_me:
@@ -30,6 +30,9 @@ security:
                 lifetime: 1209600 # 14 jours en secondes
                 path:     /
                 domain:   ~ # Prend la valeur par défaut du domaine courant depuis $_SERVER
+            logout:
+                path:   /logout
+                target: /
 
     access_control:
         - { path: ^/account/, roles: ROLE_USER }
