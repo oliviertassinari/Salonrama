@@ -18,6 +18,15 @@ class Mailer
     	return $this->send('[Contact] '.$objet.' : '.$sujet, 'olivier.tassinari@gmail.com' ,'[Contact] '.$objet.' : '.$sujet, $message);
     }
 
+    public function sendForgot($to, $name, $link)
+    {
+        $message = 'Salonrama a reçu une demande pour réinitialiser le mot de passe de votre compte.<br><br>'.
+                    "Pour réinitialiser votre mot de passe, cliquez sur le lien ci-dessous (ou copiez/collez l'URL dans votre navigateur) :<br>".
+                    '<a href="'.$link.'">'.$link.'</a>';
+
+        return $this->send('Réinitialiser votre mot de passe Salonrama',  $to, 'Vous avez oublié votre mot de passe, '.$name.' ?' , $message);
+    }
+
 	public function send($subject, $to, $title, $body)
 	{
 	    $message = \Swift_Message::newInstance()

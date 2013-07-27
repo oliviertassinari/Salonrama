@@ -12,16 +12,23 @@
 
 	$(document).ready(function()
 	{
-		$('#login-email').focus();
+		if($('#login-email').val() == '')
+		{
+			$('#login-email').focus();
+		}
+		else
+		{
+			$('#login-password').focus();
+		}
 
-		Form = new Form('login-post', 'login-submit', 'login-global-state', function(result, values, form){
+		var formLogin = new Form('login-post', 'login-submit', 'login-global-state', function(result, values, form){
 			if(result == 0)
 			{
 				form.submit();
 			}
 		});
-		Form.addInput('login-email', { regexp: 'email', maxLength: 320 });
-		Form.addInput('login-password', { minLength: 4, maxLength: 25 });
+		formLogin.addInput('login-email', { regexp: 'email', maxLength: 320 });
+		formLogin.addInput('login-password', { minLength: 4, maxLength: 25 });
 	});
 
 	</script>
@@ -65,7 +72,7 @@
 				</span>
 			</label>
 			<div class="form-controls">
-				<input type="checkbox" name="_remember_me" id="login-remember"/>
+				<input type="checkbox" name="_remember_me" id="login-remember" checked="checked"/>
 			</div>
 		</fieldset>
 		<div class="form-actions">

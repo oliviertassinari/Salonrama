@@ -37,7 +37,7 @@ class ContactController extends Controller
                 'message' => $message
             ), $collectionConstraint);
 
-            if(count($errors) == 1)
+            if(count($errors) == 0)
             {
                 $mailer = $this->get('salonrama_main_mailer');
                 $state = $mailer->sendContact($email, $nom, $objet, $sujet, $message);

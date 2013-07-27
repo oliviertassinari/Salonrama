@@ -30,20 +30,16 @@ addInput: function(inputId, param)
 
 		if(param.regexp == 'email')
 		{
-			param.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: 'Email invalide' };
+			param.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: "L'email est invalide" };
 		}
 
-		input.focus(function(){
-			self.removeInputState(input);
-		});
+		input.on('input', function(){ self.removeInputState(input); });
 
 		this.list[inputId] = { input: input, type: 'inputText', param: param };
 	}
 	else if(inputTagName == 'textarea')
 	{
-		input.focus(function(){
-			self.removeInputState(input);
-		});
+		input.on('input', function(){ self.removeInputState(input); });
 
 		this.list[inputId] = { input: input, type: 'textarea', param: param };
 	}
@@ -79,12 +75,20 @@ setGlobalState: function(state, text)
 		this.globalState.addClass('cadre-small-green');
 		this.globalState.html('<i class=icon-ok></i>'+text);
 	}
+	else if(state == null) //hide
+	{
+		this.globalState.css('display', 'none');
+	}
+},
+
+setInputState: function(input, state)
+{
+	this.removeInputState(input);
+	this.addInputState(input, state);
 },
 
 addInputState: function(input, state)
 {
-	this.removeInputState(input);
-
 	var span = document.createElement('span');
 
 	if(state.state == 0)
@@ -142,7 +146,7 @@ valideInputText: function(item)
 			var state = { state: 0, text: 'Ok' };
 		}
 
-		this.addInputState(item.input, state);
+		this.setInputState(item.input, state);
 
 		return state.state;
 	}
@@ -166,7 +170,7 @@ valideTextarea: function(item)
 			var state = { state: 0, text: 'Ok' };
 		}
 
-		this.addInputState(item.input, state);
+		this.setInputState(item.input, state);
 
 		return state.state;
 	}
@@ -191,7 +195,7 @@ valideSelect: function(item)
 			var state = { state: 0, text: 'Ok' };
 		}
 
-		this.addInputState(item.input, state);
+		this.setInputState(item.input, state);
 
 		return state.state;
 	}

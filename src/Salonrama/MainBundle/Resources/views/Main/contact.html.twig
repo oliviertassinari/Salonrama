@@ -15,7 +15,7 @@
 
 	$(document).ready(function()
 	{
-		Form = new Form('contact-post', 'contact-submit', 'contact-global-state', function(result, values, form){
+		var formContact = new Form('contact-post', 'contact-submit', 'contact-global-state', function(result, values, form){
 			if(result == 0)
 			{
 				if(busy == false)
@@ -29,17 +29,17 @@
 						data: values,
 						dataType: "json",
 						success: function(response){
-							Form.setGlobalState(response.state, response.text);
+							formContact.setGlobalState(response.state, response.text);
 
 							if(response.state == 0)
 							{
-								Form.empty();
+								formContact.empty();
 							}
 
 							busy = false;
 						},
 						error: function(rs, e) {
-							Form.setGlobalState(1, "Échec lors de l'envoi de l'email");
+							formContact.setGlobalState(1, "Échec lors de l'envoi de l'email.");
 							busy = false;
 						},
 					});
@@ -48,11 +48,11 @@
 			else if(result == 1){ this.setGlobalState(1, 'Champ Invalide.'); }
 			else{ this.setGlobalState(1, 'Champs Invalides.'); }
 		});
-		Form.addInput('contact-email', { regexp: 'email', maxLength: 320 });
-		Form.addInput('contact-nom', { isNeeded: false });
-		Form.addInput('contact-objet', {});
-		Form.addInput('contact-sujet', {});
-		Form.addInput('contact-message', {});
+		formContact.addInput('contact-email', { regexp: 'email', maxLength: 320 });
+		formContact.addInput('contact-nom', { isNeeded: false });
+		formContact.addInput('contact-objet', {});
+		formContact.addInput('contact-sujet', {});
+		formContact.addInput('contact-message', {});
 	});
 
 	</script>
