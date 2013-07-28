@@ -1,6 +1,9 @@
 Salonrama
 =========
 
+Conventions
+--------------------------------------
+
 HTML : 
 <br>
 
@@ -19,7 +22,8 @@ minuscule
 séparateur : _
 anglais
 
-
+Commandes
+--------------------------------------
 
 php app/console assets:install --symlink web
 
