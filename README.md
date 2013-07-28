@@ -5,22 +5,22 @@ Conventions
 --------------------------------------
 
 HTML : 
-<br>
+- <br>
 
 CSS : 
-minuscule
-séparateur : -
-anglais
+- minuscule
+- séparateur : -
+- anglais
 
-Noms des fichiers static et chemin :
-minuscule
-séparateur : _
-anglais
+Noms des fichiers static, chemin et twig :
+- minuscule
+- séparateur : _
+- anglais
 
 BDD :
-minuscule
-séparateur : _
-anglais
+- minuscule
+- séparateur : _
+- anglais
 
 Commandes
 --------------------------------------
