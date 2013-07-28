@@ -8,32 +8,26 @@ width:900px;
 margin:auto;
 font:13px arial,verdana,tahoma,helvetica,sans-serif;
 background:#fff url(../images/fond_content.png) repeat-y;
+overflow:auto;
 }
 
 #header{
-padding:6px 0 10px;
-margin:0 45px;
+margin:10px 45px 0;
 }
 #header img{
 border:0;
 }
-
-#slogan{
-height:32px;
-background:#f0f0f0;
-border-radius:4px;
-margin:0 45px;
+#header a{
 }
-#slogan h1{
-height:26px;
-margin:0 15px;
+#header h1{
+display:inline-block;
+background:#888;
+border-radius:6px;
+margin:4px 0 0 0;
 text-align:center;
-padding-top:6px;
-background:#888 url(../images/slogan.png) no-repeat;
-width:395px;
+padding:4px 10px;
 color:#fff;
-font-size:16px;
-line-height:20px;
+font-size:12px;
 text-shadow:0 1px 1px #372424;
 }
 
@@ -217,6 +211,22 @@ color:#02509d;
 text-decoration:underline;
 }
 
+#nav-left-left{
+float:left;
+width:240px;
+margin-right:10px;
+}
+#nav-left-left ul{
+margin:0;
+padding:0;
+}
+#nav-left-left li{
+list-style:none;
+}
+#nav-left-right{
+float:left;
+width:560px;
+}
 
 
 #footer{
