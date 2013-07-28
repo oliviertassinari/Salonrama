@@ -40,6 +40,18 @@ box-shadow:0 0 5px rgba(81, 167, 232, 0.5);
 .button-small::-moz-focus-inner{
 border:0;
 }
+.button-small[disabled], .button-small[disabled]:hover{
+cursor:default;
+background:#E5E5E5;
+border-color:#D9D9D9;
+color:#9D9D9D;
+text-shadow:0 1px 1px rgba(255, 255, 255, 0.75);
+box-shadow:none;
+}
+
+.button-small[disabled]:active{
+box-shadow:0 2px 4px rgba(0, 0, 0, 0.15) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+}
 
 .button-small-blue{
 color:#565656 !important;

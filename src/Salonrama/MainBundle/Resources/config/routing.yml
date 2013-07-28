@@ -46,11 +46,11 @@ salonrama_main_account_index:
 
 salonrama_main_account_settings:
     pattern:  /account/settings/
-    defaults: { _controller: SalonramaMainBundle:Settings:profile }
+    defaults: { _controller: SalonramaMainBundle:Settings:general }
 
-salonrama_main_account_settings_profile:
-    pattern:  /account/settings/profile
-    defaults: { _controller: SalonramaMainBundle:Settings:profile }
+salonrama_main_account_settings_general:
+    pattern:  /account/settings/general
+    defaults: { _controller: SalonramaMainBundle:Settings:general }
 
 salonrama_main_account_settings_email:
     pattern:  /account/settings/email

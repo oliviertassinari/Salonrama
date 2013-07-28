@@ -1,7 +1,13 @@
 {% set settings_nav = [
-	['Accueil', 'salonrama_main_index'],
-	['Présentation', 'salonrama_main_contact'],
-	['Actualités', 'salonrama_main_contact'],
-	['Aide', 'salonrama_main_help'],
-	['Mon compte', 'salonrama_main_account_index']
+	['Paramètre du compte', 'salonrama_main_account_settings_general'],
+	["Email", 'salonrama_main_account_settings_email'],
+	['Mot de passe', 'salonrama_main_account_settings_password'],
+	['Supprimer mon compte', 'salonrama_main_account_settings_delete']
 ]%}
+<ul>
+	{% for item in settings_nav %}
+    <li>
+    	<a href="{{ path(item[1]) }}" {% if item[1] == app.request.attributes.get('_route') %} class="select"{% endif %}>{{ item[0] }}</a>
+   	</li>
+	{% endfor %}
+</ul>

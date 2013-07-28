@@ -1,10 +1,36 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Modifier l'adresse email</title>
+	<title>Modifier l'email</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
 {% endblock %}
 
 {% block body %}
-	<h1>Modifier l'adresse email</h1>
+	<h1>Paramètres</h1>
+	<div id="nav-left-left">
+		{{ include("SalonramaMainBundle:Account:settings_nav.html.twig") }}
+	</div>
+	<div id="nav-left-right">
+		<form method="post" action="" id="email-post">
+		<fieldset>
+			<legend>Modifier mon email</legend>
 
+			<fieldset class="form-fieldset">
+				<label for="email-email">Email</label>
+				<div class="form-controls">
+					<input type="text" name="email-email" id="email-email" value="{{ app.user.email }}">
+				</div>
+			</fieldset>
+
+			<div class="form-actions">
+				<div id="email-global-state" class="form-global-state cadre-small"></div>
+				<button type="submit" id="email-submit" class="button-small button-small-green" disabled="disabled">Modifier mon email</button>
+			</div>
+		</fieldset> 
+		</form>
+	</div>
+	<div class="clear"></div>
 {% endblock %}

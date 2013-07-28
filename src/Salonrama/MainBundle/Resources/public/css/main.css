@@ -213,8 +213,9 @@ text-decoration:underline;
 
 #nav-left-left{
 float:left;
-width:240px;
-margin-right:10px;
+width:189px;
+margin-right:20px;
+border-right:1px solid #DEDEDE;
 }
 #nav-left-left ul{
 margin:0;
@@ -223,9 +224,22 @@ padding:0;
 #nav-left-left li{
 list-style:none;
 }
+#nav-left-left li a{
+display:block;
+padding:7px 10px;
+border-radius:3px 0 0 3px;
+}
+#nav-left-left li a:hover{
+background:#EFF2F7;
+text-decoration:none;
+}
+#nav-left-left li a.select{
+font-weight:700;
+background:#D8DFEA;
+}
 #nav-left-right{
 float:left;
-width:560px;
+width:600px;
 }
 
 
