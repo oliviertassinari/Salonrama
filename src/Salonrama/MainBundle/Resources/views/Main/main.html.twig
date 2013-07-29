@@ -23,51 +23,49 @@
 		<div id="header">
 			<a href="{{ path('salonrama_main_index') }}" title="Accueil"><img src="{{ asset('bundles/salonramamain/images/logo.png') }}" width="300" height="43"/></a><br/>
 			<h1>Créez le site internet de votre salon de coiffure</h1>
+			<div id="header-top-right">
+				{% if is_granted('ROLE_USER') %}
+				<b>{{ app.user.email }}</b> | <a href="{{ path('salonrama_main_logout') }}"><i class="icon-unlock-alt"></i>Se déconnecter</a>
+				{% else %}
+				<a href="{{ path('salonrama_main_login') }}"><i class="icon-lock"></i>Se connecter</a>
+				{% endif %}
+			</div>
 		</div>
 
 		<div id="menu">
 			<div id="nav">
 				<ul>
-				{% set nav = [
-					['Accueil', 'salonrama_main_index'],
-					['Présentation', 'salonrama_main_contact'],
-					['Actualités', 'salonrama_main_contact'],
-					['Aide', 'salonrama_main_help'],
-					['Mon compte', 'salonrama_main_account_index']
-				]%}
-		        {% for item in nav %}
-		            <li>
-		            	<a href="{{ path(item[1]) }}" title="{{ item[0] }}" {% if item[1] == app.request.attributes.get('_route') %} class="select"{% endif %}>
+					{% set nav = [
+						['Accueil', 'salonrama_main_index', []],
+						['Présentation', 'salonrama_main_contact', []],
+						['Actualités', 'salonrama_main_contact', []],
+						['Aide', 'salonrama_main_help', []],
+						['Mon compte', 'salonrama_main_account_index', [
+								['Mon site', 'salonrama_main_account_index'],
+								['Mon salon', 'salonrama_main_account_index'],
+								['Paramètres', 'salonrama_main_account_settings']
+							]]
+					]%}
+		        	{% for item in nav %}
+		            <li{% if item[1] == app.request.attributes.get('_route') %} class="select"{% endif %}>
+		            	<a href="{{ path(item[1]) }}" title="{{ item[0] }}">
 	            			{% if item[1] == 'salonrama_main_index'%}
-	            				<i class="icon-home"></i>
+	            			<i class="icon-home"></i>
 	            			{% else %}
-	            				{{ item[0] }}
+	            			{{ item[0] }}
 	            			{% endif %}
 		            	</a>
+		            	<div class="nav-sub">
+		            		<ul>
+			            		{% for item_sub in item[2] %}
+			            		<li><a href="{{ path(item_sub[1]) }}">{{ item_sub[0] }}</a></li>
+			            		{% endfor %}
+		            		</ul>
+		            	</div>
 		           	</li>
-		        {% endfor %}
+		        	{% endfor %}
 		    	</ul>
 		    	<span class="clear"></span>
-			</div>
-			<div id="nav-connexion">
-			{% if is_granted('ROLE_USER') %}
-				<form method="post" action="{{ path('salonrama_main_logout') }}">
-					<a href="{{ path('salonrama_main_account_index') }}" title="Accéder à l'administration de mon site"><i class="icon-user"></i>Mon compte</a>
-					<span>
-						Adresse email : <ins id="ThemeEmail">{{ app.user.email }}</ins>
-					</span>
-					<button type="submit" class="button-small button-small-blue"><i class="icon-unlock-alt"></i>Se déconnecter</button>
-				</form>
-			{% else %}
-				<form method="post" action="{{ path('salonrama_main_login_check') }}">
-					<a href="{{ path('salonrama_main_account_index') }}" title="Accéder à l'administration de mon site"><i class="icon-user"></i>Mon compte</a>
-					<p>
-						<label for="nav-email">Adresse email :</label><input id="nav-email" name="email" type="text"/>
-						<label for="nav-password">Mot de passe :</label><input id="nav-password" name="password" type="password"/>
-					</p>
-					<button type="submit" class="button-small button-small-blue"><i class="icon-lock"></i>Se connecter</button>
-				</form>
-			{% endif %}
 			</div>
 		</div>
 
