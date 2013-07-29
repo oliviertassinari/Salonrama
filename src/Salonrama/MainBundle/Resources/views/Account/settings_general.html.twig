@@ -1,7 +1,11 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Général</title>
+	<title>Paramètres - Général</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
 {% endblock %}
 
 {% block body %}
@@ -10,6 +14,30 @@
 		{{ include("SalonramaMainBundle:Account:settings_nav.html.twig") }}
 	</div>
 	<div id="nav-left-right">
+		<form method="post" action="" id="general-post">
+		<fieldset>
+			<legend>Informations personnelles</legend>
+
+			<fieldset class="form-fieldset">
+				<label for="general-lastname">Nom</label>
+				<div class="form-controls">
+					<input type="text" name="general-lastname" id="general-lastname">
+				</div>
+			</fieldset>
+
+			<fieldset class="form-fieldset">
+				<label for="general-firstname">Prenom</label>
+				<div class="form-controls">
+					<input type="text" name="general-firstname" id="general-firstname">
+				</div>
+			</fieldset>
+
+			<div class="form-actions">
+				<div id="general-global-state" class="form-global-state cadre-small"></div>
+				<button type="submit" id="general-submit" class="button-small button-small-green" disabled="disabled">Sauvegarder les modifications</button>
+			</div>
+		</fieldset> 
+		</form>
 	</div>
 	<div class="clear"></div>
 {% endblock %}

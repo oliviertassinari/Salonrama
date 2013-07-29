@@ -1,11 +1,33 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Modifier l'email</title>
+	<title>Paramètres - Email</title>
 
     <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
 
 	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+		var input = $('#email-email');
+		var submit = $('#email-submit')
+		var email = input.val();
+
+		input.on('input', function(){
+			if(input.val() != email)
+			{
+				submit.prop('disabled', false);
+			}
+			else
+			{
+				submit.prop('disabled', true);
+			}
+		});
+	});
+
+	</script>
 {% endblock %}
 
 {% block body %}

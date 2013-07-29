@@ -1,7 +1,20 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Supprimer mon compte</title>
+	<title>Paramètres - Supprimer mon compte</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+		$('#delete-password').focus();
+	});
+
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -10,6 +23,32 @@
 		{{ include("SalonramaMainBundle:Account:settings_nav.html.twig") }}
 	</div>
 	<div id="nav-left-right">
+		<div class="cadre-small cadre-small-orange">
+			<i class="icon-info-sign"></i>Si vous avez un retour quelconque dont vous voudriez nous faire part, <a href="{{ path("salonrama_main_contact") }}">contactez nous</a>.<br>
+			Avant de désactiver notre compte, sachez que :
+			<ul>
+				<li>Votre site sera supprimé <b>définitivement</b>.</li>
+				<li>Nous n'avons aucun contrôle sur le contenu indexé par les moteurs de recherche tels que Google.</li>
+			</ul>
+		</div>
+
+		<form method="post" action="" id="delete-post">
+		<fieldset>
+			<legend>Supprimer mon compte</legend>
+
+			<fieldset class="form-fieldset">
+				<label for="delete-password">Mot de passe</label>
+				<div class="form-controls">
+					<input type="password" name="delete-password" id="delete-password">
+				</div>
+			</fieldset>
+
+			<div class="form-actions">
+				<div id="delete-global-state" class="form-global-state cadre-small"></div>
+				<button type="submit" id="delete-submit" class="button-small button-small-red"><i class="icon-remove"></i>Supprimer mon compte</button>
+			</div>
+		</fieldset> 
+		</form>
 	</div>
 	<div class="clear"></div>
 {% endblock %}
