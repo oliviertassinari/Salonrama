@@ -32,33 +32,36 @@
 			</div>
 		</div>
 
+		{% set nav = {
+			'salonrama_main_index' : ['Accueil', []],
+			'salonrama_main_contact' : ['Présentation', []],
+			'salonrama_main_contact' : ['Actualités', []],
+			'salonrama_main_help' : ['Aide', []],
+			'salonrama_main_account_index' : ['Mon compte', {
+					'salonrama_main_account_index': 'Mon site',
+					'salonrama_main_account_index': 'Mon salon',
+					'salonrama_main_account_settings': 'Paramètres'
+				}]
+		} %}
+		{% set route = app.request.attributes.get('_route') %}
+		{% set nav_sub = false %}
+
 		<div id="menu">
 			<div id="nav">
 				<ul>
-					{% set nav = [
-						['Accueil', 'salonrama_main_index', []],
-						['Présentation', 'salonrama_main_contact', []],
-						['Actualités', 'salonrama_main_contact', []],
-						['Aide', 'salonrama_main_help', []],
-						['Mon compte', 'salonrama_main_account_index', [
-								['Mon site', 'salonrama_main_account_index'],
-								['Mon salon', 'salonrama_main_account_index'],
-								['Paramètres', 'salonrama_main_account_settings']
-							]]
-					]%}
-		        	{% for item in nav %}
-		            <li{% if item[1] == app.request.attributes.get('_route') %} class="select"{% endif %}>
-		            	<a href="{{ path(item[1]) }}" title="{{ item[0] }}">
-	            			{% if item[1] == 'salonrama_main_index'%}
+		        	{% for key, value in nav %}
+		            <li{% if key == route or route in value[1]|keys %} class="select"{% endif %}>
+		            	<a href="{{ path(key) }}" title="{{ value[0] }}"{% if loop.first %} class="first-child"{% endif %}>
+	            			{% if loop.first %}
 	            			<i class="icon-home"></i>
 	            			{% else %}
-	            			{{ item[0] }}
+	            			{{ value[0] }}
 	            			{% endif %}
 		            	</a>
 		            	<div class="nav-sub">
 		            		<ul>
-			            		{% for item_sub in item[2] %}
-			            		<li><a href="{{ path(item_sub[1]) }}">{{ item_sub[0] }}</a></li>
+			            		{% for key_sub, value_sub in value[1] %}
+			            		<li{% if key_sub == route %}{% set nav_sub = true %} class="select"{% endif %}><a href="{{ path(key_sub) }}">{{ value_sub }}</a></li>
 			            		{% endfor %}
 		            		</ul>
 		            	</div>
@@ -67,6 +70,9 @@
 		    	</ul>
 		    	<span class="clear"></span>
 			</div>
+			{% if nav_sub %}
+			<div id="nav-sub"></div>
+			{% endif %}
 		</div>
 
 		<div id="corps" class="corps">

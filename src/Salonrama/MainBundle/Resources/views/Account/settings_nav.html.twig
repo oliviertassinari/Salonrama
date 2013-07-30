@@ -7,7 +7,7 @@
 <ul>
 	{% for item in settings_nav %}
     <li>
-    	<a href="{{ path(item[1]) }}" {% if item[1] == app.request.attributes.get('_route') %} class="select"{% endif %}>{{ item[0] }}</a>
+    	<a href="{{ path(item[1]) }}" {% if item[1] == route %} class="select"{% endif %}>{{ item[0] }}</a>
    	</li>
 	{% endfor %}
 </ul>
