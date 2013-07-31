@@ -1,13 +1,13 @@
 {% set settings_nav = [
-	['Général', 'salonrama_main_account_settings_general'],
-	["Email", 'salonrama_main_account_settings_email'],
-	['Mot de passe', 'salonrama_main_account_settings_password'],
-	['Supprimer mon compte', 'salonrama_main_account_settings_delete']
+	['Général', 'salonrama_main_account_settings_general', 'salonrama_main_account_settings'],
+	["Email", 'salonrama_main_account_settings_email', ''],
+	['Mot de passe', 'salonrama_main_account_settings_password', ''],
+	['Supprimer mon compte', 'salonrama_main_account_settings_delete', '']
 ]%}
 <ul>
 	{% for item in settings_nav %}
     <li>
-    	<a href="{{ path(item[1]) }}" {% if item[1] == route %} class="select"{% endif %}>{{ item[0] }}</a>
+    	<a href="{{ path(item[1]) }}" {% if item[1] == route or item[2] == route %} class="select"{% endif %}>{{ item[0] }}</a>
    	</li>
 	{% endfor %}
 </ul>

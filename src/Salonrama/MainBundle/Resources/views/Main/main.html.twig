@@ -37,9 +37,9 @@
 			'salonrama_main_contact' : ['Présentation', []],
 			'salonrama_main_contact' : ['Actualités', []],
 			'salonrama_main_help' : ['Aide', []],
-			'salonrama_main_account_index' : ['Mon compte', {
-					'salonrama_main_account_index': 'Mon site',
-					'salonrama_main_account_index': 'Mon salon',
+			'salonrama_main_account' : ['Mon compte', {
+					'salonrama_main_account': 'Mon site',
+					'salonrama_main_account': 'Mon salon',
 					'salonrama_main_account_settings': 'Paramètres'
 				}]
 		} %}
@@ -50,7 +50,7 @@
 			<div id="nav">
 				<ul>
 		        	{% for key, value in nav %}
-		            <li{% if key == route or route in value[1]|keys %} class="select"{% endif %}>
+		            <li{% if key in route or route in value[1]|keys %} class="select"{% endif %}>
 		            	<a href="{{ path(key) }}" title="{{ value[0] }}"{% if loop.first %} class="first-child"{% endif %}>
 	            			{% if loop.first %}
 	            			<i class="icon-home"></i>
@@ -61,7 +61,7 @@
 		            	<div class="nav-sub">
 		            		<ul>
 			            		{% for key_sub, value_sub in value[1] %}
-			            		<li{% if key_sub == route %}{% set nav_sub = true %} class="select"{% endif %}><a href="{{ path(key_sub) }}">{{ value_sub }}</a></li>
+			            		<li{% if key_sub in route %}{% set nav_sub = true %} class="select"{% endif %}><a href="{{ path(key_sub) }}">{{ value_sub }}</a></li>
 			            		{% endfor %}
 		            		</ul>
 		            	</div>

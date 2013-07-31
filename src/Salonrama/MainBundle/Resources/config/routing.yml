@@ -40,7 +40,7 @@ salonrama_main_help_articles:
     pattern:  /help/article/{id}
     defaults: { _controller: SalonramaMainBundle:Help:article }
 
-salonrama_main_account_index:
+salonrama_main_account:
     pattern:  /account/
     defaults: { _controller: SalonramaMainBundle:Index:index }
 
