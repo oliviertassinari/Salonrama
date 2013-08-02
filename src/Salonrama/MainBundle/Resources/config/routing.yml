@@ -63,3 +63,7 @@ salonrama_main_account_settings_password:
 salonrama_main_account_settings_delete:
     pattern:  /account/settings/delete
     defaults: { _controller: SalonramaMainBundle:Settings:delete }
+
+salonrama_main_signin:
+    pattern:  /signin
+    defaults: { _controller: SalonramaMainBundle:Signin:signin }

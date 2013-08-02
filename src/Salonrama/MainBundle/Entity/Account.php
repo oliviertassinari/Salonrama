@@ -46,7 +46,7 @@ class Account
      * Set firstName
      *
      * @param string $firstName
-     * @return User
+     * @return Account
      */
     public function setFirstName($firstName)
     {
@@ -69,7 +69,7 @@ class Account
      * Set lastName
      *
      * @param string $lastName
-     * @return User
+     * @return Account
      */
     public function setLastName($lastName)
     {
@@ -92,7 +92,7 @@ class Account
      * Set born
      *
      * @param \DateTime $born
-     * @return User
+     * @return Account
      */
     public function setBorn($born)
     {

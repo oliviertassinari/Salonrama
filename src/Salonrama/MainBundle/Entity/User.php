@@ -49,10 +49,16 @@ class User implements UserInterface
      */
     private $confirmationToken;
 
+    /**
+    * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\Account")
+    * @ORM\JoinColumn(nullable=false)
+    */
+    private $account;
+
     public function __construct()
     {
         $this->isActive = false;
-        $this->confirmation_token = md5(uniqid(null, true));
+        $this->confirmationToken = md5(uniqid(null, true));
     }
 
     public function getUsername()
@@ -88,7 +94,7 @@ class User implements UserInterface
      * Set email
      *
      * @param string $email
-     * @return Account
+     * @return User
      */
     public function setEmail($email)
     {
@@ -111,11 +117,11 @@ class User implements UserInterface
      * Set password
      *
      * @param string $password
-     * @return Account
+     * @return User
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->password = Encrypter::encode($password);
     
         return $this;
     }
@@ -134,7 +140,7 @@ class User implements UserInterface
      * Set isActive
      *
      * @param boolean $isActive
-     * @return Account
+     * @return User
      */
     public function setIsActive($isActive)
     {
@@ -157,7 +163,7 @@ class User implements UserInterface
      * Set lastLogin
      *
      * @param \DateTime $lastLogin
-     * @return Account
+     * @return User
      */
     public function setLastLogin($lastLogin)
     {
@@ -180,7 +186,7 @@ class User implements UserInterface
      * Set signin
      *
      * @param \DateTime $signin
-     * @return Account
+     * @return User
      */
     public function setSignin($signin)
     {
@@ -203,7 +209,7 @@ class User implements UserInterface
      * Set confirmationToken
      *
      * @param string $confirmationToken
-     * @return Account
+     * @return User
      */
     public function setConfirmationToken($confirmationToken)
     {
@@ -220,5 +226,28 @@ class User implements UserInterface
     public function getConfirmationToken()
     {
         return $this->confirmationToken;
+    }
+
+    /**
+     * Set account
+     *
+     * @param \Salonrama\MainBundle\Entity\Account $account
+     * @return User
+     */
+    public function setAccount(\Salonrama\MainBundle\Entity\Account $account)
+    {
+        $this->account = $account;
+    
+        return $this;
+    }
+
+    /**
+     * Get account
+     *
+     * @return \Salonrama\MainBundle\Entity\Account 
+     */
+    public function getAccount()
+    {
+        return $this->account;
     }
 }
