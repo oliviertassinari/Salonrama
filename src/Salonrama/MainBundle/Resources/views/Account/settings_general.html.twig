@@ -9,6 +9,8 @@
 
 	<script>
 
+	var busy = false;
+
 	$(document).ready(function()
 	{
 		var generalLastname = $('#general-lastname');
@@ -32,8 +34,6 @@
 				generalSubmit.prop('disabled', true);
 			}
 		}
-
-		var busy = false;
 
 		var formGeneral = new Form('general-post', 'general-submit', 'general-global-state', function(result, values, form){
 			if(result == 0)

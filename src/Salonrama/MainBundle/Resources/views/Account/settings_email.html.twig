@@ -9,22 +9,59 @@
 
 	<script>
 
+	var busy = false;
+
 	$(document).ready(function()
 	{
-		var input = $('#email-email');
-		var submit = $('#email-submit')
-		var email = input.val();
+		var emailEmail = $('#email-email');
+		var emailSubmit = $('#email-submit');
+		var email = emailEmail.val();
 
-		input.on('input', function(){
-			if(input.val() != email)
+		emailEmail.on('input', function(){
+			if(emailEmail.val() != email)
 			{
-				submit.prop('disabled', false);
+				emailSubmit.prop('disabled', false);
 			}
 			else
 			{
-				submit.prop('disabled', true);
+				emailSubmit.prop('disabled', true);
 			}
 		});
+
+		var formEmail = new Form('email-post', 'email-submit', 'email-global-state', function(result, values, form){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					this.setGlobalState(2, 'Modifications en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							formEmail.setGlobalState(response.state, response.text);
+
+							if(response.state == 0)
+							{
+								lastName = generalLastname.val();
+								firstName = generalFirstname.val();
+								generalSubmit.prop('disabled', true);
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							formEmail.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+		});
+		formEmail.addInput('email-email', { regexp: 'email', maxLength: 320 });
 	});
 
 	</script>

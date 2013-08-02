@@ -37,6 +37,14 @@ border-color:#51A7E8;
 box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(82, 168, 236, 0.5);
 }
 
+.form-fieldset input[disabled]{
+background:#f0f0f0;
+color:#555;
+}
+.form-fieldset input[disabled]:hover{
+border-color:#C0C0C0;
+}
+
 .form-fieldset input[type="checkbox"]{
 cursor:pointer;
 margin:9px 0 0 4px;

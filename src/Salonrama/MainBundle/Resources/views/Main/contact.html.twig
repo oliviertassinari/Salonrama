@@ -72,14 +72,22 @@
 		<fieldset class="form-fieldset">
 			<label for="contact-email">Adresse email<span class="form-required">*</span></label>
 			<div class="form-controls">
-				<input type="text" name="contact-email" id="contact-email">
+				{% if is_granted('ROLE_USER') %}
+					<input type="text" name="contact-email" id="contact-email" disabled="disabled" value="{{ app.user.email }}">
+				{% else %}
+					<input type="text" name="contact-email" id="contact-email">
+				{% endif %}
 			</div>
 		</fieldset>
 
 		<fieldset class="form-fieldset">
 			<label for="contact-nom">Nom</label>
 			<div class="form-controls">
-				<input type="text" name="contact-nom" id="contact-nom">
+				{% if is_granted('ROLE_USER') %}
+					<input type="text" name="contact-nom" id="contact-nom" disabled="disabled" value="{{ app.user.account.name }}">
+				{% else %}
+					<input type="text" name="contact-nom" id="contact-nom">
+				{% endif %}
 			</div>
 		</fieldset>
 

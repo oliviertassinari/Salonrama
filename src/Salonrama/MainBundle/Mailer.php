@@ -20,7 +20,7 @@ class Mailer
 
     public function sendForgot($to, $name, $link)
     {
-        $message = 'Salonrama a reçu une demande pour réinitialiser le mot de passe de votre compte.<br><br>'.
+        $message = 'Salonrama a reçu une demande pour réinitialiser le mot de passe de votre compte (<b>'.$to.'</b>).<br><br>'.
                     "Pour réinitialiser votre mot de passe, cliquez sur le lien ci-dessous (ou copiez/collez l'URL dans votre navigateur) :<br>".
                     '<a href="'.$link.'">'.$link.'</a>';
 
@@ -29,7 +29,7 @@ class Mailer
 
     public function sendNewPassword($to, $name)
     {
-        $message = 'Vous avez récemment changé le mot de passe associé à votre compte Salonrama';
+        $message = 'Vous avez récemment changé le mot de passe associé à votre compte Salonrama (<b>'.$to.'</b>).';
 
         return $this->send('Votre mot de passe Salonrama a été changé',  $to, 'Bonjour, '.$name, $message);
     }
