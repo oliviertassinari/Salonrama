@@ -21,6 +21,7 @@ addInput: function(inputId, param)
 	var input = $('#'+inputId);
 	var inputTagName = input.prop('tagName').toLowerCase();
 
+	param = $.extend({}, param);
 	param.isNeeded = (typeof param.isNeeded != 'undefined') ? param.isNeeded : true;
 
 	if(inputTagName == 'input' && (input.prop('type').toLowerCase() == 'text' || input.prop('type').toLowerCase() == 'password'))
@@ -33,13 +34,19 @@ addInput: function(inputId, param)
 			param.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: "L'email est invalide" };
 		}
 
-		input.on('input', function(){ self.removeInputState(input); });
+		input.on('input', function(){
+			self.removeInputState(input);
+			self.setGlobalState(null);
+		});
 
 		this.list[inputId] = { input: input, type: 'inputText', param: param };
 	}
 	else if(inputTagName == 'textarea')
 	{
-		input.on('input', function(){ self.removeInputState(input); });
+		input.on('input', function(){
+			self.removeInputState(input);
+			self.setGlobalState(null);
+		});
 
 		this.list[inputId] = { input: input, type: 'textarea', param: param };
 	}
@@ -49,6 +56,7 @@ addInput: function(inputId, param)
 
 		input.change(function(){
 			self.removeInputState(input);
+			self.setGlobalState(null);
 		});
 
 		this.list[inputId] = { input: input, type: 'select', param: param };
@@ -57,27 +65,30 @@ addInput: function(inputId, param)
 
 setGlobalState: function(state, text)
 {
-	this.globalState.removeClass('cadre-small-red cadre-small-blue cadre-small-green');
-	this.globalState.css('display', 'block');
-
-	if(state == 1) //error
-	{
-		this.globalState.addClass('cadre-small-red');
-		this.globalState.html('<i class="icon-warning-sign"></i>'+text);
-	}
-	else if(state == 2) //wait
-	{
-		this.globalState.addClass('cadre-small-blue');
-		this.globalState.html('<i class="icon-spinner icon-spin"></i>'+text);
-	}
-	else if(state == 0) //ok
-	{
-		this.globalState.addClass('cadre-small-green');
-		this.globalState.html('<i class=icon-ok></i>'+text);
-	}
-	else if(state == null) //hide
+	if(state == null) //hide
 	{
 		this.globalState.css('display', 'none');
+	}
+	else
+	{
+		this.globalState.removeClass('cadre-small-red cadre-small-blue cadre-small-green');
+		this.globalState.css('display', 'block');
+
+		if(state == 1) //error
+		{
+			this.globalState.addClass('cadre-small-red');
+			this.globalState.html('<i class="icon-warning-sign"></i>'+text);
+		}
+		else if(state == 2) //wait
+		{
+			this.globalState.addClass('cadre-small-blue');
+			this.globalState.html('<i class="icon-spinner icon-spin"></i>'+text);
+		}
+		else if(state == 0) //ok
+		{
+			this.globalState.addClass('cadre-small-green');
+			this.globalState.html('<i class=icon-ok></i>'+text);
+		}
 	}
 },
 

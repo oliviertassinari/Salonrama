@@ -6,6 +6,75 @@
     <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
 
 	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+		var generalLastname = $('#general-lastname');
+		var generalFirstname = $('#general-firstname');
+		var generalSubmit = $('#general-submit')
+
+		var lastName = generalLastname.val();
+		var firstName = generalFirstname.val();
+
+		generalLastname.on('input', onChange);
+		generalFirstname.on('input', onChange);
+
+		function onChange()
+		{
+			if(generalLastname.val() != lastName || generalFirstname.val() != firstName)
+			{
+				generalSubmit.prop('disabled', false);
+			}
+			else
+			{
+				generalSubmit.prop('disabled', true);
+			}
+		}
+
+		var busy = false;
+
+		var formGeneral = new Form('general-post', 'general-submit', 'general-global-state', function(result, values, form){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					this.setGlobalState(2, 'Modifications en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							formGeneral.setGlobalState(response.state, response.text);
+
+							if(response.state == 0)
+							{
+								lastName = generalLastname.val();
+								firstName = generalFirstname.val();
+								generalSubmit.prop('disabled', true);
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							formGeneral.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+			else if(result == 1){ this.setGlobalState(1, 'Champ Invalide.'); }
+			else{ this.setGlobalState(1, 'Champs Invalides.'); }
+		});
+		formGeneral.addInput('general-lastname');
+		formGeneral.addInput('general-firstname');
+	});
+
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -19,16 +88,16 @@
 			<legend>Informations personnelles</legend>
 
 			<fieldset class="form-fieldset">
-				<label for="general-lastname">Nom</label>
+				<label for="general-firstname">Prenom</label>
 				<div class="form-controls">
-					<input type="text" name="general-lastname" id="general-lastname" value="{{ app.user.account.firstName }}">
+					<input type="text" name="general-firstname" id="general-firstname" value="{{ app.user.account.firstName }}">
 				</div>
 			</fieldset>
 
 			<fieldset class="form-fieldset">
-				<label for="general-firstname">Prenom</label>
+				<label for="general-lastname">Nom</label>
 				<div class="form-controls">
-					<input type="text" name="general-firstname" id="general-firstname" value="{{ app.user.account.lastName }}">
+					<input type="text" name="general-lastname" id="general-lastname" value="{{ app.user.account.lastName }}">
 				</div>
 			</fieldset>
 
