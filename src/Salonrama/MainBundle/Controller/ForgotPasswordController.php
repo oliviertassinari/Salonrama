@@ -28,9 +28,9 @@ class ForgotPasswordController extends Controller
 				if($user)
 				{
 	                $mailer = $this->get('salonrama_main_mailer');
-	                $state = $mailer->sendForgot($user->getEmail(), 'name', 'link');
+	                $state = $mailer->sendForgot($user->getEmail(), $user->getAccount()->getName(), 'link');
 
-	                if($state == 0)
+	                if($state == 1)
 	                {
 	                    $state = array('state' => 0, 'text' => '<strong>Nous avons envoyé les instructions de réinitialisation de mot de passe à '.$email.'.</strong><br><br>'.
 											"Si vous ne recevez pas les instructions d'ici une minute ou deux, vérifiez les filtres de spams et de courriers indésirables de votre compte.");

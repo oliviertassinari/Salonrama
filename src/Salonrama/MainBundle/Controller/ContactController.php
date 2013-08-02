@@ -42,7 +42,7 @@ class ContactController extends Controller
                 $mailer = $this->get('salonrama_main_mailer');
                 $state = $mailer->sendContact($email, $nom, $objet, $sujet, $message);
 
-                if($state == 0)
+                if($state == 1)
                 {
                     $state = array('state' => 0, 'text' => 'Votre message a bien été envoyé.');
                 }

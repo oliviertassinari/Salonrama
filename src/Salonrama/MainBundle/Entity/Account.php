@@ -32,6 +32,11 @@ class Account
      */
     protected $born;
 
+    public function getName()
+    {
+        return $this->getFirstName().' '.$this->getLastName();
+    }
+
     /**
      * Get id
      *
