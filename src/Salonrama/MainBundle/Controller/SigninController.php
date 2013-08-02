@@ -21,7 +21,6 @@ class SigninController extends Controller
 		$user->setAccount($account);
 		$user->setIsActive(true);
 		$user->setLastLogin(new \DateTime());
-		$user->setSignin(new \DateTime());
 
 		$em = $this->getDoctrine()->getManager();
 

@@ -15,22 +15,22 @@ class Account
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(name="fist_name", type="string", length=40)
      */
-    private $firstName;
+    protected $firstName;
 
     /**
      * @ORM\Column(name="last_name", type="string", length=40)
      */
-    private $lastName;
+    protected $lastName;
 
     /**
      * @ORM\Column(name="born", type="date")
      */
-    private $born;
+    protected $born;
 
     /**
      * Get id

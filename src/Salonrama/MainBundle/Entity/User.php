@@ -58,6 +58,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->isActive = false;
+        $this->signin = new \DateTime();
         $this->confirmationToken = md5(uniqid(null, true));
     }
 
