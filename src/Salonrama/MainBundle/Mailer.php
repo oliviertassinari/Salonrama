@@ -24,7 +24,14 @@ class Mailer
                     "Pour réinitialiser votre mot de passe, cliquez sur le lien ci-dessous (ou copiez/collez l'URL dans votre navigateur) :<br>".
                     '<a href="'.$link.'">'.$link.'</a>';
 
-        return $this->send('Réinitialiser votre mot de passe Salonrama',  $to, 'Vous avez oublié votre mot de passe, '.$name.' ?' , $message);
+        return $this->send('Réinitialiser votre mot de passe Salonrama',  $to, 'Vous avez oublié votre mot de passe, '.$name.' ?', $message);
+    }
+
+    public function sendNewPassword($to, $name)
+    {
+        $message = 'Vous avez récemment changé le mot de passe associé à votre compte Salonrama';
+
+        return $this->send('Votre mot de passe Salonrama a été changé',  $to, 'Bonjour, '.$name, $message);
     }
 
 	public function send($subject, $to, $title, $body)
