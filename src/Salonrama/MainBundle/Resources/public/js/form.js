@@ -1,13 +1,14 @@
-var Form = function(formId, submitId, globalStateId, onSubmit)
+var Form = function(form, onSubmit)
 {
 	var self = this;
 
-	this.form = $('#'+formId);
-	this.globalState = $('#'+globalStateId);
+	this.form = form;
+	this.globalState = form.find('.form-global-state');
 	this.onSubmit = onSubmit;
+	this.submit = form.find('button[type="submit"]');
 	this.list = {};
 
-	$('#'+submitId).click(function(event){
+	this.submit.click(function(event){
 		event.preventDefault();
 		self.valide();
 	});
@@ -244,7 +245,7 @@ valide: function()
 		}
 	}
 
-	this.onSubmit(result, values, this.form);
+	this.onSubmit(result, values, this);
 },
 
 empty: function()

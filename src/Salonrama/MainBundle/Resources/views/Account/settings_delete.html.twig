@@ -15,13 +15,13 @@
 	{
 		$('#delete-password').focus();
 
-		var formDelete = new Form('delete-post', 'delete-submit', 'delete-global-state', function(result, values, form){
+		var deleteForm = new Form($('#delete-post'), function(result, values, self){
 			if(result == 0)
 			{
 				if(busy == false)
 				{
 					busy = true;
-					this.setGlobalState(2, 'Suppression en cours...');
+					self.setGlobalState(2, 'Suppression en cours...');
 
 					$.ajax({
 						type: "POST",
@@ -29,7 +29,7 @@
 						data: values,
 						dataType: "json",
 						success: function(response){
-							formDelete.setGlobalState(response.state, response.text);
+							self.setGlobalState(response.state, response.text);
 
 							if(response.state == 0)
 							{
@@ -39,14 +39,14 @@
 							busy = false;
 						},
 						error: function(rs, e) {
-							formDelete.setGlobalState(1, "Échec lors de la requête.");
+							self.setGlobalState(1, "Échec lors de la requête.");
 							busy = false;
 						},
 					});
 				}
 			}
 		});
-		formDelete.addInput('delete-password', { minLength: 4, maxLength: 25 });
+		deleteForm.addInput('delete-password', { minLength: 4, maxLength: 25 });
 	});
 
 	</script>
@@ -79,8 +79,8 @@
 			</fieldset>
 
 			<div class="form-actions">
-				<div id="delete-global-state" class="form-global-state cadre-small"></div>
-				<button type="submit" id="delete-submit" class="button-small button-small-red"><i class="icon-remove"></i>Supprimer mon compte</button>
+				<div class="form-global-state cadre-small"></div>
+				<button type="submit" class="button-small button-small-red"><i class="icon-remove"></i>Supprimer mon compte</button>
 			</div>
 		</fieldset> 
 		</form>

@@ -15,13 +15,13 @@
 
 	$(document).ready(function()
 	{
-		var formContact = new Form('contact-post', 'contact-submit', 'contact-global-state', function(result, values, form){
+		var contactForm = new Form($('#contact-post'), function(result, values, self){
 			if(result == 0)
 			{
 				if(busy == false)
 				{
 					busy = true;
-					this.setGlobalState(2, 'Envoi en cours...');
+					self.setGlobalState(2, 'Envoi en cours...');
 
 					$.ajax({
 						type: "POST",
@@ -29,30 +29,30 @@
 						data: values,
 						dataType: "json",
 						success: function(response){
-							formContact.setGlobalState(response.state, response.text);
+							self.setGlobalState(response.state, response.text);
 
 							if(response.state == 0)
 							{
-								formContact.empty();
+								self.empty();
 							}
 
 							busy = false;
 						},
 						error: function(rs, e) {
-							formContact.setGlobalState(1, "Échec lors de la requête.");
+							self.setGlobalState(1, "Échec lors de la requête.");
 							busy = false;
 						},
 					});
 				}
 			}
-			else if(result == 1){ this.setGlobalState(1, 'Champ Invalide.'); }
-			else{ this.setGlobalState(1, 'Champs Invalides.'); }
+			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
+			else{ self.setGlobalState(1, 'Champs Invalides.'); }
 		});
-		formContact.addInput('contact-email', { regexp: 'email', maxLength: 320 });
-		formContact.addInput('contact-nom', { isNeeded: false });
-		formContact.addInput('contact-objet');
-		formContact.addInput('contact-sujet');
-		formContact.addInput('contact-message');
+		contactForm.addInput('contact-email', { regexp: 'email', maxLength: 320 });
+		contactForm.addInput('contact-nom', { isNeeded: false });
+		contactForm.addInput('contact-objet');
+		contactForm.addInput('contact-sujet');
+		contactForm.addInput('contact-message');
 	});
 
 	</script>
@@ -119,8 +119,8 @@
 		</fieldset>
 
 		<div class="form-actions">
-			<div id="contact-global-state" class="form-global-state cadre-small"></div>
-			<button type="submit" id="contact-submit" class="button-small button-small-green"><i class="icon-envelope"></i>Envoyer mon message</button>
+			<div class="form-global-state cadre-small"></div>
+			<button type="submit" class="button-small button-small-green"><i class="icon-envelope"></i>Envoyer mon message</button>
 		</div>
 		<p class="form-required">* champ à remplir obligatoirement</p>
 	</fieldset> 

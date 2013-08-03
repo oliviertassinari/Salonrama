@@ -29,14 +29,14 @@
 			$('#login-password').focus();
 		}
 
-		var formLogin = new Form('login-post', 'login-submit', 'login-global-state', function(result, values, form){
+		var loginForm = new Form($('#login-post'), function(result, values, self){
 			if(result == 0)
 			{
-				form.submit();
+				self.form.submit();
 			}
 		});
-		formLogin.addInput('login-email', { regexp: 'email', maxLength: 320 });
-		formLogin.addInput('login-password', { minLength: 4, maxLength: 25 });
+		loginForm.addInput('login-email', { regexp: 'email', maxLength: 320 });
+		loginForm.addInput('login-password', { minLength: 4, maxLength: 25 });
 	});
 
 	</script>
@@ -77,13 +77,13 @@
 		</fieldset>
 		<div class="form-actions">
 			{% if error %}
-			<div id="login-global-state" class="form-global-state cadre-small cadre-small-red" style="display:block;">
+			<div class="form-global-state cadre-small cadre-small-red" style="display:block;">
 				<i class="icon-warning-sign"></i>{{ error.message|trans([], 'error') }}
 			</div>
 			{% else %}
-			<div id="login-global-state" class="form-global-state cadre-small"></div>
+			<div class="form-global-state cadre-small"></div>
 			{% endif %}
-			<button type="submit" id="login-submit" class="button-small button-small-green"><i class="icon-lock"></i>Se connecter</button>
+			<button type="submit" class="button-small button-small-green"><i class="icon-lock"></i>Se connecter</button>
 		</div>
 	</fieldset>
 	</form>

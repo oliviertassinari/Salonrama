@@ -13,9 +13,46 @@
 
 	$(document).ready(function()
 	{
+		var generalForm = new Form($('#general-post'), function(result, values, self){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					self.setGlobalState(2, 'Modifications en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							self.setGlobalState(response.state, response.text);
+
+							if(response.state == 0)
+							{
+								lastName = values['general-lastname'];
+								firstName = values['general-firstname'];
+								self.submit.prop('disabled', true);
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							self.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
+			else{ self.setGlobalState(1, 'Champs Invalides.'); }
+		});
+		generalForm.addInput('general-lastname');
+		generalForm.addInput('general-firstname');
+
 		var generalLastname = $('#general-lastname');
 		var generalFirstname = $('#general-firstname');
-		var generalSubmit = $('#general-submit')
 
 		var lastName = generalLastname.val();
 		var firstName = generalFirstname.val();
@@ -27,51 +64,13 @@
 		{
 			if(generalLastname.val() != lastName || generalFirstname.val() != firstName)
 			{
-				generalSubmit.prop('disabled', false);
+				generalForm.submit.prop('disabled', false);
 			}
 			else
 			{
-				generalSubmit.prop('disabled', true);
+				generalForm.submit.prop('disabled', true);
 			}
 		}
-
-		var formGeneral = new Form('general-post', 'general-submit', 'general-global-state', function(result, values, form){
-			if(result == 0)
-			{
-				if(busy == false)
-				{
-					busy = true;
-					this.setGlobalState(2, 'Modifications en cours...');
-
-					$.ajax({
-						type: "POST",
-						url: "",
-						data: values,
-						dataType: "json",
-						success: function(response){
-							formGeneral.setGlobalState(response.state, response.text);
-
-							if(response.state == 0)
-							{
-								lastName = generalLastname.val();
-								firstName = generalFirstname.val();
-								generalSubmit.prop('disabled', true);
-							}
-
-							busy = false;
-						},
-						error: function(rs, e) {
-							formGeneral.setGlobalState(1, "Échec lors de la requête.");
-							busy = false;
-						},
-					});
-				}
-			}
-			else if(result == 1){ this.setGlobalState(1, 'Champ Invalide.'); }
-			else{ this.setGlobalState(1, 'Champs Invalides.'); }
-		});
-		formGeneral.addInput('general-lastname');
-		formGeneral.addInput('general-firstname');
 	});
 
 	</script>
@@ -102,8 +101,8 @@
 			</fieldset>
 
 			<div class="form-actions">
-				<div id="general-global-state" class="form-global-state cadre-small"></div>
-				<button type="submit" id="general-submit" class="button-small button-small-green" disabled="disabled">Sauvegarder les modifications</button>
+				<div class="form-global-state cadre-small"></div>
+				<button type="submit" class="button-small button-small-green" disabled="disabled">Sauvegarder les modifications</button>
 			</div>
 		</fieldset> 
 		</form>
