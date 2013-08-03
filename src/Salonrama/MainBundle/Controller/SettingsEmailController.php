@@ -14,19 +14,48 @@ class SettingsEmailController extends Controller
 
         if($request->isXmlHttpRequest())
         {
-            $email = trim($request->request->get('email-email', ''));
-
-            $errors = $this->container->get('validator')->validateValue($email, array(
-                                                                            new Assert\NotBlank(),
-                                                                            new Assert\Email()
-                                                                        ));
-            if(count($errors) == 0)
+            if($request->request->has('email-email'))
             {
-                $state = array('state' => 0, 'text' => 'ok');
+                $email = trim($request->request->get('email-email', ''));
+
+                $errors = $this->container->get('validator')->validateValue($email, array(
+                                                                                new Assert\NotBlank(),
+                                                                                new Assert\Email()
+                                                                            ));
+                if(count($errors) == 0)
+                {
+                    $state = array('state' => 0, 'text' => 'ok');
+                }
+                else
+                {
+                    $state = array('state' => 1, 'text' => "L'email est invalide");
+                }
             }
             else
             {
-                $state = array('state' => 1, 'text' => "L'email est invalide");
+                $sendNewsletter = trim($request->request->get('newsletter-send', ''));
+
+                if($sendNewsletter == 'true' || $sendNewsletter == 'false')
+                {
+                    $em = $this->getDoctrine()->getManager();
+
+                    if($sendNewsletter == 'true')
+                    {
+                        $this->getUser()->getAccount()->setSendNewsletter(true);
+                    }
+                    else
+                    {
+                        $this->getUser()->getAccount()->setSendNewsletter(false);
+                    }
+
+                    $em->flush();
+
+                    $state = array('state' => 0, 'text' => 'Modifications sauvegardées.');
+                }
+                else
+                {
+                    $state = array('state' => 1, 'text' => 'Champ Invalide.');
+                }
             }
 
             return new JsonResponse($state);
