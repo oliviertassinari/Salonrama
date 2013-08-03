@@ -69,6 +69,52 @@
 			}
 		});
 
+		var newsletterForm = new Form($('#newsletter-post'), function(result, values, self){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					self.setGlobalState(2, 'Modifications en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							self.setGlobalState(response.state, response.text);
+
+							if(response.state == 0)
+							{
+								send = values['email-email'];
+								self.submit.prop('disabled', true);
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							self.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+		});
+
+		var newsletterSend = $('#newsletter-send');
+		var send = newsletterSend.val();
+
+		newsletterSend.on('input', function(){
+			if(newsletterSend.val() != send)
+			{
+				newsletterForm.submit.prop('disabled', false);
+			}
+			else
+			{
+				newsletterForm.submit.prop('disabled', true);
+			}
+		});
 	});
 
 	</script>
