@@ -7,38 +7,38 @@
 	<meta name="keywords" content="création, créer, crée, site, internet, salon, coiffure, gratuit, coiffeur, web, vitrine, logiciel, en ligne, salonrama, tassi, conseil, agence, sans difficultés, facile, sans connaissances informatique, sans jargon informatique, simple, simplicité, hébergement, nom de domaine, outil, webmaster, gratuitement, construire, facile, débutant, pas cher, coder, programmer, propre, comment, annuaire, notoriété, pub"/>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/slider.css') }}"/>
+
+	<style>
+
+	#Slider .div2{
+	width:43%;
+	margin:0 3%;
+	float:left;
+	}
+
+	#bouton{
+	text-align:center;
+	margin-top:25px;
+	}
+
+	#free{
+	position:absolute;
+	left:547px;
+	top:376px;
+	}
+
+	</style>
+
 	<script src="{{ asset('bundles/salonramamain/js/slider.js') }}"></script>
 
-<script>
+	<script>
 
-$(document).ready(function()
-{
-	new Slider('Slider', 6000);
-});
+	$(document).ready(function()
+	{
+		new Slider('Slider', 6000);
+	});
 
-</script>
-
-<style>
-
-#Slider .div2{
-width:43%;
-margin:0 3%;
-float:left;
-}
-
-#bouton{
-text-align:center;
-margin-top:25px;
-}
-
-#free{
-position:absolute;
-left:547px;
-top:376px;
-}
-
-</style>
-
+	</script>
 {% endblock %}
 
 {% block body %}
