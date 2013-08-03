@@ -42,6 +42,10 @@ addInput: function(inputId, param)
 
 		this.list[inputId] = { input: input, type: 'inputText', param: param };
 	}
+	else if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'checkbox')
+	{
+		this.list[inputId] = { input: input, type: 'checkbox', param: param };
+	}
 	else if(inputTagName == 'textarea')
 	{
 		input.on('input', function(){
@@ -242,6 +246,10 @@ valide: function()
 		{
 			result += this.valideSelect(item);
 			values[inputId] = item.input.val();
+		}
+		else if(item.type == 'checkbox')
+		{
+			values[inputId] = item.input.prop('checked');
 		}
 	}
 
