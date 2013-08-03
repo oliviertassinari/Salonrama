@@ -32,6 +32,11 @@ class Account
      */
     protected $born;
 
+    /**
+     * @ORM\Column(name="send_newsletter", type="boolean")
+     */
+    protected $sendNewsletter;
+
     public function getName()
     {
         return $this->getFirstName().' '.$this->getLastName();
@@ -114,5 +119,28 @@ class Account
     public function getBorn()
     {
         return $this->born;
+    }
+
+    /**
+     * Set sendNewsletter
+     *
+     * @param boolean $sendNewsletter
+     * @return Account
+     */
+    public function setSendNewsletter($sendNewsletter)
+    {
+        $this->sendNewsletter = $sendNewsletter;
+    
+        return $this;
+    }
+
+    /**
+     * Get sendNewsletter
+     *
+     * @return boolean 
+     */
+    public function getSendNewsletter()
+    {
+        return $this->sendNewsletter;
     }
 }

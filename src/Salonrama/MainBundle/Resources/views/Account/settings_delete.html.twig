@@ -15,13 +15,13 @@
 	{
 		$('#delete-password').focus();
 
-		var deleteGeneral = new Form('general-post', 'general-submit', 'general-global-state', function(result, values, form){
+		var formDelete = new Form('delete-post', 'delete-submit', 'delete-global-state', function(result, values, form){
 			if(result == 0)
 			{
 				if(busy == false)
 				{
 					busy = true;
-					this.setGlobalState(2, 'Modifications en cours...');
+					this.setGlobalState(2, 'Suppression en cours...');
 
 					$.ajax({
 						type: "POST",
@@ -29,29 +29,24 @@
 						data: values,
 						dataType: "json",
 						success: function(response){
-							formGeneral.setGlobalState(response.state, response.text);
+							formDelete.setGlobalState(response.state, response.text);
 
 							if(response.state == 0)
 							{
-								lastName = generalLastname.val();
-								firstName = generalFirstname.val();
-								generalSubmit.prop('disabled', true);
+								
 							}
 
 							busy = false;
 						},
 						error: function(rs, e) {
-							formGeneral.setGlobalState(1, "Échec lors de la requête.");
+							formDelete.setGlobalState(1, "Échec lors de la requête.");
 							busy = false;
 						},
 					});
 				}
 			}
-			else if(result == 1){ this.setGlobalState(1, 'Champ Invalide.'); }
-			else{ this.setGlobalState(1, 'Champs Invalides.'); }
 		});
-		formGeneral.addInput('general-lastname');
-		formGeneral.addInput('general-firstname');
+		formDelete.addInput('delete-password', { minLength: 4, maxLength: 25 });
 	});
 
 	</script>

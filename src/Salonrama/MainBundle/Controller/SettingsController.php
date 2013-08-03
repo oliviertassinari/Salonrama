@@ -157,7 +157,32 @@ class SettingsController extends Controller
 
         if($request->isXmlHttpRequest())
         {
+            $password = trim($request->request->get('delete-password', ''));
 
+            $errors = $this->container->get('validator')->validateValue($password, array(
+                                                                                        new Assert\NotBlank(),
+                                                                                        new Assert\Length(array('min' => 4, 'max' => 25))
+                                                                                ));
+
+            if(count($errors) == 0)
+            {
+                $user = $this->getUser();
+
+                if($user->getPassword() == $password)
+                {
+                    $state = array('state' => 0, 'text' => 'Champ Invalide.');
+                }
+                else
+                {
+                    $state = array('state' => 1, 'text' => 'Le mot de passe est incorrect.');
+                }
+            }
+            else
+            {
+                $state = array('state' => 1, 'text' => 'Champ Invalide.');
+            }
+
+            return new JsonResponse($state);
         }
         else
         {
