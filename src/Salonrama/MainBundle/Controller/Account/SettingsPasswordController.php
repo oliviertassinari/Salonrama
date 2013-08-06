@@ -1,6 +1,6 @@
 <?php
 
-namespace Salonrama\MainBundle\Controller;
+namespace Salonrama\MainBundle\Controller\Account;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
