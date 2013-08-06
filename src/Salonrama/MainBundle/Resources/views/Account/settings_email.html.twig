@@ -152,7 +152,7 @@
 			<fieldset class="form-fieldset">
 				<label for="newsletter-send">M'abonner à la newsletter</label>
 				<div class="form-controls">
-					{% if app.user.account.sendNewsletter %}
+					{% if app.user.account.newsletterSend %}
 					<input type="checkbox" name="newsletter-send" id="newsletter-send" checked="checked"/>
 					{% else %}
 					<input type="checkbox" name="newsletter-send" id="newsletter-send"/>

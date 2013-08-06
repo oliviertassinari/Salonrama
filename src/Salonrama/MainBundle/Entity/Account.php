@@ -28,14 +28,9 @@ class Account
     protected $lastName;
 
     /**
-     * @ORM\Column(name="born", type="date")
+     * @ORM\Column(name="newsletter_send", type="boolean")
      */
-    protected $born;
-
-    /**
-     * @ORM\Column(name="send_newsletter", type="boolean")
-     */
-    protected $sendNewsletter;
+    protected $newsletterSend;
 
     public function getName()
     {
@@ -99,37 +94,14 @@ class Account
     }
 
     /**
-     * Set born
-     *
-     * @param \DateTime $born
-     * @return Account
-     */
-    public function setBorn($born)
-    {
-        $this->born = $born;
-    
-        return $this;
-    }
-
-    /**
-     * Get born
-     *
-     * @return \DateTime 
-     */
-    public function getBorn()
-    {
-        return $this->born;
-    }
-
-    /**
-     * Set sendNewsletter
+     * Set newsletterSend
      *
      * @param boolean $sendNewsletter
      * @return Account
      */
-    public function setSendNewsletter($sendNewsletter)
+    public function setNewsletterSend($newsletterSend)
     {
-        $this->sendNewsletter = $sendNewsletter;
+        $this->newsletterSend = $newsletterSend;
     
         return $this;
     }
@@ -139,8 +111,8 @@ class Account
      *
      * @return boolean 
      */
-    public function getSendNewsletter()
+    public function getNewsletterSend()
     {
-        return $this->sendNewsletter;
+        return $this->newsletterSend;
     }
 }

@@ -33,19 +33,19 @@ class SettingsEmailController extends Controller
             }
             else
             {
-                $sendNewsletter = trim($request->request->get('newsletter-send', ''));
+                $newsletterSend = trim($request->request->get('newsletter-send', ''));
 
-                if($sendNewsletter == 'true' || $sendNewsletter == 'false')
+                if($newsletterSend == 'true' || $newsletterSend == 'false')
                 {
                     $em = $this->getDoctrine()->getManager();
 
-                    if($sendNewsletter == 'true')
+                    if($newsletterSend == 'true')
                     {
-                        $this->getUser()->getAccount()->setSendNewsletter(true);
+                        $this->getUser()->getAccount()->setNewsletterSend(true);
                     }
                     else
                     {
-                        $this->getUser()->getAccount()->setSendNewsletter(false);
+                        $this->getUser()->getAccount()->setNewsletterSend(false);
                     }
 
                     $em->flush();
