@@ -35,12 +35,16 @@
 						data: values,
 						dataType: "json",
 						success: function(response){
-							self.setGlobalState(response.state, response.text);
-
 							if(response.state == 0)
 							{
 								email = values['email-email'];
 								self.submit.prop('disabled', true);
+								self.setGlobalState(response.state, response.text);
+							}
+							else
+							{
+								self.setInputState($('#email-email'), response);
+								self.setGlobalState(null);
 							}
 
 							busy = false;

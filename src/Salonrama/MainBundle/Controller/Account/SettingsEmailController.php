@@ -24,7 +24,26 @@ class SettingsEmailController extends Controller
                                                                             ));
                 if(count($errors) == 0)
                 {
-                    $state = array('state' => 0, 'text' => 'ok');
+                    $user = $this->getUser();
+
+                    if($email != $user->getEmail())
+                    {
+                        $userRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:User');
+                        $user = $userRepository->findOneByEmail($email);
+
+                        if(!$user)
+                        {
+                            $state = array('state' => 0, 'text' => 'ok');
+                        }
+                        else
+                        {
+                            $state = array('state' => 1, 'text' => 'Adresse email déjà utilisée');
+                        }
+                    }
+                    else
+                    {
+                        $state = array('state' => 1, 'text' => "C'est vous");
+                    }
                 }
                 else
                 {
