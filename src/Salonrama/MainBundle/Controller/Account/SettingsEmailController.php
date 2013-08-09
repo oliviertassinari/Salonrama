@@ -33,6 +33,10 @@ class SettingsEmailController extends Controller
 
                         if(!$user)
                         {
+                            $mailer = $this->get('salonrama_main_mailer');
+                            $state1 = $mailer->sendChangeEmailNew($email, $user->getAccount()->getName(), $user->getEmail(), 'link');
+                            $state2 = $mailer->sendChangeEmailOld($user->getEmail(), $user->getAccount()->getName());
+
                             $state = array('state' => 0, 'text' => 'ok');
                         }
                         else

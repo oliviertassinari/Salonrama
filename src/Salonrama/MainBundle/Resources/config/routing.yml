@@ -17,6 +17,10 @@ salonrama_main_forgot_password:
     pattern:  /forgot_password
     defaults: { _controller: SalonramaMainBundle:ForgotPassword:forgotPassword }
 
+salonrama_main_reset_password:
+    pattern:  /reset_password/{id}/{token}
+    defaults: { _controller: SalonramaMainBundle:ResetPassword:resetPassword }
+
 salonrama_main_logout:
     pattern:  /logout
 
@@ -71,6 +75,10 @@ salonrama_main_account_settings_password:
 salonrama_main_account_settings_delete:
     pattern:  /account/settings/delete
     defaults: { _controller: SalonramaMainBundle:Account/SettingsDelete:delete }
+
+salonrama_main_account_confirm_email:
+    pattern:  /account/confirm_email
+    defaults: { _controller: SalonramaMainBundle:Account/ConfirmEmail:confirmEmail }
 
 salonrama_main_signin:
     pattern:  /signin

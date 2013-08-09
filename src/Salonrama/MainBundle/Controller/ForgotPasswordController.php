@@ -28,7 +28,7 @@ class ForgotPasswordController extends Controller
 				if($user)
 				{
 	                $mailer = $this->get('salonrama_main_mailer');
-	                $state = $mailer->sendForgot($user->getEmail(), $user->getAccount()->getName(), 'link');
+	                $state = $mailer->sendForgotPassword($user->getEmail(), $user->getAccount()->getName(), 'http://www.salonrama.fr/reset_password/'.$user->getId().'/');
 
 	                if($state == 1)
 	                {
