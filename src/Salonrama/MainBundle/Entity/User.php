@@ -25,7 +25,7 @@ class User implements UserInterface
     private $email;
 
     /**
-     * @ORM\Column(name="password", type="string", length=40)
+     * @ORM\Column(name="password", type="string", length=100)
      */
     private $password;
 
@@ -45,9 +45,19 @@ class User implements UserInterface
     private $signin;
 
     /**
-     * @ORM\Column(name="confirmation_token", type="string", length=32)
+     * @ORM\Column(name="reset_password_token", type="string", length=32)
      */
-    private $confirmationToken;
+    private $resetPasswordToken;
+
+    /**
+     * @ORM\Column(name="confirm_email", type="string", length=320)
+     */
+    private $confirmEmail;
+
+    /**
+     * @ORM\Column(name="confirm_email_token", type="string", length=32)
+     */
+    private $confirmEmailToken;
 
     /**
     * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\Account")
@@ -59,7 +69,6 @@ class User implements UserInterface
     {
         $this->isActive = false;
         $this->signin = new \DateTime();
-        $this->confirmationToken = md5(uniqid(null, true));
     }
 
     public function getUsername()
@@ -207,26 +216,72 @@ class User implements UserInterface
     }
 
     /**
-     * Set confirmationToken
+     * Set resetPasswordToken
      *
-     * @param string $confirmationToken
+     * @param string $resetPasswordToken
      * @return User
      */
-    public function setConfirmationToken($confirmationToken)
+    public function setResetPasswordToken($resetPasswordToken)
     {
-        $this->confirmationToken = $confirmationToken;
+        $this->resetPasswordToken = $resetPasswordToken;
     
         return $this;
     }
 
     /**
-     * Get confirmationToken
+     * Get resetPasswordToken
      *
      * @return string 
      */
-    public function getConfirmationToken()
+    public function getResetPasswordToken()
     {
-        return $this->confirmationToken;
+        return $this->resetPasswordToken;
+    }
+
+    /**
+     * Set confirmEmail
+     *
+     * @param string $confirmEmail
+     * @return User
+     */
+    public function setConfirmEmail($confirmEmail)
+    {
+        $this->confirmEmail = $confirmEmail;
+    
+        return $this;
+    }
+
+    /**
+     * Get confirmEmail
+     *
+     * @return string 
+     */
+    public function getConfirmEmail()
+    {
+        return $this->confirmEmail;
+    }
+
+    /**
+     * Set confirmEmailToken
+     *
+     * @param string $confirmEmailToken
+     * @return User
+     */
+    public function setConfirmEmailToken($confirmEmailToken)
+    {
+        $this->confirmEmailToken = $confirmEmailToken;
+    
+        return $this;
+    }
+
+    /**
+     * Get confirmEmailToken
+     *
+     * @return string 
+     */
+    public function getConfirmEmailToken()
+    {
+        return $this->confirmEmailToken;
     }
 
     /**

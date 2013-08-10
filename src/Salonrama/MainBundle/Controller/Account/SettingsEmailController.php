@@ -29,12 +29,19 @@ class SettingsEmailController extends Controller
                     if($email != $user->getEmail())
                     {
                         $userRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:User');
-                        $user = $userRepository->findOneByEmail($email);
+                        $findUser = $userRepository->findOneByEmail($email);
 
-                        if(!$user)
+                        if(!$findUser)
                         {
+                            $em = $this->getDoctrine()->getManager();
+                            $user->setConfirmEmail($email);
+                            $user->setConfirmEmailToken(md5(uniqid(null, true)));
+                            $em->flush();
+
                             $mailer = $this->get('salonrama_main_mailer');
-                            $state1 = $mailer->sendChangeEmailNew($email, $user->getAccount()->getName(), $user->getEmail(), 'link');
+                            $state1 = $mailer->sendChangeEmailNew($email, $user->getAccount()->getName(), $user->getEmail(), 
+                                                                    'http://www.salonrama.fr/confirm_email/'.
+                                                                     $user->getId().'/'.$user->getConfirmEmailToken());
                             $state2 = $mailer->sendChangeEmailOld($user->getEmail(), $user->getAccount()->getName());
 
                             $state = array('state' => 0, 'text' => 'ok');

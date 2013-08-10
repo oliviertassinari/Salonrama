@@ -22,18 +22,26 @@ class ForgotPasswordController extends Controller
 
             if(count($errors) == 0)
             {
-				$accountRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:User');
-				$user = $accountRepository->findOneByEmail($email);
+				$userRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:User');
+				$user = $userRepository->findOneByEmail($email);
 
 				if($user)
 				{
+                    if($user->getResetPasswordToken() == '')
+                    {
+                    	$em = $this->getDoctrine()->getManager();
+						$user->setResetPasswordToken(md5(uniqid(null, true)));
+                    	$em->flush();
+                    }
+
 	                $mailer = $this->get('salonrama_main_mailer');
-	                $state = $mailer->sendForgotPassword($user->getEmail(), $user->getAccount()->getName(), 'http://www.salonrama.fr/reset_password/'.$user->getId().'/');
+	                $state = $mailer->sendForgotPassword($user->getEmail(), $user->getAccount()->getName(), 'http://www.salonrama.fr/reset_password/'.
+	                																				$user->getId().'/'.$user->getResetPasswordToken());
 
 	                if($state == 1)
 	                {
 	                    $state = array('state' => 0, 'text' => '<strong>Nous avons envoyé les instructions de réinitialisation de mot de passe à '.$email.'.</strong><br><br>'.
-											"Si vous ne recevez pas les instructions d'ici une minute ou deux, vérifiez les filtres de spams et de courriers indésirables de votre compte.");
+																"Si vous ne recevez pas les instructions d'ici une minute ou deux, vérifiez les filtres de spams et de courriers indésirables de votre compte.");
 	                }
 	                else
 	                {
