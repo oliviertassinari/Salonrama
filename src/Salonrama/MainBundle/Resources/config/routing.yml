@@ -54,11 +54,11 @@ salonrama_main_account:
 
 salonrama_main_account_site:
     pattern:  /account/site
-    defaults: { _controller: SalonramaMainBundle:Account/Account:site }
+    defaults: { _controller: SalonramaMainBundle:Account/Site:site }
 
 salonrama_main_account_salon:
     pattern:  /account/salon
-    defaults: { _controller: SalonramaMainBundle:Account/Account:salon }
+    defaults: { _controller: SalonramaMainBundle:Account/Salon:salon }
 
 salonrama_main_account_settings:
     pattern:  /account/settings/

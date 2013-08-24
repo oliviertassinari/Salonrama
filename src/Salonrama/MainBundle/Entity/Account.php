@@ -32,6 +32,18 @@ class Account
      */
     protected $newsletterSend;
 
+    /**
+    * @ORM\OneToOne(targetEntity="Salonrama\MainBundle\Entity\Salon")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    protected $salon;
+
+   /**
+    * @ORM\OneToOne(targetEntity="Salonrama\MainBundle\Entity\Site")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    protected $site;
+
     public function getName()
     {
         return $this->getFirstName().' '.$this->getLastName();
@@ -114,5 +126,51 @@ class Account
     public function getNewsletterSend()
     {
         return $this->newsletterSend;
+    }
+
+    /**
+     * Set salon
+     *
+     * @param \Salonrama\MainBundle\Entity\Salon $salon
+     * @return Account
+     */
+    public function setSalon(\Salonrama\MainBundle\Entity\Salon $salon)
+    {
+        $this->salon = $salon;
+    
+        return $this;
+    }
+
+    /**
+     * Get salon
+     *
+     * @return \Salonrama\MainBundle\Entity\Salon 
+     */
+    public function getSalon()
+    {
+        return $this->salon;
+    }
+
+    /**
+     * Set site
+     *
+     * @param \Salonrama\MainBundle\Entity\Site $site
+     * @return Account
+     */
+    public function setSite(\Salonrama\MainBundle\Entity\Site $site)
+    {
+        $this->site = $site;
+    
+        return $this;
+    }
+
+    /**
+     * Get site
+     *
+     * @return \Salonrama\MainBundle\Entity\Site 
+     */
+    public function getSite()
+    {
+        return $this->site;
     }
 }

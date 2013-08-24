@@ -15,57 +15,57 @@ class Site
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(name="theme", type="string", length=20)
      */
-    private $theme;
+    protected $theme;
 
     /**
      * @ORM\Column(name="loc_home_site", type="string", length=100)
      */
-    private $locHomeSite;
+    protected $locHomeSite;
 
     /**
      * @ORM\Column(name="subdomain", type="string", length=63)
      */
-    private $subdomain;
+    protected $subdomain;
 
     /**
      * @ORM\Column(name="image", type="string", length=65535)
      */
-    private $image;
+    protected $image;
 
     /**
      * @ORM\Column(name="block", type="string", length=16777215)
      */
-    private $block;
+    protected $block;
 
     /**
      * @ORM\Column(name="page", type="string", length=65535)
      */
-    private $page;
+    protected $page;
 
     /**
      * @ORM\Column(name="data", type="string", length=65535)
      */
-    private $data;
+    protected $data;
 
     /**
      * @ORM\Column(name="creation", type="datetime")
      */
-    private $creation;
+    protected $creation;
 
     /**
      * @ORM\Column(name="update", type="datetime")
      */
-    private $update;
+    protected $update;
 
     /**
      * @ORM\Column(name="is_online", type="boolean")
      */
-    private $isOnline;
+    protected $isOnline;
 
     /**
      * Get id
