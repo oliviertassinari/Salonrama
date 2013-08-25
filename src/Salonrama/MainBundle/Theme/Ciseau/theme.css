@@ -1,0 +1,221 @@
+#Theme{
+font-family:arial,helvetica,sans-serif;
+font-size:12px;
+background:url(image/bg.jpg);
+background-repeat: repeat-x;
+background-position: top;
+background-color: #f2f1df;
+color:#232323;
+}
+
+#ThemeFixe{
+width:768px;
+margin:auto;
+
+}
+#ThemeCorpsTop{
+}
+
+#ThemeHead{
+background-image: url(image/ciseau.jpg);
+background-repeat: no-repeat;
+width:700px;
+height:184px;
+}
+#ThemeHead #Logo{
+position:absolute;
+height:16px;
+width:16px;
+left:18px;
+top:58px;
+background:url(image/carre_rouge.png) no-repeat;
+}
+#ThemeHead #ThemeNom{
+font-size:25px;
+color:#2e2c2a;
+margin-top:50px;
+margin-left:150px;
+width:718px;
+float:left;
+}
+#ThemeHead #ThemeSlogan{
+text-align:right;
+color:#777;
+position:absolute;
+right:11px;
+top:80px;
+width:700px;
+font-weight:bold;
+font-size:14px;
+}
+
+#ThemeMenu{
+height: 34px;
+width: 636px;
+float:left;
+margin-top: 35px;
+margin-right: 0px;
+margin-bottom: 0px;
+margin-left: 100px;
+padding: 0px
+}
+#ThemeMenu ul{ 
+display:inline;
+}
+#ThemeMenu li{ 
+font-family: Arial;
+font-size: 13px;
+font-weight: bold;
+color: #FFFFFF;
+text-decoration: none;
+margin: 0px;
+float: left;
+height: 22px;
+padding-top: 12px;
+padding-right: 13px;
+padding-bottom: 0px;
+padding-left: 13px;
+}
+#ThemeMenu a{
+color:#fff;
+margin-right:12px;
+}
+#ThemeMenu li:hover{
+font-family: Arial;
+font-weight: bold;
+text-transform: none;
+color: #FFFFFF;
+text-decoration: none;
+background-color: #353131;
+margin: 0px;
+float: left;
+height: 22px;
+padding-top: 12px;
+padding-right: 13px;
+padding-bottom: 0px;
+padding-left: 13px;
+}
+#ThemeMenu .ThemeMenuAct{
+color:#fff !important;
+background-color:#353131;
+height:22px;
+padding:11px;
+}
+
+#ThemeCorps{
+}
+
+#ThemeCon{
+width:728px;
+}
+#ThemeCon a{
+color:#0367CB !important;
+}
+#ThemeFoot{
+width:100%;
+text-align:center;
+padding-top:17px;
+float: left;
+height: 40px;
+background-image: url(image/fotter.jpg);
+background-repeat: repeat-x;
+background-position: center top;
+margin-bottom:10px;
+}
+
+
+
+/* INTE MODULE */
+
+.InteModule{
+padding:7px;
+border:2px solid #353131;
+background:#fff;
+}
+.InteModuleTitre{
+position:relative;
+font-size:14px;
+color:#C11717;
+padding-bottom:3px;
+padding-left:5px;
+margin-bottom:5px;
+border-bottom:1px solid #979797;
+}
+
+
+/* INTE */
+
+.InteTitre{
+background:#353131;
+border-bottom:1px solid #CDCDCD;
+border-right:25px solid #CDCDCD;
+margin-bottom:11px;
+padding:3px 0 2px 10px;
+}
+.InteTitre h2{
+color:#fff;
+font-size:19px;
+}
+
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteHoraireCon strong  {
+color:#C11717;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:20px;
+}
+.InteHoraireCon .Clear{
+height:4px;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteContactCon strong{
+color:#C11717;
+}
+
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+/* TAB */
+
+.ModuleTabTable td{
+color:#5A2D00;
+}
+.ModuleTabCol0{
+background:#FCE7A2;
+}
+.ModuleTabCol1{
+background:#fef7e0;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon{
+background:#f2f1df;
+}

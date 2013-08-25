@@ -1,0 +1,174 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+#Theme{
+background:#505050;
+font-family:arial,verdana,sans-serif;
+font-size:13px;
+color:#fff;
+}
+
+#ThemeFixe{
+width:780px;
+margin:auto;
+padding:0 50px 20px;
+}
+
+#ThemeHead{
+background:#fff url(image/header.jpg) no-repeat;
+height:400px;
+position:relative;
+}
+#ThemeHead #ThemeNom{
+font-size:30px;
+color:#fff;
+position:absolute;
+left:10px;
+top:33px;
+width:400px;
+}
+#ThemeHead #ThemeNom:first-letter{
+color:#ffa500;
+}
+#ThemeHead #ThemeSlogan{
+font-size:12px;
+font-weight:400;
+left:20px;
+position:absolute;
+top:74px;
+width:740px;
+}
+
+#ThemeMenu{
+position:absolute;
+right:20px;
+top:10px;
+color:#fff;
+width:430px;
+text-align:right;
+}
+#ThemeMenu li{ 
+display:inline-block;
+padding-right:5px;
+padding-left:3px;
+background:url(image/menu.png) no-repeat right 2px;
+}
+#ThemeMenu a{
+color:#fff;
+font-size:14px;
+text-decoration:none;
+}
+#ThemeMenu a:hover{
+color:#ffa500;
+text-decoration:underline;
+}
+#ThemeMenu .ThemeMenuAct{
+color:#ffa500 !important;
+font-weight:700;
+font-size:15px;
+}
+
+#ThemeCon{
+padding:5px 10px;
+width:760px;
+background:#0e0e0e;
+}
+#ThemeCon a{
+color:#52a7fc !important;
+}
+
+#ThemeFoot{
+background:#0e0e0e;
+clear:both;
+border-top:3px solid #2f2f2f;
+padding:10px;
+text-align:center;
+}
+
+
+/* INTE MODULE */
+
+.InteModuleTitre{
+color:#fff;
+font-size:20px;
+}
+.InteModuleTitre:first-letter{
+color:#ffa500;
+}
+.InteModuleCon{
+margin:7px 0;
+}
+
+
+/* INTE */
+
+.InteTitre .InteModuleTitre{
+font-size:27px;
+}
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:25px;
+background:#0e0e0e;
+}
+.InteHoraireCon .Clear{
+height:4px;
+}
+
+
+.IntePlanCon{
+margin:7px 5px 0;
+}
+.IntePlan .InteImage{
+border:2px solid #d39927;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+/* TAB */
+
+.ModuleTabTitre{
+color:#fff;
+}
+.ModuleTabTable td{
+color:#000;
+}
+.ModuleTabCol0{
+background:#fff;
+}
+.ModuleTabCol1{
+background:#E2E5EB;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon, .InteModuleCon{
+background:#0e0e0e;
+}

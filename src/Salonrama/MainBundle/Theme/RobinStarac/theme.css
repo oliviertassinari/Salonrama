@@ -1,0 +1,202 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+#Theme{
+font-family:arial,helvetica,sans-serif;
+font-size:12px;
+background:url(image/fond.png);
+}
+
+#ThemeFixe{
+width:988px;
+margin:auto;
+background:url(image/etoile.png) no-repeat;
+padding-bottom:20px;
+}
+
+#ThemeCorps{
+width:762px;
+margin:auto;
+border:1px solid #523956;
+border-top:none;
+background:#fff;
+}
+
+#ThemeHead{
+height:134px;
+background:url(image/header.jpg) no-repeat;
+position:relative;
+}
+#ThemeHead #ThemeNom{
+position:absolute;
+left:20px;
+top:62px;
+width:700px;
+font-size:28px;
+font-weight:700;
+color:#fff;
+}
+#ThemeHead #ThemeSlogan{
+position:absolute;
+left:8px;
+top:111px;
+width:740px;
+font-size:12px;
+font-weight:400;
+color:#fff;
+}
+
+#ThemeMenu{
+text-align:right;
+padding:4px;
+background:#2e2d33 url(image/fondliens.png) repeat-x;
+}
+#ThemeMenu ul{ 
+display:inline;
+}
+#ThemeMenu li{ 
+display:inline;
+}
+#ThemeMenu a{
+font-family:"Century Gothic";
+font-size:16px;
+color:#fff;
+margin-right:13px;
+}
+#ThemeMenu .ThemeMenuAct{
+font-weight:700;
+font-size:17px !important;
+}
+
+#ThemeCon{
+margin:5px;
+width:752px;
+}
+#ThemeCon a{
+color:#0367CB !important;
+}
+
+#ThemeFoot{
+width:762px;
+height:65px;
+margin:auto;
+margin-top:15px;
+background:url(image/footer.jpg) no-repeat;
+border:1px solid #523956;
+}
+#ThemeFoot p{
+width:600px;
+color:#fff;
+padding-top:20px;
+text-align:center;
+}
+.SalonramaB a{
+color:#7db3f3;
+}
+
+
+/* INTE MODULE */
+
+.InteModuleTitre{
+height:24px;
+margin:0 2px;
+background:#cfcad0;
+border-bottom:1px solid #6f656e;
+overflow:hidden;
+}
+.InteModuleTitre h2{
+display:inline;
+font-size:17px;
+padding:3px 40px 3px 10px;
+color:#f4eff5;
+background:#706470 url(image/title.png) no-repeat right;
+line-height:150%;
+}
+
+.InteModuleCon{
+border-left:1px solid #777;
+border-right:1px solid #777;
+margin:10px 5px;
+padding:2px 6px;
+}
+
+/* INTE */
+
+.IntePlan{
+margin:0 5px;
+}
+.IntePlanTitle{
+margin-bottom:10px;
+background:url(image/plan_title_right.png) repeat-x;
+}
+.IntePlanTitle h2{
+height:18px;
+padding:6px 0 0 25px;
+font-size:12px;
+color:#000;
+background:url(image/plan_title_left.png) no-repeat;
+}
+.IntePlan .InteImage{
+border:1px solid #898989;
+}
+.IntePlanCon{
+margin:0 5px;
+}
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:20px;
+}
+.InteHoraireCon .Clear{
+height:4px;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+/* TAB */
+
+.ModuleTabTitre{
+color:#521558;
+}
+.ModuleTabTable td{
+color:#6B1D72;
+}
+.ModuleTabCol0{
+background:#efd9ec;
+}
+.ModuleTabCol1{
+background:#fef7e0;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon{
+background:#fff;
+}

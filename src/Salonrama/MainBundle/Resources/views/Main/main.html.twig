@@ -15,7 +15,7 @@
 	{% endblock %}
 </head>
 <body>
-	{% if addNoscript|default(false) == true %}
+	{% if add_noscript|default(false) == true %}
 	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
 	{% endif %}
 
@@ -91,7 +91,7 @@
 				| <a href="{{ path('salonrama_main_legal') }}">Mentions légales</a>
 			</div>
 			<div id="footer-copyright">
-				<a href="{{ path('salonrama_main_index') }}">Copyright © {{ 'now'|date("Y") }}<strong> - Salonrama v.1 beta</strong></a>
+				<a href="{{ path('salonrama_main_index') }}">Copyright © {{ 'now'|date("Y") }}<strong> - Salonrama</strong></a>
 			</div>
 			<div class="clear"></div>
 			<div id="footer-social">

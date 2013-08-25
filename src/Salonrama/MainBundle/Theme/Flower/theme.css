@@ -1,0 +1,207 @@
+#Theme{
+margin: 0px;
+padding: 0px;
+color: #CCCCCC;
+font-family: Helevetica,Arial,sans-serif;
+font-size: 15px;
+line-height:1.5em; 
+background-color: #a79f4f;
+background-image: url(image/templatemo_body.jpg);
+background-repeat: no-repeat;
+background-position: top center;
+}
+
+#ThemeFixe{
+width:950px;
+margin:auto;
+padding-bottom:20px;
+}
+
+#ThemeHead{
+width: 950px;
+height: 110px;
+background: url(image/templatemo_header.png) repeat-y;
+margin-bottom:0;
+}
+#ThemeHead #ThemeNom{
+color:#f2f2f2;
+font-size:26px;
+margin-left:50px;
+padding-top:20px;
+text-align:left;
+font-family:Arial;
+font-variant: small-caps;
+letter-spacing: 0.1em
+}
+#ThemeHead #ThemeSlogan{
+color:white;
+letter-spacing: 0.1em;
+font-size:15px;
+font-weight:400;
+text-align:left;
+margin-top:15px;
+margin-left:50px;
+top:95px;
+width:270px;
+}
+#ThemeHead .telad{
+left:120px;
+position:absolute;
+top:190px;
+width:700px;
+}
+#ThemeHead strong{
+margin-right:10px;
+}
+#ThemeHead .telad li{
+height:25px;
+font-size:16px;
+padding-top:4px;
+padding-left:40px;
+color:#9b9b9b;
+}
+#ThemeHead #ThemeTelephone{
+background:url(image/iconetel.png) no-repeat;
+}
+#ThemeHead #ThemeAdresse{
+background:url(image/iconemail.png) no-repeat;
+}
+
+
+#ThemeMenu{
+clear:both;
+width:970px;
+height:72px;
+background:url(image/templatemo_menu.png) no-repeat;
+margin-left:-10px;
+margin-top:-20px;
+padding-left:14px;
+}
+#ThemeMenu ul {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+#ThemeMenu li{ 
+padding: 0px;
+margin: 0px;
+display: inline-block;
+background: url(image/templatemo_menu_divider.png) right top no-repeat;
+}
+#ThemeMenu a{
+float: left;
+display: block;
+height: 46px;
+padding:14px 12px 0;
+font-size: 14px;
+color:#000;	
+text-align: center;
+text-decoration: none;
+font-weight: bold;
+outline: none;
+border: none;
+}
+#ThemeMenu a:hover{
+color: #FFFFFF;
+background: url(image/templatemo_menu_hover.png) center bottom no-repeat;
+}
+#ThemeMenu .ThemeMenuAct{
+font-weight:700;
+color:white !important;
+font-size:16px;
+}
+
+#ThemeCon{
+clear: both;
+padding: 20px;
+padding-bottom:30px;
+padding-top:10px;
+background:#2F2D1D;
+width:910px;
+}
+#ThemeCon a{
+color:#0367CB !important;
+}
+
+#ThemeFoot{
+width: 930px;
+padding:10px;
+background: #0d869c url(image/templatemo_footer.png) top repeat-x;
+text-align:center;
+}
+
+
+/* INTE MODULE */
+
+.InteModuleTitre{
+font-size:20px;
+padding:0 5px;
+color:#FBE724;
+}
+.InteModuleCon{
+padding:7px 5px 8px 5px;
+}
+
+
+/* INTE */
+
+.InteTitre .InteModuleTitre{
+font-size:28px;
+margin-left:6px;
+color:#FBE724;
+}
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:15px;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:20px;
+}
+.InteHoraireCon .Clear{
+height:4px;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:5px;
+}
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+/* TAB */
+
+.ModuleTabTable td{
+color:#000;
+}
+.ModuleTabCol0{
+background:#fff;
+}
+.ModuleTabCol1{
+background:#E2E5EB;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon, .InteModuleCon{
+background:#2F2D1D;
+}

@@ -45,6 +45,11 @@ addInput: function(inputId, param)
 	else if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'checkbox')
 	{
 		this.list[inputId] = { input: input, type: 'checkbox', param: param };
+
+		input.change(function(){
+			self.removeInputState(input);
+			self.setGlobalState(null);
+		});
 	}
 	else if(inputTagName == 'textarea')
 	{

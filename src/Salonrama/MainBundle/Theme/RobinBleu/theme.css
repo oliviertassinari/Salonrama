@@ -1,0 +1,258 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+#Theme{
+font-family:arial,verdana,tahoma,helvetica,sans-serif;
+font-size:12px;
+background:#7796c2;
+}
+
+#ThemeFixe{
+width:790px;
+margin:auto;
+padding:0 50px 20px;
+}
+
+#ThemeCorpsTop{
+background:url(image/fondcontent.png) repeat-y;
+}
+
+#ThemeHead{
+height:119px;
+margin:0 15px;
+background:url(image/header.jpg) no-repeat;
+position:relative;
+}
+#ThemeHead #ThemeNom{
+color:#262626;
+font-size:28px;
+left:180px;
+position:absolute;
+top:50px;
+width:580px;
+}
+#ThemeHead #ThemeSlogan{
+color:#000;
+font-size:12px;
+font-weight:400;
+width:600px;
+left:141px;
+position:absolute;
+top:100px;
+}
+
+#ThemeMenu{
+border-top:8px solid #c4c4c4;
+border-bottom:8px solid #c4c4c4;
+background:#a3a3a3;
+text-align:right;
+padding:2px 5px 0;
+}
+#ThemeMenu ul{ 
+display:inline;
+}
+#ThemeMenu li{ 
+display:inline;
+}
+#ThemeMenu a{
+font-family:"Trebuchet MS";
+font-size:16px;
+font-weight:700;
+color:#fff;
+margin-right:12px;
+}
+#ThemeMenu a:hover{
+color:#e2e2e2;
+}
+#ThemeMenu .ThemeMenuAct{
+color:#C0E5F4 !important;
+font-size:17px !important;
+}
+
+#ThemeCorps{
+margin:0 15px;
+background:#e7e7e7;
+}
+#ThemeCorpsBas{
+width:790px;
+height:25px;
+margin:auto;
+background:url(image/bottomcontent.png) no-repeat;
+}
+
+#ThemeCon{
+width:725px;
+margin:15px 12px 0;
+padding:10px 5px 5px;
+background:#fff url(image/globaltop.png) no-repeat;
+}
+#ThemeCon a{
+color:#0367CB !important;
+}
+
+#ThemeConBas{
+width:735px;
+height:16px;
+margin:auto;
+background:url(image/globalbottom.png) no-repeat;
+}
+
+#ThemeFoot{
+width:790px;
+height:86px;
+margin:auto;
+background:url(image/footer.png) no-repeat;
+}
+#ThemeFoot p{
+width:490px;
+font-weight:700;
+text-align:center;
+color:#575757;
+padding-left:30px;
+padding-top:30px;
+}
+
+
+/* INTE MODULE */
+
+.InteModule{
+background:#eff3f9;
+}
+.InteModuleTitre{
+position:relative;
+color:#fff;
+font-size:14px;
+padding-left:15px;
+padding-top:5px;
+background:#7b9cc5 url(image/title.png) no-repeat;
+}
+.InteModuleTitre div{
+position:relative;
+z-index:2;
+height:19px;
+}
+.InteModuleTitre .InteObjTitleRight{
+background:#7b9cc5 url(image/title_right.png) no-repeat;
+height:24px;
+width:24px;
+position:absolute;
+right:0;
+top:0;
+}
+
+.InteModuleTop{
+border:3px solid #7b9cc5;
+border-bottom:none;
+border-top:none;
+height:5px;
+font-size:1px;
+}
+.InteModuleCon{
+margin:0 6px;
+}
+.InteModuleBottom{
+background:#7b9cc5;
+border-top:none;
+height:2px;
+margin:4px 2px 0;
+font-size:1px;
+}
+
+
+/* INTE */
+
+.InteTitre{
+height:37px;
+background:url(image/bienvenue.png) no-repeat;
+margin-right:5px;
+padding:15px 0 0 60px;
+}
+.InteTitre h2{
+font-family:"Trebuchet MS";
+font-size:18px;
+font-weight:700;
+color:#fff;
+}
+
+
+.InteDecouvrir{
+background:url(image/forme1.png) no-repeat;
+padding-bottom:5px;
+}
+.InteDecouvrirTitle{
+font-family:"Trebuchet MS";
+font-size:21px;
+font-weight:700;
+text-align:center;
+color:#7d7d7d;
+padding-top:2px;
+}
+.InteDecouvrirWys{
+font-size:13px;
+margin:5px 25px;
+padding:5px;
+color:#fff;
+background:#bdbdbd;
+}
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:20px;
+background:#eff3f9;
+}
+.InteHoraireCon .Clear{
+height:8px;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:10px;
+}
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+.InteInfoSup .InteModuleCon{
+padding:6px;
+background:#eff3f9;
+}
+
+
+/* TAB */
+
+.ModuleTabTable td, .ModuleTabTitre{
+color:#253853;
+}
+.ModuleTabCol0{
+background:#ddf1f9;
+}
+.ModuleTabCol1{
+background:#ececec;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon{
+background:#fff;
+}

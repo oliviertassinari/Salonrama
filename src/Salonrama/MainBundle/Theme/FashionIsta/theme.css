@@ -1,0 +1,163 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+#Theme{
+font-family:"Trebuchet MS";
+font-size:13px;
+background:#CD8F75;
+}
+
+#ThemeFixe{
+background:url(image/bg.png) repeat;
+width:700px;
+margin:auto;
+padding:0 50px 20px;
+}
+
+#ThemeFixeCon{
+border:1px solid #B37159;
+}
+
+#ThemeHead{
+background:url(image/header.png) no-repeat center;
+height:304px;
+position:relative;
+}
+#ThemeHead #ThemeNom{
+background:#B56115;
+text-align:left;
+padding:9px;
+font-size:22px;
+color:#fff;
+}
+#ThemeHead #ThemeSlogan{
+color:#000;
+position:absolute;
+left:11px;
+top:52px;
+width:675px;
+font-weight:400;
+font-size:12px;
+}
+
+#ThemeMenu{
+background:#d6b196;
+padding:5px;
+border-bottom:1px solid #B37159;
+}
+#ThemeMenu li{
+display:inline;
+margin:0 5px;
+}
+#ThemeMenu a{
+font-size:16px;
+color:#985211;
+display:inline-block;
+text-decoration:none;
+padding:4px 5px;
+}
+#ThemeMenu a:hover{
+color:#333;
+text-decoration:none;
+}
+#ThemeMenu .ThemeMenuAct{
+font-weight:700;
+color:#9D180A;
+font-size:17px;
+}
+
+#ThemeCon{
+background:#E8D3C4;
+color:#555;
+width:688px;
+padding:5px;
+padding-top:10px;
+}
+#ThemeCon a{
+color:#B56115 !important;
+}
+
+#ThemeFoot{
+text-align:center;
+font-size:11px;
+padding-top:5px;
+}
+
+/* INTE MODULE */
+
+.InteModuleTitre{
+background:#d0af9e;
+color:#B56115;
+font-size:18px;
+padding:3px 5px 2px;
+}
+.InteModuleCon{
+padding:7px 5px 8px 5px;
+}
+
+
+/* INTE */
+
+.InteTitre .InteModuleTitre{
+font-size:21px;
+margin-left:6px;
+}
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:15px;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:20px;
+background:#E8D3C4;
+}
+.InteHoraireCon .Clear{
+height:4px;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:5px;
+}
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+/* TAB */
+
+.ModuleTabTitre{
+color:#c17f0e;
+}
+.ModuleTabTable td{
+color:#5A2D00;
+}
+.ModuleTabCol0{
+background:#FCE7A2;
+}
+.ModuleTabCol1{
+background:#fef7e0;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon, .InteModuleCon{
+background:#E8D3C4;
+}

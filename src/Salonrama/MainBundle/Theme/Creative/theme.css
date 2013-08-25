@@ -1,0 +1,178 @@
+
+#Theme{
+color:#dbdbdb;
+background:#161616;
+font-size:13px;
+font-family:"Trebuchet MS",arial,sans-serif;
+background: url(image/templatemo_bg.jpg) repeat-x #202020;
+}
+
+#ThemeFixe{
+margin:auto;
+width:959px;
+}
+
+#ThemeHead{
+	width: 959px;
+	height: 326px;
+	background: url(image/templatemo_header_blank.jpg) no-repeat;
+	margin-bottom:0px;
+	}
+
+
+#ThemeHead #ThemeNom{
+width:740px; 
+font-size:35px;
+position:absolute;
+top:100px;
+text-align:center;
+margin-left:100px;
+}
+#ThemeHead #ThemeSlogan{
+width:740px; 
+font-size:15px;
+position:absolute;
+top:150px;
+text-align:center;
+margin-left:100px;
+font-weight:400;
+}
+
+
+#ThemeMenu{
+height: 28px;
+width: 915px;
+margin-left:40px;
+padding: 0;
+position:absolute;
+top:15px;
+}
+#ThemeMenu li{
+display:inline;
+}
+#ThemeMenu a{
+	float: left;
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	height: 28px;
+	line-height: 27px;
+	text-align: center;
+	cursor: pointer;
+	padding-left:20px;
+padding-right:20px;
+font-size:15px;
+}
+#ThemeMenu ul li a:hover{
+
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+border-radius: 100px;
+background-color: rgba(107, 107, 107, 0.9);
+}
+#ThemeMenu .ThemeMenuAct{
+-webkit-border-radius: 100px;
+-moz-border-radius: 100px;
+border-radius: 100px;
+background-color: rgba(107, 107, 107, 0.9);
+font-weight:bold;
+}
+
+#ThemeCon{
+width:911px;
+border-left:9px solid #585858;
+border-bottom:9px solid #585858;
+border-right:9px solid #585858;
+padding-left:10px;
+padding-right:20px;
+margin-top:-5px;
+background: url(image/templatemo_container.jpg) repeat-x ;
+}
+#ThemeCon a{
+color:#82CBF7 !important;
+}
+
+
+#ThemeFoot{
+padding:10px 0;
+text-align:center;
+font-size:11px;
+}
+
+
+/* INTE MODULE */
+
+.InteModuleTitre{
+
+font-size:19px;
+padding:0 5px;
+}
+.InteModuleCon{
+padding:7px 5px 8px 5px;
+}
+
+
+/* INTE */
+
+.InteTitre .InteModuleTitre{
+font-size:28px;
+margin-left:6px;
+}
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:15px;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:20px;
+}
+.InteHoraireCon .Clear{
+height:4px;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:5px;
+}
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+/* TAB */
+
+.ModuleTabTitre{
+color:#fff;
+}
+.ModuleTabTable td{
+color:#000;
+}
+.ModuleTabCol0{
+background:#fff;
+}
+.ModuleTabCol1{
+background:#E2E5EB;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon, .InteModuleCon{
+
+}

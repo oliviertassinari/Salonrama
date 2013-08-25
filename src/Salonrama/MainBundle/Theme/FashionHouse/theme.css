@@ -1,0 +1,154 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+#Theme{
+color:#dbdbdb;
+background:#161616;
+font-size:13px;
+font-family:"Trebuchet MS",arial,sans-serif;
+}
+
+#ThemeFixe{
+margin:auto;
+width:780px;
+padding:0 50px 20px;
+}
+
+#ThemeHead{
+height:250px;
+background:url(image/header.jpg) no-repeat;
+position:relative;
+}
+#ThemeHead #ThemeNom{
+width:740px; 
+font-size:35px;
+position:absolute;
+left:20px;
+top:40px;
+}
+#ThemeHead #ThemeSlogan{
+width:740px; 
+font-size:15px;
+position:absolute;
+left:24px;
+top:90px;
+font-weight:400;
+}
+
+
+#ThemeMenu{
+padding:5px;
+background:#000;
+}
+#ThemeMenu li{
+display:inline;
+}
+#ThemeMenu a{
+display:inline-block;
+font-size:17px;
+padding:5px 10px;
+color:#998158; 
+}
+#ThemeMenu ul li a:hover, #Menu ul li span{
+color:#9D180A;
+}
+#ThemeMenu .ThemeMenuAct{
+font-weight:700;
+font-size:18px;
+color:#9D180A !important;
+}
+
+#ThemeCon{
+padding:20px 10px;
+width:760px;
+background:#000 url(image/barre.png) no-repeat center 5px;
+}
+#ThemeCon a{
+color:#b59f61 !important;
+}
+
+#ThemeFoot{
+background:#000 url(image/barre.png) no-repeat center 0;
+padding:10px 0;
+text-align:center;
+font-size:11px;
+}
+
+
+/* INTE MODULE */
+
+.InteModuleTitre{
+color:#c17f0e;
+font-size:19px;
+padding:0 5px;
+}
+.InteModuleCon{
+padding:7px 5px 8px 5px;
+}
+
+
+/* INTE */
+
+.InteTitre .InteModuleTitre{
+font-size:28px;
+margin-left:6px;
+}
+
+
+.InteHoraireCon{
+margin-left:20px;
+margin-top:15px;
+}
+.InteHoraireCon ul{
+width:33%;
+float:left;
+background:url(image/horaire.png) no-repeat;
+}
+.InteHoraireCon ul li{
+margin-left:20px;
+background:#000;
+}
+.InteHoraireCon .Clear{
+height:4px;
+}
+
+
+.InteContactCon{
+margin-left:20px;
+margin-top:5px;
+}
+.InteContactCon ul{
+margin:6px 0;
+}
+.InteContactCon ul li{
+margin-left:20px;
+}
+.InteContactTelephone{
+background:url(image/telephone.png) no-repeat;
+}
+.InteContactEmail{
+background:url(image/email.png) no-repeat;
+}
+
+
+/* TAB */
+
+.ModuleTabTitre{
+color:#c17f0e;
+}
+.ModuleTabTable td{
+color:#5A2D00;
+}
+.ModuleTabCol0{
+background:#FCE7A2;
+}
+.ModuleTabCol1{
+background:#fef7e0;
+}
+
+
+/* WYS */
+
+.Block, .BlockCon, .InteModuleCon{
+background:#000;
+}
