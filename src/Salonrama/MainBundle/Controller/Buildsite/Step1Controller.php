@@ -8,7 +8,10 @@ class Step1Controller extends Controller
 {
     public function step1Action()
     {
-        return $this->render('SalonramaMainBundle:Buildsite:step1.html.twig');
+        $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
+        $theme = $themeRepository->findAll();
+
+        return $this->render('SalonramaMainBundle:Buildsite:step1.html.twig', array('theme' => $theme));
     }
 }
 

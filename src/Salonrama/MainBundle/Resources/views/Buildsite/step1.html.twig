@@ -1,9 +1,146 @@
+{% set add_noscript = true %}
+
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Etape 1</title>
+	<title>Etape 1 - Choix du thème</title>
+
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/previs.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/button.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/etape.css') }}"/>
+
+	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/previs.js') }}"></script>
+
+	<script>
+
+	var BlocSelect;
+	var Galerie;
+
+	$(document).ready(function()
+	{
+		var CadThemeList = document.getElementById('CadThemeList');
+		var InputList = CadThemeList.getElementsByTagName('input');
+
+		for(var i = 0; i < InputList.length; i++)
+		{
+			var InputAct = InputList[i];
+
+			InputAct.parentNode.onclick = function(){ setTheme(this.parentNode); }; 
+
+			if(InputAct.checked === true)
+			{
+				BlocSelect = InputAct.parentNode.parentNode;
+				BlocSelect.className = 'CadVignette select';
+
+				Ot.setScrollOpt(CadThemeList, BlocSelect);
+			}
+		}
+
+		Galerie = new PreVis('<button type="button" class="ButtonSmallGreen" onclick="seletTheme()"><img src="image/icone/ok.png"/>Choisir ce thème</button>');
+		Galerie.Initi(CadThemeList);
+
+		if(!document.getElementById('EtapeValide'))
+		{
+			document.getElementById('EtapeSuivant').onclick = function(){ ValidePost(); };
+		}
+		else
+		{
+			document.getElementById('EtapeValide').onclick = function(){ ValidePost(); };
+		}
+	});
+
+	function setTheme(Obj)
+	{
+		BlocSelect.className = 'CadVignette';
+		BlocSelect = Obj;
+
+		Obj.className = 'CadVignette select';
+		Obj.getElementsByTagName('input')[0].checked = true;
+	}
+
+	function seletTheme()
+	{
+		setTheme(Galerie.ImgAct.Obj.parentNode);
+		Galerie.closeStart()
+
+		setTimeout(function(){ Ot.moveScroll(0, function(){ ValidePost(); }); }, 400);
+	}
+
+	function openPreVis(Obj)
+	{
+		Galerie.openStart(Obj.parentNode.getElementsByTagName('a')[0]);
+
+		return false;
+	}
+
+	function ValidePost()
+	{
+		document.getElementById('FormPost').submit();
+	}
+
+	</script>
+
+	<style>
+
+	#CadThemeList{
+	position:relative;
+	overflow:auto;
+	height:500px;
+	border:1px solid #ccc;
+	border-left:none;
+	border-right:none;
+	padding:5px 0;
+	margin-bottom:10px;
+	}
+
+	.CadVignette{
+	float:left;
+	width:130px;
+	height:170px;
+	}
+	.CadVignette .ThemeVoir span{
+	background:url(image/icone/zoom.png) no-repeat;
+	display:block;
+	float:left;
+	height:16px;
+	width:16px;
+	text-decoration:none;
+	margin:1px 5px 0 29px;
+	}
+
+	.PreVisCad .ButtonSmallGreen{
+	margin:13px auto auto;
+	}
+
+	</style>
 {% endblock %}
 
 {% block body %}
-	<h1>Etape 1</h1>
+	<h1>Etape 1 - Choix du thème</h1>
+
+	<div class="cadre-small cadre-small-orange">
+		<i class="icon-info-sign"></i>Vous pourrez changer le thème plus tard s'il ne vous convient plus.
+	</div>
+
+	<h3>Liste des thèmes :</h3>
+
+	<div id="CadThemeList">
+	<form method="post" action="etape1.php" id="FormPost">
+		{% for value in theme %}
+		<div class="CadVignette">
+			<a href="{{ asset('bundles/salonramamain/theme/{{ value.name }}/screenshot_max.jpg') }}" class="MPreVis" title="Agrandir cette image">
+				<img src="{{ asset('bundles/salonramamain/theme/{{ value.name }}/screenshot_max.jpg') }}" width="130"/><span class="Zoom"></span>
+			</a>
+			<div class="CadVignetteNom">
+				<input type="radio" name="Theme" value="'.$Nom.'" '.Checked($Nom, $ThemeAct).'/><label>Sélectionner</label>
+			</div>
+			<a href="#" class="ThemeVoir" onclick="return openPreVis(this);"><span></span>Agrandir</a>
+		</div>
+		{% endfor %}
+	</form>
+	</div>
+
+	<div id="EtapeFoot"><?php echo getEtapeFoot(); ?></div>
 {% endblock %}
