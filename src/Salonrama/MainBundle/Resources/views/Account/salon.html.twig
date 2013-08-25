@@ -42,16 +42,24 @@
 			</fieldset>
 
 			<fieldset class="form-fieldset">
-				<label for="salon-client-femme">Je coiffe les femmmes</label>
+				<label for="salon-citz">Pays</label>
 				<div class="form-controls">
-					<input type="checkbox" name="salon-client-femme" id="salon-client-femme"/>
+					<input type="text" name="salon-citz" id="salon-citz" value="{{ salon.country }}">
 				</div>
 			</fieldset>
 
 			<fieldset class="form-fieldset">
-				<label for="salon-client-homme">Je coiffe les hommes</label>
+				<label>Client</label>
 				<div class="form-controls">
-					<input type="checkbox" name="salon-client-homme" id="salon-client-homme"/>
+					<label for="salon-client-femme">Femmmes</label>
+					<div class="form-controls">
+						<input type="checkbox" name="salon-client-femme" id="salon-client-femme"/>
+					</div>
+					<br/>
+					<label for="salon-client-homme">Hommes</label>
+					<div class="form-controls">
+						<input type="checkbox" name="salon-client-homme" id="salon-client-homme"/>
+					</div>
 				</div>
 			</fieldset>
 

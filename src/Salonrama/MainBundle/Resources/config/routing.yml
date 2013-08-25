@@ -6,6 +6,10 @@ salonrama_main_contact:
     pattern:  /contact
     defaults: { _controller: SalonramaMainBundle:Contact:contact }
 
+salonrama_main_presentation:
+    pattern:  /presentation
+    defaults: { _controller: SalonramaMainBundle:Presentation:presentation }
+
 salonrama_main_login:
     pattern:  /login
     defaults: { _controller: SalonramaMainBundle:Login:login }
