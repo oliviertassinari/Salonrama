@@ -1,0 +1,89 @@
+#admin_left{
+float:left;
+width:200px;
+margin-right:10px;
+margin-bottom:10px;
+}
+#admin_right{
+float:left;
+width:600px;
+padding-bottom:10px;
+}
+
+
+#admin_info{
+font-size:12px;
+text-align:center;
+padding:4px 0;
+background:#f2f2f2;
+margin-bottom:10px;
+border-radius:5px;
+}
+#admin_info strong{
+margin-right:15px;
+}
+#admin_info a strong{
+margin-right:0;
+}
+
+#admin_menu{
+padding-top:10px;
+background:#e1eae9;
+border:1px solid #c8d4d4;
+border-radius:6px;
+}
+#admin_menu h1{
+height:34px;
+font-size:14px;
+color:#4d5050;
+padding:8px 0 6px 60px;
+margin-left:5px;
+background:url(../image/admin/fond-titre-liens.png) no-repeat;
+}
+#admin_menu ul{
+margin-bottom:15px;
+}
+#admin_menu ul li{
+margin:0 7px 3px;
+background:#eef4f4;
+height:25px;
+}
+#admin_menu li a{
+display:block;
+color:#4d5050;
+outline:none;
+padding:3px 0 3px 6px;
+text-decoration:none;
+}
+#admin_menu li a.AdminMenuAct{
+color:#eef4f4;
+background:#aab5b5;
+}
+#admin_menu li a:hover{
+color:#eef4f4;
+background:#5bd0f6;
+}
+#admin_menu ul li img{
+margin-right:5px;
+vertical-align:middle;
+margin-bottom:1px;
+}
+
+
+.CadInformation{
+margin:15px 10px;
+border:1px solid #ccc;
+border-radius:4px;
+}
+.CadInformation h1{
+font-size:15px;
+text-align:center;
+padding:3px 0 3px 0;
+background:#e6eeee;
+border-bottom:1px solid #91abab;
+border-radius:4px 4px 0 0;
+}
+.CadInformation p{
+margin:5px 15px 8px;
+}
+

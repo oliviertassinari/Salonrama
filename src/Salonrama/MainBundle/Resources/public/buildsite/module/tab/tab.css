@@ -1,0 +1,78 @@
+/* Design CSS du site Salonrama  CSS Valide W3C
+-----------------------*/
+
+
+.ModuleTabTitre{
+font-size:20px;
+margin:0 0 5px 5px;
+height:25px;
+}
+.ModuleTabTable{
+border-collapse:collapse;
+}
+.ModuleTabTable td{
+border:1px solid #848484;
+font-family:arial,helvetica,sans-serif;
+font-size:14px;
+line-height:17px;
+padding:3px 2px 3px 5px;
+}
+.ModuleTabCenter{
+text-align:center;
+}
+.ModuleTabColHead{
+background:#dbe0e7 url(titre.png) repeat-x;
+}
+.ModuleTabColHead.select{
+background:#c5ced9 url(titre_select.png) repeat-x;
+}
+.ModuleTabColHead td{
+color:#000 !important;
+}
+.ModuleTabCol0{
+}
+.ModuleTabCol1{
+}
+
+
+
+.ModuleTab{
+margin-left:1px;
+margin-top:2px;
+padding-bottom:3px;
+}
+.ModuleTabTable{
+position:relative;
+overflow:auto;
+padding-top:1px;
+}
+.ModuleTabTable input{
+border:1px solid #848484;
+margin:-1px -1px 0 0;
+font-family:arial,helvetica,sans-serif;
+font-size:14px;
+padding:3px 2px 3px 5px;
+}
+.ModuleTabResize{
+width:10px;
+position:absolute;
+top:33px;
+z-index:2;
+background:url(../../../image/icone/blanc.gif);
+}
+.ModuleTabResize div{
+width:5px;
+margin:auto;
+height:100%;
+}
+
+
+.ModuleTabRemove, .ModuleTabMove{
+vertical-align:middle;
+padding-left:4px;
+cursor:pointer;
+}
+.ModuleTabMove{
+cursor:move;
+}
+

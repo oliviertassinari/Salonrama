@@ -1,0 +1,30 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+.ModuleWys li{
+list-style:disc inside;
+padding:5px 2px;
+}
+
+/* Salonrama */
+
+.SalonramaB{
+color:#fff;
+}
+.SalonramaN{
+color:#000;
+}
+.SalonramaB, .SalonramaN{
+text-align:center;
+margin-top:6px;
+font-family:arial,sans-serif;
+font-size:11px;
+}
+.SalonramaB a, .SalonramaN a{
+font-weight:700;
+color:#136cd2;
+text-decoration:none;
+}
+.SalonramaN a:hover, .SalonramaB a:hover{
+text-decoration:underline;
+}

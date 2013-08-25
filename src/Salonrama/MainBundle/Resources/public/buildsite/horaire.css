@@ -1,0 +1,130 @@
+#Horaire{
+position:relative;
+margin:auto;
+width:640px;
+height:200px;
+padding-top:10px;
+}
+#HoraireCon{
+background-color:#fff;
+border:1px solid #6b6b6b;
+}
+#HoraireCon td{
+font-size:12px;
+font-family:arial,verdana,tahoma,helvetica,sans-serif;
+color:#000; 
+}
+#HoraireHead td{
+background-color:#444;
+color:#fff;
+font-size:13px;
+font-weight:700;
+text-align:center;
+padding:3px;
+}
+#HoraireJour{
+height:20px;
+}
+#HoraireJour td{
+background-color:#dcdcdc;
+text-align:center;
+}
+#HoraireCell td{
+background-color:#75d975;
+color:#000;
+text-align:center;
+cursor:pointer;
+height:60px;
+}
+#HoraireChange div{
+font-size:11px;
+background:#ececec url(../image/icone/date_edit.png) no-repeat 4px 2px;
+height:17px;
+padding-left:25px;
+padding-top:4px;
+margin-bottom:1px;
+cursor:pointer;
+width:65px;
+}
+
+
+#HoraireLegend{
+left:564px;
+position:absolute;
+top:150px;
+background:#fff;
+border:1px solid #6b6b6b;
+}
+#HoraireLegend td{
+padding:3px;
+padding-right:6px;
+}
+#HoraireLegend span{
+height:12px;
+width:12px;
+border:1px solid #000;
+display:block;
+}
+
+
+.InfoBulle{
+display:none;
+position:absolute;
+width:220px;
+z-index:5;
+padding-top:11px;
+}
+.InfoBulleCon{
+padding:5px;
+color:#000;
+}
+.InfoBulleFleche{
+position:absolute;
+top:1px;
+right:40px;
+height:11px;
+width:22px;
+font-size:1px;
+background:url(../image/cadre/infobulle.png) no-repeat;
+}
+
+#CadHoraire{
+width:350px;
+z-index:10;
+}
+#CadHoraire  .InfoBulleFleche{
+left:160px;
+}
+#CadHoraire .InfoBulleCon{
+overflow:auto;
+}
+#CadHoraire h3{
+font-size:1.3em;
+margin-left:15px;
+margin-bottom:10px;
+}
+#CadHoraire h3 span{
+color:#54a7d8;
+}
+#CadHoraire .FormChamp label{
+padding-right:15px;
+}
+#CadHoraireCreneau{
+margin-top:10px;
+overflow:hidden;
+}
+#CadHoraireCreneau input{
+width:40px;
+margin-top:5px !important;
+}
+#CadHoraireCreneauList{
+margin-left:10px;
+margin-bottom:20px;
+}
+#CadHoraireCreneauList img{
+margin-left:5px;
+vertical-align:-1px;
+}
+#CadHoraire .CadFoot{
+margin:13px -5px -5px;
+}

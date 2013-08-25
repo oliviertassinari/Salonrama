@@ -40,9 +40,25 @@ salonrama_main_legal:
     pattern:  /legal
     defaults: { _controller: SalonramaMainBundle:Legal:legal }
 
-salonrama_main_buildsite:
-    pattern:  /buildsite
-    defaults: { _controller: SalonramaMainBundle:Buildsite:buildsite }
+salonrama_main_buildsite_step1:
+    pattern:  /buildsite/step1
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Step1:step1 }
+
+salonrama_main_buildsite_step2:
+    pattern:  /buildsite/step2
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Step2:step2 }
+
+salonrama_main_buildsite_step3:
+    pattern:  /buildsite/step3
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Step3:step3 }
+
+salonrama_main_buildsite_step4:
+    pattern:  /buildsite/step4
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Step4:step4 }
+
+salonrama_main_buildsite_step5:
+    pattern:  /buildsite/step5
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Step5:step5 }
 
 salonrama_main_help:
     pattern:  /help

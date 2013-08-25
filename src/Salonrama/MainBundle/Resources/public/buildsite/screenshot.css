@@ -1,0 +1,75 @@
+.Screenshot{
+margin:10px auto;
+width:220px;
+}
+
+.ScreenshotFleche{
+height:140px;
+width:25px;
+text-align:center;
+float:left;
+}
+.ScreenshotFleche a{
+cursor:pointer;
+width:16px;
+height:17px;
+display:block;
+}
+#ScreenshotPrev{
+background:url(../image/screenshot/fleche_gauche.png) top no-repeat;
+margin:50px 10px 0 0;
+}
+#ScreenshotPrev:hover{
+background-position:0 -17px;
+}
+#ScreenshotNext{
+background:url(../image/screenshot/fleche_droite.png) top no-repeat;
+margin:50px 0 0 10px;
+}
+#ScreenshotNext:hover{
+background-position:0 -17px;
+}
+
+.ScreenshotImg{
+width:170px;
+height:155px;
+float:left;
+overflow:hidden;
+position:relative;
+}
+.ScreenshotImgList{
+position:absolute;
+top:0;
+left:0;
+}
+.ScreenshotImgItem{
+float:left;
+height:155px;
+overflow:hidden;
+padding:0 5px;
+width:160px;
+}
+.ScreenshotImgItem a{
+display:block;
+text-align:center;
+}
+
+.ScreenshotPoint{
+width:48px;
+cursor:pointer;
+margin:8px auto 0;
+}
+.ScreenshotPoint a{
+display:block;
+float:left;
+width:8px;
+height:8px;
+padding:0 4px;
+background:url(../image/screenshot/point.png) top no-repeat;
+}
+.ScreenshotPoint a:hover{
+background-position:center;
+}
+.ScreenshotPoint a.select{
+background-position:bottom;
+}

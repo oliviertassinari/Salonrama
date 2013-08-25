@@ -1,0 +1,278 @@
+/*RESET */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,
+del, dfn, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td{
+margin:0;
+padding:0;
+border:0;
+outline:0;
+}
+
+button, label, input[type=radio], input[type=checkbox], select{
+cursor:pointer;
+}
+
+input, textarea, button, select{
+outline:0;
+}
+
+body{
+text-align:left;
+}
+
+hr{
+width:95%;
+border:none;
+height:1px;
+background:#7f7f7f;
+color:#7f7f7f;
+}
+
+a{
+color:#0367CB;
+text-decoration:none;
+outline-style:none;
+cursor:pointer;
+}
+a:hover{
+text-decoration:underline;
+}
+a:active{
+color:#ff5d5d;
+text-decoration:underline;
+}
+
+li{
+list-style:none;
+}
+
+form fieldset{
+font-family:arial,helvetica,sans-serif;
+background-color:#F7F7F7;
+border:1px solid #DEDEDE;
+padding:10px;
+}
+form legend{
+color:#519213;
+font-size:18px;
+font-weight:700;
+margin-bottom:5px;
+margin-left:16px;
+background:#fff;
+}
+
+.etoile{
+margin:0 4px;
+color:#f00;
+font-weight:700;
+}
+.Pointer{
+cursor:pointer; 
+}
+.Clear{
+clear:both;
+}
+.Collapse, .Collapse table{
+border-collapse:collapse;
+}
+.TextLittle{
+font-size:11px;
+color:#898177;
+}
+
+.ALittle{
+font-family:"lucida grande",tahoma,verdana,arial,sans-serif;
+font-size:11px;
+}
+
+
+.red{
+color:#de0000;
+}
+.center{
+text-align:center;
+}
+.vert{
+color:#080;
+}
+.orange{
+color:#BE7B00;
+}
+
+a.fleche{
+background:url(../image/icone/go.png) no-repeat 0 1px;
+padding-left:17px;
+margin-left:2px;
+}
+a.fleche_back{
+background:url(../image/icone/back.png) no-repeat 0 1px;
+padding-left:17px;
+margin-left:2px;
+}
+
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+
+/* STRUCTURE */
+
+html{
+overflow:auto;
+}
+
+#Creator{
+min-width:1024px; /* 1024*768 */
+}
+
+#CreatorHead, #CreatorFoot, #CreatorCadre{
+font-family:arial,helvetica,sans-serif;
+font-size:13px;
+}
+
+#CreatorHeadBarre{
+background:#edeff4;
+height:37px;
+padding-top:3px;
+overflow:hidden;
+position:relative;
+}
+#CreatorHeadLogo{
+background:url(../image/logo-min.png) no-repeat;
+width:210px;
+height:27px;
+position:absolute;
+left:5px;
+top:3px;
+z-index:0;
+cursor:pointer;
+}
+#CreatorHeadBarre button{
+position:absolute;
+right:10px;
+top:6px;
+z-index:2;
+}
+
+#CreatorCon{
+position:relative;
+overflow:auto;
+height:100%;
+width:100%;
+overflow-x:hidden;
+overflow-y:scroll;
+}
+
+#CreatorFoot{
+border-top:1px solid #C3CEDF;
+background:#edeff4;
+height:80px;
+}
+#CreatorFootCon{
+width:810px;
+margin:auto;
+}
+
+
+/* DIVERS */
+
+#BarreChargement{
+position:absolute;
+top:150px;
+left:10px;
+background:#e9f2ff url(../image/icone/chargement.gif) no-repeat 6px 8px;
+border:1px solid #8eaace;
+color:#444;
+cursor:progress;
+font-size:20px;
+padding:5px 15px 5px 29px;
+z-index:10;
+}
+
+
+.GData{
+cursor:text;
+}
+.GData:hover{
+background:#f7f0d3;
+color:#444;
+}
+.GData input{
+color:#5c9dfe;
+font-size:100%;
+text-align:center;
+}
+
+
+.DragList{
+position:relative;
+overflow:auto;
+}
+.Drag{
+position:relative;
+z-index:1;
+}
+.DragGhost{
+border:1px dashed #f63e3e;
+}
+
+
+.CadSelect{
+border:1px solid #05b245;
+height:100%;
+left:-1px;
+top:-1px;
+width:100%;
+}
+.CadSelect div{
+background:#333;
+height:100%;
+left:0;
+top:0;
+width:100%;
+}
+.CadSelect2{
+background:url(image/select.png) no-repeat center center !important;
+}
+
+
+.CadImage{
+width:100px;
+height:100px;
+position:relative;
+margin:5px;
+float:left;
+color:#555;
+text-align:center;
+background:#fff;
+border:1px solid #cdcdcd;
+}
+.CadImage:hover{
+background:#d2eaf6;
+border:1px solid #6c88c6;
+}
+.CadImage img{
+margin:3px 0;
+}
+.CadImage div{
+position:absolute;
+}
+.CadImage .BoutEdit{
+bottom:1px;
+right:1px;
+top:auto;
+width:15px;
+height:14px;
+background:url(image/image_edit.png) no-repeat left;
+size:1px;
+cursor:pointer;
+z-index:1;
+}
+.CadImage .BoutEdit:hover{
+background-position:right;
+}
+.CadImage .CadClose{
+right:-1px;
+top:1px;
+z-index:1;
+}

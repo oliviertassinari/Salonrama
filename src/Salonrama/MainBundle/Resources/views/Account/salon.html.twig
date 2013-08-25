@@ -21,6 +21,21 @@
 			</fieldset>
 
 			<fieldset class="form-fieldset">
+				<label>Client</label>
+				<div class="form-controls">
+					<label for="salon-client-femme">Femmmes</label>
+					<div class="form-controls">
+						<input type="checkbox" name="salon-client-femme" id="salon-client-femme"/>
+					</div>
+					<br/>
+					<label for="salon-client-homme">Hommes</label>
+					<div class="form-controls">
+						<input type="checkbox" name="salon-client-homme" id="salon-client-homme"/>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="form-fieldset">
 				<label for="salon-address">Adresse</label>
 				<div class="form-controls">
 					<input type="text" name="salon-address" id="salon-address" value="{{ salon.address }}">
@@ -49,17 +64,16 @@
 			</fieldset>
 
 			<fieldset class="form-fieldset">
-				<label>Client</label>
+				<label for="salon-phone">Téléphone</label>
 				<div class="form-controls">
-					<label for="salon-client-femme">Femmmes</label>
-					<div class="form-controls">
-						<input type="checkbox" name="salon-client-femme" id="salon-client-femme"/>
-					</div>
-					<br/>
-					<label for="salon-client-homme">Hommes</label>
-					<div class="form-controls">
-						<input type="checkbox" name="salon-client-homme" id="salon-client-homme"/>
-					</div>
+					<input type="text" name="salon-phone" id="salon-phone" value="{{ salon.phone }}">
+				</div>
+			</fieldset>
+
+			<fieldset class="form-fieldset">
+				<label for="salon-email">Email</label>
+				<div class="form-controls">
+					<input type="text" name="salon-email" id="salon-email" value="{{ salon.email }}">
 				</div>
 			</fieldset>
 

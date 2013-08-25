@@ -1,0 +1,103 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+.Upload{
+margin:0 5px 15px;
+}
+.Upload iframe{
+display:none;
+}
+
+.UploadFormList{
+margin-bottom:20px;
+height:31px;
+}
+
+.UploadFileList{
+position:relative;
+overflow:auto;
+height:145px;
+border:1px solid #aaa;
+background:#fff;
+margin:5px 0 10px;
+}
+
+.UploadFile .CadClose{
+position:absolute;
+top:2px;
+right:2px;
+}
+.UploadFile{
+display:block;
+width:400px;
+margin:10px;
+padding:1px 4px 0;
+list-style-type:none;
+font-family:arial, sans-serif;
+position:relative;
+padding:0;
+background-color:#F7F7F7;
+border:1px solid #D8D8D8;
+}
+.UploadFileIcone{
+height:16px;
+width:16px;
+margin-top:2px;
+margin-left:3px;
+background:transparent url(../image/icone/image.png) no-repeat;
+}
+.UploadFileInfo{
+left:24px;
+position:absolute;
+top:3px;
+}
+.UploadFileNom{
+font-size:12px;
+}
+.UploadFileTaille{
+color:#848484;
+font-size:11px;
+margin-left:4px;
+}
+.UploadFileEtat{
+color:#a97238;
+font-size:13px;
+margin-left:24px;
+margin-bottom:2px;
+margin-top:2px;
+}
+.UploadFileEtat img{
+margin-right:4px;
+}
+.UploadFileEtat div{
+color:#000;
+margin-top:2px;
+margin-right:2px;
+font-size:12px;
+text-align:right;
+}
+
+.UploadFileProgresse{
+width:150px;
+height:10px;
+overflow:hidden;
+left:246px;
+top:23px;
+position:absolute;
+border:1px solid #000;
+}
+.UploadFileProgresseBarre{
+position:absolute;
+background:url(../image/divers/progresse-barre.png) no-repeat;
+top:0;
+width:300px;
+height:10px;
+left:-150px;
+}
+.UploadFileProgresseTxt{
+position:absolute;
+top:-1px;
+left:68px;
+font-size:11px;
+line-height:12px;
+}

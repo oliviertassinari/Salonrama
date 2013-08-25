@@ -1,0 +1,124 @@
+
+<div id="BarreOutilProtect" title="Désactiver : Veuillez selectionner une zone de texte"></div>
+
+<div class="BarreOutilBlock">
+<div class="BarreOutilBlockGauche"></div>
+<div class="BarreOutilBlockDroite Collapse">
+	<div id="BOBout">
+	<div style="float:left;">
+		<table id="BOSelect">
+		<tr>
+			<td><span style="width:164px;"/></td>
+			<td><div class="BOSelectOpen" title="Police du texte" onclick="CadPoliceTaille.open(event, 'Police')"></div></td>
+			<td><span style="width:19px;"/></td>
+			<td><div class="BOSelectOpen" title="Taille du texte" onclick="CadPoliceTaille.open(event, 'Taille')"></div></td>
+		</tr>
+		</table>
+
+		<table>
+		<tr>
+			<td><div class="BOBout" id="BOGras" title="Gras" onclick="GWys.exec('bold')"><div class="BOIcon" style="background-position:0 -224px;"></div></div></td>
+			<td><div class="BOBout" id="BOItalique" title="Italique" onclick="GWys.exec('italic')"><div class="BOIcon" style="background-position:0 -240px;"></div></div></td>
+			<td><div class="BOBout" id="BOSouligner" title="Souligner" onclick="GWys.exec('underline')"><div class="BOIcon" style="background-position:0 -256px;"></div></div></td>
+			<td><div class="BOBout" id="BOSubScript" title="Indice" onclick="GWys.exec('subscript')"><div class="BOIcon" style="background-position:0 -272px;"></div></div></td>
+			<td><div class="BOBout" id="BOSuperScript" title="Exposant" onclick="GWys.exec('superscript')"><div class="BOIcon" style="background-position:0 -288px;"></div></div></td>
+			<td><div class="BOBout" title="Effacer la mise en forme" onclick="GWys.exec('removeformat')"><div class="BOIcon" style="background-position:0 -304px;"></div></div></td>
+			<td><div id="BOCouleurInfo" title="Appliquer cette couleur" onclick="GWys.exec('forecolor', GWys.CouleurAct)">
+				<div class="BOIcon" style="background-position:0 -320px;"></div>
+				<div id="BOCouleurAct" title="Couleur du texte"></div>
+			</div></td>
+			<td><img id="BOCouleurOpen" src="creator/image/couleur_bas.png" alt="" title="Couleur du texte" onclick="CadCouleur.open()"/></td>
+		</tr>
+		</table>
+	</div>
+	<table style="float:left; margin-left:8px;">
+	<tr>
+		<td><div class="BOBout" id="BOCouper" title="Couper" onclick="GWys.exec('cut')"><div class="BOIcon" style="background-position:0 0;"></div></div></td>
+		<td><div class="BOBout" id="BOCopier" title="Copier" onclick="GWys.exec('copy')"><div class="BOIcon" style="background-position:0 -16px;"></div></div></td>
+		<td><div class="BOBout" title="Coller" onclick="GWys.exec('paste')"><div class="BOIcon" style="background-position:0 -32px;"></div></div></td>
+		<td><div class="BOBout" id="JustifyLeft" title="Aligné à gauche" onclick="GWys.exec('justifyleft')"><div class="BOIcon" style="background-position:0 -48px;"></div></div></td>
+		<td><div class="BOBout" id="JustifyCenter" title="Centré" onclick="GWys.exec('justifycenter')"><div class="BOIcon" style="background-position:0 -64px;"></div></div></td>
+		<td><div class="BOBout" id="JustifyRight" title="Aligné à droite" onclick="GWys.exec('justifyright')"><div class="BOIcon" style="background-position:0 -80px;"></div></div></td>
+		<td><div class="BOBout" id="JustifyFull" title="Texte justifié" onclick="GWys.exec('justifyfull')"><div class="BOIcon" style="background-position:0 -96px;"></div></div></td>
+	</tr>
+	<tr>
+		<td><div class="BOBout" id="BOList" title="Ajouter/Supprimer la liste à puces" onclick="GWys.exec('insertunorderedlist')"><div class="BOIcon" style="background-position:0 -112px;"></div></div></td>
+		<td><div class="BOBout" title="Ajouter un caractère spécial" onclick="CadCaractere.open()"><div class="BOIcon" style="background-position:0 -128px;"></div></div></td>
+		<td><div class="BOBout" id="BOPrecedent" title="Annuler" onclick="GWys.PreSuiv('Precedant')"><div class="BOIcon" style="background-position:0 -144px;"></div></div></td>
+		<td><div class="BOBout" id="BOSuivant" title="Rétablir" onclick="GWys.PreSuiv('Suivant')"><div class="BOIcon" style="background-position:0 -160px;"></div></div></td>
+		<td><div class="BOBout" title="Ajouter un séparateur" onclick="GWys.exec('inserthorizontalrule')"><div class="BOIcon" style="background-position:0 -176px;"></div></div></td>
+		<td><div class="BOBout" id="BOLien" title="Ajouter un lien" onclick="CadLien.open()"><div class="BOIcon" style="background-position:0 -192px;"></div></div></td>
+		<td><div class="BOBout" id="BOLienRemove" title="Enlever le lien" onclick="GWys.exec('unlink')"><div class="BOIcon" style="background-position:0 -208px;"></div></div></td>
+	</tr>
+	</table>
+	<div class="Clear"></div>
+	</div>
+</div>
+<div class="BarreOutilBlockFoot">Zone de texte</div>
+</div>
+
+<div class="BarreOutilBlock">
+<div class="BarreOutilBlockGauche"></div>
+<div class="BarreOutilBlockDroite">
+	<div class="BOBoutGrosList">
+		<div class="BOBoutGros" onclick="GWys.addBlockNew()" title="Ajouter une zone de texte">
+			<img src="creator/image/txt.png" alt=""/>
+			<div class="BOBoutGrosBas">Zone de texte</div>
+		</div>
+		<div class="BOBoutGros" onclick="CadImage.open()" title="Ajouter une image">
+			<img src="creator/image/image.png" alt=""/>
+			<div class="BOBoutGrosBas">Image</div>
+		</div>
+		<div class="BOBoutGros" onclick="CadHtml.open()" title="Ajouter du code html (avancé)">
+			<img src="creator/image/html.png" alt=""/>
+			<div class="BOBoutGrosBas">HTML</div>
+		</div>
+	</div>
+</div>
+<div class="BarreOutilBlockFoot">Ajouter un élement</div>
+</div>
+
+<div class="BarreOutilBlock">
+<div class="BarreOutilBlockGauche"></div>
+<div class="BarreOutilBlockDroite">
+	<div class="BOBoutPetitList">
+		<div class="BOBoutPetit" onclick="GModule.addBlockNew('Galerie')" title="Ajouter une galerie d'image"><img src="creator/module/galerie/galerie.png" alt=""/><span>Galerie</span></div>
+		<div class="BOBoutPetit" onclick="GModule.addBlockNew('Map')" title="Ajouter un plan"><img src="creator/module/map/map.png" alt=""/><span>Plan</span></div>
+		<div class="BOBoutPetit" onclick="GModule.addBlockNew('Tab')" title="Ajouter un tableau"><img src="creator/module/tab/tab.png" alt=""/><span>Tableau</span></div>
+	</div>
+	<div class="BOBoutPetitList">
+		<div class="BOBoutPetit" onclick="GModule.addBlockNew('Form')" title="Ajouter un formulaire de contact"><img src="creator/module/form/form.png" alt=""/><span>Contact</span></div>
+	</div>
+</div>
+<div class="BarreOutilBlockFoot">Ajouter un module</div>
+</div>
+
+<div class="BarreOutilBlock">
+<div class="BarreOutilBlockGauche"></div>
+<div class="BarreOutilBlockDroite">
+	<div class="BOBoutGrosList">
+		<div class="BOBoutGros" onclick="CadTheme.open()" title="Changer de thème">
+			<img src="creator/image/theme.png" alt=""/>
+			<div class="BOBoutGrosBas">Thème</div>
+		</div>
+		<div class="BOBoutGros" onclick="CadPage.open()" title="Gerer mes pages">
+			<img src="creator/image/page.png" alt=""/>
+			<div class="BOBoutGrosBas">Pages</div>
+		</div>
+	</div>
+</div>
+<div class="BarreOutilBlockFoot">Options</div>
+</div>
+
+<div class="BarreOutilBlock">
+<div class="BarreOutilBlockGauche"></div>
+<div class="BarreOutilBlockDroite">
+	<div id="BarreOutilInfo">
+		<strong>Thème : </strong><span>indéfinie</span><br/>
+		<strong>Page : </strong><span>indéfinie</span>
+	</div>
+</div>
+<div class="BarreOutilBlockFoot">Informations</div>
+</div>
+
+<div class="Clear"></div>

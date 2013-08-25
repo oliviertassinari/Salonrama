@@ -1,0 +1,116 @@
+/* Design CSS du site Salonrama  CSS Valide W3C
+-----------------------*/
+
+
+.ModuleGalerieImage{
+margin:5px;
+width:150px;
+height:150px;
+float:left;
+text-align:center;
+}
+
+
+
+
+#CadGalerieLeft{
+float:left;
+width:440px;
+}
+#CadGalerieRight{
+float:left;
+margin-left:20px;
+width:333px;
+}
+#CadGalerieRight .CadBlue2{
+margin:5px 0 35px;
+padding:10px;
+}
+#CadGalerieRight .CadBlue2 div{
+margin:2px 0;
+}
+#CadGalerieRight .CadBlue2 div.grille{
+background:url(image/grille.png) no-repeat 24px 4px;
+}
+#CadGalerieRight .CadBlue2 div.liste{
+background:url(image/liste.png) no-repeat 24px 4px;
+}
+#CadGalerieRight .CadBlue2 label{
+padding-left:25px;
+}
+#CadGalerieRight .CadBlue2 .TextLittle{
+padding-left:47px;
+}
+
+#CadGalerieImageList{
+background:#fff;
+border:1px solid #aaa;
+height:230px;
+margin:5px 0 10px 10px;
+overflow:auto;
+padding:8px 0 8px 8px;
+position:relative;
+width:410px;
+}
+#CadGalerieImageList .CadImage{
+height:80px;
+width:80px;
+cursor:move;
+}
+#CadGalerieImageList .DragGhost{
+float:left;
+border:1px dashed #5d93db;
+margin:5px;
+width:80px;
+height:80px;
+}
+
+
+#CadGalerieUpload{
+width:450px;
+float:left;
+}
+#CadGalerieAddImage{
+float:left;
+margin-left:20px;
+width:320px;
+}
+#CadGalerieAddImageList{
+background:#fff;
+border:1px solid #aaa;
+margin:5px 0 10px 10px;
+overflow:auto;
+padding:8px 0 8px 8px;
+position:relative;
+height:212px;
+width:298px;
+}
+#CadGalerieAddImageList .CadImage{
+height:95px;
+width:80px;
+cursor:pointer;
+}
+
+#CadGalerieUploadStart{
+left:285px;
+position:absolute;
+top:343px;
+}
+
+.CadGalerieAjouter{
+margin:0 5px 10px;
+clear:both;
+display:none;
+}
+#CadGalerieAjouter{
+margin-top:5px;
+border:1px solid #aaa;
+height:90px;
+width:400px;
+background:#fff;
+overflow:auto;
+}
+#CadGalerieAjouter .CadImage{
+height:50px;
+width:50px;
+}

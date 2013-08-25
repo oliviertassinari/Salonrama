@@ -1,0 +1,252 @@
+/* CSS, By Olivier (olivier.tassinari@gmail.com)
+-----------------------*/
+
+/* STRUCTURE */
+
+#BarreOutil{
+position:relative;
+height:94px;
+background:url(image/barre_outil.png) repeat-x;
+}
+#BarreOutil img{
+cursor:pointer;
+}
+
+.BarreOutilBlock{
+height:85px;
+padding:3px 0 0;
+float:left;
+position:relative;
+display:inline;
+}
+.BarreOutilBlock:hover .BarreOutilBlockGauche{
+background-position:right;
+}
+.BarreOutilBlock:hover .BarreOutilBlockDroite{
+background-position:right bottom;
+}
+.BarreOutilBlockGauche{
+float:left;
+background:url(image/block_gauche.png) no-repeat left;
+width:6px;
+height:85px;
+margin-left:5px;
+}
+.BarreOutilBlockDroite{
+float:left;
+background:url(image/block_droite.png) no-repeat right top;
+height:83px;
+padding-right:2px;
+padding-top:2px;
+text-align:left;
+font-size:12px;
+color:#22a;
+}
+.BarreOutilBlockFoot{
+position:absolute;
+float:left;
+clear:both;
+margin-top:74px;
+top:-2px;
+width:100%;
+text-align:center;
+font-size:13px;
+color:#225;
+}
+
+
+/* DIVERS */
+
+#BarreOutilProtect{
+position:absolute;
+top:0;
+left:3px;
+display:none;
+height:90px;
+width:418px;
+background:#000;
+z-index:2;
+}
+
+#BOBout{
+margin-top:10px;
+margin-right:5px;
+}
+
+.BOBout{
+cursor:pointer;
+background:url(image/bout.png) no-repeat 22px 0;
+height:16px;
+width:16px;
+padding:3px;
+}
+.BOBout.hover{
+background-position:0 0;
+}
+.BOBout.click{
+background-position:-22px 0 !important;
+}
+.BOBout.select{
+background-position:-66px 0;
+}
+.BOBout.select.hover{
+background-position:-44px 0;
+}
+.BOBout.disable{
+background-position:22px 0 !important;
+cursor:default;
+}
+.BOIcon{
+width:16px;
+height:16px;
+background:url(image/icon.png) no-repeat;
+font-size:1px;
+}
+
+
+#BOSelect{
+margin-bottom:2px;
+}
+#BOSelect span{
+height:15px;
+padding:2px 5px 3px;
+display:block;
+border:1px solid #b3c6e1;
+border-right:0;
+background:#eaf2fb;
+color:#000;
+}
+#BOSelect div{
+width:14px;
+height:22px;
+background:url(image/select_open.png) no-repeat;
+cursor:pointer;
+margin-right:3px;
+}
+#BOSelect td.hover span{
+background:#fff;
+}
+#BOSelect td.hover div{
+background-position:-14px 0;
+}
+#BOSelect td.select span{
+background:#fff;
+}
+#BOSelect td.select div{
+background-position:-28px 0;
+}
+
+
+#BOCouleurInfo{
+cursor:pointer;
+height:16px;
+width:16px;
+padding:3px;
+position:relative;
+}
+#BOCouleurInfo, #BOCouleurOpen{
+background:url(image/bout_couleur.png) no-repeat 0 34px;
+}
+#BOCouleurAct{
+cursor:pointer;
+font-size:1px;
+height:4px;
+width:16px;
+position:absolute;
+left:3px;
+top:15px;
+background:#000;
+}
+#BOCouleurInfo.hoverlittle{
+background-position:0 -44px;
+}
+#BOCouleurInfo.hover{
+background-position:0 0;
+}
+#BOCouleurInfo.click{
+background-position:0 -22px;
+}
+#BOCouleurInfo.select{
+background-position:0 -44px;
+}
+#BOCouleurOpen.hover{
+background-position:-22px -22px;
+}
+#BOCouleurOpen.hoverlittle{
+background-position:-22px 0;
+}
+#BOCouleurOpen.click{
+background-position:-22px -44px;
+}
+#BOCouleurOpen.select{
+background-position:-22px -44px;
+}
+
+
+.BOBoutGrosList{
+position:relative;
+left:-2px;
+float:left;
+}
+.BOBoutGros{
+position:relative;
+width:50px;
+height:66px;
+float:left;
+text-align:center;
+cursor:pointer;
+background:url(image/bout_gros.png) no-repeat 50px 0;
+}
+.BOBoutGros:hover{
+background-position:0 0;
+}
+.BOBoutGros:active{
+background-position:-50px 0;
+}
+.BOBoutGros img{
+margin:3px auto auto;
+display:block;
+}
+.BOBoutGrosBas{
+padding:3px 1px 0;
+font-size:10px;
+}
+
+#BarreOutilInfo{
+margin-top:16px;
+padding-right:5px;
+}
+#BarreOutilInfo span{
+color:#000;
+}
+#BarreOutilInfo strong{
+display:inline-block;
+width:52px;
+font-weight:400;
+}
+
+
+.BOBoutPetitList{
+left:-2px;
+position:relative;
+float:left;
+}
+.BOBoutPetit{
+height:22px;
+cursor:pointer;
+width:90px;
+background:url(image/module_barre.png) no-repeat 0 22px;
+}
+.BOBoutPetit:hover{
+background-position:0 0;
+}
+.BOBoutPetit:active{
+background-position:0 -22px;
+}
+.BOBoutPetit img{
+margin:3px 5px 0 3px;
+}
+.BOBoutPetit span{
+position:relative;
+top:-3px;
+}

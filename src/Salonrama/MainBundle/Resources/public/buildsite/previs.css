@@ -1,0 +1,118 @@
+.MPreVis{
+position:relative;
+display:block;
+cursor:pointer;
+}
+
+.MPreVis:hover .Zoom{
+background:transparent url(../image/previs/zoom.png) no-repeat;
+display:block;
+height:40px;
+top:15px;
+left:15px;
+position:absolute;
+width:40px;
+cursor:pointer;
+}
+
+.MPreVis img{
+text-decoration:none;
+} 
+
+.PreVisCad{
+position:absolute;
+border-collapse:collapse;
+display:none;
+z-index:6;
+}
+
+.PreVisCoin{
+display:none;
+margin:0;
+padding:0;
+height:20px;
+width:20px;
+background:url(../image/previs/White.png) repeat scroll;
+}
+.PreVisCadCon{
+padding:0;
+background-color:#fff;
+}
+
+.PreVisOutil{
+display:none;
+text-align:center;
+}
+.PreVisIconeS, .PreVisIconeP{
+height:40px;
+width:71px;
+margin-top:5px;
+cursor:pointer;
+}
+.PreVisIconeP{
+float:left;
+background:url(../image/previs/Precedent.png) no-repeat;
+}
+.PreVisIconeS{
+float:right;
+background:url(../image/previs/Suivant.png) no-repeat;
+}
+.PreVisIconeP:hover, .PreVisIconeS:hover{
+background-position:bottom;
+}
+
+.PreVisCredit{
+display:none;
+position:relative;
+left:0;
+top:-13px;
+margin-bottom:-10px;
+height:10px;
+text-align:center;
+padding:2px;
+color:#808080;
+font-size:11px;
+font-weight:700;
+font-family:verdana,helvetica;
+font-size:11px;
+}
+
+.PreVisFloat{
+position:absolute;
+top:24px;
+right:20px;
+width:79px;
+display:none;
+}
+.PreVisMove{
+float:left;
+height:34px;
+width:41px;
+cursor:move;
+background:url(../image/previs/Outil.png) no-repeat left top;
+}
+.PreVisMove:hover{
+background-position:left bottom;
+}
+.PreVisClose{
+float:right;
+height:34px;
+width:38px;
+cursor:pointer;
+background:url(../image/previs/Outil.png) no-repeat right top;
+}
+.PreVisClose:hover{
+background-position:right bottom;
+}
+
+.PreVisLoad{
+display:none;
+position:absolute; 
+z-index:6;
+font-size:14px;
+cursor:pointer;
+padding:4px;
+padding-left:25px;
+border:1px solid #8eaace;
+background:#e9f2ff url(../image/icone/chargement.gif) no-repeat 4px 5px;
+}

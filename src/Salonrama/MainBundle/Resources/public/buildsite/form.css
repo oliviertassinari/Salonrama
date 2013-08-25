@@ -1,0 +1,214 @@
+/* INPUT */
+
+.FormInputText, .FormSelect, .FormTexta{
+border:1px solid #C0C0C0;
+padding:2px 3px;
+background:#fff;
+font-family:arial,verdana,tahoma,helvetica,sans-serif;
+font-size:13px;
+}
+
+.FormTexta:hover, .FormInputText:hover, .FormSelect:hover{
+border-color:#7e818a;
+box-shadow:0 1px 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+.FormTexta:focus, .FormInputText:focus, .FormSelect:focus{
+border-color:#4c8ffe;
+box-shadow:0 1px 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+.FormInputText{
+height:18px;
+}
+.FormTexta{
+padding:3px;
+}
+.FormSelect{
+height:24px;
+}
+
+/* CHAMP */
+
+.FormChamp{
+margin-top:10px;
+}
+.FormChamp .FormLabel{
+display:block;
+float:left;
+padding-top:2px;
+}
+
+
+/* VALIDE BOUTON */
+
+.FormValid{
+padding-top:10px;
+}
+.FormValid button{
+margin-top:16px;
+}
+
+
+/* CHAMPERR  */
+
+.FormChampErr, .FormChampErrVert, .FormChampErrRouge{
+font-size:13px;
+margin-left:3px;
+display:inline-block;
+}
+
+.FormChampErr{
+}
+.FormChampErrVert{
+background:transparent url(../image/icone/ok.png) no-repeat 0 0;
+color:#52a45b;
+padding-left:18px;
+}
+.FormChampErrRouge{
+background:transparent url(../image/icone/erreur.png) no-repeat 0 0;
+color:#e8002a;
+padding-left:18px;
+}
+
+
+/* ETAT */
+
+.FormEtat{
+margin:auto !important;
+width:250px;
+color:#000;
+}
+.FormEtat.CadVert{
+width:400px !important;
+color:#000;
+}
+
+
+/* CAPTCHA */
+
+#CaptchaImg{
+}
+#CaptchaInput{
+width:55px;
+}
+
+
+/* SPIN */
+
+.FormSpinInput, .FormSpinInputFocus{
+position:relative;
+display:inline-block;
+margin-right:4px;
+margin-left:4px;
+}
+.FormSpinInputText{
+text-align:center;
+}
+.FormSpinInputImg{
+vertical-align:top;
+background:transparent url(../image/form/spin.png) no-repeat scroll 0 0;
+height:21px;
+width:17px;
+cursor:pointer;
+margin-right:4px;
+-moz-user-select:none;
+-khtml-user-select:none;
+}
+
+.FormSpinInput .FormSpinInputImg{
+background-position:0 0;
+border-bottom:1px solid #C0C0C0;
+}
+.FormSpinInput .FormSpinInputImgOverH{
+background-position:-17px 0;
+}
+.FormSpinInput .FormSpinInputImgClickH{
+background-position:-34px 0;
+}
+.FormSpinInput .FormSpinInputImgOverB{
+background-position:-51px 0;
+border-bottom:1px solid #7dadd9;
+}
+.FormSpinInput .FormSpinInputImgClickB{
+background-position:-68px 0;
+}
+
+.FormSpinInputFocus .FormSpinInputText{
+border:1px solid #7dadd9 !important;
+}
+.FormSpinInputFocus .FormSpinInputImg{
+background-position:-85px 0;
+border-bottom:1px solid #7dadd9;
+}
+.FormSpinInputFocus .FormSpinInputImgOverH{
+background-position:-102px 0;
+}
+.FormSpinInputFocus .FormSpinInputImgClickH{
+background-position:-119px 0;
+}
+.FormSpinInputFocus .FormSpinInputImgOverB{
+background-position:-136px 0;
+}
+.FormSpinInputFocus .FormSpinInputImgClickB{
+background-position:-153px 0;
+}
+
+
+/* Passe Niveau */
+
+.FormPasseLevel{
+height:30px;
+}
+.FormPasseLevel ul{
+margin:0;
+padding:0;
+list-style-type:none;
+text-align:center;
+font-family:tahoma,arial,sans-serif;
+font-size:9px;
+}
+.FormPasseLevel li{
+display:block;
+float:left;
+text-align:center;
+height:14px;
+width:84px;
+vertical-align:middle;
+border-right:solid 1px #adadad;
+}
+.FormPasseLevel li.tree{
+border-right:none;
+}
+
+.FormPasseLevel li{
+color:#8d8d8d;
+background:#efefef;
+}
+.FormPasseLevel strong{
+color:#666;
+}
+
+.FormPasseLevel.Bas li.one{
+color:#fff;
+background:#ff6f6f;
+}
+.FormPasseLevel.Bas strong{
+color:#ff6f6f;
+}
+
+.FormPasseLevel.Moy li.one, .FormPasseLevel.Moy li.two{
+color:#fff;
+background:#fdb14d;
+}
+.FormPasseLevel.Moy strong{
+color:#e98602;
+}
+
+.FormPasseLevel.Bon li.one, .FormPasseLevel.Bon li.two, .FormPasseLevel.Bon li.tree{
+color:#fff;
+background:#a0da54;
+}
+.FormPasseLevel.Bon strong{
+color:#008000;
+}

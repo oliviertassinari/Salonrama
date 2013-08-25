@@ -1,0 +1,62 @@
+.Tab{
+width:100%;
+margin:5px 0;
+border-top:1px dotted #8EAACE;
+border-bottom:1px solid #c4cbd7;
+border-collapse:collapse;
+}
+.Tab th{
+padding:5px;
+font-family:Times,"Times New Roman",Georgia,serif;
+font-size:16px;
+font-weight:400;
+color:#111;
+border:1px dotted #8EAACE;
+border-bottom:1px solid #bcbcbc;
+text-align:center;
+background-color:#E9F2FF;
+}
+.Tab th a{
+color:#111;
+}
+.Tab td{
+padding:3px 5px;
+text-align:center;
+color:#555;
+border-right:1px dotted #c2c9d6;
+border-left:1px dotted #c2c9d6;
+font-family:arial,verdana,tahoma,helvetica,sans-serif;
+font-size:12px;
+}
+.Tab td.label{
+text-align:right;
+color:#333;
+}
+.Tab tr.TabCol0 td{
+background-color:#fff;
+}
+.Tab tr.TabCol1 td{
+background-color:#eff1f5;
+border-bottom:1px solid #c4cbd7;
+border-top:1px solid #c4cbd7;
+border-right:1px dotted #c4cbd7;
+border-left:1px dotted #c4cbd7;
+}
+
+.Tab a.info{
+margin:0 5px;
+}
+
+.Tab #TrierIcone, .Tab #TrierIconeReverse{
+height:16px;
+width:16px;
+display:inline-block;
+vertical-align:middle;
+margin-left:4px;
+}
+.Tab #TrierIcone{
+background:url(../image/icone/up.png) no-repeat;
+}
+.Tab #TrierIconeReverse{
+background:url(../image/icone/down.png) no-repeat;
+}

@@ -1,0 +1,129 @@
+#StoryBoard{
+width:800px;
+margin:2px auto 10px;
+height:30px;
+font-size:17px;
+font-weight:700;
+color:#000;
+border-left:1px solid #fff;
+border-right:1px solid #fff;
+z-index:1;
+position:relative;
+}
+#StoryBoard li{
+display:block;
+width:150px;
+height:30px;
+line-height:30px;
+float:left;
+background:url(../image/etape/etape.png) no-repeat;
+}
+#StoryBoard span{
+display:block;
+width:22px;
+height:22px;
+line-height:22px;
+float:left;
+margin:4px 6px 0;
+text-align:center;
+background:url(../image/etape/cercle.png) no-repeat;
+color:#fff;
+font-size:15px;
+text-decoration:none;
+text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+#StoryBoard a{
+color:#000;
+}
+* html #StoryBoard span{
+margin-left:3px;
+margin-right:2px;
+}
+#StoryBoard .Blanc{
+background-position:right -150px;
+}
+#StoryBoard .CourStart{
+background-position:right 0;
+}
+#StoryBoard .CourEnd{
+background-position:right -90px;
+}
+#StoryBoard .CoursModi{
+background-position:right -30px;
+}
+#StoryBoard .Ok{
+background-position:right -120px;
+}
+#StoryBoard .OkStart{
+background-position:right -60px;
+}
+#StoryBoard .Fin{
+background-position:0 0;
+}
+#StoryBoard .FinBlanc{
+background-position:0 -150px;
+}
+
+#EtapeFoot{
+margin-top:10px;
+margin-bottom:15px;
+}
+
+#EtapeSuivant, #EtapePrecedent{
+height:80px;
+width:165px;
+cursor:pointer;
+font-size:14px;
+}
+
+#EtapeSuivant:hover, #EtapePrecedent:hover, #EtapeAide:hover{
+background-position:bottom;
+color:#222;
+}
+
+#EtapeSuivant p, #EtapePrecedent p{
+font-size:15px;
+padding-top:28px;
+font-weight:700;
+line-height:20px;
+}
+#EtapeSuivant{
+background:url(../image/etape/suivant.png) no-repeat;
+float:right;
+margin-right:20px;
+}
+#EtapeSuivant p{
+padding-left:18px;
+}
+#EtapePrecedent{
+background:url(../image/etape/precedent.png) no-repeat;
+float:left;
+margin-left:20px;
+text-align:right;
+}
+#EtapePrecedent p{
+padding-right:20px;
+font-size:14px;
+}
+#EtapeAide{
+background:url(../image/etape/help.png) no-repeat 0 5px;
+cursor:pointer;
+height:55px;
+margin-right:200px;
+width:50px;
+float:right;
+}
+#EtapeAide p{
+color:#515151;
+font-size:13px;
+font-weight:700;
+padding-left:12px;
+padding-top:57px;
+}
+
+#EtapeValide{
+font-size:23px;
+margin:10px 125px 10px 0;
+padding:15px 40px;
+float:right;
+}

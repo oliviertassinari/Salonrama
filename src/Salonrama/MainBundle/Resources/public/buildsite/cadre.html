@@ -1,0 +1,121 @@
+
+
+<div class="CadWin" id="CadContextMenu">
+	<div class="CadOption" onclick="GWys.exec('cut')"><div class="BOIcon" style="background-position:0 0;"></div><div class="CadOptionTxt">Couper</div><div class="CadOptionKey">Ctrl+X</div></div>
+	<div class="CadOption" onclick="GWys.exec('copy')"><div class="BOIcon" style="background-position:0 -16px;"></div><div class="CadOptionTxt">Copier</div><div class="CadOptionKey">Ctrl+C</div></div>
+	<div class="CadOption" onclick="GWys.exec('paste')"><div class="BOIcon" style="background-position:0 -32px;"></div><div class="CadOptionTxt">Coller</div><div class="CadOptionKey">Ctrl+V</div></div>
+	<div class="CadSelectHr"></div>
+	<div class="CadOption" onclick="GWys.exec('selectall')"><div class="BOIcon" style="background-position:0 -336px;"></div><div class="CadOptionTxt">Selectionner tout</div><div class="CadOptionKey">Ctrl+A</div></div>
+	<div class="CadOption" onclick="CadWin.closeAll(false); GWys.PreSuiv('Precedant')"><div class="BOIcon" style="background-position:0 -144px;"></div><div class="CadOptionTxt">Annuler</div><div class="CadOptionKey">Ctrl+Z</div></div>
+	<div class="CadOption" onclick="GWys.exec('delete')"><div class="BOIcon" style="background-position:0 16px;"></div><div class="CadOptionTxt">Supprimer</div></div>
+	<div class="CadSelectHr"></div>
+	<div class="CadOption" onclick="GWys.exec('insertunorderedlist')"><div class="BOIcon" style="background-position:0 -112px;"></div><div class="CadOptionTxt">Liste à puces</div></div>
+	<div class="CadOption" onclick="CadWin.closeAll(false); CadLien.open()"><div class="BOIcon" style="background-position:0 -192px;"></div><div class="CadOptionTxt">Lien</div></div>
+	<div class="CadOption" onclick="CadWin.closeAll(false); CadCaractere.open()"><div class="BOIcon" style="background-position:0 -128px;"></div><div class="CadOptionTxt">Caractère spécial</div></div>
+</div>
+
+<div class="CadWin" id="CadPolice">
+	<div class="CadOption" style="font-family:arial;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>arial</div></div>
+	<div class="CadOption" style="font-family:comic sans ms;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>comic sans ms</div></div>
+	<div class="CadOption" style="font-family:courrier;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>courrier</div></div>
+	<div class="CadOption" style="font-family:georgia;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>georgia</div></div>
+	<div class="CadOption" style="font-family:impact;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>impact</div></div>
+	<div class="CadOption" style="font-family:times new roman;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>times new roman</div></div>
+	<div class="CadOption" style="font-family:helvetica;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>helvetica</div></div>
+	<div class="CadOption" style="font-family:verdana;"><div class="BOIcon" style="background-position:0 -352px;"></div><div>verdana</div></div>
+</div>
+
+<div class="CadWin" id="CadTaille">
+	<div class="CadOption"><div>1</div></div>
+	<div class="CadOption"><div>2</div></div>
+	<div class="CadOption"><div>3</div></div>
+	<div class="CadOption"><div>4</div></div>
+	<div class="CadOption"><div>5</div></div>
+	<div class="CadOption"><div>6</div></div>
+	<div class="CadOption"><div>7</div></div>
+</div>
+
+<div class="CadWin Collapse" id="CadCouleur">
+	<div class="CadOption" onclick="GWys.exec('forecolor', GWys.CouleurAct)" onmouseover="GWys.show(GWys.CouleurAct, 'Couleur')"><div id="BOCouleurDefault"></div><div>Par défault</div></div>
+	<div id="CadCouleurFont">
+		<div class="CadCouleurTitre"><div>Couleurs standard</div></div>
+		<table class="CadCouleurSimple">
+		<tr>
+			<td><a style="background:#ce0d00;"></a></td><td><a style="background:#ff1000;"></a></td>
+			<td><a style="background:#ffcc00;"></a></td><td><a style="background:#ffff00;"></a></td>
+			<td><a style="background:#99cc66;"></a></td><td><a style="background:#009966;"></a></td>
+			<td><a style="background:#0099ff;"></a></td><td><a style="background:#0066cc;"></a></td>
+			<td><a style="background:#003366;"></a></td><td><a style="background:#663399;"></a></td>
+		</tr>
+		</table>
+		<div class="CadCouleurTitre"><div>Couleurs par thème</div></div>
+		<table class="CadCouleurSimple">
+		<tr>
+			<td><a style="background:#ffffff;"></a></td><td><a style="background:#000011;"></a></td>
+			<td><a style="background:#eeece0;"></a></td><td><a style="background:#1e497d;"></a></td>
+			<td><a style="background:#4f81bd;"></a></td><td><a style="background:#c04f4c;"></a></td>
+			<td><a style="background:#9bbb59;"></a></td><td><a style="background:#8064a2;"></a></td>
+			<td><a style="background:#4aacc6;"></a></td><td><a style="background:#f79545;"></a></td>
+		</tr>
+		</table>
+		<table class="CadCouleurColone">
+		<tr>
+			<td><a style="background:#f2f2f2;"></a></td><td><a style="background:#7f7f7f;"></a></td>
+			<td><a style="background:#ddd9c3;"></a></td><td><a style="background:#c6d9f0;"></a></td>
+			<td><a style="background:#dbe5f1;"></a></td><td><a style="background:#f2dcdb;"></a></td>
+			<td><a style="background:#ebf1dd;"></a></td><td><a style="background:#e5e0ec;"></a></td>
+			<td><a style="background:#dbeef3;"></a></td><td><a style="background:#fde9d9;"></a></td>
+		</tr>
+		<tr>
+			<td><a style="background:#d8d8d8;"></a></td><td><a style="background:#595959;"></a></td>
+			<td><a style="background:#c4bd96;"></a></td><td><a style="background:#8cb2e2;"></a></td>
+			<td><a style="background:#b8cce4;"></a></td><td><a style="background:#e5b9b7;"></a></td>
+			<td><a style="background:#d6e3bb;"></a></td><td><a style="background:#ccc1d9;"></a></td>
+			<td><a style="background:#b6dde8;"></a></td><td><a style="background:#fbd5b5;"></a></td>
+		</tr>
+		<tr>
+			<td><a style="background:#bfbfbf;"></a></td><td><a style="background:#3f3f3f;"></a></td>
+			<td><a style="background:#938953;"></a></td><td><a style="background:#548dd4;"></a></td>
+			<td><a style="background:#95b3d7;"></a></td><td><a style="background:#d99694;"></a></td>
+			<td><a style="background:#c3d69b;"></a></td><td><a style="background:#b2a2c7;"></a></td>
+			<td><a style="background:#92ccdc;"></a></td><td><a style="background:#fac08f;"></a></td>
+		</tr>
+		<tr>
+			<td><a style="background:#a5a5a5;"></a></td><td><a style="background:#262626;"></a></td>
+			<td><a style="background:#494429;"></a></td><td><a style="background:#16365d;"></a></td>
+			<td><a style="background:#356092;"></a></td><td><a style="background:#953633;"></a></td>
+			<td><a style="background:#75923b;"></a></td><td><a style="background:#5e497a;"></a></td>
+			<td><a style="background:#30849b;"></a></td><td><a style="background:#e36c08;"></a></td>
+		</tr>
+		<tr>
+			<td><a style="background:#7f7f7f;"></a></td><td><a style="background:#0f0300;"></a></td>
+			<td><a style="background:#1d1b10;"></a></td><td><a style="background:#0e243e;"></a></td>
+			<td><a style="background:#244061;"></a></td><td><a style="background:#632423;"></a></td>
+			<td><a style="background:#4f6128;"></a></td><td><a style="background:#3f3151;"></a></td>
+			<td><a style="background:#205867;"></a></td><td><a style="background:#974805;"></a></td>
+		</tr>
+		</table>
+		<div id="CadCouleurRecent">
+			<div class="CadCouleurTitre"><div>Utilisées récemment</div></div>
+
+			<table class="CadCouleurSimple">
+			<tr>
+				<td><a></a></td><td><a></a></td><td><a></a></td><td><a></a></td><td><a></a></td><td><a></a></td>
+				<td><a></a></td><td><a></a></td><td><a></a></td><td><a></a></td>
+			</tr>
+			</table>
+		</div>
+		<div class="CadSelectHr"></div>
+	</div>
+	<div class="CadOption" onclick="CadWin.closeAll(false); CadACouleur.open()"><div class="BOIcon" style="background-position:0 -368px;"></div><div>Autres couleurs ...</div></div>
+</div>
+
+
+<div id="CadLienClick">
+	Lien vers :
+	<span></span>
+	<img src="image/icone/link_modif.png" title="Modifier le lien" onclick="CadLienClick.modif()"/>
+	<img src="image/icone/link_remove.png" title="Enlever le lien" onclick="CadLienClick.remove()"/>
+	<div id="CadLienClickClose" title="Fermer" onclick="CadLienClick.close()"></div>
+</div>
+

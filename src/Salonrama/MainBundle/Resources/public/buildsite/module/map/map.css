@@ -1,0 +1,46 @@
+/* Design CSS du site Salonrama  CSS Valide W3C
+-----------------------*/
+
+.ModuleMap{
+color:#000;
+font-family:arial,verdana,sans-serif;
+font-size:13px;
+background:#fff;
+width:270px;
+}
+.ModuleMap a{
+color:#0000CC;
+background:transparent;
+text-decoration:block;
+}
+.ModuleMap a:hover{
+color:#C87B02;
+}
+.ModuleMapAdresse{
+font-size:16px;
+display:block;
+margin-bottom:6px;
+font-weight:700;
+}
+.ModuleMapText{
+font-family:arial,verdana,sans-serif;
+font-size:13px;
+margin-top:4px;
+border:1px dashed #ccc;
+height:50px;
+width:264px;
+padding:2px;
+overflow:auto;
+background:#fcfcfc;
+}
+.ModuleMapFoot{
+margin-top:20px;
+}
+.ModuleMapFoot .FormInputText{
+margin-right:10px;
+width:190px;
+}
+.ModuleMapFoot label{
+display:block;
+margin-top:4px;
+}

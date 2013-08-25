@@ -1,0 +1,50 @@
+.CarouselCon{
+background:#fff;
+position:relative;
+}
+
+.CarouselOnglet{
+background:transparent url(../image/carousel/carousel-onglet-ligne.png) repeat-y 100% 0;
+}
+.CarouselOnglet ul{
+padding:10px 0;
+position:relative;
+}
+.CarouselOnglet ul li{
+margin:-1px 0 0 0;
+border-left:1px solid #BCC5CB;
+position:relative;
+}
+.CarouselOnglet ul a{
+color:#646464;
+font-weight:700;
+cursor:pointer;
+text-decoration:none !important;
+padding-right:25px;
+display:block;
+}
+.CarouselOnglet ul a span{
+background:transparent url(../image/carousel/carousel-onglet.png) repeat-x 0 0;
+height:40px;
+display:block;
+line-height:38px;
+padding-left:20px;
+}
+.CarouselOnglet ul a span img{
+position:absolute;
+top:15px;
+left:210px;
+}
+.CarouselOnglet ul .select a span{
+background-position:0 -78px !important;
+}
+.CarouselOnglet ul .select a{
+color:#000;
+background:transparent url(../image/carousel/carousel-onglet.png) no-repeat 100% -118px;
+}
+.CarouselOnglet ul li:hover a span{
+background-position:0 -39px;
+}
+.CarouselOnglet ul li:hover a{
+color:#000;
+}

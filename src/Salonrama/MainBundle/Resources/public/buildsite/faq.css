@@ -1,0 +1,49 @@
+.Recherche{
+width:450px;
+height:26px;
+margin:5px auto;
+padding:5px;
+background:url(../image/faq/recherche.png) no-repeat;
+}
+.Recherche .FormInputText{
+width:300px;
+padding:3px 4px 3px 4px;
+margin-right:5px;
+border-radius:4px;
+}
+.Recherche .ReBout{
+padding:3px 4px 3px 4px;
+width:80px;
+color:#fff;
+height:26px;
+background:#838383;
+border:1px solid #727272;
+cursor:pointer;
+border-radius:4px;
+}
+.Recherche label{
+vertical-align:top;
+display:inline-block;
+margin:2px 8px 0 8px;
+}
+
+.Question h1{
+font-size:15px;
+font-weight:700;
+padding:3px 0 3px 20px;
+background:#f3f3f3 url(../image/faq/guillemet_g.png) no-repeat;
+border-top:1px solid #e3e3e3;
+cursor:pointer;
+}
+.Question h1 span{
+padding-right:20px;
+background:#f3f3f3 url(../image/faq/guillemet_d.png) no-repeat right;
+}
+.Question div{
+overflow:hidden;
+margin:4px 5px 11px;
+padding-left:5px;
+background:#fbfbfb;
+border-left:1px solid #E3E3E3;
+border-left:1px solid #E3E3E3;
+}
