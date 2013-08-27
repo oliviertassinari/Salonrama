@@ -15,28 +15,31 @@ class Step1Controller extends Controller
         $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
         $theme = $themeRepository->findAll();
 
-        $buildsite = new Buildsite(1);
-        $storyboard = $buildsite->getStoryboard();
-        $foot = $buildsite->getFoot();
+		$buildsite = new Buildsite(1);
+		$storyboard = $buildsite->getStoryboard();
+		$foot = $buildsite->getFoot();
         $message = '';
 
         if($request->isMethod('POST'))
         {
-			if(buildsite.stepReach == 1)
+			if($buildsite->stepReach == 1)
 			{
 				$time = explode(' ', microtime());
 				$id = str_replace('.', '-', $time[1] + $time[0]);
 
 				$_SESSION['buildsite']['id'] = $id;
-				$_SESSION['buildsite']['site']['loc'] = 'site/etape/'.$id.'/';
+				$_SESSION['buildsite']['site'] = array();
+				$_SESSION['buildsite']['site']['loc'] = '../../Site/etape/'.$id.'/';
 				
-				File::addFolder($_SESSION['buildsite']['site']['loc']);
-				File::addFolder($_SESSION['buildsite']['site']['loc'].'upload/');
+				echo $_SESSION['buildsite']['site']['loc'];
+
+				//File::addFolder($_SESSION['buildsite']['site']['loc']);
+				//File::addFolder($_SESSION['buildsite']['site']['loc'].'upload/');
 
 				$_SESSION['buildsite']['site']['theme'] = htmlspecialchars($_POST['site-theme']);
 				$_SESSION['buildsite']['stepReach'] = 2;
-				header('location:etape2.php');
-				exit();
+				//header('location:etape2.php');
+				//exit();
 			}
 			else
 			{
@@ -46,12 +49,13 @@ class Step1Controller extends Controller
 			}
         }
 
-        return $this->render('SalonramaMainBundle:Buildsite:step1.html.twig', array(
-        																		'theme' => $theme,
-        																		'storyboard' => $storyboard,
-        																		'foot' => $foot,
-        																		'message' => $message
-        																		));
+		return $this->render('SalonramaMainBundle:Buildsite:step1.html.twig', array(
+																				'theme' => $theme,
+																				'theme_current' => 'RobinBleu', 
+																				'storyboard' => $storyboard,
+																				'foot' => $foot,
+																				'message' => $message
+																				));
     }
 }
 

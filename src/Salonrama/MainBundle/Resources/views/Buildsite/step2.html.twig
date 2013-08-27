@@ -7,5 +7,13 @@
 {% endblock %}
 
 {% block body %}
+	{% autoescape false %}
+	{{ storyboard }}
+	{% endautoescape %}
+
 	<h1>Etape 2 - Mon salon</h1>
+
+	{% autoescape false %}
+	{{ foot }}
+	{% endautoescape %}
 {% endblock %}

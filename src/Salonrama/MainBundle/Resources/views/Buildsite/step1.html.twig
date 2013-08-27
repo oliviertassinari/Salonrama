@@ -53,10 +53,10 @@
 
 	function setTheme(Obj)
 	{
-		BlocSelect.className = 'CadVignette';
+		$(BlocSelect).removeClass('select');
 		BlocSelect = Obj;
 
-		Obj.className = 'CadVignette select';
+		$(BlocSelect).addClass('select');
 		Obj.getElementsByTagName('input')[0].checked = true;
 	}
 
@@ -66,13 +66,6 @@
 		Galerie.closeStart()
 
 		setTimeout(function(){ Ot.moveScroll(0, function(){ ValidePost(); }); }, 400);
-	}
-
-	function openPreVis(Obj)
-	{
-		Galerie.openStart(Obj.parentNode.getElementsByTagName('a')[0]);
-
-		return false;
 	}
 
 	function ValidePost()
@@ -100,15 +93,6 @@
 	width:130px;
 	height:170px;
 	}
-	.CadVignette .ThemeVoir span{
-	background:url(image/icone/zoom.png) no-repeat;
-	display:block;
-	float:left;
-	height:16px;
-	width:16px;
-	text-decoration:none;
-	margin:1px 5px 0 29px;
-	}
 
 	.PreVisCad .ButtonSmallGreen{
 	margin:13px auto auto;
@@ -124,6 +108,12 @@
 
 	<h1>Etape 1 - Choix du thème</h1>
 
+	{% if message %}
+	<div class="cadre-small cadre-small-green">
+		<i class="icon-ok"></i>{{ message }}
+	</div>
+	{% endif %}
+
 	<div class="cadre-small cadre-small-orange">
 		<i class="icon-info-sign"></i>Vous pourrez changer le thème plus tard s'il ne vous convient plus.
 	</div>
@@ -138,9 +128,9 @@
 				<img src="{{ asset('bundles/salonramamain/theme/{{ value.name }}/screenshot_max.jpg') }}" width="130"/><span class="Zoom"></span>
 			</a>
 			<div class="CadVignetteNom">
-				<input type="radio" name="site-theme" value="{{ value.name }}" '.Checked($Nom, $ThemeAct).'/><label>Sélectionner</label>
+				<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>
+				<label for="{{ value.name }}">Sélectionner</label>
 			</div>
-			<a href="#" class="ThemeVoir" onclick="return openPreVis(this);"><span></span>Agrandir</a>
 		</div>
 		{% endfor %}
 	</form>
