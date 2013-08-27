@@ -118,6 +118,10 @@
 {% endblock %}
 
 {% block body %}
+	{% autoescape false %}
+	{{ storyboard }}
+	{% endautoescape %}
+
 	<h1>Etape 1 - Choix du thème</h1>
 
 	<div class="cadre-small cadre-small-orange">
@@ -127,14 +131,14 @@
 	<h3>Liste des thèmes :</h3>
 
 	<div id="CadThemeList">
-	<form method="post" action="etape1.php" id="FormPost">
+	<form method="post" action="" id="FormPost">
 		{% for value in theme %}
 		<div class="CadVignette">
 			<a href="{{ asset('bundles/salonramamain/theme/{{ value.name }}/screenshot_max.jpg') }}" class="MPreVis" title="Agrandir cette image">
 				<img src="{{ asset('bundles/salonramamain/theme/{{ value.name }}/screenshot_max.jpg') }}" width="130"/><span class="Zoom"></span>
 			</a>
 			<div class="CadVignetteNom">
-				<input type="radio" name="Theme" value="'.$Nom.'" '.Checked($Nom, $ThemeAct).'/><label>Sélectionner</label>
+				<input type="radio" name="site-theme" value="{{ value.name }}" '.Checked($Nom, $ThemeAct).'/><label>Sélectionner</label>
 			</div>
 			<a href="#" class="ThemeVoir" onclick="return openPreVis(this);"><span></span>Agrandir</a>
 		</div>
@@ -142,5 +146,7 @@
 	</form>
 	</div>
 
-	<div id="EtapeFoot"><?php echo getEtapeFoot(); ?></div>
+	{% autoescape false %}
+	{{ foot }}
+	{% endautoescape %}
 {% endblock %}

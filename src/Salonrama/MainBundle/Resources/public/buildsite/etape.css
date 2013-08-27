@@ -1,24 +1,25 @@
-#StoryBoard{
-width:800px;
-margin:2px auto 10px;
+#storyboard{
+margin:0 auto 15px;
 height:30px;
 font-size:17px;
 font-weight:700;
 color:#000;
-border-left:1px solid #fff;
-border-right:1px solid #fff;
 z-index:1;
 position:relative;
 }
-#StoryBoard li{
+#storyboard ul{
+margin:0;
+padding:0;
+}
+#storyboard li{
 display:block;
 width:150px;
 height:30px;
 line-height:30px;
 float:left;
-background:url(../image/etape/etape.png) no-repeat;
+background:url(etape.png) no-repeat;
 }
-#StoryBoard span{
+#storyboard span{
 display:block;
 width:22px;
 height:22px;
@@ -26,48 +27,40 @@ line-height:22px;
 float:left;
 margin:4px 6px 0;
 text-align:center;
-background:url(../image/etape/cercle.png) no-repeat;
+background:url(cercle.png) no-repeat;
 color:#fff;
 font-size:15px;
 text-decoration:none;
 text-shadow:0 -1px 0 rgba(0, 0, 0, 0.25);
 }
-#StoryBoard a{
+#storyboard a{
 color:#000;
 }
-* html #StoryBoard span{
-margin-left:3px;
-margin-right:2px;
-}
-#StoryBoard .Blanc{
+#storyboard .Blanc{
 background-position:right -150px;
 }
-#StoryBoard .CourStart{
+#storyboard .CourStart{
 background-position:right 0;
 }
-#StoryBoard .CourEnd{
+#storyboard .CourEnd{
 background-position:right -90px;
 }
-#StoryBoard .CoursModi{
+#storyboard .CoursModi{
 background-position:right -30px;
 }
-#StoryBoard .Ok{
+#storyboard .Ok{
 background-position:right -120px;
 }
-#StoryBoard .OkStart{
+#storyboard .OkStart{
 background-position:right -60px;
 }
-#StoryBoard .Fin{
+#storyboard .Fin{
 background-position:0 0;
 }
-#StoryBoard .FinBlanc{
+#storyboard .FinBlanc{
 background-position:0 -150px;
 }
 
-#EtapeFoot{
-margin-top:10px;
-margin-bottom:15px;
-}
 
 #EtapeSuivant, #EtapePrecedent{
 height:80px;
@@ -75,12 +68,10 @@ width:165px;
 cursor:pointer;
 font-size:14px;
 }
-
 #EtapeSuivant:hover, #EtapePrecedent:hover, #EtapeAide:hover{
 background-position:bottom;
 color:#222;
 }
-
 #EtapeSuivant p, #EtapePrecedent p{
 font-size:15px;
 padding-top:28px;
@@ -88,7 +79,7 @@ font-weight:700;
 line-height:20px;
 }
 #EtapeSuivant{
-background:url(../image/etape/suivant.png) no-repeat;
+background:url(suivant.png) no-repeat;
 float:right;
 margin-right:20px;
 }
@@ -96,7 +87,7 @@ margin-right:20px;
 padding-left:18px;
 }
 #EtapePrecedent{
-background:url(../image/etape/precedent.png) no-repeat;
+background:url(precedent.png) no-repeat;
 float:left;
 margin-left:20px;
 text-align:right;
@@ -106,7 +97,7 @@ padding-right:20px;
 font-size:14px;
 }
 #EtapeAide{
-background:url(../image/etape/help.png) no-repeat 0 5px;
+background:url(help.png) no-repeat 0 5px;
 cursor:pointer;
 height:55px;
 margin-right:200px;
