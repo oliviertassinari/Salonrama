@@ -30,11 +30,9 @@ class Step1Controller extends Controller
 				$_SESSION['buildsite']['id'] = $id;
 				$_SESSION['buildsite']['site'] = array();
 				$_SESSION['buildsite']['site']['loc'] = '../../Site/etape/'.$id.'/';
-				
-				echo $_SESSION['buildsite']['site']['loc'];
 
-				//File::addFolder($_SESSION['buildsite']['site']['loc']);
-				//File::addFolder($_SESSION['buildsite']['site']['loc'].'upload/');
+				File::addFolder($_SESSION['buildsite']['site']['loc']);
+				File::addFolder($_SESSION['buildsite']['site']['loc'].'upload/');
 
 				$_SESSION['buildsite']['site']['theme'] = htmlspecialchars($_POST['site-theme']);
 				$_SESSION['buildsite']['stepReach'] = 2;

@@ -1,0 +1,46 @@
+#themeSelect{
+position:relative;
+overflow:auto;
+height:500px;
+border:1px solid #ccc;
+border-left:none;
+border-right:none;
+padding:5px 0;
+margin-bottom:10px;
+}
+
+.themeSelectItem{
+background:#f5f5f5;
+border:1px solid #dbdbdb;
+margin:6px 6px;
+padding:7px;
+position:relative;
+border-radius:8px;
+float:left;
+width:130px;
+height:170px;
+}
+.themeSelectItem.select{
+border:3px solid #f0a910;
+background:#fdf5e3;
+margin:4px;
+}
+.themeSelectItem.select .themeSelectItemRadio{
+background-color:#fdda71;
+}
+.themeSelectItemRadio{
+background:#DFE8DB;
+margin:5px 0;
+height:18px;
+padding:5px 4px;
+cursor:pointer;
+}
+.themeSelectItemRadio label{
+position:relative;
+top:-2px;
+margin-left:2px;
+cursor:pointer;
+}
+.themeSelectItemNom input{
+cursor:pointer;
+}

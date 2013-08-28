@@ -5,41 +5,26 @@
 {% block head %}
 	<title>Etape 1 - Choix du thème</title>
 
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/previs.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/button.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/etape.css') }}"/>
-
-	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/previs.js') }}"></script>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/theme_select.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
 
 	<script>
 
-	var BlocSelect;
-	var Galerie;
+	var themeSelected;
 
 	$(document).ready(function()
 	{
-		var CadThemeList = document.getElementById('CadThemeList');
-		var InputList = CadThemeList.getElementsByTagName('input');
+		$('#themeSelect .themeSelectItem').each(function(){
+			var self = $(this);
+			var radio = self.find('.themeSelectItemRadio');
+			radio.click(function(){ setTheme(self); });
 
-		for(var i = 0; i < InputList.length; i++)
-		{
-			var InputAct = InputList[i];
-
-			InputAct.parentNode.onclick = function(){ setTheme(this.parentNode); }; 
-
-			if(InputAct.checked === true)
+			if(radio.checked)
 			{
-				BlocSelect = InputAct.parentNode.parentNode;
-				BlocSelect.className = 'CadVignette select';
-
-				Ot.setScrollOpt(CadThemeList, BlocSelect);
+				themeSelected = self;
+				themeSelected.addClass('select');
 			}
-		}
-
-		Galerie = new PreVis('<button type="button" class="ButtonSmallGreen" onclick="seletTheme()"><img src="image/icone/ok.png"/>Choisir ce thème</button>');
-		Galerie.Initi(CadThemeList);
+		});
 
 		if(!document.getElementById('EtapeValide'))
 		{
@@ -70,33 +55,12 @@
 
 	function ValidePost()
 	{
-		document.getElementById('FormPost').submit();
+		$('#themeSelect form').submit();
 	}
 
 	</script>
 
 	<style>
-
-	#CadThemeList{
-	position:relative;
-	overflow:auto;
-	height:500px;
-	border:1px solid #ccc;
-	border-left:none;
-	border-right:none;
-	padding:5px 0;
-	margin-bottom:10px;
-	}
-
-	.CadVignette{
-	float:left;
-	width:130px;
-	height:170px;
-	}
-
-	.PreVisCad .ButtonSmallGreen{
-	margin:13px auto auto;
-	}
 
 	</style>
 {% endblock %}
@@ -120,14 +84,14 @@
 
 	<h3>Liste des thèmes :</h3>
 
-	<div id="CadThemeList">
-	<form method="post" action="" id="FormPost">
+	<div id="themeSelect">
+	<form method="post" action="">
 		{% for value in theme %}
-		<div class="CadVignette">
-			<a href="{{ asset('bundles/salonramamain/theme/{{ value.name }}/screenshot_max.jpg') }}" class="MPreVis" title="Agrandir cette image">
-				<img src="{{ asset('bundles/salonramamain/theme/{{ value.name }}/screenshot_max.jpg') }}" width="130"/><span class="Zoom"></span>
+		<div class="themeSelectItem">
+			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" title="Agrandir cette image">
+				<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" width="130"/><span class="Zoom"></span>
 			</a>
-			<div class="CadVignetteNom">
+			<div class="themeSelectItemRadio">
 				<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>
 				<label for="{{ value.name }}">Sélectionner</label>
 			</div>

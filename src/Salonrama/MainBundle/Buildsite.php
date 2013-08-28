@@ -127,14 +127,14 @@ class Buildsite
 		{
 			if($this->stepCurrent < $this->stepReach)
 			{
-				$foot .= '<div id="EtapeSuivant" onclick="document.location = \'step'.$this->stepReach.'.php\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
+				$foot .= '<div id="EtapeSuivant" onclick="document.location = \'step'.$this->stepReach.'\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
 					  '<div id="EtapeValide" class="ButtonBigYellow">Modifier</div>';
 			}
 			else
 			{
 				if($this->stepCurrent > 1)
 				{
-					$foot .= '<div id="EtapePrecedent" onclick="document.location = \'step'.($this->stepCurrent-1).'.php\'" title="Etape '.($this->stepCurrent-1).' : '.$this->step[$this->stepCurrent-1][0].'"><p>Etape précédente</p></div>';
+					$foot .= '<div id="EtapePrecedent" onclick="document.location = \'step'.($this->stepCurrent-1).'\'" title="Etape '.($this->stepCurrent-1).' : '.$this->step[$this->stepCurrent-1][0].'"><p>Etape précédente</p></div>';
 				}
 
 				$foot .= '<div id="EtapeSuivant" title="Etape '.($this->stepCurrent+1).' : '.$this->step[$this->stepCurrent+1][0].'"><p>Etape suivante</p></div>';
