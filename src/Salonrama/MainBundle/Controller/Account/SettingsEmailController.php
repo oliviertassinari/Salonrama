@@ -44,7 +44,7 @@ class SettingsEmailController extends Controller
                                                                      $user->getId().'/'.$user->getConfirmEmailToken());
                             $state2 = $mailer->sendChangeEmailOld($user->getEmail(), $user->getAccount()->getName());
 
-                            $state = array('state' => 0, 'text' => 'ok');
+                            $state = array('state' => 0, 'text' => 'Un message vous a été envoyé pour confirmer votre nouvelle adresse email.');
                         }
                         else
                         {

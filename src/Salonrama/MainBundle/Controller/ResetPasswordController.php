@@ -13,7 +13,7 @@ class ResetPasswordController extends Controller
 		$userRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:User');
 		$user = $userRepository->find($id);
 
-		if($user && $user->getResetPasswordToken() == $token)
+		if($user && $token != '' && $user->getResetPasswordToken() == $token)
 		{
 			$isAllowed = true;
 		}
@@ -45,7 +45,7 @@ class ResetPasswordController extends Controller
 	                	$user->setResetPasswordToken('');
                         $em->flush();
 
-	                    $state = array('state' => 0, 'text' => 'Votre mot de passe à été modifié.');
+	                    $state = array('state' => 0, 'text' => 'Votre mot de passe a été changé.');
 	                }
 	                else
 	                {
@@ -66,7 +66,7 @@ class ResetPasswordController extends Controller
 		}
 		else
 		{
-			return $this->render('SalonramaMainBundle:Main:reset_password.html.twig');
+			return $this->render('SalonramaMainBundle:Main:reset_password.html.twig', array('is_allowed' => $isAllowed));
 		}
     }
 }
