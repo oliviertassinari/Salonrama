@@ -1,6 +1,6 @@
 <?php
 
-namespace Salonrama\MainBundle\Controller;
+namespace Salonrama\MainBundle\Controller\Account;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -24,7 +24,7 @@ class ConfirmEmailController extends Controller
 		    	$user->setConfirmEmailToken('');
 		        $em->flush();
 
-	        	$state = array('state' => 0, 'text' => 'Ok.');
+	        	$state = array('state' => 0, 'text' => 'Votre nouvel email (<b>'.$email.'</b>) a été confirmé.');
 	        }
 	        else
 	        {
@@ -33,10 +33,10 @@ class ConfirmEmailController extends Controller
 		}
 		else
 		{
-        	$state = array('state' => 1, 'text' => 'Paramètres incorrectes.');
+        	$state = array('state' => 1, 'text' => 'Champs Invalides.');
 		}
 
-		return $this->render('SalonramaMainBundle:Main:confirm_email.html.twig', array('state' => $state));
+		return $this->render('SalonramaMainBundle:Account:confirm_email.html.twig', array('state' => $state));
 	}
 }
 

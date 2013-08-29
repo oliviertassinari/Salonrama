@@ -40,7 +40,7 @@ class SettingsEmailController extends Controller
 
                             $mailer = $this->get('salonrama_main_mailer');
                             $state1 = $mailer->sendChangeEmailNew($email, $user->getAccount()->getName(), $user->getEmail(), 
-                                                                    'http://www.salonrama.fr/confirm_email/'.
+                                                                    'http://www.salonrama.fr/account/confirm_email/'.
                                                                      $user->getId().'/'.$user->getConfirmEmailToken());
                             $state2 = $mailer->sendChangeEmailOld($user->getEmail(), $user->getAccount()->getName());
 

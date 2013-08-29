@@ -68,13 +68,13 @@ salonrama_main_help_articles:
     pattern:  /help/article/{id}
     defaults: { _controller: SalonramaMainBundle:Help:article }
 
-salonrama_main_confirm_email:
-    pattern:  /confirm_email/{id}/{token}
-    defaults: { _controller: SalonramaMainBundle:ConfirmEmail:confirmEmail }
-
 salonrama_main_account:
     pattern:  /account/
     defaults: { _controller: SalonramaMainBundle:Account/Index:index }
+
+salonrama_main_account_confirm_email:
+    pattern:  /account/confirm_email/{id}/{token}
+    defaults: { _controller: SalonramaMainBundle:Account/ConfirmEmail:confirmEmail }
 
 salonrama_main_account_site:
     pattern:  /account/site
