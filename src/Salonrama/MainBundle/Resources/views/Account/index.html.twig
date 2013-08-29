@@ -6,4 +6,17 @@
 
 {% block body %}
 	<h1>Mon compte</h1>
+
+	{% if message %}
+	{% if message.state == 0 %}
+	<div class="cadre-small cadre-small-green">
+		<i class="icon-ok"></i>{{ message.text }}
+	</div
+	{% elseif message.state == 1 %}
+	<div class="cadre-small cadre-small-red">
+		<i class="icon-warning-sign"></i>{{ message.text }}
+	</div>
+	{% endif %}
+	{% endif %}
+
 {% endblock %}

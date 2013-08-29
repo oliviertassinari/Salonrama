@@ -8,7 +8,15 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SalonramaMainBundle:Account:index.html.twig');
+    	$session = $this->getRequest()->getSession();
+
+    	$message = array();
+
+		foreach ($session->getFlashBag()->get('message', array()) as $value) {
+			$message = $value;
+		}
+
+        return $this->render('SalonramaMainBundle:Account:index.html.twig', array('message' => $message));
     }
 }
 

@@ -36,7 +36,9 @@ class ConfirmEmailController extends Controller
         	$state = array('state' => 1, 'text' => 'Champs Invalides.');
 		}
 
-		return $this->render('SalonramaMainBundle:Account:confirm_email.html.twig', array('state' => $state));
+		$session = $this->getRequest()->getSession();
+        $session->getFlashBag()->add('message', $state);
+        return $this->redirect($this->generateUrl('salonrama_main_account'));
 	}
 }
 
