@@ -4,4 +4,10 @@ parameters:
 services:
     salonrama_main_mailer:
         class: Salonrama\MainBundle\Mailer
-        arguments: [@mailer, @templating]
+        arguments: ['@mailer', '@templating']
+
+    login_listener:
+        class: 'Salonrama\MainBundle\Listener\LoginListener'
+        arguments: ['@security.context', '@doctrine']
+        tags:
+            - { name: 'kernel.event_listener', event: 'security.interactive_login' }

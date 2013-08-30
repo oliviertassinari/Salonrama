@@ -35,16 +35,6 @@ class User implements UserInterface
     private $isActive;
 
     /**
-     * @ORM\Column(name="last_login", type="datetime")
-     */
-    private $lastLogin;
-
-    /**
-     * @ORM\Column(name="signin", type="datetime")
-     */
-    private $signin;
-
-    /**
      * @ORM\Column(name="reset_password_token", type="string", length=32)
      */
     private $resetPasswordToken;
@@ -167,52 +157,6 @@ class User implements UserInterface
     public function getIsActive()
     {
         return $this->isActive;
-    }
-
-    /**
-     * Set lastLogin
-     *
-     * @param \DateTime $lastLogin
-     * @return User
-     */
-    public function setLastLogin($lastLogin)
-    {
-        $this->lastLogin = $lastLogin;
-    
-        return $this;
-    }
-
-    /**
-     * Get lastLogin
-     *
-     * @return \DateTime 
-     */
-    public function getLastLogin()
-    {
-        return $this->lastLogin;
-    }
-
-    /**
-     * Set signin
-     *
-     * @param \DateTime $signin
-     * @return User
-     */
-    public function setSignin($signin)
-    {
-        $this->signin = $signin;
-    
-        return $this;
-    }
-
-    /**
-     * Get signin
-     *
-     * @return \DateTime 
-     */
-    public function getSignin()
-    {
-        return $this->signin;
     }
 
     /**

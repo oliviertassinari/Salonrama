@@ -44,6 +44,16 @@ class Account
     */
     protected $site;
 
+    /**
+     * @ORM\Column(name="last_login", type="datetime")
+     */
+    protected $lastLogin;
+
+    /**
+     * @ORM\Column(name="signin", type="datetime")
+     */
+    protected $signin;
+
     public function getName()
     {
         return $this->getFirstName().' '.$this->getLastName();
@@ -172,5 +182,51 @@ class Account
     public function getSite()
     {
         return $this->site;
+    }
+
+    /**
+     * Set lastLogin
+     *
+     * @param \DateTime $lastLogin
+     * @return User
+     */
+    public function setLastLogin($lastLogin)
+    {
+        $this->lastLogin = $lastLogin;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastLogin
+     *
+     * @return \DateTime 
+     */
+    public function getLastLogin()
+    {
+        return $this->lastLogin;
+    }
+
+    /**
+     * Set signin
+     *
+     * @param \DateTime $signin
+     * @return User
+     */
+    public function setSignin($signin)
+    {
+        $this->signin = $signin;
+    
+        return $this;
+    }
+
+    /**
+     * Get signin
+     *
+     * @return \DateTime 
+     */
+    public function getSignin()
+    {
+        return $this->signin;
     }
 }

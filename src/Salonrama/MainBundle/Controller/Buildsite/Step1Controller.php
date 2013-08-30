@@ -36,8 +36,8 @@ class Step1Controller extends Controller
 
 				$_SESSION['buildsite']['site']['theme'] = htmlspecialchars($_POST['site-theme']);
 				$_SESSION['buildsite']['stepReach'] = 2;
-				//header('location:etape2.php');
-				//exit();
+
+				return $this->redirect($this->generateUrl('salonrama_main_buildsite_step2'));
 			}
 			else
 			{
