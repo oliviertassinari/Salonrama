@@ -27,7 +27,7 @@ class SettingsDeleteController extends Controller
 
                 if($user->getPassword() == $password)
                 {
-                    $state = array('state' => 0, 'text' => 'Champ Invalide.');
+                    $state = array('state' => 0, 'text' => '');
                 }
                 else
                 {

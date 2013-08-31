@@ -138,7 +138,7 @@ display:block;
 padding:7px 10px;
 border-radius:3px 0 0 3px;
 }
-#nav-left-left li a:hover{
+#nav-left-left li a:hover, #nav-left-left li a:focus{
 background:#EFF2F7;
 text-decoration:none;
 }

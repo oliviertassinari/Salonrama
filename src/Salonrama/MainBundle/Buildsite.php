@@ -8,7 +8,7 @@ class Buildsite
 	public $stepCurrent;
 	public $stepReach;
 
-    public function __construct($stepCurrent)
+    public function __construct($session, $stepCurrent)
     {
         $this->step = array(
 								1 => array('Thème', 'etape1.php'),
@@ -19,13 +19,7 @@ class Buildsite
 							);
 
         $this->stepCurrent = $stepCurrent;
-
-		if(!isset($_SESSION['buildsite']['stepReach']))
-		{
-			$_SESSION['buildsite']['stepReach'] = 1;
-		}
-
-		$this->stepReach = $_SESSION['buildsite']['stepReach'];
+		$this->stepReach = $session->get('buildsite/stepReach', 1);
     }
 
 	public function isAllowed($redirect = true)

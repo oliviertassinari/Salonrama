@@ -15,34 +15,34 @@
 	$(document).ready(function()
 	{
 		$('#themeSelect .themeSelectItem').each(function(){
-			var self = $(this);
-			var radio = self.find('.themeSelectItemRadio');
-			radio.click(function(){ setTheme(self); });
+			var item = $(this);
+			var radio = item.find('.themeSelectItemRadio');
+			radio.click(function(){ setTheme(item); });
 
-			if(radio.checked)
+			if(radio.find('input').prop('checked'))
 			{
-				themeSelected = self;
+				themeSelected = item;
 				themeSelected.addClass('select');
 			}
 		});
 
 		if(!document.getElementById('EtapeValide'))
 		{
-			document.getElementById('EtapeSuivant').onclick = function(){ ValidePost(); };
+			document.getElementById('EtapeSuivant').onclick = ValidePost;
 		}
 		else
 		{
-			document.getElementById('EtapeValide').onclick = function(){ ValidePost(); };
+			document.getElementById('EtapeValide').onclick = ValidePost;
 		}
 	});
 
-	function setTheme(Obj)
+	function setTheme(item)
 	{
-		$(BlocSelect).removeClass('select');
-		BlocSelect = Obj;
+		themeSelected.removeClass('select');
+		themeSelected = item;
 
-		$(BlocSelect).addClass('select');
-		Obj.getElementsByTagName('input')[0].checked = true;
+		themeSelected.addClass('select');
+		themeSelected.find('input').prop('checked', true);
 	}
 
 	function seletTheme()
@@ -50,7 +50,7 @@
 		setTheme(Galerie.ImgAct.Obj.parentNode);
 		Galerie.closeStart()
 
-		setTimeout(function(){ Ot.moveScroll(0, function(){ ValidePost(); }); }, 400);
+		setTimeout(function(){ Ot.moveScroll(0, ValidePost); }, 400);
 	}
 
 	function ValidePost()

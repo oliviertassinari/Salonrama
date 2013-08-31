@@ -11,11 +11,12 @@ class Step1Controller extends Controller
     public function step1Action()
     {
         $request = $this->get('request');
+        $session = $request->getSession();
 
         $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
         $theme = $themeRepository->findAll();
 
-		$buildsite = new Buildsite(1);
+		$buildsite = new Buildsite($session, 1);
 		$storyboard = $buildsite->getStoryboard();
 		$foot = $buildsite->getFoot();
         $message = '';
@@ -26,22 +27,22 @@ class Step1Controller extends Controller
 			{
 				$time = explode(' ', microtime());
 				$id = str_replace('.', '-', $time[1] + $time[0]);
+				$loc = '../../Site/etape/'.$id.'/';
 
-				$_SESSION['buildsite']['id'] = $id;
-				$_SESSION['buildsite']['site'] = array();
-				$_SESSION['buildsite']['site']['loc'] = '../../Site/etape/'.$id.'/';
+				$session->set('buildsite/id', $id);
+				$session->set('buildsite/site/loc', $loc);
+				$session->set('buildsite/site/theme', htmlspecialchars($_POST['site-theme']));
 
-				File::addFolder($_SESSION['buildsite']['site']['loc']);
-				File::addFolder($_SESSION['buildsite']['site']['loc'].'upload/');
+				File::addFolder($loc);
+				File::addFolder($loc.'upload/');
 
-				$_SESSION['buildsite']['site']['theme'] = htmlspecialchars($_POST['site-theme']);
-				$_SESSION['buildsite']['stepReach'] = 2;
+				$session->set('buildsite/stepReach', 2);
 
 				return $this->redirect($this->generateUrl('salonrama_main_buildsite_step2'));
 			}
 			else
 			{
-				$_SESSION['buildsite']['site']['theme'] = htmlspecialchars($_POST['site-theme']);
+				$session->set('buildsite/site/theme', htmlspecialchars($_POST['site-theme']));
 
 				$message = 'Votre thème a bien été modifié.';
 			}
@@ -49,7 +50,7 @@ class Step1Controller extends Controller
 
 		return $this->render('SalonramaMainBundle:Buildsite:step1.html.twig', array(
 																				'theme' => $theme,
-																				'theme_current' => 'RobinBleu', 
+																				'theme_current' => $session->get('buildsite/site/theme', 'RobinBleu'), 
 																				'storyboard' => $storyboard,
 																				'foot' => $foot,
 																				'message' => $message
