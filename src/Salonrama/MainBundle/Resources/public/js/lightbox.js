@@ -59,10 +59,10 @@ Licensed under the Creative Commons Attribution 2.5 License - http://creativecom
       var _this = this;
       $("<div id='lightboxOverlay' class='lightboxOverlay'></div><div id='lightbox' class='lightbox'><div class='lb-outerContainer'>"+
         "<div class='lb-container'><img class='lb-image' src='' />"+
-        "<div class='lb-nav'><a class='lb-prev' href='' ></a><a class='lb-next' href='' ></a></div>"+
+        "<div class='lb-nav'><a class='lb-prev' href='' ><span></span></a><a class='lb-next' href='' ><span></span></a></div>"+
         "<div class='lb-loader'><i class='icon-spinner icon-spin'></i></div></div></div><div class='lb-dataContainer'><div class='lb-data'>"+
-        "<div class='lb-details'><span class='lb-caption'></span><span class='lb-number'></span></div><div class='lb-closeContainer'>"+
-        "<a class='lb-close'></a></div></div></div></div>").appendTo($('body'));
+        "<div class='lb-details'><span class='lb-caption'></span><span class='lb-number'></span></div>"+
+        "<a class='lb-close' title='Fermer'></a></div></div></div>").appendTo($('body'));
       this.$lightbox = $('#lightbox');
       this.$overlay = $('#lightboxOverlay');
       this.$outerContainer = this.$lightbox.find('.lb-outerContainer');
