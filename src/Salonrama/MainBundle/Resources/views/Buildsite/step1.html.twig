@@ -7,6 +7,9 @@
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/theme_select.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/lightbox.css') }}"/>
+
+	<script src="{{ asset('bundles/salonramamain/js/lightbox.js') }}"></script>
 
 	<script>
 
@@ -88,8 +91,8 @@
 	<form method="post" action="">
 		{% for value in theme %}
 		<div class="themeSelectItem">
-			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" title="Agrandir cette image">
-				<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" width="130"/><span class="Zoom"></span>
+			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" title="Agrandir cette image">
+				<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_min.jpg') }}" width="130"/><span class="Zoom"></span>
 			</a>
 			<div class="themeSelectItemRadio">
 				<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>

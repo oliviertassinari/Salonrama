@@ -1,7 +1,7 @@
 #themeSelect{
 position:relative;
 overflow:auto;
-height:500px;
+height:470px;
 border:1px solid #ccc;
 border-left:none;
 border-right:none;
@@ -17,8 +17,6 @@ padding:7px;
 position:relative;
 border-radius:8px;
 float:left;
-width:130px;
-height:170px;
 }
 .themeSelectItem.select{
 border:3px solid #f0a910;
@@ -41,6 +39,6 @@ top:-2px;
 margin-left:2px;
 cursor:pointer;
 }
-.themeSelectItemNom input{
+.themeSelectItemRadio input{
 cursor:pointer;
 }
