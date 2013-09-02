@@ -14,11 +14,15 @@
 	<script>
 
 	var themeSelected;
+	var lightbox;
 
 	$(document).ready(function()
 	{
-		var lightboxOptions = new LightboxOptions();
-		var lightbox = new Lightbox(lightboxOptions);
+		lightbox = new Lightbox({
+			getDetailsCaption: function(title, imageNumber){
+				return '<button type="button" onclick="setThemeFromLightbox('+imageNumber+')" class="button-small button-small-blue"><i class="icon-ok"></i>Sélectionner ce thème</button>';
+			}
+		});
 
 		$('#themeSelect .themeSelectItem').each(function(){
 			var item = $(this);
@@ -34,11 +38,11 @@
 
 		if(!document.getElementById('EtapeValide'))
 		{
-			document.getElementById('EtapeSuivant').onclick = ValidePost;
+			document.getElementById('EtapeSuivant').onclick = submit;
 		}
 		else
 		{
-			document.getElementById('EtapeValide').onclick = ValidePost;
+			document.getElementById('EtapeValide').onclick = submit;
 		}
 	});
 
@@ -51,15 +55,13 @@
 		themeSelected.find('input').prop('checked', true);
 	}
 
-	function seletTheme()
+	function setThemeFromLightbox(imageNumber)
 	{
-		setTheme(Galerie.ImgAct.Obj.parentNode);
-		Galerie.closeStart()
-
-		setTimeout(function(){ Ot.moveScroll(0, ValidePost); }, 400);
+		lightbox.end();
+		setTheme($($('#themeSelect .themeSelectItem')[imageNumber]));
 	}
 
-	function ValidePost()
+	function submit()
 	{
 		$('#themeSelect form').submit();
 	}
@@ -90,8 +92,8 @@
 
 	<h3>Liste des thèmes :</h3>
 
-	<div id="themeSelect">
 	<form method="post" action="">
+	<div id="themeSelect">
 		{% for value in theme %}
 		<div class="themeSelectItem">
 			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" title="Agrandir cette image">
@@ -103,8 +105,8 @@
 			</div>
 		</div>
 		{% endfor %}
-	</form>
 	</div>
+	</form>
 
 	{% autoescape false %}
 	{{ foot }}
