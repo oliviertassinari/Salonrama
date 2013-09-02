@@ -160,9 +160,9 @@ color:#999;
 .lb-close{
 display:block;
 float:right;
-width:30px;
-height:30px;
-background:url(../images/lightbox/close.png) top right no-repeat;
+width:27px;
+height:27px;
+background:url(../images/lightbox.png) 0 -90px no-repeat;
 text-align:right;
 outline:none;
 opacity:0.7;

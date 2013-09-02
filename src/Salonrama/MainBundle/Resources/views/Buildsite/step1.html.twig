@@ -17,6 +17,9 @@
 
 	$(document).ready(function()
 	{
+		var lightboxOptions = new LightboxOptions();
+		var lightbox = new Lightbox(lightboxOptions);
+
 		$('#themeSelect .themeSelectItem').each(function(){
 			var item = $(this);
 			var radio = item.find('.themeSelectItemRadio');
