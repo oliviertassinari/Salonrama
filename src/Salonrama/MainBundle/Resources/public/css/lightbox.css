@@ -88,8 +88,8 @@ opacity:0.4;
 }
 
 .lb-prev span, .lb-next span{
-width:35px;
-height:45px;
+width:28px;
+height:43px;
 display:block;
 position:absolute;
 background:url(../images/lightbox.png) no-repeat;
@@ -102,7 +102,7 @@ float:left;
 }
 .lb-prev span{
 left:15px;
-background-position:0 -45px;
+background-position:0 -43px;
 }
 .lb-prev:hover{
 opacity:1 !important;
@@ -156,9 +156,9 @@ color:#999;
 .lb-close{
 display:block;
 float:right;
-width:27px;
-height:27px;
-background:url(../images/lightbox.png) 0 -90px no-repeat;
+width:28px;
+height:26px;
+background:url(../images/lightbox.png) 0 -86px no-repeat;
 text-align:right;
 outline:none;
 opacity:0.7;

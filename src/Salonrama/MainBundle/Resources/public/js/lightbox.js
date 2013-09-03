@@ -127,7 +127,7 @@ var Lightbox = (function() {
     $image = this.$lightbox.find('.lb-image');
     this.sizeOverlay();
     this.$overlay.fadeIn(this.options.fadeDuration);
-    $('.lb-loader').fadeIn('slow');
+    this.$lightbox.find('.lb-loader').fadeIn('slow');
     this.$lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
     preloader = new Image();
     preloader.onload = function() {
@@ -192,6 +192,7 @@ var Lightbox = (function() {
   };
 
   Lightbox.prototype.showImage = function() {
+    this.$lightbox.find('.lb-loader').stop();
     this.$lightbox.find('.lb-loader').hide();
     this.$lightbox.find('.lb-image').fadeIn('slow');
     this.updateNav();
