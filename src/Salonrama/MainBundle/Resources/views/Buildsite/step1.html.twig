@@ -53,12 +53,35 @@
 
 		themeSelected.addClass('select');
 		themeSelected.find('input').prop('checked', true);
+
+		setScroll();
 	}
 
 	function setThemeFromLightbox(imageNumber)
 	{
 		lightbox.end();
 		setTheme($($('#themeSelect .themeSelectItem')[imageNumber]));
+	}
+
+	function setScroll()
+	{
+		var scrollTop = $('#themeSelect').scrollTop();
+
+		var heightHiddenTop = $('#themeSelect').offset().top + 10 - themeSelected.offset().top;
+		var heightHiddenBottom = themeSelected.height() - $('#themeSelect').height() - heightHiddenTop + 25;
+
+		if(heightHiddenTop > 0)
+		{
+			$('#themeSelect').animate({  
+				scrollTop: $('#themeSelect').scrollTop() - heightHiddenTop
+			}, 'fast');
+		}
+		else if(heightHiddenBottom > 0)
+		{
+			$('#themeSelect').animate({  
+				scrollTop: $('#themeSelect').scrollTop() + heightHiddenBottom
+			}, 'fast');
+		}
 	}
 
 	function submit()
