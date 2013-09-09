@@ -37,9 +37,32 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('empty', $type);
 
-        $this->assertEquals('swiftmailer.transport.smtp', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
     }
 
+    /**
+     * @dataProvider getConfigTypes
+     */
+    public function testSendmailConfig($type)
+    {
+        $container = $this->loadContainerFromFile('sendmail', $type);
+
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.sendmail', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
+    }
+    
+    /**
+     * @dataProvider getConfigTypes
+     */
+    public function testMailConfig($type)
+    {
+        $container = $this->loadContainerFromFile('mail', $type);
+
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.mail', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
+    }
+    
     /**
      * @dataProvider getConfigTypes
      */
@@ -47,7 +70,8 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('null', $type);
 
-        $this->assertEquals('swiftmailer.transport.null', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.null', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
     }
 
     /**
@@ -57,21 +81,78 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('full', $type);
 
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.spool', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.real', (string) $container->getAlias('swiftmailer.transport.real'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.default.transport.real'));
+        $this->assertTrue($container->has('swiftmailer.mailer.default.spool.memory'));
+        $this->assertEquals('example.org', $container->getParameter('swiftmailer.mailer.default.transport.smtp.host'));
+        $this->assertEquals('12345', $container->getParameter('swiftmailer.mailer.default.transport.smtp.port'));
+        $this->assertEquals('tls', $container->getParameter('swiftmailer.mailer.default.transport.smtp.encryption'));
+        $this->assertEquals('user', $container->getParameter('swiftmailer.mailer.default.transport.smtp.username'));
+        $this->assertEquals('pass', $container->getParameter('swiftmailer.mailer.default.transport.smtp.password'));
+        $this->assertEquals('login', $container->getParameter('swiftmailer.mailer.default.transport.smtp.auth_mode'));
+        $this->assertEquals('1000', $container->getParameter('swiftmailer.mailer.default.transport.smtp.timeout'));
+        $this->assertEquals('127.0.0.1', $container->getParameter('swiftmailer.mailer.default.transport.smtp.source_ip'));
+        $this->assertSame(array('swiftmailer.default.plugin' => array(array())), $container->getDefinition('swiftmailer.mailer.default.plugin.redirecting')->getTags());
+        $this->assertSame('single@host.com', $container->getParameter('swiftmailer.mailer.default.single_address'));
+        $this->assertEquals(array('/foo@.*/', '/.*@bar.com$/'), $container->getParameter('swiftmailer.mailer.default.delivery_whitelist'));
+    }
 
-        $this->assertEquals('swiftmailer.transport.spool', (string) $container->getAlias('swiftmailer.transport'));
-        $this->assertEquals('swiftmailer.transport.smtp', (string) $container->getAlias('swiftmailer.transport.real'));
-        $this->assertTrue($container->has('swiftmailer.spool.memory'));
-        $this->assertEquals('example.org', $container->getParameter('swiftmailer.transport.smtp.host'));
-        $this->assertEquals('12345', $container->getParameter('swiftmailer.transport.smtp.port'));
-        $this->assertEquals('tls', $container->getParameter('swiftmailer.transport.smtp.encryption'));
-        $this->assertEquals('user', $container->getParameter('swiftmailer.transport.smtp.username'));
-        $this->assertEquals('pass', $container->getParameter('swiftmailer.transport.smtp.password'));
-        $this->assertEquals('login', $container->getParameter('swiftmailer.transport.smtp.auth_mode'));
-        $this->assertEquals('1000', $container->getParameter('swiftmailer.transport.smtp.timeout'));
-        $this->assertEquals('127.0.0.1', $container->getParameter('swiftmailer.transport.smtp.source_ip'));
-        $this->assertSame(array('swiftmailer.plugin' => array(array())), $container->getDefinition('swiftmailer.plugin.redirecting')->getTags());
-        $this->assertSame('single@host.com', $container->getParameter('swiftmailer.single_address'));
-        $this->assertEquals(array('/foo@.*/', '/.*@bar.com$/'), $container->getParameter('swiftmailer.delivery_whitelist'));
+    /**
+     * @dataProvider getConfigTypes
+     */
+    public function testManyMailers($type)
+    {
+        $container = $this->loadContainerFromFile('many_mailers', $type);
+
+        $this->assertEquals('swiftmailer.mailer.secondary_mailer', (string) $container->getAlias('swiftmailer.mailer'));
+        $this->assertEquals('swiftmailer.mailer.secondary_mailer.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.secondary_mailer.transport.spool', (string) $container->getAlias('swiftmailer.mailer.secondary_mailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.secondary_mailer.transport.spool', (string) $container->getAlias('swiftmailer.mailer.secondary_mailer.transport'));
+        $this->assertEquals('example.org', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.host'));
+        $this->assertEquals('12345', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.port'));
+        $this->assertEquals('tls', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.encryption'));
+        $this->assertEquals('user_first', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.username'));
+        $this->assertEquals('pass_first', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.password'));
+        $this->assertEquals('login', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.auth_mode'));
+        $this->assertEquals('1000', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.timeout'));
+        $this->assertEquals('127.0.0.1', $container->getParameter('swiftmailer.mailer.first_mailer.transport.smtp.source_ip'));
+        $this->assertEquals('example.org', $container->getParameter('swiftmailer.mailer.secondary_mailer.transport.smtp.host'));
+        $this->assertEquals('54321', $container->getParameter('swiftmailer.mailer.secondary_mailer.transport.smtp.port'));
+        $this->assertEquals('tls', $container->getParameter('swiftmailer.mailer.secondary_mailer.transport.smtp.encryption'));
+        $this->assertEquals('user_secondary', $container->getParameter('swiftmailer.mailer.secondary_mailer.transport.smtp.username'));
+        $this->assertEquals('pass_secondary', $container->getParameter('swiftmailer.mailer.secondary_mailer.transport.smtp.password'));
+        $this->assertEquals('login', $container->getParameter('swiftmailer.mailer.secondary_mailer.transport.smtp.auth_mode'));
+        $this->assertEquals('1000', $container->getParameter('swiftmailer.mailer.secondary_mailer.transport.smtp.timeout'));
+        $this->assertEquals('127.0.0.1', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.source_ip'));
+        $this->assertEquals('example.org', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.host'));
+        $this->assertEquals('12345', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.port'));
+        $this->assertEquals('tls', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.encryption'));
+        $this->assertEquals('user_third', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.username'));
+        $this->assertEquals('pass_third', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.password'));
+        $this->assertEquals('login', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.auth_mode'));
+        $this->assertEquals('1000', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.timeout'));
+        $this->assertEquals('127.0.0.1', $container->getParameter('swiftmailer.mailer.third_mailer.transport.smtp.source_ip'));
+    }
+
+        /**
+     * @dataProvider getConfigTypes
+     */
+    public function testOneMailer($type)
+    {
+        $container = $this->loadContainerFromFile('one_mailer', $type);
+
+        $this->assertEquals('swiftmailer.mailer.main_mailer.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.main_mailer.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.main_mailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.main_mailer.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.main_mailer.transport'));
+        $this->assertEquals('example.org', $container->getParameter('swiftmailer.mailer.main_mailer.transport.smtp.host'));
+        $this->assertEquals('12345', $container->getParameter('swiftmailer.mailer.main_mailer.transport.smtp.port'));
+        $this->assertEquals('tls', $container->getParameter('swiftmailer.mailer.main_mailer.transport.smtp.encryption'));
+        $this->assertEquals('user', $container->getParameter('swiftmailer.mailer.main_mailer.transport.smtp.username'));
+        $this->assertEquals('pass', $container->getParameter('swiftmailer.mailer.main_mailer.transport.smtp.password'));
+        $this->assertEquals('login', $container->getParameter('swiftmailer.mailer.main_mailer.transport.smtp.auth_mode'));
+        $this->assertEquals('1000', $container->getParameter('swiftmailer.mailer.main_mailer.transport.smtp.timeout'));
     }
 
     /**
@@ -81,9 +162,11 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('spool', $type);
 
-        $this->assertEquals('swiftmailer.transport.spool', (string) $container->getAlias('swiftmailer.transport'));
-        $this->assertEquals('swiftmailer.transport.smtp', (string) $container->getAlias('swiftmailer.transport.real'));
-        $this->assertTrue($container->has('swiftmailer.spool.file'), 'Default is file based spool');
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.spool', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.real', (string) $container->getAlias('swiftmailer.transport.real'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.default.transport.real'));
+        $this->assertTrue($container->has('swiftmailer.mailer.default.spool.file'), 'Default is file based spool');
     }
 
     /**
@@ -93,9 +176,35 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('spool_memory', $type);
 
-        $this->assertEquals('swiftmailer.transport.spool', (string) $container->getAlias('swiftmailer.transport'));
-        $this->assertEquals('swiftmailer.transport.smtp', (string) $container->getAlias('swiftmailer.transport.real'));
-        $this->assertTrue($container->has('swiftmailer.spool.memory'), 'Memory based spool is configured');
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.spool', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.real', (string) $container->getAlias('swiftmailer.transport.real'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.default.transport.real'));
+        $this->assertTrue($container->has('swiftmailer.mailer.default.spool.memory'), 'Memory based spool is configured');
+    }
+
+    /**
+     * @dataProvider getConfigTypes
+     */
+    public function testServiceSpool($type)
+    {
+        $container = $this->loadContainerFromFile('spool_service', $type);
+
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.spool', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.real', (string) $container->getAlias('swiftmailer.transport.real'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.default.transport.real'));
+        $this->assertEquals('custom_service_id', (string) $container->getAlias('swiftmailer.mailer.default.spool.service'));
+        $this->assertTrue($container->has('swiftmailer.mailer.default.spool.service'), 'Service based spool is configured');
+    }
+
+    /**
+     * @dataProvider getConfigTypes
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+     */
+    public function testInvalidServiceSpool($type)
+    {
+        $this->loadContainerFromFile('spool_service_invalid', $type);
     }
 
     /**
@@ -105,16 +214,17 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('smtp', $type);
 
-        $this->assertEquals('swiftmailer.transport.smtp', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport', (string) $container->getAlias('swiftmailer.transport'));
+        $this->assertEquals('swiftmailer.mailer.default.transport.smtp', (string) $container->getAlias('swiftmailer.mailer.default.transport'));
 
-        $this->assertEquals('example.org', $container->getParameter('swiftmailer.transport.smtp.host'));
-        $this->assertEquals('12345', $container->getParameter('swiftmailer.transport.smtp.port'));
-        $this->assertEquals('tls', $container->getParameter('swiftmailer.transport.smtp.encryption'));
-        $this->assertEquals('user', $container->getParameter('swiftmailer.transport.smtp.username'));
-        $this->assertEquals('pass', $container->getParameter('swiftmailer.transport.smtp.password'));
-        $this->assertEquals('login', $container->getParameter('swiftmailer.transport.smtp.auth_mode'));
-        $this->assertEquals('1000', $container->getParameter('swiftmailer.transport.smtp.timeout'));
-        $this->assertEquals('127.0.0.1', $container->getParameter('swiftmailer.transport.smtp.source_ip'));
+        $this->assertEquals('example.org', $container->getParameter('swiftmailer.mailer.default.transport.smtp.host'));
+        $this->assertEquals('12345', $container->getParameter('swiftmailer.mailer.default.transport.smtp.port'));
+        $this->assertEquals('tls', $container->getParameter('swiftmailer.mailer.default.transport.smtp.encryption'));
+        $this->assertEquals('user', $container->getParameter('swiftmailer.mailer.default.transport.smtp.username'));
+        $this->assertEquals('pass', $container->getParameter('swiftmailer.mailer.default.transport.smtp.password'));
+        $this->assertEquals('login', $container->getParameter('swiftmailer.mailer.default.transport.smtp.auth_mode'));
+        $this->assertEquals('1000', $container->getParameter('swiftmailer.mailer.default.transport.smtp.timeout'));
+        $this->assertEquals('127.0.0.1', $container->getParameter('swiftmailer.mailer.default.transport.smtp.source_ip'));
     }
 
     /**
@@ -124,9 +234,9 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('redirect', $type);
 
-        $this->assertSame(array('swiftmailer.plugin' => array(array())), $container->getDefinition('swiftmailer.plugin.redirecting')->getTags());
-        $this->assertSame('single@host.com', $container->getParameter('swiftmailer.single_address'));
-        $this->assertEquals(array('/foo@.*/', '/.*@bar.com$/'), $container->getParameter('swiftmailer.delivery_whitelist'));
+        $this->assertSame(array('swiftmailer.default.plugin' => array(array())), $container->getDefinition('swiftmailer.mailer.default.plugin.redirecting')->getTags());
+        $this->assertSame('single@host.com', $container->getParameter('swiftmailer.mailer.default.single_address'));
+        $this->assertEquals(array('/foo@.*/', '/.*@bar.com$/'), $container->getParameter('swiftmailer.mailer.default.delivery_whitelist'));
     }
 
     /**
@@ -136,9 +246,9 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('redirect_single', $type);
 
-        $this->assertSame(array('swiftmailer.plugin' => array(array())), $container->getDefinition('swiftmailer.plugin.redirecting')->getTags());
-        $this->assertSame('single@host.com', $container->getParameter('swiftmailer.single_address'));
-        $this->assertEquals(array('/foo@.*/'), $container->getParameter('swiftmailer.delivery_whitelist'));
+        $this->assertSame(array('swiftmailer.default.plugin' => array(array())), $container->getDefinition('swiftmailer.mailer.default.plugin.redirecting')->getTags());
+        $this->assertSame('single@host.com', $container->getParameter('swiftmailer.mailer.default.single_address'));
+        $this->assertEquals(array('/foo@.*/'), $container->getParameter('swiftmailer.mailer.default.delivery_whitelist'));
     }
 
     /**
@@ -148,7 +258,7 @@ class SwiftmailerExtensionTest extends TestCase
     {
         $container = $this->loadContainerFromFile('antiflood', $type);
 
-        $this->assertSame(array('swiftmailer.plugin' => array(array())), $container->getDefinition('swiftmailer.plugin.antiflood')->getTags());
+        $this->assertSame(array('swiftmailer.default.plugin' => array(array())), $container->getDefinition('swiftmailer.mailer.default.plugin.antiflood')->getTags());
     }
 
     /**

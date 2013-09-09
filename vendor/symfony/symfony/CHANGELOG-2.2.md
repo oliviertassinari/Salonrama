@@ -7,6 +7,60 @@ in 2.2 minor versions.
 To get the diff for a specific change, go to https://github.com/symfony/symfony/commit/XXX where XXX is the change hash
 To get the diff between two versions, go to https://github.com/symfony/symfony/compare/v2.2.0...v2.2.1
 
+* 2.2.6 (2013-08-26)
+
+ * f936b41: clearToken exception is thrown at wrong place.
+ * d0faf55: [Locale] Fixed: StubLocale::setDefault() throws no exception when "en" is passed
+ * 566d79c: [Yaml] fixed embedded folded string parsing
+ * 0951b8d: [Translation] Fixed regression: When only one rule is passed to transChoice(), this rule should be used
+ * 4563f1b: [Yaml] Fix comment containing a colon on a scalar line being parsed as a hash.
+ * 7e87eb1: fixed request format when forwarding a request
+ * ccaaedf: [Form] PropertyPathMapper::mapDataToForms() *always* calls setData() on every child to ensure that all *_DATA events were fired when the initialization phase is over (except for virtual forms)
+ * 00bc270: [Form] Fixed: submit() reacts to dynamic modifications of the form children
+ * 05fdb12: Fixed issue #6932 - Inconsistent locale handling in subrequests
+ * b3c3159: fixed locale of sub-requests when explicitely set by the developer (refs #8821)
+ * b72bc0b: [Locale] fixed build-data exit code in case of an error
+ * 9bb7a3d: fixed request format of sub-requests when explicitely set by the developer (closes #8787)
+ * fa35597: Sets _format attribute only if it wasn't set previously by the user.
+ * f946108: fixed the format of the request used to render an exception
+ * 51022c3: Fix typo in the check_path validator
+ * 5f7219e: added a missing use statement (closes #8808)
+ * 262879d: fix for Process:isSuccessful()
+ * 0723c10: [Process] Use a consistent way to reset data of the process latest run
+ * 85a9c9d: [HttpFoundation] Fixed removing a nonexisting namespaced attribute.
+ * 191d320: [Validation] Fixed IdentityTranslator to pass correct Locale to MessageSelector
+ * c6ecd83: SwiftMailerHandler in Monolog bridge now able to react to kernel.terminate event
+ * 99adcf1: {HttpFoundation] [Session] fixed session compatibility with memcached/redis session storage
+ * ab9a96b: Fixes for hasParameterOption and getParameterOption methods of ArgvInput
+ * dbd0855: Added sleep() workaround for windows php rename bug
+ * fa769a2: [Process] Add more precision to Process::stop timeout
+ * 3ef517b: [Process] Fix #8739
+ * 18896d5a: [Validator] fixed the wrong isAbstract() check against the class (fixed #8589)
+ * e8e76ec: [TwigBridge] Prevent code extension to display warning
+ * 1a73b44: added missing support for the new output API in PHP 5.4+
+ * e0c7d3d: Fixed bug introduced in #8675
+ * 0b965fb: made the filesystem loader compatible with Twig 2.0
+ * 322f880: replaced deprecated Twig features
+
+* 2.2.5 (2013-08-07)
+
+ * c35cc5b: added trusted hosts check
+ * 6d555bc: Fixed metadata serialization
+ * cd51d82: [Form] fixed wrong call to setTimeZone() (closes #8644)
+ * 5c359a8: Fix issue with \DateTimeZone::UTC / 'UTC' for PHP 5.4
+ * 97cbb19: [Form] Removed the "disabled" attribute from the placeholder option in select fields due to problems with the BlackBerry 10 browser
+ * c138304: [routing] added ability for apache matcher to handle array values
+ * b41cf82: [Validator] fixed StaticMethodLoader trying to invoke methods of abstract classes (closes #8589)
+ * 3553c71: return 0 if there is no valid data
+ * ae7fa11: [Twig] fixed TwigEngine::exists() method when a template contains a syntax error (closes #8546)
+ * 28e0709: [Validator] fixed ConstraintViolation:: incorrect when nested
+ * 890934d: handle Optional and Required constraints from XML or YAML sources correctly
+ * a2eca45: Fixed #8455: PhpExecutableFinder::find() does not always return the correct binary
+ * 485d53a: [DependencyInjection] Fix Container::camelize to convert beginning and ending chars
+ * 2317443: [Security] fixed issue where authentication listeners clear unrelated tokens
+ * 2ebb783: fix issue #8499 modelChoiceList call getPrimaryKey on a non object
+ * d3eb9b7: [Validator] Fixed groups argument misplace for validateValue method from validator class
+
 * 2.2.4 (2013-07-15)
 
  * 52e530d: Fixed NativeSessionStorage:regenerate when does not exists

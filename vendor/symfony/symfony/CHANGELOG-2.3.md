@@ -7,6 +7,81 @@ in 2.3 minor versions.
 To get the diff for a specific change, go to https://github.com/symfony/symfony/commit/XXX where XXX is the change hash
 To get the diff between two versions, go to https://github.com/symfony/symfony/compare/v2.3.0...v2.3.1
 
+* 2.3.4 (2013-08-27)
+
+ * f936b41: clearToken exception is thrown at wrong place.
+ * ea480bd: [Form] Fixed Form::all() signature for PHP 5.3.3
+ * e1f40f2: [Locale] Fixed: Locale::setDefault() throws no exception when "en" is passed
+ * d0faf55: [Locale] Fixed: StubLocale::setDefault() throws no exception when "en" is passed
+ * 566d79c: [Yaml] fixed embedded folded string parsing
+ * 33b0a17: [Validator] fixed Boolean handling in XML constraint mappings (closes #5603)
+ * 0951b8d: [Translation] Fixed regression: When only one rule is passed to transChoice(), this rule should be used
+ * 4563f1b: [Yaml] Fix comment containing a colon on a scalar line being parsed as a hash.
+ * 7e87eb1: fixed request format when forwarding a request
+ * 07d14e5: [Form] Removed exception in Button::setData(): setData() is now always called for all elements in the form tree during the initialization of the tree
+ * ccaaedf: [Form] PropertyPathMapper::mapDataToForms() *always* calls setData() on every child to ensure that all *_DATA events were fired when the initialization phase is over (except for virtual forms)
+ * 00bc270: [Form] Fixed: submit() reacts to dynamic modifications of the form children
+ * c4636e1: added a functional test for locale handling in sub-requests
+ * 05fdb12: Fixed issue #6932 - Inconsistent locale handling in subrequests
+ * b3c3159: fixed locale of sub-requests when explicitely set by the developer (refs #8821)
+ * 9bb7a3d: fixed request format of sub-requests when explicitely set by the developer (closes #8787)
+ * fa35597: Sets _format attribute only if it wasn't set previously by the user.
+ * f946108: fixed the format of the request used to render an exception
+ * 51022c3: Fix typo in the check_path validator
+ * 5f7219e: added a missing use statement (closes #8808)
+ * 262879d: fix for Process:isSuccessful()
+ * 0723c10: [Process] Use a consistent way to reset data of the process latest run
+ * 85a9c9d: [HttpFoundation] Fixed removing a nonexisting namespaced attribute.
+ * 191d320: [Validation] Fixed IdentityTranslator to pass correct Locale to MessageSelector
+ * c6ecd83: SwiftMailerHandler in Monolog bridge now able to react to kernel.terminate event
+ * 99adcf1: {HttpFoundation] [Session] fixed session compatibility with memcached/redis session storage
+ * ab9a96b: Fixes for hasParameterOption and getParameterOption methods of ArgvInput
+ * dbd0855: Added sleep() workaround for windows php rename bug
+ * c342715: [Form] Fixed: Added "validation_groups" option to submit button
+ * fa01e6b: [Process] Fix for #8754 (Timed-out processes are successful)
+ * 909fab6: [Process] Fix #8742 : Signal-terminated processes are not successful
+ * fa769a2: [Process] Add more precision to Process::stop timeout
+ * 3ef517b: [Process] Fix #8739
+ * 572ba68: [TwigBridge] removed superflous ; when rendering form_enctype() (closes #8660)
+ * 18896d5a: [Validator] fixed the wrong isAbstract() check against the class (fixed #8589)
+ * e8e76ec: [TwigBridge] Prevent code extension to display warning
+ * 96aec0f: Fix internal sub-request creation
+ * 6ed0fdf: [Form] Moved auto_initialize option to the BaseType
+ * e47657d: Make sure ContextErrorException is loaded during compile time errors
+ * 98f6969: Fix empty process argument escaping on Windows
+ * 1a73b44: added missing support for the new output API in PHP 5.4+
+ * e0c7d3d: Fixed bug introduced in #8675
+ * 0b965fb: made the filesystem loader compatible with Twig 2.0
+ * 8fa0453: [Intl] Updated stubs to reflect ICU 51.2
+ * 322f880: replaced deprecated Twig features
+ * 48338fc: Ignore null value in comparison validators
+
+* 2.3.3 (2013-08-07)
+
+ * c35cc5b: added trusted hosts check
+ * 6d555bc: Fixed metadata serialization
+ * cd51d82: [Form] fixed wrong call to setTimeZone() (closes #8644)
+ * 5c359a8: Fix issue with \DateTimeZone::UTC / 'UTC' for PHP 5.4
+ * 85330a6: [Form] Fixed patched forms to be valid even if children are not submitted
+ * cb5e765: [Form] Fixed: If a form is not present in a request, it is not automatically submitted
+ * 97cbb19: [Form] Removed the "disabled" attribute from the placeholder option in select fields due to problems with the BlackBerry 10 browser
+ * c138304: [routing] added ability for apache matcher to handle array values
+ * 1bd45b3: [FrameworkBundle] fixed regression where the command might have the wrong container if the application is reused several times
+ * b41cf82: [Validator] fixed StaticMethodLoader trying to invoke methods of abstract classes (closes #8589)
+ * e5fba3c: [Form] fixes empty file-inputs get treated as extra field
+ * 3553c71: return 0 if there is no valid data
+ * 50d0727: [DependencyInjection] fixed regression where setting a service to null did not trigger a re-creation of the service when getting it
+ * dc1fff0: The ignoreAttributes itself should be ignored, too.
+ * ae7fa11: [Twig] fixed TwigEngine::exists() method when a template contains a syntax error (closes #8546)
+ * 28e0709: [Validator] fixed ConstraintViolation:: incorrect when nested
+ * 890934d: handle Optional and Required constraints from XML or YAML sources correctly
+ * a2eca45: Fixed #8455: PhpExecutableFinder::find() does not always return the correct binary
+ * 485d53a: [DependencyInjection] Fix Container::camelize to convert beginning and ending chars
+ * 2317443: [Security] fixed issue where authentication listeners clear unrelated tokens
+ * 2ebb783: fix issue #8499 modelChoiceList call getPrimaryKey on a non object
+ * 242b318: [DependencyInjection] Add exception for service name not dumpable in PHP
+ * d3eb9b7: [Validator] Fixed groups argument misplace for validateValue method from validator class
+
 * 2.3.2 (2013-07-17)
 
  * bb59f40: Reverts JSON_NUMERIC_CHECK

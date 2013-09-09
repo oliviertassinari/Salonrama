@@ -76,6 +76,16 @@ class Logger implements LoggerInterface
      */
     const EMERGENCY = 600;
 
+    /**
+     * Monolog API version
+     *
+     * This is only bumped when API breaks are done and should
+     * follow the major version of the library
+     *
+     * @var int
+     */
+    const API = 1;
+
     protected static $levels = array(
         100 => 'DEBUG',
         200 => 'INFO',
@@ -196,7 +206,6 @@ class Logger implements LoggerInterface
         }
 
         if (!static::$timezone) {
-            date_default_timezone_set('Europe/Paris');
             static::$timezone = new \DateTimeZone(date_default_timezone_get() ?: 'UTC');
         }
 
@@ -332,7 +341,7 @@ class Logger implements LoggerInterface
 
     /**
      * Gets all supported logging levels.
-     * 
+     *
      * @return array Assoc array with human-readable level names => level codes.
      */
     public static function getLevels()
