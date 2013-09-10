@@ -9,8 +9,6 @@
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/cadre.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/button.css') }}"/>
 
-	<script src="{{ asset('bundles/salonramamain/js/jquery.js') }}"></script>
-
 	{% block head %}
 	{% endblock %}
 </head>
@@ -105,6 +103,11 @@
 			</div>
 		</div>
 	</div>
+
+	<script src="{{ asset('bundles/salonramamain/js/jquery.js') }}"></script>
+
+	{% block javascript %}
+	{% endblock %}
 
 	{{ include("SalonramaMainBundle:Main:google_analytics.html.twig") }}
 	{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}

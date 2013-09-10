@@ -53,9 +53,6 @@ DirectoryIndex app.php
 
 AddDefaultCharset utf-8
 
-SetOutputFilter DEFLATE
-AddOutputFilterByType DEFLATE text/html application/javascript text/css
-
 # 604800 1 WEEK
 <IfModule mod_headers.c>
     <FilesMatch "\.(flv|gif|jpg|jpeg|png|ico)$">
