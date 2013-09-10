@@ -51,5 +51,17 @@ DirectoryIndex app.php
     </IfModule>
 </IfModule>
 
+AddDefaultCharset utf-8
+
 SetOutputFilter DEFLATE
 AddOutputFilterByType DEFLATE text/html application/javascript text/css
+
+# 604800 1 WEEK
+<IfModule mod_headers.c>
+    <FilesMatch "\.(flv|gif|jpg|jpeg|png|ico)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+    <FilesMatch "\.(js|css|pdf|swf)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+</IfModule>
