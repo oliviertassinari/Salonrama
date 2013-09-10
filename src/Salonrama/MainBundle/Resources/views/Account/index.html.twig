@@ -10,8 +10,10 @@
 	{% if message %}
 	{% if message.state == 0 %}
 	<div class="cadre-small cadre-small-green">
+		{% autoescape false %}
 		<i class="icon-ok"></i>{{ message.text }}
-	</div
+		{% endautoescape %}
+	</div>
 	{% elseif message.state == 1 %}
 	<div class="cadre-small cadre-small-red">
 		<i class="icon-warning-sign"></i>{{ message.text }}
