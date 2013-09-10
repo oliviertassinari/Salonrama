@@ -10,7 +10,7 @@ class SettingsEmailController extends Controller
 {
     public function emailAction()
     {
-        $request = $this->get('request');
+        $request = $this->getRequest();
 
         if($request->isXmlHttpRequest())
         {

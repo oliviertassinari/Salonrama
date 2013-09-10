@@ -12,8 +12,8 @@ class Buildsite
     {
         $this->step = array(
 								1 => array('Thème', 'etape1.php'),
-								2 => array('Votre salon', 'etape2.php'),
-								3 => array('Votre site', 'etape3.php'),
+								2 => array('Mon salon', 'etape2.php'),
+								3 => array('Mon site', 'etape3.php'),
 								4 => array('Adresse internet', 'etape4.php', 200),
 								5 => array('Publication', 'etape5.php')
 							);

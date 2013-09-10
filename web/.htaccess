@@ -50,3 +50,6 @@ DirectoryIndex app.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+SetOutputFilter DEFLATE
+AddOutputFilterByType DEFLATE text/html application/javascript text/css

@@ -10,7 +10,7 @@ class ContactController extends Controller
 {
     public function contactAction()
     {
-        $request = $this->get('request');
+        $request = $this->getRequest();
 
         if($request->isXmlHttpRequest())
         {

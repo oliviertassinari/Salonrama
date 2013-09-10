@@ -22,7 +22,7 @@ class ResetPasswordController extends Controller
 			$isAllowed = false;
 		}
 
-		$request = $this->get('request');
+		$request = $this->getRequest();
 
 		if($request->isXmlHttpRequest())
 		{

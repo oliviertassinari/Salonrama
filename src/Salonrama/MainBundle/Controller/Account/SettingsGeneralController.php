@@ -10,7 +10,7 @@ class SettingsGeneralController extends Controller
 {
     public function generalAction()
     {
-        $request = $this->get('request');
+        $request = $this->getRequest();
 
         if($request->isXmlHttpRequest())
         {

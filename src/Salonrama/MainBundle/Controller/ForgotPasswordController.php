@@ -10,7 +10,7 @@ class ForgotPasswordController extends Controller
 {
     public function forgotPasswordAction()
     {
-		$request = $this->get('request');
+		$request = $this->getRequest();
 
 		if($request->isXmlHttpRequest())
 		{

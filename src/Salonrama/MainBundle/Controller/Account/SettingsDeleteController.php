@@ -10,7 +10,7 @@ class SettingsDeleteController extends Controller
 {
     public function deleteAction()
     {
-        $request = $this->get('request');
+        $request = $this->getRequest();
 
         if($request->isXmlHttpRequest())
         {

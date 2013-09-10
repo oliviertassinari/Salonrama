@@ -1,5 +1,5 @@
 web/bundles/*
 app/cache/*
-app/cache/*
 app/logs/*
 app/config/parameters.yml
+src/Salonrama/MainBundle/Site/step/*

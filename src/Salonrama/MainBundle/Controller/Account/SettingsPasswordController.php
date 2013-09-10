@@ -10,7 +10,7 @@ class SettingsPasswordController extends Controller
 {
     public function passwordAction()
     {
-        $request = $this->get('request');
+        $request = $this->getRequest();
 
         if($request->isXmlHttpRequest())
         {

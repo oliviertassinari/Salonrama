@@ -10,7 +10,7 @@ class Step1Controller extends Controller
 {
     public function step1Action()
     {
-        $request = $this->get('request');
+        $request = $this->getRequest();
         $session = $request->getSession();
 
         $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
@@ -27,7 +27,7 @@ class Step1Controller extends Controller
 			{
 				$time = explode(' ', microtime());
 				$id = str_replace('.', '-', $time[1] + $time[0]);
-				$loc = '../../Site/etape/'.$id.'/';
+				$loc = '../src/Salonrama/MainBundle/Site/step/'.$id.'/';
 
 				$session->set('buildsite/id', $id);
 				$session->set('buildsite/site/loc', $loc);

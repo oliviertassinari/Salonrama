@@ -115,8 +115,8 @@
 
 	<h3>Liste des thèmes :</h3>
 
-	<form method="post" action="">
 	<div id="themeSelect">
+	<form method="post" action="">
 		{% for value in theme %}
 		<div class="themeSelectItem">
 			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" title="Agrandir cette image">
@@ -128,8 +128,8 @@
 			</div>
 		</div>
 		{% endfor %}
-	</div>
 	</form>
+	</div>
 
 	{% autoescape false %}
 	{{ foot }}

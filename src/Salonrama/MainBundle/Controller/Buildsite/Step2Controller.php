@@ -10,7 +10,10 @@ class Step2Controller extends Controller
 {
     public function step2Action()
     {
-		$buildsite = new Buildsite(2);
+        $request = $this->getRequest();
+        $session = $request->getSession();
+
+		$buildsite = new Buildsite($session, 2);
 		$storyboard = $buildsite->getStoryboard();
 		$foot = $buildsite->getFoot();
 
