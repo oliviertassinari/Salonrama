@@ -15,7 +15,7 @@ class Mailer
 
     public function sendContact($email, $nom, $objet, $sujet, $message)
     {
-    	return $this->send('[Formulaire] '.$objet.' : '.$sujet, 'contact@salonrama.fr' ,'[Formulaire] '.$objet.' : '.$sujet, 'De : '.$nom.' ('.$email.')<br><br>'.$message);
+    	return $this->send('[Formulaire] '.$objet.' : '.$sujet, 'contact@salonrama.fr' ,'[Formulaire] '.$objet.' : '.$sujet, 'De : '.$nom.' ('.$email.')<br><br>Message :<br>'.$message);
     }
 
     public function sendForgotPassword($to, $name, $link)
