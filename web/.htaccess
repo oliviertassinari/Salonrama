@@ -1,3 +1,22 @@
+# 604800 1 WEEK
+<IfModule mod_headers.c>
+    <FilesMatch "\.(gif|jpg|jpeg|png|ico)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+    <FilesMatch "\.(js|css)$">
+        Header set Cache-Control "max-age=604800, public"
+    </FilesMatch>
+</IfModule>
+
+# disable ETag
+FileETag none
+
+<IfModule mod_deflate.c>
+   SetOutputFilter DEFLATE
+</IfModule>
+
+AddDefaultCharset utf-8
+
 # Use the front controller as index file. It serves as fallback solution when
 # every other rewrite/redirect fails (e.g. in an aliased environment without
 # mod_rewrite). Additionally, this reduces the matching process for the
@@ -49,16 +68,4 @@ DirectoryIndex app.php
         RedirectMatch 302 ^/$ /app.php/
         # RedirectTemp cannot be used instead
     </IfModule>
-</IfModule>
-
-AddDefaultCharset utf-8
-
-# 604800 1 WEEK
-<IfModule mod_headers.c>
-    <FilesMatch "\.(flv|gif|jpg|jpeg|png|ico)$">
-        Header set Cache-Control "max-age=604800, public"
-    </FilesMatch>
-    <FilesMatch "\.(js|css|pdf|swf)$">
-        Header set Cache-Control "max-age=604800, public"
-    </FilesMatch>
 </IfModule>
