@@ -33,20 +33,13 @@
 
 		if(!document.getElementById('EtapeValide'))
 		{
-			document.getElementById('EtapeSuivant').onclick = function(){ 
-
-				CadreConfirm.open('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
-					salonForm.valide();
-				});
-
-				//salonForm.valide();
-			};
+			document.getElementById('EtapeSuivant').onclick = function(){ salonForm.valide(); };
 		}
 		else
 		{
 			document.getElementById('EtapeValide').onclick = function()
 			{
-				CadreConfirm.open('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
+				new CadreConfirm('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
 					salonForm.valide();
 				});
 			};
