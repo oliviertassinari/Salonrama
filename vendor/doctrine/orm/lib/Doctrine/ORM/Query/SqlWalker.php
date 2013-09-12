@@ -168,7 +168,7 @@ class SqlWalker implements TreeWalker
         $this->parserResult     = $parserResult;
         $this->queryComponents  = $queryComponents;
         $this->rsm              = $parserResult->getResultSetMapping();
-        $this->em               = $query->getEntityManager();
+        $this->em               = $query->getManager();
         $this->conn             = $this->em->getConnection();
         $this->platform         = $this->conn->getDatabasePlatform();
         $this->quoteStrategy    = $this->em->getConfiguration()->getQuoteStrategy();

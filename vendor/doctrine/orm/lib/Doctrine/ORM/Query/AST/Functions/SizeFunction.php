@@ -42,8 +42,8 @@ class SizeFunction extends FunctionNode
      */
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-        $platform       = $sqlWalker->getEntityManager()->getConnection()->getDatabasePlatform();
-        $quoteStrategy  = $sqlWalker->getEntityManager()->getConfiguration()->getQuoteStrategy();
+        $platform       = $sqlWalker->getManager()->getConnection()->getDatabasePlatform();
+        $quoteStrategy  = $sqlWalker->getManager()->getConfiguration()->getQuoteStrategy();
         $dqlAlias       = $this->collectionPathExpression->identificationVariable;
         $assocField     = $this->collectionPathExpression->field;
 
@@ -53,7 +53,7 @@ class SizeFunction extends FunctionNode
         $sql    = 'SELECT COUNT(*) FROM ';
 
         if ($assoc['type'] == \Doctrine\ORM\Mapping\ClassMetadata::ONE_TO_MANY) {
-            $targetClass        = $sqlWalker->getEntityManager()->getClassMetadata($assoc['targetEntity']);
+            $targetClass        = $sqlWalker->getManager()->getClassMetadata($assoc['targetEntity']);
             $targetTableAlias   = $sqlWalker->getSQLTableAlias($targetClass->getTableName());
             $sourceTableAlias   = $sqlWalker->getSQLTableAlias($class->getTableName(), $dqlAlias);
 
@@ -71,7 +71,7 @@ class SizeFunction extends FunctionNode
                       . $sourceTableAlias . '.' . $quoteStrategy->getColumnName($class->fieldNames[$targetColumn], $class, $platform);
             }
         } else { // many-to-many
-            $targetClass = $sqlWalker->getEntityManager()->getClassMetadata($assoc['targetEntity']);
+            $targetClass = $sqlWalker->getManager()->getClassMetadata($assoc['targetEntity']);
 
             $owningAssoc = $assoc['isOwningSide'] ? $assoc : $targetClass->associationMappings[$assoc['mappedBy']];
             $joinTable = $owningAssoc['joinTable'];

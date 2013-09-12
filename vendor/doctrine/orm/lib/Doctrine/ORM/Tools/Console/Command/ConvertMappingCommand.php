@@ -105,7 +105,7 @@ EOT
      */
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
-        $em = $this->getHelper('em')->getEntityManager();
+        $em = $this->getHelper('em')->getManager();
 
         if ($input->getOption('from-database') === true) {
             $databaseDriver = new \Doctrine\ORM\Mapping\Driver\DatabaseDriver(

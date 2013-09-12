@@ -133,7 +133,7 @@ EOT
      */
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
-        $em = $this->getHelper('em')->getEntityManager();
+        $em = $this->getHelper('em')->getManager();
 
         // Process source directories
         $fromPaths = array_merge(array($input->getArgument('from-path')), $input->getOption('from'));

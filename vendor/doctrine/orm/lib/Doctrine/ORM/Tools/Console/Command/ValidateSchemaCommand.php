@@ -55,7 +55,7 @@ EOT
      */
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
-        $em = $this->getHelper('em')->getEntityManager();
+        $em = $this->getHelper('em')->getManager();
 
         $validator = new \Doctrine\ORM\Tools\SchemaValidator($em);
         $errors = $validator->validateMapping();

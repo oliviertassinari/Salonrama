@@ -50,13 +50,13 @@ class MultiTableUpdateExecutor extends AbstractSqlExecutor
      */
     public function __construct(AST\Node $AST, $sqlWalker)
     {
-        $em             = $sqlWalker->getEntityManager();
+        $em             = $sqlWalker->getManager();
         $conn           = $em->getConnection();
         $platform       = $conn->getDatabasePlatform();
         $quoteStrategy  = $em->getConfiguration()->getQuoteStrategy();
 
         $updateClause   = $AST->updateClause;
-        $primaryClass   = $sqlWalker->getEntityManager()->getClassMetadata($updateClause->abstractSchemaName);
+        $primaryClass   = $sqlWalker->getManager()->getClassMetadata($updateClause->abstractSchemaName);
         $rootClass      = $em->getClassMetadata($primaryClass->rootEntityName);
 
         $updateItems    = $updateClause->updateItems;

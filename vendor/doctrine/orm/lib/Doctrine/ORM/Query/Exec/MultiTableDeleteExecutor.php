@@ -47,7 +47,7 @@ class MultiTableDeleteExecutor extends AbstractSqlExecutor
      */
     public function __construct(AST\Node $AST, $sqlWalker)
     {
-        $em             = $sqlWalker->getEntityManager();
+        $em             = $sqlWalker->getManager();
         $conn           = $em->getConnection();
         $platform       = $conn->getDatabasePlatform();
         $quoteStrategy  = $em->getConfiguration()->getQuoteStrategy();

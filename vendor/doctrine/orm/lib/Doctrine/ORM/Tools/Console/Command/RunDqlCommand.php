@@ -75,7 +75,7 @@ EOT
      */
     protected function execute(Console\Input\InputInterface $input, Console\Output\OutputInterface $output)
     {
-        $em = $this->getHelper('em')->getEntityManager();
+        $em = $this->getHelper('em')->getManager();
 
         if (($dql = $input->getArgument('dql')) === null) {
             throw new \RuntimeException("Argument 'DQL' is required in order to execute this command correctly.");

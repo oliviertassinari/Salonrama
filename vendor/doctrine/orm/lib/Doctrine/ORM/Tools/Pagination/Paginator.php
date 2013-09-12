@@ -127,7 +127,7 @@ class Paginator implements \Countable, \IteratorAggregate
             }
 
             if ($this->useOutputWalker($countQuery)) {
-                $platform = $countQuery->getEntityManager()->getConnection()->getDatabasePlatform(); // law of demeter win
+                $platform = $countQuery->getManager()->getConnection()->getDatabasePlatform(); // law of demeter win
 
                 $rsm = new ResultSetMapping();
                 $rsm->addScalarResult($platform->getSQLResultCasing('dctrn_count'), 'count');

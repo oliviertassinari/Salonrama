@@ -66,7 +66,7 @@ class LimitSubqueryOutputWalker extends SqlWalker
      */
     public function __construct($query, $parserResult, array $queryComponents)
     {
-        $this->platform = $query->getEntityManager()->getConnection()->getDatabasePlatform();
+        $this->platform = $query->getManager()->getConnection()->getDatabasePlatform();
         $this->rsm = $parserResult->getResultSetMapping();
         $this->queryComponents = $queryComponents;
 
