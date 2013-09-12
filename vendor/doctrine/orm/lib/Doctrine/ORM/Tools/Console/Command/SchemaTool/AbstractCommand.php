@@ -42,7 +42,7 @@ abstract class AbstractCommand extends Command
         $emHelper = $this->getHelper('em');
 
         /* @var $em \Doctrine\ORM\EntityManager */
-        $em = $emHelper->getManager();
+        $em = $emHelper->getEntityManager();
 
         $metadatas = $em->getMetadataFactory()->getAllMetadata();
 

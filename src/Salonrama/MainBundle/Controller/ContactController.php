@@ -15,7 +15,7 @@ class ContactController extends Controller
         if($request->isXmlHttpRequest())
         {
             $email = trim($request->request->get('contact-email', ''));
-            $nom = trim($request->request->get('contact-nom', ''));
+            $name = trim($request->request->get('contact-name', ''));
             $objet = trim($request->request->get('contact-objet', ''));
             $sujet = trim($request->request->get('contact-sujet', ''));
             $message = trim(str_replace(array("\r\n", "\r", "\n"), "<br>", $request->request->get('contact-message', '')));
@@ -40,7 +40,7 @@ class ContactController extends Controller
             if(count($errors) == 0)
             {
                 $mailer = $this->get('salonrama_main_mailer');
-                $state = $mailer->sendContact($email, $nom, $objet, $sujet, $message);
+                $state = $mailer->sendContact($email, $name, $objet, $sujet, $message);
 
                 if($state == 1)
                 {

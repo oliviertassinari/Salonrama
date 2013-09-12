@@ -18,14 +18,52 @@ class Step2Controller extends Controller
 		$foot = $buildsite->getFoot();
         $message = '';
 
+        if($request->isMethod('POST'))
+        {
+            $salon = array();
+
+            $salon['name'] = $request->request->get('salon-name');
+
+            if($request->request->get('salon-women-allowed'))
+            {
+                $salon['womenAllowed'] = true;
+            }
+            else
+            {
+                $salon['womenAllowed'] = false;
+            }
+
+            if($request->request->get('salon-men-allowed'))
+            {
+                $salon['menAllowed'] = true;
+            }
+            else
+            {
+                $salon['name'] = false;
+            }
+
+            $salon['address'] = $request->request->get('salon-address');
+            $salon['zipcode'] = $request->request->get('salon-zipcode');
+            $salon['city'] = $request->request->get('salon-city');
+            $salon['country'] = $request->request->get('salon-country');
+            $salon['phone'] = $request->request->get('salon-phone');
+            $salon['email'] = $request->request->get('salon-email');
+            $salon['schedule'] = $request->request->get('salon-schedule');
+
+            $session->set('buildsite/salon', $salon);
+        }
+
         $salonDefault = array(
             'name' => '',
+            'womenAllowed' => true,
+            'menAllowed' => true,
             'address' => '',
             'zipcode' => '',
             'city' => '',
             'country' => '',
             'phone' => '',
-            'email' => ''
+            'email' => '',
+            'schedule' => '["0",["9h00","12h30","13h00","19h00"],["9h00","12h30","13h00","19h00"],["9h00","12h30","13h00","19h00"],["9h00","12h30","13h00","19h00"],["9h00","18h00"],"0"]'
         );
 
         $salon = $session->get('buildsite/salon', $salonDefault);

@@ -55,9 +55,14 @@ class Salon
     protected $country;
 
     /**
-     * @ORM\Column(name="client", type="text")
+     * @ORM\Column(name="men_allowed", type="boolean")
      */
-    protected $client;
+    protected $menAllowed;
+
+    /**
+     * @ORM\Column(name="women_allowed", type="boolean")
+     */
+    protected $womenAllowed;
 
     /**
      * @ORM\Column(name="schedule", type="text")
@@ -236,29 +241,6 @@ class Salon
     }
 
     /**
-     * Set client
-     *
-     * @param string $client
-     * @return Salon
-     */
-    public function setClient($client)
-    {
-        $this->client = $client;
-    
-        return $this;
-    }
-
-    /**
-     * Get client
-     *
-     * @return string 
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
      * Set schedule
      *
      * @param string $schedule
@@ -279,5 +261,51 @@ class Salon
     public function getSchedule()
     {
         return $this->schedule;
+    }
+
+    /**
+     * Set menAllowed
+     *
+     * @param boolean $menAllowed
+     * @return Salon
+     */
+    public function setMenAllowed($menAllowed)
+    {
+        $this->menAllowed = $menAllowed;
+    
+        return $this;
+    }
+
+    /**
+     * Get menAllowed
+     *
+     * @return boolean 
+     */
+    public function getMenAllowed()
+    {
+        return $this->menAllowed;
+    }
+
+    /**
+     * Set womenAllowed
+     *
+     * @param boolean $womenAllowed
+     * @return Salon
+     */
+    public function setWomenAllowed($womenAllowed)
+    {
+        $this->womenAllowed = $womenAllowed;
+    
+        return $this;
+    }
+
+    /**
+     * Get womenAllowed
+     *
+     * @return boolean 
+     */
+    public function getWomenAllowed()
+    {
+        return $this->womenAllowed;
     }
 }

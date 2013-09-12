@@ -31,7 +31,7 @@ class Step1Controller extends Controller
 
 				$session->set('buildsite/id', $id);
 				$session->set('buildsite/site/loc', $loc);
-				$session->set('buildsite/site/theme', htmlspecialchars($_POST['site-theme']));
+				$session->set('buildsite/site/theme', htmlspecialchars($request->request->get('site-theme', 'RobinBleu')));
 
 				File::addFolder($loc);
 				File::addFolder($loc.'upload/');
@@ -42,7 +42,7 @@ class Step1Controller extends Controller
 			}
 			else
 			{
-				$session->set('buildsite/site/theme', htmlspecialchars($_POST['site-theme']));
+				$session->set('buildsite/site/theme', htmlspecialchars($request->request->get('site-theme', 'RobinBleu')));
 
 				$message = 'Votre thème a bien été modifié.';
 			}

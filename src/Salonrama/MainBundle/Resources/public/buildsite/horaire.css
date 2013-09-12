@@ -1,40 +1,19 @@
-#Horaire{
-position:relative;
-margin:auto;
-width:640px;
-height:200px;
-padding-top:10px;
-}
-#HoraireCon{
-background-color:#fff;
-border:1px solid #6b6b6b;
-}
-#HoraireCon td{
-font-size:12px;
-font-family:arial,verdana,tahoma,helvetica,sans-serif;
-color:#000; 
-}
-#HoraireHead td{
-background-color:#444;
-color:#fff;
-font-size:13px;
-font-weight:700;
+#Horaire td{
+width:80px;
 text-align:center;
-padding:3px;
 }
 #HoraireJour{
 height:20px;
 }
 #HoraireJour td{
 background-color:#dcdcdc;
-text-align:center;
 }
 #HoraireCell td{
 background-color:#75d975;
 color:#000;
-text-align:center;
 cursor:pointer;
 height:60px;
+font-size:11px;
 }
 #HoraireChange div{
 font-size:11px;
@@ -44,7 +23,6 @@ padding-left:25px;
 padding-top:4px;
 margin-bottom:1px;
 cursor:pointer;
-width:65px;
 }
 
 

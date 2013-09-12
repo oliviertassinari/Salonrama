@@ -46,14 +46,23 @@ background:#E6EFC2;
 }
 
 /* Cadre Big */
-.cadre-big{
+
+.cadre-big-outer{
 position:absolute;
+left:0;
+top:0;
+width:100%;
+z-index:5;
+}
+
+.cadre-big{
+position:relative;
+margin:0 auto;
 overflow:auto;
 display:block;
-z-index:5;
 font-family:arial,helvetica,sans-serif;
 box-shadow:0 2px 6px rgba(0, 0, 0, 0.2);
-background:#eff9ff;
+background:#fff;
 border-radius:6px;
 }
 .cadre-big p{

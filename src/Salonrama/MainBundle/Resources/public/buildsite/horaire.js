@@ -9,6 +9,8 @@ Initi: function()
 {
 	var self = this;
 
+	this.JourList = jQuery.parseJSON(($('#salon-schedule').val()));
+
 	var JourList = document.getElementById('HoraireJour').getElementsByTagName('td');
 	for(var i = 0; i < JourList.length; i++)
 	{
@@ -139,7 +141,7 @@ setIJourTxt: function(JourAct)
 open: function(Obj, JourAct)
 {
 	var self = this;
-	var ObjPosition = Ot.getObjPosition(Obj);
+	var ObjPosition = $(Obj).offset();
 	var Cadre = document.getElementById('CadHoraire');
 	var IJourAct = this.JourList[JourAct];
 	var CreneauList = document.getElementById('CadHoraireCreneauList');
@@ -147,11 +149,10 @@ open: function(Obj, JourAct)
 	var CheckBoxList = document.getElementById('CadHoraireCheckBox').getElementsByTagName('input');
 	Horaire.JourAct = JourAct;
 
-	Ot.setLeftTop(Cadre, ObjPosition.x - 130, ObjPosition.y - 12);
+	$(Cadre).css({ 'left': ObjPosition.left - 130, 'top': ObjPosition.top - 12});
 
-	Ot.stopFx(Cadre);
 	Cadre.style.display = 'block';
-	Ot.setOpacity(Cadre, 1);
+	$(Cadre).css('opacity', 1);
 
 	if(typeof IJourAct == 'string'){
 		var isOpen = false;
@@ -163,8 +164,8 @@ open: function(Obj, JourAct)
 		Creneau.style.display = 'block';
 		CheckBoxList[0].checked = true;
 	}
-	Ot.setOpacity(Creneau, 1);
-	Ot.setOpacity(Creneau.parentNode, 1);
+	$(Creneau).css('opacity', 1);
+	$(Creneau.parentNode).css('opacity', 1);
 
 	var onClick = function()
 	{

@@ -33,6 +33,12 @@ addInput: function(inputId, param)
 		if(param.regexp == 'email')
 		{
 			param.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: "L'email est invalide" };
+			param.maxLength = 320;
+		}
+		else if(param.regexp == 'phone'){
+			param.regexp = { code : /^[0-9+() _.-:]{6,30}$/, text: 'Numero invalide' };
+			param.minLength = 6;
+			param.maxLength = 20;
 		}
 
 		input.on('input', function(){

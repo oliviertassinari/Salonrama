@@ -9,11 +9,53 @@
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/horaire.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/tooltip.css') }}"/>
-
-
 {% endblock %}
 
 {% block javascript %}
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/cadre.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/horaire.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+		var salonForm = new Form($('#salon-post'), function(result, values, self){
+			if(result == 0)
+			{
+				self.form.submit();
+			}
+			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
+			else{ self.setGlobalState(1, 'Champs Invalides.'); }
+		});
+		salonForm.addInput('salon-phone', { regexp: 'phone', isNeeded: false });
+		salonForm.addInput('salon-email', { regexp: 'email', isNeeded: false });
+
+		if(!document.getElementById('EtapeValide'))
+		{
+			document.getElementById('EtapeSuivant').onclick = function(){ 
+
+				CadreConfirm.open('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
+					salonForm.valide();
+				});
+
+				//salonForm.valide();
+			};
+		}
+		else
+		{
+			document.getElementById('EtapeValide').onclick = function()
+			{
+				CadreConfirm.open('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
+					salonForm.valide();
+				});
+			};
+		}
+	});
+
+	Horaire.Initi();
+
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -53,14 +95,16 @@
 		<fieldset class="form-fieldset">
 			<label>Client</label>
 			<div class="form-controls">
-				<label for="salon-client-femme">Femmmes</label>
+				<label for="salon-women-allowed">Femmes</label>
 				<div class="form-controls">
-					<input type="checkbox" name="salon-client-femme" id="salon-client-femme"/>
+					<input type="checkbox" name="salon-women-allowed" id="salon-women-allowed"
+					{% if salon.womenAllowed %} checked="checked"{% endif %}/>
 				</div>
 				<br/>
-				<label for="salon-client-homme">Hommes</label>
+				<label for="salon-men-allowed">Hommes</label>
 				<div class="form-controls">
-					<input type="checkbox" name="salon-client-homme" id="salon-client-homme"/>
+					<input type="checkbox" name="salon-men-allowed" id="salon-men-allowed"
+					{% if salon.menAllowed %} checked="checked"{% endif %}/>
 				</div>
 			</div>
 		</fieldset>
@@ -107,22 +151,24 @@
 			</div>
 		</fieldset>
 
-		<div id="Horaire">
-			<table id="HoraireCon" cellpadding="3" cellspacing="1">
-				<tr id="HoraireHead">
-					<td colspan="7">Horaires de votre salon</td>
-				</tr>
-				<tr id="HoraireJour">
-					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-				</tr>
-				<tr id="HoraireCell">
-					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-				</tr>
-				<tr id="HoraireChange">
-					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
-				</tr>
-			</table>
-		</div>
+		<fieldset class="form-fieldset">
+			<label for="salon-email">Horaires</label>
+			<div class="form-controls">
+				<table id="Horaire">
+					<tr id="HoraireJour">
+						<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+					</tr>
+					<tr id="HoraireCell">
+						<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+					</tr>
+					<tr id="HoraireChange">
+						<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+					</tr>
+				</table>
+			</div>
+		</fieldset>
+
+
 
 		<div id="CadHoraire" class="InfoBulle">
 			<span class="InfoBulleFleche"></span>
@@ -150,9 +196,10 @@
 			</div>
 		</div>
 
+		<input type="hidden" id="salon-schedule" name="salon-schedule" value="{{ salon.schedule }}"/>
+
 		<div class="form-actions">
 			<div class="form-global-state cadre-small"></div>
-			<button type="submit" class="button-small button-small-green"><i class="icon-envelope"></i>Envoyer mon message</button>
 		</div>
 	</fieldset> 
 	</form>

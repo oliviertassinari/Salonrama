@@ -59,7 +59,7 @@
 				}
 			}
 		});
-		emailForm.addInput('email-email', { regexp: 'email', maxLength: 320 });
+		emailForm.addInput('email-email', { regexp: 'email' });
 
 		var emailEmail = $('#email-email');
 		var email = emailEmail.val();
@@ -158,11 +158,8 @@
 			<fieldset class="form-fieldset">
 				<label for="newsletter-send">M'abonner à la newsletter</label>
 				<div class="form-controls">
-					{% if app.user.account.newsletterSend %}
-					<input type="checkbox" name="newsletter-send" id="newsletter-send" checked="checked"/>
-					{% else %}
-					<input type="checkbox" name="newsletter-send" id="newsletter-send"/>
-					{% endif %}
+					<input type="checkbox" name="newsletter-send" id="newsletter-send"
+					{% if app.user.account.newsletterSend %} checked="checked"{% endif %}/>
 				</div>
 			</fieldset>
 

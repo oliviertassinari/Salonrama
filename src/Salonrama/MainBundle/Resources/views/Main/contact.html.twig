@@ -50,8 +50,8 @@
 			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
 			else{ self.setGlobalState(1, 'Champs Invalides.'); }
 		});
-		contactForm.addInput('contact-email', { regexp: 'email', maxLength: 320 });
-		contactForm.addInput('contact-nom', { isNeeded: false });
+		contactForm.addInput('contact-email', { regexp: 'email' });
+		contactForm.addInput('contact-name', { isNeeded: false });
 		contactForm.addInput('contact-objet');
 		contactForm.addInput('contact-sujet');
 		contactForm.addInput('contact-message');
@@ -83,12 +83,12 @@
 		</fieldset>
 
 		<fieldset class="form-fieldset">
-			<label for="contact-nom">Nom</label>
+			<label for="contact-name">Nom</label>
 			<div class="form-controls">
 				{% if is_granted('ROLE_USER') %}
-					<input type="text" name="contact-nom" id="contact-nom" disabled="disabled" value="{{ app.user.account.name }}">
+					<input type="text" name="contact-name" id="contact-name" disabled="disabled" value="{{ app.user.account.name }}">
 				{% else %}
-					<input type="text" name="contact-nom" id="contact-nom">
+					<input type="text" name="contact-name" id="contact-name">
 				{% endif %}
 			</div>
 		</fieldset>
