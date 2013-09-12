@@ -6,6 +6,11 @@
 	<title>Etape 2 - Mon salon</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/horaire.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/tooltip.css') }}"/>
+
+
 {% endblock %}
 
 {% block javascript %}
@@ -17,6 +22,140 @@
 	{% endautoescape %}
 
 	<h1>Etape 2 - Mon salon</h1>
+
+	{% if message %}
+	<div class="cadre-small cadre-small-green">
+		<i class="icon-ok"></i>{{ message }}
+	</div>
+	{% endif %}
+
+	<div class="cadre-small cadre-small-orange">
+		<i class="icon-info-sign"></i>Vous pouvez remplir les informations sur votre salon afin que <strong>votre site soit pré-rempli. (facultatif)</strong>
+	</div>
+
+	<form method="post" action="" id="salon-post">
+	<fieldset>
+		<legend>Information sur votre salon (facultatif)</legend>
+
+		<fieldset class="form-fieldset">
+			<label for="salon-name">
+				Nom de votre salon
+				<span class="tooltip">
+					<i class="icon-question-sign"></i>
+					<span>Le nom de votre salon sera affiché tout en haut de votre site et dans la barre de titre du navigateur.</span>
+				</span>
+			</label>
+			<div class="form-controls">
+				<input type="text" name="salon-name" id="salon-name" value="{{ salon.name }}">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label>Client</label>
+			<div class="form-controls">
+				<label for="salon-client-femme">Femmmes</label>
+				<div class="form-controls">
+					<input type="checkbox" name="salon-client-femme" id="salon-client-femme"/>
+				</div>
+				<br/>
+				<label for="salon-client-homme">Hommes</label>
+				<div class="form-controls">
+					<input type="checkbox" name="salon-client-homme" id="salon-client-homme"/>
+				</div>
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="salon-address">Adresse</label>
+			<div class="form-controls">
+				<input type="text" name="salon-address" id="salon-address" value="{{ salon.address }}">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="salon-zipcode">Code postal</label>
+			<div class="form-controls">
+				<input type="text" name="salon-zipcode" id="salon-zipcode" value="{{ salon.zipcode }}">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="salon-citz">Ville</label>
+			<div class="form-controls">
+				<input type="text" name="salon-citz" id="salon-citz" value="{{ salon.city }}">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="salon-citz">Pays</label>
+			<div class="form-controls">
+				<input type="text" name="salon-citz" id="salon-citz" value="{{ salon.country }}">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="salon-phone">Téléphone</label>
+			<div class="form-controls">
+				<input type="text" name="salon-phone" id="salon-phone" value="{{ salon.phone }}">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="salon-email">Email</label>
+			<div class="form-controls">
+				<input type="text" name="salon-email" id="salon-email" value="{{ salon.email }}">
+			</div>
+		</fieldset>
+
+		<div id="Horaire">
+			<table id="HoraireCon" cellpadding="3" cellspacing="1">
+				<tr id="HoraireHead">
+					<td colspan="7">Horaires de votre salon</td>
+				</tr>
+				<tr id="HoraireJour">
+					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+				</tr>
+				<tr id="HoraireCell">
+					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+				</tr>
+				<tr id="HoraireChange">
+					<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id="CadHoraire" class="InfoBulle">
+			<span class="InfoBulleFleche"></span>
+			<div class="InfoBulleCon CadJaune">
+				<h3>Horaires d'ouverture du <span id="CadHoraireJour"></span></h3>
+
+				<div class="FormChamp">
+					<label class="FormLabel">Je suis : </label>
+					<span id="CadHoraireCheckBox">
+						<input type="radio" name="CadHoraireEtat" id="CadHoraireOuvert" value="Ouvert"/><label for="CadHoraireOuvert" style="color:#006000;">Ouvert</label>
+						<input type="radio" name="CadHoraireEtat" id="CadHoraireFermé" value="Fermé"/><label for="CadHoraireFermé" style="color:#de1f1f;">Fermé</label>
+					</span>
+				</div>
+
+				<div id="CadHoraireCreneau">
+					De :
+					<ul id="CadHoraireCreneauList"></ul>
+					<button type="button" class="ButtonSmallGreen" onclick="Horaire.addCreneau('', '')"><img src="image/icone/add.png" alt=""/>Ajouter un créneau horaire</button><br/>
+					<span class="TextLittle">exemple : 9h à 20h30</span>
+				</div>
+				<div class="CadFoot">
+					<button type="button" class="ButtonSmallRed" style="float:left;" onclick="Horaire.close()"><img src="image/icone/erreur.png" alt=""/>Annuler</button>
+					<button type="button" class="ButtonSmallGreen" onclick="Horaire.valide()"><img src="image/icone/ok.png" alt=""/>Modifier</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="form-actions">
+			<div class="form-global-state cadre-small"></div>
+			<button type="submit" class="button-small button-small-green"><i class="icon-envelope"></i>Envoyer mon message</button>
+		</div>
+	</fieldset> 
+	</form>
 
 	{% autoescape false %}
 	{{ foot }}

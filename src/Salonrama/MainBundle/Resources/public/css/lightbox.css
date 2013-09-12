@@ -1,3 +1,14 @@
+.lightboxLink:hover .lightboxNotif{
+background:url(../images/lightbox.png) 0 -112px no-repeat;
+display:block;
+height:40px;
+top:15px;
+left:15px;
+position:absolute;
+width:40px;
+cursor:pointer;
+}
+
 .lightboxOverlay{
 position:absolute;
 top:0;

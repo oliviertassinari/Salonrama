@@ -16,10 +16,25 @@ class Step2Controller extends Controller
 		$buildsite = new Buildsite($session, 2);
 		$storyboard = $buildsite->getStoryboard();
 		$foot = $buildsite->getFoot();
+        $message = '';
+
+        $salonDefault = array(
+            'name' => '',
+            'address' => '',
+            'zipcode' => '',
+            'city' => '',
+            'country' => '',
+            'phone' => '',
+            'email' => ''
+        );
+
+        $salon = $session->get('buildsite/salon', $salonDefault);
 
 		return $this->render('SalonramaMainBundle:Buildsite:step2.html.twig', array(
         																		'storyboard' => $storyboard,
-        																		'foot' => $foot
+        																		'foot' => $foot,
+                                                                                'salon' => $salon,
+                                                                                'message' => $message
         																		));
     }
 }

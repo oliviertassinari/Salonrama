@@ -22,7 +22,7 @@
 	{
 		lightbox = new Lightbox({
 			getDetailsCaption: function(title, imageNumber){
-				return '<button type="button" onclick="setThemeFromLightbox('+imageNumber+')" class="button-small button-small-blue"><i class="icon-ok"></i>Sélectionner ce thème</button>';
+				return '<button type="button" onclick="setThemeFromLightbox('+imageNumber+')" class="button-small button-small-green"><i class="icon-ok"></i>Sélectionner ce thème</button>';
 			}
 		});
 
@@ -35,6 +35,7 @@
 			{
 				themeSelected = item;
 				themeSelected.addClass('select');
+				setScroll(0);
 			}
 		});
 
@@ -65,8 +66,9 @@
 		setTheme($($('#themeSelect .themeSelectItem')[imageNumber]));
 	}
 
-	function setScroll()
+	function setScroll(duration)
 	{
+		var duration = (typeof duration == 'number') ? duration : 'fast';
 		var scrollTop = $('#themeSelect').scrollTop();
 
 		var heightHiddenTop = $('#themeSelect').offset().top + 10 - themeSelected.offset().top;
@@ -76,13 +78,13 @@
 		{
 			$('#themeSelect').animate({  
 				scrollTop: $('#themeSelect').scrollTop() - heightHiddenTop
-			}, 'fast');
+			}, duration);
 		}
 		else if(heightHiddenBottom > 0)
 		{
 			$('#themeSelect').animate({  
 				scrollTop: $('#themeSelect').scrollTop() + heightHiddenBottom
-			}, 'fast');
+			}, duration);
 		}
 	}
 
@@ -117,8 +119,9 @@
 	<form method="post" action="">
 		{% for value in theme %}
 		<div class="themeSelectItem">
-			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" title="Agrandir cette image">
-				<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_min.jpg') }}" width="130"/><span class="Zoom"></span>
+			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightboxLink">
+				<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_min.jpg') }}" width="130" height="115"/>
+				<span class="lightboxNotif" title="Agrandir cette image"></span>
 			</a>
 			<div class="themeSelectItemRadio">
 				<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>

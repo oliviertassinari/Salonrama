@@ -114,7 +114,7 @@ class Buildsite
 		if(!isset($this->stepCurrent)) // Administration
 		{
 			$foot .= '<div id="EtapeSuivant" title="retour à l\'administration"><p>retour à l\'admin.</p></div>'.
-				  '<div id="EtapeValide" class="ButtonBigYellow">Sauvegarder</div>'.
+				  '<div id="EtapeValide" class="button-big button-big-yellow">Sauvegarder</div>'.
 				  '<div id="EtapeAide" onclick="Ot.openPopup(\'aide/etape3.php\', \'560\', \'650\')" title="Aide"><p>Aide</p></div>';
 		}
 		else
@@ -122,7 +122,7 @@ class Buildsite
 			if($this->stepCurrent < $this->stepReach)
 			{
 				$foot .= '<div id="EtapeSuivant" onclick="document.location = \'step'.$this->stepReach.'\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
-					  '<div id="EtapeValide" class="ButtonBigYellow">Modifier</div>';
+					  '<div id="EtapeValide" class="button-big button-big-yellow">Modifier</div>';
 			}
 			else
 			{

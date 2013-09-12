@@ -48,25 +48,6 @@ width:65px;
 }
 
 
-#HoraireLegend{
-left:564px;
-position:absolute;
-top:150px;
-background:#fff;
-border:1px solid #6b6b6b;
-}
-#HoraireLegend td{
-padding:3px;
-padding-right:6px;
-}
-#HoraireLegend span{
-height:12px;
-width:12px;
-border:1px solid #000;
-display:block;
-}
-
-
 .InfoBulle{
 display:none;
 position:absolute;
