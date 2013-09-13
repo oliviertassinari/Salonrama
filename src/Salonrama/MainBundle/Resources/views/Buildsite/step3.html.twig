@@ -6,16 +6,58 @@
 
 	<title>Etape 3 - Mon site</title>
 
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/general.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/button.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/form.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/previs.css') }}"/>
+
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/barre_outil.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/block.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/upload.css') }}"/>
+
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/theme/theme.css') }}"/>
+
 	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/json.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/mootools.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/history.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/previs.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/cadre.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/form.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/cadre.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/color.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/flash.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/css.js') }}"></script>
+
+	<style>
+
+	#CadSaveLoad{
+	margin:20px auto 0;
+	display:block;
+	width:48px;
+	height:48px;
+	background:url(creator/image/load.gif) no-repeat;
+	}
+	#CadSaveLoad.terminer{
+	background:url(creator/image/tick.png) no-repeat;
+	}
+	#CadSaveTxt{
+	text-align:center;
+	font-size:22px;
+	padding:15px 0 20px;
+	}
+	#CadSaveTxt.terminer{
+	color:#439005;
+	}
+	.CadSaveIcone{
+	position:absolute;
+	height:48px;
+	width:48px;
+	background:url(creator/image/save.png) no-repeat;
+	}
+
+	</style>
 
 	<script src="{{ asset('bundles/salonramamain/buildsite/general.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/block.js') }}"></script>
@@ -23,26 +65,188 @@
 	<script src="{{ asset('bundles/salonramamain/buildsite/wys.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/upload.js') }}"></script>
 
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/general.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/button.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/form.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/previs.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/etape.css') }}"/>
+	<script>
 
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/general.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/barre_outil.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/block.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/upload.css') }}"/>
+	var LocHomeSite = '{{ locHomeSite }}';
 
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/theme/theme.css') }}"/>
+	function Initialisation()
+	{
+		{% autoescape false %}
+		GBlock.List = {{ blockList }};
+
+		GData.List = {{ dataList }};
+
+		GTheme.List = {{ themeList }};
+		GTheme.Act = '{{ themeAct }}';
+
+		GPage.List = {{ pageList }};
+		GPage.Act = '{{ pageAct }}';
+
+		GImage.BddList = {{ imageBddList }};	
+		GImage.List = {{ imageList }};
+		{% endautoescape %}
+
+		Initi();
+
+
+		window.onbeforeunload = function(){ return 'Voulez vous vraiment quitter cette page ? Cela supprimera l\'avancement de votre site internet.'; };
+
+		var AList = document.getElementById('StoryBoard').getElementsByTagName('a');
+		for(var i = 0; i < AList.length; i++)
+		{
+			(function(z){
+				var Href = AList[z].href;
+				AList[z].onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = Href; }); return false; };
+			})(i);
+		}
+
+		if(!document.getElementById('EtapeValide'))
+		{
+			document.getElementById('EtapeSuivant').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'etape4.php'; }); };
+			document.getElementById('EtapePrecedent').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'etape2.php'; }); };
+		}
+		else
+		{
+			var onclick = document.getElementById('EtapeSuivant').onclick;
+
+			document.getElementById('EtapeSuivant').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; onclick(); }); };
+
+			document.getElementById('EtapeValide').onclick = function(){ setCadSave(); };
+			document.getElementById('EtapeValide').firstChild.innerHTML = 'Enregistrer';
+		}
+
+		document.getElementById('CreatorHeadLogo').onclick = function()
+		{
+			if(confirm('Voulez-vous retourner à la page d\'accueil de Salonrama ?'))
+			{
+				setCadSave(function(){ window.onbeforeunload = ''; document.location = 'index.php'; });
+			}
+		};
+
+		{% autoescape false %}
+		{% if onload %}
+		{{ onload }}
+		{% endif %}
+		{% endautoescape %}
+	}
+
+	function voirSite()
+	{
+		addBarreChargement();
+
+		var BlockList = GBlock.getSave();
+		var CallBack = function()
+		{
+			Ot.SendAjax('POST', 'creator/voir_site.php', {}, function(xhr)
+			{
+				Ot.decodeAjaxReturn(xhr.responseText, function(description)
+				{
+					Ot.openPopup(LocHomeSite+'index.php?page='+GPage.Act, 'Full', '');
+				},
+				function(description)
+				{
+					alert('Erreur : ' + description);
+				});
+
+				removeBarreChargement();
+			});
+		};
+
+		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
+			GBlock.List[GPage.Act] = BlockList;
+			GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack);
+		}
+		else{
+			GBlock.List[GPage.Act] = BlockList;
+			GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack);
+		}
+	}
+
+	function setCadSave(CallBack)
+	{
+		CadInfo.open('Sauvegarde', '<div class="CadSaveIcone"></div><div id="CadSaveLoad"></div><div id="CadSaveTxt">Sauvegarde de vos modifications en cours...</div>');
+
+		var d = Ot.getTime();
+		var retard = 2000;
+		var BlockList = GBlock.getSave();
+
+		var CallBack2 = function()
+		{
+			var d2 = Ot.getTime() - d;
+
+			if(d2 < retard){
+				setTimeout(function(){ CallBack3(); }, retard - d2);
+			}
+			else{
+				CallBack3();
+			}
+		};
+
+		var CallBack3 = function()
+		{
+			setTimeout(function()
+			{
+				if(Ot.isFonc(CallBack)){
+					CallBack();
+				}
+
+				CadInfo.close();
+			}, 1000);
+
+			document.getElementById('CadSaveLoad').className = 'terminer'; 
+			document.getElementById('CadSaveTxt').className = 'terminer'; 
+			document.getElementById('CadSaveTxt').innerHTML = 'Sauvegarde terminée';
+		};
+
+		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
+			GBlock.List[GPage.Act] = BlockList;
+			GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack2);
+		}
+		else{
+			GBlock.List[GPage.Act] = BlockList;
+			GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack2);
+		}
+	}
+
+	Ot.domReady.add(Initialisation);
+
+	</script>
 
 </head>
 <body>
 
+{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
+
+<div id="BarreChargement">Chargement en cours...</div>
+<div id="CreatorCadre">{{ include("SalonramaMainBundle:Buildsite:cadre.html.twig") }}</div>
+
+<div id="Creator">
+	<div id="CreatorHead">
+		<div id="CreatorHeadBarre">
+			<div id="CreatorHeadLogo"></div>
+			{% autoescape false %}
+			{{ storyboard }}
+			{% endautoescape %}
+			<button type="button" class="ButtonSmallBlue" onclick="voirSite()"><img src="image/icone/zoom.png" alt=""/>Aperçu du site</button>
+		</div>
+		<div id="BarreOutil">{{ include("SalonramaMainBundle:Buildsite:barre_outil.html.twig") }}</div>
+	</div>
+
+	<div id="CreatorCon">
+		<div id="Theme">
+		</div>
+	</div>
+
+	<div id="CreatorFoot">
+	<div id="CreatorFootCon">
+		{% autoescape false %}
+		{{ foot }}
+		{% endautoescape %}
+	</div>
+	</div>
+</div>
+
 	{{ include("SalonramaMainBundle:Main:google_analytics.html.twig") }}
 	{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}
-
 </body>
 </html>

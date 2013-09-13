@@ -131,14 +131,13 @@ font-size:13px;
 }
 
 #CreatorHeadBarre{
-background:#edeff4;
 height:37px;
 padding-top:3px;
 overflow:hidden;
 position:relative;
 }
 #CreatorHeadLogo{
-background:url(../image/logo-min.png) no-repeat;
+background:url(../images/logo_min.png) no-repeat;
 width:210px;
 height:27px;
 position:absolute;

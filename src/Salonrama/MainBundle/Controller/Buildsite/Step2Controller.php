@@ -76,20 +76,20 @@ class Step2Controller extends Controller
                 $ModuleMap = '["'.$Adresse.'", 0, 0, 4, "plan", 47.219568, 1.582031, ""]';
             }
 
-            $R = '';
+            $ModuleTarif = '';
             if($session->get('buildsite/salon/womenAllowed') == true)
             {
-                $R .= '{"T": "ModuleTab", "V": { "Titre": "Femmes", "Col1": ["Forfaits","Shampooing Coiffage ou Mise en plis","Shampooing Soin Coupe Coiffage","Couleur Shampooing Soin Coupe Coiffage","Permanente Shampooing Soin Coupe Coiffage","Mèches Shampooing Soin Coupe Coiffage","Mèches 2 Couleurs Shampooing Soin Coupe Coiffage"], "Col2": ["Tarifs","16 €","28 €","48 €","50 €","60 €","70 €"], "Len": [50, 10] }, "P": [200, 100, 0] },';
+                $ModuleTarif .= '{"T": "ModuleTab", "V": { "Titre": "Femmes", "Col1": ["Forfaits","Shampooing Coiffage ou Mise en plis","Shampooing Soin Coupe Coiffage","Couleur Shampooing Soin Coupe Coiffage","Permanente Shampooing Soin Coupe Coiffage","Mèches Shampooing Soin Coupe Coiffage","Mèches 2 Couleurs Shampooing Soin Coupe Coiffage"], "Col2": ["Tarifs","16 €","28 €","48 €","50 €","60 €","70 €"], "Len": [50, 10] }, "P": [200, 100, 0] },';
             }
             if($session->get('buildsite/salon/menAllowed') == true)
             {
-                $R .= '{"T": "ModuleTab", "V": { "Titre": "Hommes", "Col1": ["Forfaits","Shampooing Coupe Coiffage","Couleur Shampooing Coupe Coiffage","Permanente Shampooing Coupe Coiffage"], "Col2": ["Tarifs","17 €","36 €","36 €"], "Len": [50, 10] }, "P": [130, 100, 0] },';
+                $ModuleTarif .= '{"T": "ModuleTab", "V": { "Titre": "Hommes", "Col1": ["Forfaits","Shampooing Coupe Coiffage","Couleur Shampooing Coupe Coiffage","Permanente Shampooing Coupe Coiffage"], "Col2": ["Tarifs","17 €","36 €","36 €"], "Len": [50, 10] }, "P": [130, 100, 0] },';
             }
-            if($R == '')
+            if($ModuleTarif == '')
             {
-                $R .= '{"T": "ModuleTab", "V": { "Titre": "Titre", "Col1": ["Forfaits","","", ""], "Col2": ["Tarifs"," €"," €"," €"], "Len": [50, 10] }, "P": [130, 100, 0]},';
+                $ModuleTarif .= '{"T": "ModuleTab", "V": { "Titre": "Titre", "Col1": ["Forfaits","","", ""], "Col2": ["Tarifs"," €"," €"," €"], "Len": [50, 10] }, "P": [130, 100, 0]},';
             }
-            $ModuleTarif = substr($R, 0, strlen($R)-1);
+            $ModuleTarif = substr($ModuleTarif, 0, strlen($ModuleTarif)-1);
 
             $session->set('buildsite/site/pageList', '[{ "id": "index", "name": "Accueil" }, { "id": "2222", "name": "Galerie photos" }, { "id": "3333", "name": "Plan d\'accès" }, { "id": "4444", "name": "Nos tarifs" }, { "id": "5555", "name": "Nous contacter" }]');
             $session->set('buildsite/site/imageList', '{ "photo.jpg": [300, 200], "plan.jpg": [248, 198], "photo2.jpg": [283, 424], "photo3.jpg": [292, 412] }');
@@ -107,7 +107,7 @@ class Step2Controller extends Controller
                         ]
                     },
                     { "T": "InteHoraire", "V": {
-                                    "Wys": "'.$this->getHoraireHtml($session->get('buildsite/salon/schedule')).'",
+                                    "Wys": '.$this->getHoraireHtml($session->get('buildsite/salon/schedule')).',
                                     "Data": ["Horaire d\'ouverture"]
                                 }, "P": [275, 59, 0]
                     },
@@ -154,6 +154,14 @@ class Step2Controller extends Controller
                 $session->set('buildsite/stepReach', 3);
 
                 File::copyFolder('../src/Salonrama/MainBundle/Site/default/', $session->get('buildsite/site/loc').'upload/');
+
+                $onload = "CadInfo.open('Etape 3', '".
+                            '<h1 style="text-align:center;">Votre site a été pré-rempli avec succès!</h1><br/><br/>'.
+                            '<h2 style="text-align:center;">A vous de jouer !</h2><br/>'.
+                            '<br/><div style="text-align:center;"><button type="button" class="ButtonSmallBlue" onclick="CadInfo.close()"><img src="image/icone/go.png"/>Modifier mon site</button></div>'
+                            ."');";
+
+                $session->getFlashBag()->add('onload', $onload);
 
                 return $this->redirect($this->generateUrl('salonrama_main_buildsite_step3'));
             }
