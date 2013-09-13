@@ -105,7 +105,7 @@ class File
 		}
 	}
 
-	public static function copyDos($locFrom, $locTo) 
+	public static function copyFolder($locFrom, $locTo) 
 	{
 		File::addFolder($locTo);
 
@@ -120,7 +120,7 @@ class File
 					}
 					else if(is_dir($locFrom.$file)) //S'il s'agit d'un dossier, on relance la fonction récursive
 					{
-						File::copyDos($locFrom.$file.'/', $locTo.$file.'/');
+						File::copyFolder($locFrom.$file.'/', $locTo.$file.'/');
 					}
 					else //S'il sagit d'un fichier, on le copie simplement
 					{

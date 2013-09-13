@@ -8,12 +8,12 @@ width:900px;
 margin:auto;
 font:13px arial,verdana,tahoma,helvetica,sans-serif;
 background:#fff url(../images/fond_content.png) repeat-y;
-overflow:auto;
 }
 
 #header{
-margin:10px 45px 0;
+margin:0 45px 0;
 position:relative;
+padding-top:10px;
 }
 #header img{
 border:0;
@@ -32,7 +32,7 @@ text-shadow:0 1px 1px #372424;
 #header-top-right{
 position:absolute;
 right:0;
-top:5px;
+top:15px;
 }
 #header-top-right i{
 font-size:15px;
@@ -116,7 +116,6 @@ height:39px;
 
 
 #corps{
-position:relative;
 margin:20px 45px 0;
 }
 

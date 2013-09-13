@@ -9,7 +9,7 @@ Initi: function()
 {
 	var self = this;
 
-	this.JourList = jQuery.parseJSON(($('#salon-schedule').val()));
+	this.JourList = JSON.parse(($('#salon-schedule').val()));
 
 	var JourList = document.getElementById('HoraireJour').getElementsByTagName('td');
 	for(var i = 0; i < JourList.length; i++)
@@ -229,7 +229,8 @@ addCreneau: function(Var1, Var2)
 	if(LiList.length < 5)
 	{
 		var li = document.createElement('li');
-		li.innerHTML = '<input type="text" class="FormInputText" onkeyup="Horaire.KeyPress(this, event)" maxlength="5"/> à <input type="text" class="FormInputText" onkeyup="Horaire.KeyPress(this, event)" maxlength="5"/><img src="image/icone/erreur.png" title="Supprimier ce créneau horaire" class="Pointer" onclick="Horaire.removeCreneau(this)"/>';
+		li.innerHTML = '<input type="text" class="FormInputText" onkeyup="Horaire.KeyPress(this, event)" maxlength="5"/> à <input type="text" class="FormInputText" onkeyup="Horaire.KeyPress(this, event)" maxlength="5"/>'+
+						'<i class="icon-remove" title="Supprimier ce créneau horaire" class="Pointer" onclick="Horaire.removeCreneau(this)"></i>';
 		li.getElementsByTagName('input')[0].value = Var1;
 		li.getElementsByTagName('input')[1].value = Var2;
 

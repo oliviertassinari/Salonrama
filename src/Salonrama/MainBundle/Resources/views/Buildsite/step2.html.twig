@@ -7,6 +7,9 @@
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/horaire.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/form.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/button.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/tooltip.css') }}"/>
 {% endblock %}
@@ -14,6 +17,7 @@
 {% block javascript %}
 	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/js/cadre.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/horaire.js') }}"></script>
 
 	<script>
@@ -23,6 +27,7 @@
 		var salonForm = new Form($('#salon-post'), function(result, values, self){
 			if(result == 0)
 			{
+				document.getElementById('salon-schedule').value = JSON.stringify(Horaire.JourList);
 				self.form.submit();
 			}
 			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
@@ -119,14 +124,14 @@
 		<fieldset class="form-fieldset">
 			<label for="salon-citz">Ville</label>
 			<div class="form-controls">
-				<input type="text" name="salon-citz" id="salon-citz" value="{{ salon.city }}">
+				<input type="text" name="salon-city" id="salon-city" value="{{ salon.city }}">
 			</div>
 		</fieldset>
 
 		<fieldset class="form-fieldset">
 			<label for="salon-citz">Pays</label>
 			<div class="form-controls">
-				<input type="text" name="salon-citz" id="salon-citz" value="{{ salon.country }}">
+				<input type="text" name="salon-country" id="salon-country" value="{{ salon.country }}">
 			</div>
 		</fieldset>
 
@@ -160,8 +165,6 @@
 				</table>
 			</div>
 		</fieldset>
-
-
 
 		<div id="CadHoraire" class="InfoBulle">
 			<span class="InfoBulleFleche"></span>

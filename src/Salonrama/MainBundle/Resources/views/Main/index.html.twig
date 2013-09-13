@@ -19,12 +19,17 @@
 	#bouton{
 	text-align:center;
 	margin-top:25px;
+	position:relative;
+	}
+	#bouton .button-big{
+	padding-left:90px;
+	padding-right:90px;
 	}
 
 	#free{
 	position:absolute;
 	left:547px;
-	top:376px;
+	top:-50px;
 	}
 
 	</style>
@@ -81,11 +86,10 @@
 	</div>
 
 	<div id="bouton">
-		<a href="{{ path('salonrama_main_buildsite_step1') }}" class="button-big button-big-blue" style="padding-left:90px; padding-right:90px;">
+		<a href="{{ path('salonrama_main_buildsite_step1') }}" class="button-big button-big-blue">
 			<span style="font-size:18px;">Créez le site de votre</span><br>
 			<span style="font-size:25px;">Salon de coiffure</span>
 		</a>
+		<div id="free"><img src="{{ asset('bundles/salonramamain/images/index/free.png') }}"  width="98" height="98"/></div>
 	</div>
-
-	<div id="free"><img src="{{ asset('bundles/salonramamain/images/index/free.png') }}"  width="98" height="98"/></div>
 {% endblock %}
