@@ -29,14 +29,13 @@ class Step1Controller extends Controller
 			{
 				$time = explode(' ', microtime());
 				$id = str_replace('.', '-', $time[1] + $time[0]);
-				$locApache = '../src/Salonrama/MainBundle/Site/step/'.$id.'/';
 
 				$session->set('buildsite/id', $id);
-				$session->set('buildsite/site/locApache', $locApache);
-				$session->set('buildsite/site/locBundle', '');
+				$session->set('buildsite/site/pathStepBack', 'site/step/'.$id.'/');
+				$session->set('buildsite/site/pathStepFront', '/site/step/'.$id.'/');
 
-				File::addFolder($locApache);
-				File::addFolder($locApache.'upload/');
+				File::addFolder($session->get('buildsite/site/pathStepBack'));
+				File::addFolder($session->get('buildsite/site/pathStepBack').'upload/');
 
 				$session->set('buildsite/stepReach', 2);
 

@@ -98,11 +98,17 @@
 					<input type="checkbox" name="salon-women-allowed" id="salon-women-allowed"
 					{% if salon.womenAllowed %} checked="checked"{% endif %}/>
 				</div>
-				<br/>
+				<br>
 				<label for="salon-men-allowed">Hommes</label>
 				<div class="form-controls">
 					<input type="checkbox" name="salon-men-allowed" id="salon-men-allowed"
 					{% if salon.menAllowed %} checked="checked"{% endif %}/>
+				</div>
+				<br>
+				<label for="salon-children-allowed">Enfants</label>
+				<div class="form-controls">
+					<input type="checkbox" name="salon-children-allowed" id="salon-children-allowed"
+					{% if salon.childrenAllowed %} checked="checked"{% endif %}/>
 				</div>
 			</div>
 		</fieldset>

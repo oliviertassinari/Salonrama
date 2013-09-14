@@ -46,6 +46,15 @@ class Step2Controller extends Controller
                 $session->set('buildsite/salon/menAllowed', false);
             }
 
+            if($request->request->get('salon-children-allowed'))
+            {
+                $session->set('buildsite/salon/childrenAllowed', true);
+            }
+            else
+            {
+                $session->set('buildsite/salon/childrenAllowed', false);
+            }
+
             $session->set('buildsite/salon/address', $request->request->get('salon-address'));
             $session->set('buildsite/salon/zipcode', $request->request->get('salon-zipcode'));
             $session->set('buildsite/salon/city', $request->request->get('salon-city'));
@@ -90,6 +99,10 @@ class Step2Controller extends Controller
             if($session->get('buildsite/salon/menAllowed') == true)
             {
                 $ModuleTarif .= '{"T": "ModuleTab", "V": { "Titre": "Hommes", "Col1": ["Forfaits","Shampooing Coupe Coiffage","Couleur Shampooing Coupe Coiffage","Permanente Shampooing Coupe Coiffage"], "Col2": ["Tarifs","17 €","36 €","36 €"], "Len": [50, 10] }, "P": [130, 100, 0] },';
+            }
+            if($session->get('buildsite/salon/childrenAllowed') == true)
+            {
+                $ModuleTarif .= '{"T": "ModuleTab", "V": { "Titre": "Jeunes", "Col1": ["Forfaits","Jeunes","Étudiant", "Etudiante"], "Col2": ["Tarifs","12 €","15 €","22 €"], "Len": [50, 10] }, "P": [130, 100, 0]},';
             }
             if($ModuleTarif == '')
             {
@@ -159,7 +172,7 @@ class Step2Controller extends Controller
             {
                 $session->set('buildsite/stepReach', 3);
 
-                File::copyFolder('../src/Salonrama/MainBundle/Site/default/', $session->get('buildsite/site/locApache').'upload/');
+                File::copyFolder('site/default/', $session->get('buildsite/site/pathStepBack').'upload/');
 
                 $onload = "CadInfo.open('Etape 3', '".
                             '<h1 style="text-align:center;">Votre site a été pré-rempli avec succès!</h1><br/><br/>'.
@@ -181,6 +194,7 @@ class Step2Controller extends Controller
             'name' => $session->get('buildsite/salon/name', ''),
             'womenAllowed' => $session->get('buildsite/salon/womenAllowed', true),
             'menAllowed' => $session->get('buildsite/salon/menAllowed', true),
+            'childrenAllowed' => $session->get('buildsite/salon/childrenAllowed', true),
             'address' => $session->get('buildsite/salon/address', ''),
             'zipcode' => $session->get('buildsite/salon/zipcode', ''),
             'city' => $session->get('buildsite/salon/city', ''),

@@ -33,7 +33,7 @@ salonrama_main_presse:
     defaults: { _controller: SalonramaMainBundle:Presse:presse }
 
 salonrama_main_about:
-    pattern:  /about
+    pattern:  /a_propos
     defaults: { _controller: SalonramaMainBundle:About:about }
 
 salonrama_main_legal:
@@ -77,47 +77,47 @@ salonrama_main_buildsite_save:
     defaults: { _controller: SalonramaMainBundle:Buildsite/Save:save }
 
 salonrama_main_help:
-    pattern:  /help
+    pattern:  /aide
     defaults: { _controller: SalonramaMainBundle:Help:help }
 
 salonrama_main_help_articles:
-    pattern:  /help/article/{id}
+    pattern:  /aide/article/{id}
     defaults: { _controller: SalonramaMainBundle:Help:article }
 
 salonrama_main_account:
-    pattern:  /account/
+    pattern:  /mon_compte/
     defaults: { _controller: SalonramaMainBundle:Account/Index:index }
 
 salonrama_main_account_confirm_email:
-    pattern:  /account/confirm_email/{id}/{token}
+    pattern:  /mon_compte/confirm_email/{id}/{token}
     defaults: { _controller: SalonramaMainBundle:Account/ConfirmEmail:confirmEmail }
 
 salonrama_main_account_site:
-    pattern:  /account/site
+    pattern:  /mon_compte/site
     defaults: { _controller: SalonramaMainBundle:Account/Site:site }
 
 salonrama_main_account_salon:
-    pattern:  /account/salon
+    pattern:  /mon_compte/salon
     defaults: { _controller: SalonramaMainBundle:Account/Salon:salon }
 
 salonrama_main_account_settings:
-    pattern:  /account/settings/
+    pattern:  /mon_compte/settings/
     defaults: { _controller: SalonramaMainBundle:Account/SettingsGeneral:general }
 
 salonrama_main_account_settings_general:
-    pattern:  /account/settings/general
+    pattern:  /mon_compte/settings/general
     defaults: { _controller: SalonramaMainBundle:Account/SettingsGeneral:general }
 
 salonrama_main_account_settings_email:
-    pattern:  /account/settings/email
+    pattern:  /mon_compte/settings/email
     defaults: { _controller: SalonramaMainBundle:Account/SettingsEmail:email }
 
 salonrama_main_account_settings_password:
-    pattern:  /account/settings/password
+    pattern:  /mon_compte/settings/password
     defaults: { _controller: SalonramaMainBundle:Account/SettingsPassword:password }
 
 salonrama_main_account_settings_delete:
-    pattern:  /account/settings/delete
+    pattern:  /mon_compte/settings/delete
     defaults: { _controller: SalonramaMainBundle:Account/SettingsDelete:delete }
 
 salonrama_main_signin:

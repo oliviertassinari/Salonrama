@@ -70,12 +70,12 @@ set: function(Theme, CallBack)
 	if(!document.getElementById('ThemeLink'))
 	{
 		var Style = Ot.addStyle(document);
-		Style.href = '../bundles/salonramamain/theme/'+Theme+'/theme.css';
+		Style.href = '/bundles/salonramamain/theme/'+Theme+'/theme.css';
 		Style.id = 'ThemeLink';
 	}
 	else
 	{
-		document.getElementById('ThemeLink').href = '../bundles/salonramamain/theme/'+Theme+'/theme.css';
+		document.getElementById('ThemeLink').href = '/bundles/salonramamain/theme/'+Theme+'/theme.css';
 	}
 
 	$.ajax({

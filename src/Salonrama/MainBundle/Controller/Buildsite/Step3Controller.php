@@ -13,8 +13,9 @@ class Step3Controller extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
 
-        $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
-        $theme = $themeRepository->findAll();
+        $em = $this->getDoctrine()->getManager();
+        $themeList = $em->getRepository('SalonramaMainBundle:Theme')->getAllList();
+        $galleryList = $em->getRepository('SalonramaMainBundle:Gallery')->getAllList();
 
 		$buildsite = new Buildsite($session, 3);
 
@@ -31,12 +32,6 @@ class Step3Controller extends Controller
 			$onload = $value;
 		}
 
-		$themeList = array();
-
-		foreach ($theme as $key => $value) {
-			array_push($themeList, $value->getName());
-		}
-
         return $this->render('SalonramaMainBundle:Buildsite:step3.html.twig', array(
 																				'storyboard' => $storyboard,
 																				'foot' => $foot,
@@ -47,8 +42,8 @@ class Step3Controller extends Controller
 																				'themeList' => json_encode($themeList),
 																				'pageList' => $session->get('buildsite/site/pageList'),
 																				'pageAct' => 'index',
-																				'locHomeSite' => $session->get('buildsite/site/locBundle'),
-																				'imageBddList' => File::readFile('../src/Salonrama/MainBundle/Site/bdd_img_list.txt'),
+																				'pathStepFront' => $session->get('buildsite/site/pathStepFront'),
+																				'galleryList' => json_encode($galleryList),
 																				'onload' => $onload
 																				));
     }
