@@ -35,4 +35,4 @@ security:
                 target: /
 
     access_control:
-        - { path: ^/account/, roles: ROLE_USER }
+        - { path: ^/mon_compte/, roles: ROLE_USER }
