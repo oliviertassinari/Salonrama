@@ -60,6 +60,10 @@ salonrama_main_buildsite_step5:
     pattern:  /buildsite/step5
     defaults: { _controller: SalonramaMainBundle:Buildsite/Step5:step5 }
 
+salonrama_main_buildsite_theme:
+    pattern: /buildsite/get_theme
+    defaults: { _controller: SalonramaMainBundle:Buildsite/GetTheme:getTheme }
+
 salonrama_main_help:
     pattern:  /help
     defaults: { _controller: SalonramaMainBundle:Help:help }

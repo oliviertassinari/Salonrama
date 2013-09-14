@@ -78,7 +78,7 @@ set: function(Theme, CallBack)
 		document.getElementById('ThemeLink').href = 'site/theme/'+Theme+'/theme.css';
 	}
 
-	Ot.SendAjax('POST', 'site/get_theme.php', { Theme: Theme }, function(xhr)
+	Ot.SendAjax('POST', 'get_theme', { Theme: Theme }, function(xhr)
 	{
 		Ot.decodeAjaxReturn(xhr.responseText, function(description)
 		{
