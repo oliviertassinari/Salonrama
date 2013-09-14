@@ -1,4 +1,4 @@
-var JSON = {
+$.extend(JSON, {
 
 UNICODE_EXCEPTIONS: /[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/g, //Replace certain Unicode characters that JavaScript may handle incorrectly
 ESCAPES: /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, //First step in the validation.  Regex used to replace all escape
@@ -84,4 +84,4 @@ decode: function(string)
 	}
 }
 
-};
+});

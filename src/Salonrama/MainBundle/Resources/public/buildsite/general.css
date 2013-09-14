@@ -101,12 +101,12 @@ color:#BE7B00;
 }
 
 a.fleche{
-background:url(../image/icone/go.png) no-repeat 0 1px;
+background:url(image/icone/go.png) no-repeat 0 1px;
 padding-left:17px;
 margin-left:2px;
 }
 a.fleche_back{
-background:url(../image/icone/back.png) no-repeat 0 1px;
+background:url(image/icone/back.png) no-repeat 0 1px;
 padding-left:17px;
 margin-left:2px;
 }
@@ -164,7 +164,6 @@ overflow-y:scroll;
 
 #CreatorFoot{
 border-top:1px solid #C3CEDF;
-background:#edeff4;
 height:80px;
 }
 #CreatorFootCon{
@@ -179,7 +178,7 @@ margin:auto;
 position:absolute;
 top:150px;
 left:10px;
-background:#e9f2ff url(../image/icone/chargement.gif) no-repeat 6px 8px;
+background:#e9f2ff url(image/icone/chargement.gif) no-repeat 6px 8px;
 border:1px solid #8eaace;
 color:#444;
 cursor:progress;

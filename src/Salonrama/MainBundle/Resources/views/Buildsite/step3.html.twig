@@ -6,6 +6,9 @@
 
 	<title>Etape 3 - Mon site</title>
 
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/font_awesome.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/button.css') }}"/>
+
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/general.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/button.css') }}"/>
@@ -18,17 +21,6 @@
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/upload.css') }}"/>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/theme/theme.css') }}"/>
-
-	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/json.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/mootools.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/history.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/previs.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/form.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/cadre.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/color.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/flash.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/buildsite/css.js') }}"></script>
 
 	<style>
 
@@ -58,6 +50,17 @@
 	}
 
 	</style>
+
+	<script src="{{ asset('bundles/salonramamain/js/jquery.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/json.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/history.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/previs.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/form.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/cadre.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/color.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/flash.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/css.js') }}"></script>
 
 	<script src="{{ asset('bundles/salonramamain/buildsite/general.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/block.js') }}"></script>
@@ -91,7 +94,7 @@
 
 		window.onbeforeunload = function(){ return 'Voulez vous vraiment quitter cette page ? Cela supprimera l\'avancement de votre site internet.'; };
 
-		var AList = document.getElementById('StoryBoard').getElementsByTagName('a');
+		var AList = document.getElementById('storyboard').getElementsByTagName('a');
 		for(var i = 0; i < AList.length; i++)
 		{
 			(function(z){
@@ -102,8 +105,8 @@
 
 		if(!document.getElementById('EtapeValide'))
 		{
-			document.getElementById('EtapeSuivant').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'etape4.php'; }); };
-			document.getElementById('EtapePrecedent').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'etape2.php'; }); };
+			document.getElementById('EtapeSuivant').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'step4'; }); };
+			document.getElementById('EtapePrecedent').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'step2'; }); };
 		}
 		else
 		{
@@ -119,7 +122,7 @@
 		{
 			if(confirm('Voulez-vous retourner à la page d\'accueil de Salonrama ?'))
 			{
-				setCadSave(function(){ window.onbeforeunload = ''; document.location = 'index.php'; });
+				setCadSave(function(){ window.onbeforeunload = ''; document.location = '../'; });
 			}
 		};
 
@@ -214,37 +217,36 @@
 
 </head>
 <body>
+	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
 
-{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
+	<div id="BarreChargement">Chargement en cours...</div>
+	<div id="CreatorCadre">{{ include("SalonramaMainBundle:Buildsite:cadre.html.twig") }}</div>
 
-<div id="BarreChargement">Chargement en cours...</div>
-<div id="CreatorCadre">{{ include("SalonramaMainBundle:Buildsite:cadre.html.twig") }}</div>
+	<div id="Creator">
+		<div id="CreatorHead">
+			<div id="CreatorHeadBarre">
+				<div id="CreatorHeadLogo"></div>
+				{% autoescape false %}
+				{{ storyboard }}
+				{% endautoescape %}
+				<button type="button" class="button-small button-small-blue" onclick="voirSite()"><i class="icon-search"></i>Aperçu du site</button>
+			</div>
+			<div id="BarreOutil">{{ include("SalonramaMainBundle:Buildsite:barre_outil.html.twig") }}</div>
+		</div>
 
-<div id="Creator">
-	<div id="CreatorHead">
-		<div id="CreatorHeadBarre">
-			<div id="CreatorHeadLogo"></div>
+		<div id="CreatorCon">
+			<div id="Theme">
+			</div>
+		</div>
+
+		<div id="CreatorFoot">
+		<div id="CreatorFootCon">
 			{% autoescape false %}
-			{{ storyboard }}
+			{{ foot }}
 			{% endautoescape %}
-			<button type="button" class="ButtonSmallBlue" onclick="voirSite()"><img src="image/icone/zoom.png" alt=""/>Aperçu du site</button>
 		</div>
-		<div id="BarreOutil">{{ include("SalonramaMainBundle:Buildsite:barre_outil.html.twig") }}</div>
-	</div>
-
-	<div id="CreatorCon">
-		<div id="Theme">
 		</div>
 	</div>
-
-	<div id="CreatorFoot">
-	<div id="CreatorFootCon">
-		{% autoescape false %}
-		{{ foot }}
-		{% endautoescape %}
-	</div>
-	</div>
-</div>
 
 	{{ include("SalonramaMainBundle:Main:google_analytics.html.twig") }}
 	{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}

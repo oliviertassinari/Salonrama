@@ -70,23 +70,25 @@ set: function(Theme, CallBack)
 	if(!document.getElementById('ThemeLink'))
 	{
 		var Style = Ot.addStyle(document);
-		Style.href = 'site/theme/'+Theme+'/theme.css';
+		Style.href = '../bundles/salonramamain/theme/'+Theme+'/theme.css';
 		Style.id = 'ThemeLink';
 	}
 	else
 	{
-		document.getElementById('ThemeLink').href = 'site/theme/'+Theme+'/theme.css';
+		document.getElementById('ThemeLink').href = '../bundles/salonramamain/theme/'+Theme+'/theme.css';
 	}
 
-	Ot.SendAjax('POST', 'get_theme', { Theme: Theme }, function(xhr)
-	{
-		Ot.decodeAjaxReturn(xhr.responseText, function(description)
-		{
+	$.ajax({
+		type: "POST",
+		url: "theme/get_structure",
+		data: { theme: Theme },
+		dataType: "json",
+		success: function(response){
 			GTheme.Act = Theme;
-			GTheme.BlockListWidth = description[0];
+			GTheme.BlockListWidth = response.text[0];
 
 			document.getElementById('BarreOutilInfo').getElementsByTagName('span')[0].innerHTML = Theme;
-			document.getElementById('Theme').innerHTML = GData.setVar(description[1]);
+			document.getElementById('Theme').innerHTML = GData.setVar(response.text[1]);
 			document.getElementById('ThemeBlockList').innerHTML = '<div class="BlockVide">Cette page est vide.</div>';
 
 			GData.initi(document.getElementById('Theme'));
@@ -95,14 +97,13 @@ set: function(Theme, CallBack)
 				CallBack(true);
 			}
 		},
-		function(description)
-		{
-			document.getElementById('Theme').innerHTML = '<div class="BlockVide">Erreur : '+description+'</div>';
+		error: function(rs, e) {
+			document.getElementById('Theme').innerHTML = '<div class="BlockVide">Erreur : '+e+'</div>';
 
 			if(Ot.isFonc(CallBack)){
 				CallBack(false);
 			}
-		});
+		},
 	});
 },
 
@@ -414,7 +415,7 @@ setMenu: function()
 
 saveVar: function(NomList, VarList, CallBack)
 {
-	var oParam = {'save': 'on'};
+	var oParam = {};
 
 	for(var i = 0; i < NomList.length; i++)
 	{
@@ -422,19 +423,23 @@ saveVar: function(NomList, VarList, CallBack)
 		oParam['Var'+i] = VarList[i];
 	}
 
-	Ot.SendAjax('POST', 'creator/save.php', oParam, function(xhr)
-	{
-		Ot.decodeAjaxReturn(xhr.responseText, function(description)
-		{
+	$.ajax({
+		type: "POST",
+		url: "save",
+		data: oParam,
+		dataType: "json",
+		success: function(response){
+			if(Ot.isFonc(CallBack)){
+				CallBack();
+			}
 		},
-		function(description)
-		{
-			alert('Erreur : '+description);
-		});
+		error: function(rs, e) {
+			alert('Erreur : '+e);
 
-		if(Ot.isFonc(CallBack)){
-			CallBack();
-		}
+			if(Ot.isFonc(CallBack)){
+				CallBack();
+			}
+		},
 	});
 }
 

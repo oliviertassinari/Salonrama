@@ -24,20 +24,19 @@ class Buildsite
 
 	public function isAllowed($redirect = true)
 	{
-		if($this->stepReach < $this->stepCurrent) //Syst Redirection
+		if($this->stepReach < $this->stepCurrent)
 		{
-			if($redirect){
-				header('location:etape'. $this->stepReach .'.php');
-				exit();
-			}
-			else{
-				return false;
-			}
+			return false;
 		}
 		else
 		{
 			return true;
 		}
+	}
+
+	public function getStepReach()
+	{
+		return $this->stepReach;
 	}
 
 	public function getStoryboard()

@@ -60,9 +60,21 @@ salonrama_main_buildsite_step5:
     pattern:  /buildsite/step5
     defaults: { _controller: SalonramaMainBundle:Buildsite/Step5:step5 }
 
-salonrama_main_buildsite_theme:
-    pattern: /buildsite/get_theme
-    defaults: { _controller: SalonramaMainBundle:Buildsite/GetTheme:getTheme }
+salonrama_main_buildsite_theme_get_structure:
+    pattern: /buildsite/theme/get_structure
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Theme:getStructure }
+
+salonrama_main_buildsite_theme_get_inte:
+    pattern: /buildsite/theme/get_inte
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Theme:getInte }
+
+salonrama_main_buildsite_wys:
+    pattern: /buildsite/wys
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Wys:wys }
+
+salonrama_main_buildsite_save:
+    pattern: /buildsite/save
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Save:save }
 
 salonrama_main_help:
     pattern:  /help

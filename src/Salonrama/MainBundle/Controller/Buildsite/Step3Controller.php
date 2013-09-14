@@ -17,6 +17,12 @@ class Step3Controller extends Controller
         $theme = $themeRepository->findAll();
 
 		$buildsite = new Buildsite($session, 3);
+
+		if(!$buildsite->isAllowed())
+		{
+			return $this->redirect($this->generateUrl('salonrama_main_buildsite_step'.$buildsite->getStepReach()));
+		}
+
 		$storyboard = $buildsite->getStoryboard();
 		$foot = $buildsite->getFoot();
 		$onload = '';
@@ -41,7 +47,7 @@ class Step3Controller extends Controller
 																				'themeList' => json_encode($themeList),
 																				'pageList' => $session->get('buildsite/site/pageList'),
 																				'pageAct' => 'index',
-																				'locHomeSite' => $session->get('buildsite/site/loc'),
+																				'locHomeSite' => $session->get('buildsite/site/locBundle'),
 																				'imageBddList' => File::readFile('../src/Salonrama/MainBundle/Site/bdd_img_list.txt'),
 																				'onload' => $onload
 																				));

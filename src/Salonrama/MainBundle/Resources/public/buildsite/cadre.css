@@ -32,7 +32,7 @@ color:#fff;
 text-align:center;
 border:1px solid #A7D0F6;
 border-bottom:0;
-background:#4E8EE2 url(../image/cadre/general.png) repeat-x left top;
+background:#4E8EE2 url(image/cadre/general.png) repeat-x left top;
 font:14px arial,helvetica,sans-serif;
 text-align:center;
 border-radius:6px 6px 0 0;
@@ -50,7 +50,7 @@ font-size:13px;
 
 .CadGlobalConHead{
 margin:4px 25px 13px 12px !important;
-background:url(../image/icone/info.png) no-repeat 8px 6px;
+background:url(image/icone/info.png) no-repeat 8px 6px;
 }
 .CadClose{
 width:14px;
@@ -58,7 +58,7 @@ height:14px;
 float:right;
 margin-right:2px;
 cursor:pointer;
-background:url(../image/cadre/close.png) no-repeat left;
+background:url(image/cadre/close.png) no-repeat left;
 size:1px;
 }
 .CadClose:hover{
@@ -96,7 +96,7 @@ border-radius:6px;
 }
 .CadZebreHead{
 height:14px;
-background:url(../image/cadre/zebre.png) repeat-x;
+background:url(image/cadre/zebre.png) repeat-x;
 border-radius:6px 6px 0 0;
 }
 .CadZebreCon{
@@ -587,7 +587,7 @@ border-right:1px solid #aaa;
 font-size:11px;
 }
 #CadPageList .Drag{ 
-background:#fff url(../image/icone/page.png) no-repeat 3px 5px;
+background:#fff url(image/icone/page.png) no-repeat 3px 5px;
 cursor:pointer;
 height:21px;
 margin:1px;
@@ -599,7 +599,7 @@ color:#418dbf;
 background-color:#f9efa9;
 }
 #CadPageList .Drag .BoutDrag{
-background:url(../image/icone/drag.png) no-repeat;
+background:url(image/icone/drag.png) no-repeat;
 width:19px;
 height:16px;
 position:absolute;
@@ -614,7 +614,7 @@ border-bottom:1px solid #ffde3f;
 background-color:#ffec8f;
 }
 #CadPageList .home{
-background-image:url(../image/icone/page_home.png);
+background-image:url(image/icone/page_home.png);
 }
 #CadPageRight .CadBlue2{
 padding:10px;

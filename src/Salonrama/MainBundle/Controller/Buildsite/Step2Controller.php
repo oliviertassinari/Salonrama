@@ -14,6 +14,12 @@ class Step2Controller extends Controller
         $session = $request->getSession();
 
 		$buildsite = new Buildsite($session, 2);
+
+        if(!$buildsite->isAllowed())
+        {
+            return $this->redirect($this->generateUrl('salonrama_main_buildsite_step'.$buildsite->getStepReach()));
+        }
+
 		$storyboard = $buildsite->getStoryboard();
 		$foot = $buildsite->getFoot();
         $message = '';
@@ -153,12 +159,12 @@ class Step2Controller extends Controller
             {
                 $session->set('buildsite/stepReach', 3);
 
-                File::copyFolder('../src/Salonrama/MainBundle/Site/default/', $session->get('buildsite/site/loc').'upload/');
+                File::copyFolder('../src/Salonrama/MainBundle/Site/default/', $session->get('buildsite/site/locApache').'upload/');
 
                 $onload = "CadInfo.open('Etape 3', '".
                             '<h1 style="text-align:center;">Votre site a été pré-rempli avec succès!</h1><br/><br/>'.
                             '<h2 style="text-align:center;">A vous de jouer !</h2><br/>'.
-                            '<br/><div style="text-align:center;"><button type="button" class="ButtonSmallBlue" onclick="CadInfo.close()"><img src="image/icone/go.png"/>Modifier mon site</button></div>'
+                            '<br/><div style="text-align:center;"><button type="button" class="button-small button-small-blue" onclick="CadInfo.close()"><i class="icon-pencil"></i>Modifier mon site</button></div>'
                             ."');";
 
                 $session->getFlashBag()->add('onload', $onload);

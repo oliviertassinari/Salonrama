@@ -129,7 +129,7 @@ addBlockNew: function()
 addBlock: function(Block, Mode)
 {
 	var Id = Ot.getRandId('Module');
-	var Con = '<iframe id="'+Id+'" src="creator/wys.html" class="BlockWHFull" frameborder="0"></iframe>';
+	var Con = '<iframe id="'+Id+'" src="wys" class="BlockWHFull" frameborder="0"></iframe>';
 
 	var Html = this.getHtmlEdit(Block.V);
 

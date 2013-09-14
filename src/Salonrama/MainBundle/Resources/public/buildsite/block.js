@@ -85,14 +85,16 @@ loadInte: function()
 		}
 		T = Ot.removeDoublonArray(T);
 
-		Ot.SendAjax('POST', 'site/get_inte.php', { Inte: JSON.encode(T), Theme: GTheme.Act }, function(xhr)
-		{
-			Ot.decodeAjaxReturn(xhr.responseText, function(description)
-			{
+		$.ajax({
+			type: "POST",
+			url: "theme/get_inte",
+			data: { 'theme': GTheme.Act, 'inte': JSON.stringify(T) },
+			dataType: "json",
+			success: function(response){
 				for(var i in GBlock.InteList)
 				{
 					var InteAct = GBlock.InteList[i];
-					var Html = description[InteAct.T];
+					var Html = response.text[InteAct.T];
 					var InteObj = document.getElementById(i);
 					var DataNbr = 0;
 					var WysNbr = 0;
@@ -119,7 +121,7 @@ loadInte: function()
 						GWys.List[Id] = { Etat: 'stage0', DefHtml: Html };
 						WysList.push(Id);
 
-						return '><iframe id="'+Id+'" src="creator/wys.html" class="BlockWHFull" frameborder="0"></iframe><';
+						return '><iframe id="'+Id+'" src="wys" class="BlockWHFull" frameborder="0"></iframe><';
 					});
 
 					Html = Html.replace(/(>Data<)/g, function()
@@ -142,9 +144,8 @@ loadInte: function()
 					GData.initi(InteObj);
 				}
 			},
-			function(description)
-			{
-			});
+			error: function(rs, e) {
+			},
 		});
 	}
 },
