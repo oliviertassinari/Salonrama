@@ -44,7 +44,7 @@ class GalleryCommand extends ContainerAwareCommand
 				}
 				else if(is_file($path.$file) && in_array(File::getExtension($file), $extensionImage))
 				{
-					if(strrpos($file, 'gallery_') != 0)
+					if(strrpos($file, 'gallery_') !== 0)
 					{
 						$name = 'gallery_'.rand(0, 10000).'.'.File::getExtension($file);
 						rename($path.$file, $path.$name);
