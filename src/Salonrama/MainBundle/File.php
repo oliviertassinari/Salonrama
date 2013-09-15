@@ -4,48 +4,48 @@ namespace Salonrama\MainBundle;
 
 class File
 {
-	public static function delFolder($loc)
+	public static function delFolder($path)
 	{
-		if(is_dir($loc))
+		if(is_dir($path))
 		{
-			if($handle = opendir($loc))
+			if($handle = opendir($path))
 			{
 				while(($file = readdir($handle)) !== false)
 				{
 					if($file === '.' || $file === '..'){
 						continue;
 					}
-					else if(is_dir($loc.$file)){
-						File::delFolder($loc.$file.'/');
+					else if(is_dir($path.$file)){
+						File::delFolder($path.$file.'/');
 					}
 					else{
-						unlink($loc.$file);
+						unlink($path.$file);
 					}
 				}
 				closedir($handle);
 			}
-			rmdir($loc);
+			rmdir($path);
 		}
 	}
 
-	public static function getFolderSize($loc)
+	public static function getFolderSize($path)
 	{
 		$size = 0;
 
-		if(is_dir($loc))
+		if(is_dir($path))
 		{
-			if($handle = opendir($loc))
+			if($handle = opendir($path))
 			{
 				while(($file = readdir($handle)) !== false)
 				{
 					if($file === '.' || $file === '..'){
 						continue;
 					}
-					else if(is_dir($loc.$file)){
-						$size += File::getFolderSize($loc.$file.'/');
+					else if(is_dir($path.$file)){
+						$size += File::getFolderSize($path.$file.'/');
 					}
 					else{
-						$size += filesize($loc.$file);
+						$size += filesize($path.$file);
 					}
 				}
 				closedir($handle);
@@ -74,57 +74,57 @@ class File
 		}
 	}
 
-	public static function emptyFolder($loc)
+	public static function emptyFolder($path)
 	{
-		if(is_dir($loc))
+		if(is_dir($path))
 		{
-			if($handle = opendir($loc))
+			if($handle = opendir($path))
 			{
 				while(($file = readdir($handle)) !== false)
 				{
 					if($file === '.' || $file === '..'){
 						continue;
 					}
-					else if(is_file($loc.$file)){
-						unlink($loc.$file);
+					else if(is_file($path.$file)){
+						unlink($path.$file);
 					}
 				}
 				closedir($handle);
 			}
 		}
 		else{
-			mkdir($loc, 0777);
+			mkdir($path, 0777);
 		}
 	}
 
-	public static function addFolder($loc)
+	public static function addFolder($path)
 	{
-		if(!is_dir($loc))
+		if(!is_dir($path))
 		{
-			mkdir($loc, 0777);
+			mkdir($path, 0777);
 		}
 	}
 
-	public static function copyFolder($locFrom, $locTo) 
+	public static function copyFolder($pathFrom, $pathTo) 
 	{
-		File::addFolder($locTo);
+		File::addFolder($pathTo);
 
-		if(is_dir($locFrom))
+		if(is_dir($pathFrom))
 		{
-			if($handle = opendir($locFrom))
+			if($handle = opendir($pathFrom))
 			{
-				while(($file = readdir($handle)) !== false) //On liste les dossiers et fichiers de $locFrom
+				while(($file = readdir($handle)) !== false) //On liste les dossiers et fichiers de $pathFrom
 				{
 					if($file === '.' || $file === '..'){
 						continue;
 					}
-					else if(is_dir($locFrom.$file)) //S'il s'agit d'un dossier, on relance la fonction récursive
+					else if(is_dir($pathFrom.$file)) //S'il s'agit d'un dossier, on relance la fonction récursive
 					{
-						File::copyFolder($locFrom.$file.'/', $locTo.$file.'/');
+						File::copyFolder($pathFrom.$file.'/', $pathTo.$file.'/');
 					}
 					else //S'il sagit d'un fichier, on le copie simplement
 					{
-						copy($locFrom.$file, $locTo.$file);
+						copy($pathFrom.$file, $pathTo.$file);
 					}
 				}
 				closedir($handle);
@@ -132,11 +132,11 @@ class File
 		}
 	}
 
-	public static function delFile($loc)
+	public static function delFile($path)
 	{
-		if(is_file($loc))
+		if(is_file($path))
 		{
-			if(unlink($loc)){
+			if(unlink($path)){
 				return true;
 			}
 			else{
@@ -148,9 +148,9 @@ class File
 		}
 	}
 
-	public static function getFile($loc)
+	public static function getFile($path)
 	{
-		if(@($file = file_get_contents($loc))){
+		if(@($file = file_get_contents($path))){
 			return $file;
 		}
 		else{
@@ -158,29 +158,29 @@ class File
 		}
 	}
 
-	public static function readFile($loc)
+	public static function readFile($path)
 	{
 		$read = false;
 
-		$file = fopen($loc, 'r');
-		$read = fread($file, filesize($loc));
+		$file = fopen($path, 'r');
+		$read = fread($file, filesize($path));
 		fclose($file);
 
 		return $read;
 	}
 
-	public static function addFile($txt, $loc)
+	public static function addFile($txt, $path)
 	{
-		$file = fopen($loc, 'w');
+		$file = fopen($path, 'w');
 		fwrite($file, $txt);
 		fclose($file);
 
 		return true;
 	}
 
-	public static function copyFile($locFrom, $locTo)
+	public static function copyFile($pathFrom, $pathTo)
 	{
-		if(@copy($locFrom, $locTo))
+		if(@copy($pathFrom, $pathTo))
 		{
 			return true;
 		}
@@ -189,25 +189,25 @@ class File
 		}
 	}
 
-	public static function getExtension($loc)
+	public static function getExtension($path)
 	{
-		return strtolower(substr(strrchr($loc, '.'), 1));
+		return strtolower(substr(strrchr($path, '.'), 1));
 	}
 
-	public static function getFolder($loc)
+	public static function getFolder($path)
 	{
 		$folder = array();
 
-		if(is_dir($loc))
+		if(is_dir($path))
 		{
-			if($handle = opendir($loc))
+			if($handle = opendir($path))
 			{
 				while(($file = readdir($handle)) !== false)
 				{
 					if($file === '.' || $file === '..'){
 						continue;
 					}
-					if(is_dir($loc.$file))
+					if(is_dir($path.$file))
 					{
 						array_push($folder, $file);
 					}
