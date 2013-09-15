@@ -12,7 +12,7 @@ class GalleryRepository extends EntityRepository
 		$galleryList = array();
 
 		foreach ($galleryAll as $key => $value) {
-			$galleryList[$value->getName()] = array($value->getHeight(), $value->getWidth());
+			$galleryList[$value->getName()] = array($value->getWidth(), $value->getHeight());
 		}
 
 		return $galleryList;

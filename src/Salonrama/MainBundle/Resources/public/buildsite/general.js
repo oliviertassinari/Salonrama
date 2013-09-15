@@ -472,7 +472,7 @@ getInfo: function(Nom)
 {
 	if(this.BddList[Nom])
 	{
-		return { src: 'site/bdd_img/'+Nom, w: this.BddList[Nom][0], h: this.BddList[Nom][1], isFound: true };
+		return { src: '/bundles/salonramamain/gallery/'+Nom, w: this.BddList[Nom][0], h: this.BddList[Nom][1], isFound: true };
 	}
 	else if(this.List[Nom])
 	{
