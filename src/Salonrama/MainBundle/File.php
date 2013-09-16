@@ -4,6 +4,84 @@ namespace Salonrama\MainBundle;
 
 class File
 {
+	public static function addFolder($path)
+	{
+		if(!is_dir($path))
+		{
+			mkdir($path, 0777);
+		}
+	}
+
+	public static function copyFolder($pathFrom, $pathTo) 
+	{
+		File::addFolder($pathTo);
+
+		if(is_dir($pathFrom))
+		{
+			if($handle = opendir($pathFrom))
+			{
+				while(($file = readdir($handle)) !== false) //On liste les dossiers et fichiers de $pathFrom
+				{
+					if($file === '.' || $file === '..'){
+						continue;
+					}
+					else if(is_dir($pathFrom.$file)) //S'il s'agit d'un dossier, on relance la fonction récursive
+					{
+						File::copyFolder($pathFrom.$file.'/', $pathTo.$file.'/');
+					}
+					else //S'il sagit d'un fichier, on le copie simplement
+					{
+						copy($pathFrom.$file, $pathTo.$file);
+					}
+				}
+				closedir($handle);
+			}
+		}
+	}
+
+	public static function getExtension($path)
+	{
+		return strtolower(substr(strrchr($path, '.'), 1));
+	}
+
+	public static function removeFile($path)
+	{
+		if(is_file($path))
+		{
+			if(unlink($path)){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return true;
+		}
+	}
+
+	public static function copyFile($pathFrom, $pathTo)
+	{
+		if(@copy($pathFrom, $pathTo))
+		{
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	public static function addFile($txt, $path)
+	{
+		$file = fopen($path, 'w');
+		fwrite($file, $txt);
+		fclose($file);
+
+		return true;
+	}
+
+	
+
 	public static function delFolder($path)
 	{
 		if(is_dir($path))
@@ -97,57 +175,6 @@ class File
 		}
 	}
 
-	public static function addFolder($path)
-	{
-		if(!is_dir($path))
-		{
-			mkdir($path, 0777);
-		}
-	}
-
-	public static function copyFolder($pathFrom, $pathTo) 
-	{
-		File::addFolder($pathTo);
-
-		if(is_dir($pathFrom))
-		{
-			if($handle = opendir($pathFrom))
-			{
-				while(($file = readdir($handle)) !== false) //On liste les dossiers et fichiers de $pathFrom
-				{
-					if($file === '.' || $file === '..'){
-						continue;
-					}
-					else if(is_dir($pathFrom.$file)) //S'il s'agit d'un dossier, on relance la fonction récursive
-					{
-						File::copyFolder($pathFrom.$file.'/', $pathTo.$file.'/');
-					}
-					else //S'il sagit d'un fichier, on le copie simplement
-					{
-						copy($pathFrom.$file, $pathTo.$file);
-					}
-				}
-				closedir($handle);
-			}
-		}
-	}
-
-	public static function delFile($path)
-	{
-		if(is_file($path))
-		{
-			if(unlink($path)){
-				return true;
-			}
-			else{
-				return false;
-			}
-		}
-		else{
-			return true;
-		}
-	}
-
 	public static function getFile($path)
 	{
 		if(@($file = file_get_contents($path))){
@@ -167,31 +194,6 @@ class File
 		fclose($file);
 
 		return $read;
-	}
-
-	public static function addFile($txt, $path)
-	{
-		$file = fopen($path, 'w');
-		fwrite($file, $txt);
-		fclose($file);
-
-		return true;
-	}
-
-	public static function copyFile($pathFrom, $pathTo)
-	{
-		if(@copy($pathFrom, $pathTo))
-		{
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-
-	public static function getExtension($path)
-	{
-		return strtolower(substr(strrchr($path, '.'), 1));
 	}
 
 	public static function getFolder($path)

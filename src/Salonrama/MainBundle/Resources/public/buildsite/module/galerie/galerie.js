@@ -104,7 +104,7 @@ setPage: function(Page)
 		Upload.initi(document.getElementById('CadGalerieUpload'),
 		{
 			SWFUrl: 'creator/upload.swf',
-			uploadUrl: 'creator/image.php',
+			uploadUrl: 'image',
 			DataPost: 'LocHomeSite='+LocHomeSite,
 			MaxFile: 0,
 			ExtensionImage: ['jpg', 'jpeg', 'jpe', 'gif', 'png'],

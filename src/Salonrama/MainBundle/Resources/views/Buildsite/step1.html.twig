@@ -22,7 +22,7 @@
 	{
 		lightbox = new Lightbox({
 			getDetailsCaption: function(title, imageNumber){
-				return '<button type="button" onclick="setThemeFromLightbox('+imageNumber+')" class="button-small button-small-green"><i class="icon-ok"></i>Sélectionner ce thème</button>';
+				return '<button type="button" onclick="setThemeFromLightbox('+imageNumber+')" class="button-small button-small-green"><i class="icon-ok"></i>Valider ce thème</button>';
 			}
 		});
 
@@ -64,6 +64,7 @@
 	{
 		lightbox.end();
 		setTheme($($('#themeSelect .themeSelectItem')[imageNumber]));
+		submit();
 	}
 
 	function setScroll(duration)

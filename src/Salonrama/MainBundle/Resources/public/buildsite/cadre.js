@@ -2122,13 +2122,13 @@ setPage: function(Page)
 		document.getElementById('CadImageCon').innerHTML = ''+
 		'<div id="CadImageLeft">'+
 			'<span class="ButtonBig ButtonBigGreen" onclick="CadImage.setPage(\'Pc\');">'+
-			'<img src="creator/image/picture.png" width="48" height="48"/>'+
+			'<img src="/bundles/salonramamain/buildsite/image/picture.png" width="48" height="48"/>'+
 			'Ajouter une photo depuis mon ordinateur ou depuis mon appareil photo</span>'+
 			'<span class="ButtonBig ButtonBigYellow" onclick="CadImage.setPage(\'Bdd\');">'+
-			'<img src="creator/image/folder.png" width="48" height="48"/>'+
+			'<img src="/bundles/salonramamain/buildsite/image/folder.png" width="48" height="48"/>'+
 			'Ajouter une photo depuis notre galerie</span>'+
 			'<span class="ButtonBig ButtonBigBlue" onclick="CadImage.setPage(\'Url\');">'+
-			'<img src="creator/image/earth.png" width="48" height="48"/>'+
+			'<img src="/bundles/salonramamain/buildsite/image/earth.png" width="48" height="48"/>'+
 			'Ajouter une photo depuis son adresse internet</span>'+
 		'</div>'+
 		'<div id="CadImageRight">'+
@@ -2147,8 +2147,8 @@ setPage: function(Page)
 
 		Upload.initi(document.getElementById('CadImageUpload'),
 		{
-			SWFUrl: 'creator/upload.swf',
-			uploadUrl: 'creator/image.php',
+			SWFUrl: '/bundles/salonramamain/buildsite/upload.swf',
+			uploadUrl: 'image',
 			DataPost: 'LocHomeSite='+LocHomeSite,
 			MaxFile: 1,
 			ExtensionImage: ['jpg', 'jpeg', 'jpe', 'gif', 'png'],
@@ -2382,19 +2382,18 @@ addBdd: function(Nom)
 		this.PreVis.closeStart();
 	}
 
-	Ot.SendAjax('POST', 'creator/image.php', { addBdd: Nom }, function(xhr)
-	{
-		Ot.decodeAjaxReturn(xhr.responseText, function(description)
-		{
-			GImage.add(description, GImage.BddList[Nom][0], GImage.BddList[Nom][1]);
-			CadImage.apply(description);
+	$.ajax({
+		type: 'POST',
+		url: 'image',
+		data: { addBdd: Nom },
+		dataType: 'json',
+		success: function(response){
+			GImage.add(response.text, GImage.BddList[Nom][0], GImage.BddList[Nom][1]);
+			CadImage.apply(response.text);
 		},
-		function(description)
-		{
-			alert('Erreur : ' + description);
-		});
-
-		removeBarreChargement();
+		error: function(rs, e) {
+			alert('Erreur : ' + e);
+		},
 	});
 },
 
@@ -2406,19 +2405,20 @@ addUrl: function(R)
 
 		var Input = document.getElementById('CadImageCon').getElementsByTagName('input')[0]; //URL
 
-		Ot.SendAjax('POST', 'creator/image.php', { addUrl: Input.value }, function(xhr)
-		{
-			Ot.decodeAjaxReturn(xhr.responseText, function(description)
-			{
-				GImage.add(description[0], description[1], description[2]);
-				CadImage.apply(description[0]);
+		$.ajax({
+			type: 'POST',
+			url: 'image',
+			data: { addUrl: Input.value },
+			dataType: 'json',
+			success: function(response){
+				GImage.add(response.text[0], response.text[1], response.text[2]);
+				CadImage.apply(response.text[0]);
+				removeBarreChargement();
 			},
-			function(description)
-			{
-				GFormF.setChampErr(Input, Input.nextSibling, false, description);
-			});
-
-			removeBarreChargement();
+			error: function(rs, e) {
+				GFormF.setChampErr(Input, Input.nextSibling, false, e);
+				removeBarreChargement();
+			},
 		});
 	}
 },

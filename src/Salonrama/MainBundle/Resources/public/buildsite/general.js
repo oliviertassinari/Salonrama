@@ -486,7 +486,7 @@ getInfo: function(Nom)
 		return { src: LocHomeSite+'upload/'+Nom+More, w: this.List[Nom][0], h: this.List[Nom][1], isFound: true };
 	}
 	else{
-		return { src: 'creator/image/image_nofound.png', w: '320', h: '240', isFound: false };
+		return { src: '/bundles/salonramamain/buildsite/image/image_nofound.png', w: '320', h: '240', isFound: false };
 	}
 },
 
@@ -509,20 +509,21 @@ remove: function(Nom, CallBack)
 {
 	delete this.List[Nom];
 
-	Ot.SendAjax('POST', 'creator/image.php', { remove: Nom }, function(xhr)
-	{
-		Ot.decodeAjaxReturn(xhr.responseText, function(description)
-		{
+	$.ajax({
+		type: 'POST',
+		url: 'image',
+		data: { remove: Nom },
+		dataType: 'json',
+		success: function(response){
 			if(Ot.isFonc(CallBack)){
 				CallBack();
 			}
 
 			GPage.change('reload');
 		},
-		function(description)
-		{
-			alert('Erreur : '+description);
-		});
+		error: function(rs, e) {
+			alert('Erreur : ' + e);
+		},
 	});
 }
 

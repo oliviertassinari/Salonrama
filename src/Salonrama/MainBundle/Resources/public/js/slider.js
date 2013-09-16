@@ -33,6 +33,8 @@ var Slider = function(sliderId, timeToWait)
 		window.clearInterval(self.Timer);
 		self.setTimer();
 	});
+
+	$(document).on('keyup', $.proxy(this.onKeyup, this));
 };
 
 Slider.prototype = {
@@ -78,6 +80,22 @@ setSlide: function(index)
 	}
 
 	this.sliderList.css('left', -index*this.width);
+},
+
+onKeyup: function(event)
+{
+	var KEYCODE_LEFTARROW = 37;
+    var KEYCODE_RIGHTARROW = 39;
+    var keycode = event.keyCode;
+
+    if(keycode == KEYCODE_LEFTARROW)
+    {
+    	this.setPrevious();
+    }
+    else
+    {
+    	this.setNext();
+    }
 }
 
 };

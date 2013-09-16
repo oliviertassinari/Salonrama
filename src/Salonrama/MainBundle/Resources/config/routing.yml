@@ -76,6 +76,10 @@ salonrama_main_buildsite_save:
     pattern: /buildsite/save
     defaults: { _controller: SalonramaMainBundle:Buildsite/Save:save }
 
+salonrama_main_buildsite_image:
+    pattern: /buildsite/image
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Image:image }
+
 salonrama_main_help:
     pattern:  /aide
     defaults: { _controller: SalonramaMainBundle:Help:help }
