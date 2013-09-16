@@ -56,3 +56,9 @@ Vider le cache
 ```bash
 php app/console cache:clear
 ```
+
+Mettre à jour la gallery
+
+```bash
+php app/console gallery:update
+```
