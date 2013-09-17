@@ -45,7 +45,7 @@ left:0;
 .slider-paddle-right{
 right:0;
 }
-.slider-paddle-left:hover, .slider-paddle-right:hover{
+.slider .slider-paddle-left:hover, .slider .slider-paddle-right:hover{
 opacity:1;
 }
 .slider-paddle-left div, .slider-paddle-right div{

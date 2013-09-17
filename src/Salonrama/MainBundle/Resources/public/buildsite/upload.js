@@ -269,7 +269,7 @@ var SWFUpload = function(Obj, Arg)
 	'<div class="UploadFormList"></div>'+
 	'<span></span>'+
 	'<div class="UploadFileList"><div style="position:absolute;"></div></div>'+
-	'<button type="button" class="ButtonSmallRed"><img src="image/icone/erreur.png"/>Vider la file d\'attente</button>';
+	'<button type="button" class="button-small button-small-red">Vider la file d\'attente</button>';
 
 
 	var FlashObj = new Flash.Obj(this.SWFUrl, FlashId, '219', '31', '8', '#fff', 'high');
@@ -490,7 +490,7 @@ var PHPUpload = function(Obj, Arg)
 	'<div class="UploadFormList"></div>'+
 	'<span></span>'+
 	'<div class="UploadFileList"><div style="position:absolute;"></div></div>'+
-	'<button type="button" class="ButtonSmallRed"><img src="image/icone/erreur.png"/>Vider la file d\'attente</button>';
+	'<button type="button" class="button-small button-small-red">Vider la file d\'attente</button>';
 
 
 	Ot.addEvent(Obj.getElementsByTagName('iframe')[0], 'load', function(){ self.UpCallBack(); });

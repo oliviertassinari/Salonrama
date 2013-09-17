@@ -57,7 +57,7 @@ load: function()
 			'<label class="FormLabel" for="'+InputId+'" style="height:50px; width:130px; padding-left:10px;">Adresse du salon :</label>'+
 			'<input type="text" id="'+InputId+'" class="FormInputText" size="40" style="width:50%;"/><span></span>'+
 		'</div>'+
-		'<button type="button" class="ButtonSmallBlue"><img src="image/icone/zoom.png"/>Localiser</button>';
+		'<button type="button" class="button-small button-small-blue"><i class="icon-search"></i>Localiser</button>';
 		this.BlockHeadOption.getElementsByTagName('button')[0].onclick = function(){ self.setAdresse(Input.value); };
 
 		var Input = document.getElementById(InputId);

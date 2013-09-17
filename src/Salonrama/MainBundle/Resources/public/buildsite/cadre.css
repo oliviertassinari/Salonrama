@@ -82,7 +82,7 @@ margin-top:5px;
 padding:10px;
 text-align:right;
 }
-.CadFoot .ButtonSmallRed{
+.CadFoot .button-small-red{
 float:left;
 }
 
@@ -620,7 +620,7 @@ background-image:url(image/icone/page_home.png);
 padding:10px;
 margin-left:0;
 }
-#CadPageRight .ButtonSmallGreen{
+#CadPageRight .button-small-green{
 margin-top:40px;
 }
 
@@ -649,12 +649,12 @@ margin-bottom:10px
 float:left;
 width:295px;
 }
-#CadImageLeft .ButtonBig{
+#CadImageLeft .button-big{
 margin:10px 20px 10px 10px;
 width:240px;
 text-align:left;
 }
-#CadImageLeft .ButtonBig img{
+#CadImageLeft .button-big img{
 float:left;
 margin-right:10px;
 }

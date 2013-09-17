@@ -37,8 +37,8 @@ initi: function()
 		'<div class="ModuleFormChampList"></div>'+
 		'<div class="FormValid">'+
 			'<div style="height:30px;"></div>'+
-			'<button type="button" class="ButtonSmallGreen" onclick="GModule.ClassList[\'Form\'].submit()">'+
-				'<img src="image/icone/ok.png"/>Envoyer mon message'+
+			'<button type="button" class="button-small button-small-green" onclick="GModule.ClassList[\'Form\'].submit()">'+
+				'<i class="icon-envelope"></i>Envoyer mon message'+
 			'</button>'+
 		'</div>'+
 		'<p class="etoile">* champ à remplir obligatoirement</p>'+

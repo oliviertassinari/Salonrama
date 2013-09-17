@@ -189,7 +189,7 @@ initi: function()
 
 	this.Table = Table;
 
-	this.BlockHeadOption.innerHTML = '<button type="button" class="ButtonSmallGreen"><img src="image/icone/add.png"/>Ajouter une ligne</button>';
+	this.BlockHeadOption.innerHTML = '<button type="button" class="button-small button-small-green"><i class="icon-add"></i>Ajouter une ligne</button>';
 	this.BlockHeadOption.firstChild.onclick = function()
 	{
 		self.addLigne('', ' €');

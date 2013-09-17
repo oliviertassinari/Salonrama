@@ -106,7 +106,7 @@ loadInte: function()
 						var ImageInfo = GImage.getInfo(InteAct.V.Image);
 
 						var BlockHeadOption = GBlock.getBlockHeadOption(GBlock.getBlockObj(InteObj));
-						BlockHeadOption.innerHTML = '<button type="button" class="ButtonSmallBlue" onclick="CadImage.open(\''+Id+'\')"><img src="image/icone/go.png"/>Changer d\'image</button>';
+						BlockHeadOption.innerHTML = '<button type="button" class="button-small button-small-blue" onclick="CadImage.open(\''+Id+'\')"><i class="icon-pencil"></i>Changer d\'image</button>';
 
 						return '><div id="'+Id+'" class="InteImage"><img src="'+ImageInfo.src+'" onclick="CadImage.open(\''+Id+'\')" title="Changer d\'image" width="100%" alt="photo"/></div><';
 					});
@@ -1046,7 +1046,7 @@ stop: function(event)
 function addBlockHtml(Block, Mode)
 {
 	var Id = Ot.getRandId('Module');
-	var Option = '<button type="button" class="ButtonSmallBlue" onclick="CadHtml.open(\''+Id+'\')"><img src="image/icone/go.png"/>Modifier le code HTML</button>';
+	var Option = '<button type="button" class="button-small button-small-blue" onclick="CadHtml.open(\''+Id+'\')"><i class="icon-angle-right"></i>Modifier le code HTML</button>';
 	var Con = '<div id="'+Id+'">'+Block.V+'</div>';
 
 	GBlock.add(Con, Option, Block, Mode);
@@ -1061,7 +1061,7 @@ function addBlockImage(Block, Mode)
 		Block.P[0] = ImageInfo.h;
 	}
 
-	var Option = '<button type="button" class="ButtonSmallBlue" onclick="CadImage.open(\''+Id+'\')"><img src="image/icone/go.png"/>Changer d\'image</button>';
+	var Option = '<button type="button" class="button-small button-small-blue" onclick="CadImage.open(\''+Id+'\')"><i class="icon-pencil"></i>Changer d\'image</button>';
 	var Con = '<div id="'+Id+'" class="ModuleImage"><img src="'+ImageInfo.src+'" onclick="CadImage.open(\''+Id+'\')" title="Changer d\'image" height="100%" alt="photo"/></div>';
 
 	GBlock.add(Con, Option, Block, Mode);

@@ -12,7 +12,7 @@ function Initi()
 	onResize();
 	Ot.addEvent(window, 'resize', onResize);
 
-	CadImage.PreVis = new PreVis('<div style="padding-top:13px;"><button type="button" class="ButtonSmallGreen" id="CadImagePreVis" onclick="CadImage.addBdd(\'PreVis\')"></button></div>');
+	CadImage.PreVis = new PreVis('<div style="padding-top:13px;"><button type="button" class="button-small button-small-green" id="CadImagePreVis" onclick="CadImage.addBdd(\'PreVis\')"></button></div>');
 	CadImage.PreVis.Ele.Cadre.className += ' CadImagePreVis';
 
 	GWys.initi();

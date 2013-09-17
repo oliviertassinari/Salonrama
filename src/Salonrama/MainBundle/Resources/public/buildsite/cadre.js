@@ -131,8 +131,8 @@ open: function(Nom, Question, Act, CallBack, LocFileHome)
 		this.CallBack = CallBack;
 
 		var Html = '<div style="margin:10px 10px 20px;"><strong>'+Question+' : </strong><br/><input type="text" class="FormInputText" maxlength="50" style="width:330px;"/>'+
-				   '</div><div class="CadFoot"><button type="button" class="ButtonSmallRed" onclick="CadPrompt.close()"><img src="'+LocFileHome+'image/icone/erreur.png"/>Annuler</button>'+
-				   '<button type="button" class="ButtonSmallGreen" onclick="CadPrompt.valide()"><img src="'+LocFileHome+'image/icone/ok.png"/>OK</button>'+
+				   '</div><div class="CadFoot"><button type="button" class="button-small button-small-red" onclick="CadPrompt.close()">Annuler</button>'+
+				   '<button type="button" class="button-small button-small-green" onclick="CadPrompt.valide()"><i class="icon-ok"></i>OK</button>'+
 				   '<div class="Clear"></div></div>';
 
 		this.Cad.addFont();
@@ -758,8 +758,8 @@ open: function()
 			'<td><div id="CadACouleurOld"></div></td>'+
 		'</tr>'+
 		'</table>',
-		'<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadACouleur\')"><img src="image/icone/erreur.png"/>Annuler</button>'+
-		'<button type="button" class="ButtonSmallGreen" onclick="CadACouleur.apply()"><img src="image/icone/ok.png"/>Appliquer</button>'+
+		'<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadACouleur\')">Annuler</button>'+
+		'<button type="button" class="button-small button-small-green" onclick="CadACouleur.apply()"><i class="icon-ok"></i>Appliquer</button>'+
 		'<div class="Clear"></div>'
 	);
 
@@ -1152,11 +1152,11 @@ setRecent: function(Html)
 setFoot: function()
 {
 	if(document.getElementById('CadCaractereInput').value != ''){
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadCaractere\')"><img src="image/icone/erreur.png"/>Annuler</button>'+
-		'<button type="button" class="ButtonSmallGreen" onclick="CadCaractere.apply()"><img src="image/icone/ok.png"/>Ajouter</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadCaractere\')">Annuler</button>'+
+		'<button type="button" class="button-small button-small-green" onclick="CadCaractere.apply()"><i class="icon-ok"></i>Ajouter</button>';
 	}
 	else{
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadCaractere\')"><img src="image/icone/erreur.png"/>Fermer</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadCaractere\')">Fermer</button>';
 	}
 
 	document.getElementById('CadCaractereFoot').innerHTML = Html+'<div class="Clear"></div>';
@@ -1473,12 +1473,12 @@ setType: function(Type)
 setFoot: function()
 {
 	if(this.Modif.is){
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadLien\')"><img src="image/icone/erreur.png"/>Annuler</button>'+
-		'<button type="button" class="ButtonSmallGreen" onclick="CadLien.apply()"><img src="image/icone/ok.png"/>Modifier</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadLien\')">Annuler</button>'+
+		'<button type="button" class="button-small button-small-green" onclick="CadLien.apply()"><i class="icon-ok"></i>Modifier</button>';
 	}
 	else{
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadLien\')"><img src="image/icone/erreur.png"/>Fermer</button>'+
-		'<button type="button" class="ButtonSmallGreen" onclick="CadLien.apply()"><img src="image/icone/add.png"/>Ajouter</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadLien\')">Fermer</button>'+
+		'<button type="button" class="button-small button-small-green" onclick="CadLien.apply()"><i class="icon-ok"></i>Ajouter</button>';
 	}
 
 	document.getElementById('CadLienFoot').innerHTML = Html+'<div class="Clear"></div>';
@@ -1690,12 +1690,12 @@ setTitre: function(ModuleObjId)
 setFoot: function(ModuleObjId)
 {
 	if(ModuleObjId){
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadHtml\')"><img src="image/icone/erreur.png"/>Annuler</button>'+
-		'<button type="button" class="ButtonSmallGreen" onclick="CadHtml.apply(\''+ModuleObjId+'\')" id="CadPageBoutModif"><img src="image/icone/ok.png"/>Modifier';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadHtml\')">Annuler</button>'+
+		'<button type="button" class="button-small button-small-green" onclick="CadHtml.apply(\''+ModuleObjId+'\')" id="CadPageBoutModif"><i class="icon-ok"></i>Modifier';
 	}
 	else{
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadHtml\')"><img src="image/icone/erreur.png"/>Fermer</button>'+
-		'<button type="button" class="ButtonSmallGreen" id="HtmlAdd" onclick="CadHtml.apply()"><img src="image/icone/add.png"/>Ajouter</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadHtml\')">Fermer</button>'+
+		'<button type="button" class="button-small button-small-green" id="HtmlAdd" onclick="CadHtml.apply()"><i class="icon-plus"></i>Ajouter</button>';
 	}
 
 	document.getElementById('CadHtmlFoot').innerHTML = Html+'<div class="Clear"></div>';
@@ -1733,9 +1733,9 @@ open: function()
 			'<div class="CadColor CadBlue2">'+
 				'Nom de la page : <input type="text" id="PageTitle" class="FormInputText" size="30" onkeyup="CadPage.onKeyTitre()"/><br/>'+
 				'<br/><br/>'+
-				'<button type="button" class="ButtonSmallRed" onclick="CadPage.remove()"><img src="image/icone/page_remove.png"/>Supprimer cette page</button>'+
+				'<button type="button" class="button-small button-small-red" onclick="CadPage.remove()">Supprimer cette page</button>'+
 			'</div>'+
-			'<button type="button" class="ButtonSmallGreen" onclick="CadPage.add()"><img src="image/icone/page_add.png"/>Ajouter une page</button>'+
+			'<button type="button" class="button-small button-small-green" onclick="CadPage.add()"><i class="icon-plus"></i>Ajouter une page</button>'+
 		'</div>'+
 		'<div class="Clear"></div>',
 		''
@@ -1862,11 +1862,11 @@ select: function(event, i)
 setFoot: function()
 {
 	if(JSON.encode(this.ModifList) == this.SaveList){
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadPage\')"><img src="image/icone/erreur.png"/>Fermer</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadPage\')">Fermer</button>';
 	}
 	else{
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadPage\')"><img src="image/icone/erreur.png"/>Annuler</button>'+
-		'<button type="button" class="ButtonSmallGreen" onclick="CadPage.apply()" id="CadPageBoutModif"><img src="image/icone/ok.png"/>Appliquer les modifications</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadPage\')">Annuler</button>'+
+		'<button type="button" class="button-small button-small-green" onclick="CadPage.apply()" id="CadPageBoutModif"><i class="icon-ok"></i>Appliquer les modifications</button>';
 	}
 
 	document.getElementById('CadPageFoot').innerHTML = Html+'<div class="Clear"></div>';
@@ -2027,7 +2027,7 @@ open: function()
 		var CadImageObj = document.createElement('div');
 		CadImageObj.className = 'CadImage';
 		CadImageObj.title = 'Selectionner ce theme';
-		CadImageObj.innerHTML = '<img src="site/theme/'+GTheme.List[i]+'/screenshot_min.jpg" alt="'+GTheme.List[i]+'" title="Selectionner" width="130"/>';
+		CadImageObj.innerHTML = '<img src="/bundles/salonramamain/theme/'+GTheme.List[i]+'/screenshot_min.jpg" alt="'+GTheme.List[i]+'" title="Selectionner" width="130"/>';
 
 		(function(z, CadImageObj){
 			CadImageObj.onclick = function(){
@@ -2057,11 +2057,11 @@ open: function()
 setFoot: function()
 {
 	if(this.ModifAct == GTheme.Act){
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadTheme\')"><img src="image/icone/erreur.png"/>Fermer</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadTheme\')">Fermer</button>';
 	}
 	else{
-		var Html = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadTheme\')"><img src="image/icone/erreur.png"/>Annuler</button>'+
-		'<button type="button" class="ButtonSmallGreen" onclick="CadTheme.apply()" id="CadPageBoutModif"><img src="image/icone/ok.png"/>Selectionner ce thème</button>';
+		var Html = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadTheme\')">Annuler</button>'+
+		'<button type="button" class="button-small button-small-green" onclick="CadTheme.apply()" id="CadPageBoutModif"><i class="icon-ok"></i>Selectionner ce thème</button>';
 	}
 
 	document.getElementById('CadThemeFoot').innerHTML = Html+'<div class="Clear"></div>';
@@ -2121,13 +2121,13 @@ setPage: function(Page)
 	{
 		document.getElementById('CadImageCon').innerHTML = ''+
 		'<div id="CadImageLeft">'+
-			'<span class="ButtonBig ButtonBigGreen" onclick="CadImage.setPage(\'Pc\');">'+
+			'<span class="button-big button-big-green" onclick="CadImage.setPage(\'Pc\');">'+
 			'<img src="/bundles/salonramamain/buildsite/image/picture.png" width="48" height="48"/>'+
 			'Ajouter une photo depuis mon ordinateur ou depuis mon appareil photo</span>'+
-			'<span class="ButtonBig ButtonBigYellow" onclick="CadImage.setPage(\'Bdd\');">'+
+			'<span class="button-big button-big-yellow" onclick="CadImage.setPage(\'Bdd\');">'+
 			'<img src="/bundles/salonramamain/buildsite/image/folder.png" width="48" height="48"/>'+
 			'Ajouter une photo depuis notre galerie</span>'+
-			'<span class="ButtonBig ButtonBigBlue" onclick="CadImage.setPage(\'Url\');">'+
+			'<span class="button-big button-big-blue" onclick="CadImage.setPage(\'Url\');">'+
 			'<img src="/bundles/salonramamain/buildsite/image/earth.png" width="48" height="48"/>'+
 			'Ajouter une photo depuis son adresse internet</span>'+
 		'</div>'+
@@ -2337,31 +2337,47 @@ setFoot: function(Page)
 	{
 		if(this.Modif.is == true)
 		{
-			Foot = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadImage\')"><img src="image/icone/erreur.png"/>Annuler</button>';
+			Foot = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadImage\')">Annuler</button>';
 
 			if(this.Modif.Act != '' && this.Modif.Act != this.Modif.Nom){
-				Foot += '<button type="button" class="ButtonSmallGreen" onclick="CadImage.apply(CadImage.Modif.Act)"><img src="image/icone/add.png"/>Remplacer par cette image</button>';
+				Foot += '<button type="button" class="button-small button-small-green" onclick="CadImage.apply(CadImage.Modif.Act)"><i class="icon-pencil"></i>Remplacer par cette image</button>';
 			}
 		}
 		else
 		{
-			Foot = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadImage\')"><img src="image/icone/erreur.png"/>Fermer</button>';
+			Foot = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadImage\')">Fermer</button>';
 
 			if(this.Modif.Act != ''){
-				Foot += '<button type="button" class="ButtonSmallGreen" onclick="CadImage.apply(CadImage.Modif.Act)"><img src="image/icone/add.png"/>Ajouter cette image</button>';
+				Foot += '<button type="button" class="button-small button-small-green" onclick="CadImage.apply(CadImage.Modif.Act)"><i class="icon-plus"></i>Ajouter cette image</button>';
 			}
 		}
 	}
 	else if(Page == 'Pc'){
-		Foot = '<button type="button" class="ButtonSmallBlue" onclick="CadImage.setPage(\'Index\')" style="float:left;"><img src="image/icone/back.png"/>Retour</button>'+
-			   '<button type="button" class="ButtonSmallGreen" id="CadImageUploadStart" style="display:none;"><img src="image/icone/add.png"/>Ajouter cette image</button>';
+		Foot = '<button type="button" class="button-small button-small-blue" onclick="CadImage.setPage(\'Index\')" style="float:left;"><i class="icon-angle-left"></i>Retour</button>';
+
+		if(this.Modif.is == true)
+		{
+		   Foot += '<button type="button" class="button-small button-small-green" id="CadImageUploadStart" style="display:none;"><i class="icon-pencil"></i>Remplacer par cette image</button>';
+		}
+		else
+		{
+		   Foot += '<button type="button" class="button-small button-small-green" id="CadImageUploadStart" style="display:none;"><i class="icon-plus"></i>Ajouter cette image</button>';
+		}
 	}
 	else if(Page == 'Bdd'){
-		Foot = '<button type="button" class="ButtonSmallBlue" onclick="CadImage.setPage(\'Index\')" style="float:left;"><img src="image/icone/back.png"/>Retour</button>';
+		Foot = '<button type="button" class="button-small button-small-blue" onclick="CadImage.setPage(\'Index\')" style="float:left;"><i class="icon-angle-left"></i>Retour</button>';
 	}
 	else if(Page == 'Url'){
-		Foot = '<button type="button" class="ButtonSmallBlue" onclick="CadImage.setPage(\'Index\')" style="float:left;"><img src="image/icone/back.png"/>Retour</button>'+
-			   '<button type="button" class="ButtonSmallGreen" onclick="CadImage.Form.Valide()"><img src="image/icone/add.png"/>Ajouter cette image</button>';
+		Foot = '<button type="button" class="button-small button-small-blue" onclick="CadImage.setPage(\'Index\')" style="float:left;"><i class="icon-angle-left"></i>Retour</button>';
+
+		if(this.Modif.is == true)
+		{
+		   Foot += '<button type="button" class="button-small button-small-green" onclick="CadImage.Form.Valide()"><i class="icon-pencil"></i>Remplacer par cette image</button>';
+		}
+		else
+		{
+		   Foot += '<button type="button" class="button-small button-small-green" onclick="CadImage.Form.Valide()"><i class="icon-plus"></i>Ajouter cette image</button>';
+		}
 	}
 
 	document.getElementById('CadImageFoot').innerHTML = Foot+'<div class="Clear"></div>';

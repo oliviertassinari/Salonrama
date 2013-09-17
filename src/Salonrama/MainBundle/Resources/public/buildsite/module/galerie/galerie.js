@@ -59,7 +59,7 @@ setPage: function(Page)
 			'<div class="CadColor CadBlue2">'+
 				'<div class="Ratio">'+Html+'</div>'+
 			'</div>'+
-			'<button type="button" class="ButtonSmallGreen" onclick="GModule.ClassList[\'Galerie\'].setPage(\'Ajouter\')"><img src="image/icone/add.png"/>Ajouter des images</button>'+
+			'<button type="button" class="button-small button-small-green" onclick="GModule.ClassList[\'Galerie\'].setPage(\'Ajouter\')"><i class="icon-ok"></i>Ajouter des images</button>'+
 		'</div>';
 
 		document.getElementById('CadGalerieType'+this.Type).checked = true;
@@ -80,7 +80,7 @@ setPage: function(Page)
 				'<div></div>'+
 			'</div>'+
 		'</div>'+
-		'<button type="button" class="ButtonSmallGreen" id="CadGalerieUploadStart" style="display:none;"><img src="image/icone/add.png"/>Ajouter les images</button>'+
+		'<button type="button" class="button-small button-small-green" id="CadGalerieUploadStart" style="display:none;"><i class="icon-ok"></i>Ajouter les images</button>'+
 		'<div class="CadGalerieAjouter">'+
 			'<strong style="margin-left:5px;">Images ajoutées à la galerie :</strong><div id="CadGalerieAjouter"></div>'+
 		'</div>';
@@ -158,21 +158,21 @@ setFoot: function(Page)
 	{
 		if(JSON.encode(this.ImageList) == this.ImageListSave && this.Type == this.ModuleAct.Type)
 		{
-			Foot = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadGalerie\')"><img src="image/icone/erreur.png"/>Fermer</button>';
+			Foot = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadGalerie\')">Fermer</button>';
 		}
 		else
 		{
-			Foot = '<button type="button" class="ButtonSmallRed" onclick="GCadre.close(\'CadGalerie\')"><img src="image/icone/erreur.png"/>Annuler</button>'+
-				   '<button type="button" class="ButtonSmallGreen" onclick="GModule.ClassList[\'Galerie\'].apply()"><img src="image/icone/ok.png"/>Appliquer les modifications</button>';
+			Foot = '<button type="button" class="button-small button-small-red" onclick="GCadre.close(\'CadGalerie\')">Annuler</button>'+
+				   '<button type="button" class="button-small button-small-green" onclick="GModule.ClassList[\'Galerie\'].apply()"><i class="icon-ok"></i>Appliquer les modifications</button>';
 		}
 	}
 	else if(Page == 'Ajouter')
 	{
-		Foot = '<button type="button" class="ButtonSmallBlue" onclick="GModule.ClassList[\'Galerie\'].setPage(\'Index\')" style="float:left;"><img src="image/icone/back.png"/>Retour</button>';
+		Foot = '<button type="button" class="button-small button-small-blue" onclick="GModule.ClassList[\'Galerie\'].setPage(\'Index\')" style="float:left;"><i class="icon-angle-left"></i>Retour</button>';
 
 		if(JSON.encode(this.ImageList) != this.ImageListSave || this.Type != this.ModuleAct.Type)
 		{
-			Foot +=  '<button type="button" class="ButtonSmallGreen" onclick="GModule.ClassList[\'Galerie\'].apply()"><img src="image/icone/ok.png"/>Appliquer les modifications</button>';
+			Foot +=  '<button type="button" class="button-small button-small-green" onclick="GModule.ClassList[\'Galerie\'].apply()"><i class="icon-ok"></i>Appliquer les modifications</button>';
 		}
 	}
 
@@ -443,7 +443,7 @@ initi: function()
 	this.MilkBox = new MilkBox();
 	this.MooFlow = null;
 
-	this.BlockHeadOption.innerHTML = '<button type="button" class="ButtonSmallBlue"><img src="image/icone/go.png"/>Modifier la galerie</button>';
+	this.BlockHeadOption.innerHTML = '<button type="button" class="button-small button-small-blue"><i class="icon-angle-right"></i>Modifier la galerie</button>';
 	this.BlockHeadOption.firstChild.onclick = function(){ Class.open(self); };
 
 	var Width;
