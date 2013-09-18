@@ -104,5 +104,5 @@ set: function()
 
 if(typeof GModule != 'undefined')
 {
-	GModule.ScriptCharger('Form', 'creator/module/form/form.js');
+	GModule.ScriptCharger('Form', 'form/form.js');
 }

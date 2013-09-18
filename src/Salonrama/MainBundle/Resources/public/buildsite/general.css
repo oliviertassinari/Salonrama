@@ -174,19 +174,13 @@ margin:auto;
 
 /* DIVERS */
 
-#BarreChargement{
+#bsCadreLoad{
+cursor:progress;
 position:absolute;
 top:150px;
 left:10px;
-background:#e9f2ff url(image/icone/chargement.gif) no-repeat 6px 8px;
-border:1px solid #8eaace;
-color:#444;
-cursor:progress;
-font-size:20px;
-padding:5px 15px 5px 29px;
 z-index:10;
 }
-
 
 .GData{
 cursor:text;

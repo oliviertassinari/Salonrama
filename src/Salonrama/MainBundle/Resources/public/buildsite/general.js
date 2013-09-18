@@ -5,7 +5,7 @@ var CClient;
 
 function Initi()
 {
-	document.getElementById('BarreChargement').innerHTML = 'Initalisation en cours...';
+	bsCadreLoad.show();
 
 	CClient = Ot.CClient();
 
@@ -20,7 +20,7 @@ function Initi()
 	GTheme.set(GTheme.Act, function()
 	{
 		GPage.set(GPage.Act);
-		removeBarreChargement();
+		bsCadreLoad.hide();
 	});
 
 	onScroll();
@@ -111,7 +111,7 @@ change: function(Theme, CallBack)
 {
 	if(GPage.Busy == false && Theme != this.Act)
 	{
-		addBarreChargement();
+		bsCadreLoad.show();
 
 		GPage.Busy = true;
 		this.Act = Theme;
@@ -123,7 +123,7 @@ change: function(Theme, CallBack)
 			{
 				GPage.set(GPage.Act);
 
-				removeBarreChargement();
+				bsCadreLoad.hide();
 
 				if(Ot.isFonc(CallBack)){
 					CallBack(false);
@@ -368,7 +368,7 @@ change: function(Page)
 {
 	if(Page == 'reload' || (Page != this.Act && this.getIndexListId(this.Act) != -1) && this.Busy == false)
 	{
-		addBarreChargement();
+		bsCadreLoad.show();
 
 		this.Busy = true;
 		if(Page == 'reload'){
@@ -379,7 +379,7 @@ change: function(Page)
 		var CallBack = function()
 		{
 			GPage.set(Page);
-			removeBarreChargement();
+			bsCadreLoad.hide();
 		};
 
 		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[this.Act])){
@@ -730,24 +730,20 @@ loadScript: function(Type, CallBack)
 		this.LoadList[Type].Script = {};
 
 		if(Type == 'Map'){
-			this.addFile(Type, 'Script', 'creator/module/map/map.js');
-			this.addFile(Type, 'Style', 'creator/module/map/map.css');
+			this.addFile(Type, 'Script', 'map/map.js');
+			this.addFile(Type, 'Style', 'map/map.css');
 		}
 		else if(Type == 'Tab'){
-			this.addFile(Type, 'Script', 'creator/module/tab/tab.js');
-			this.addFile(Type, 'Style', 'creator/module/tab/tab.css');
+			this.addFile(Type, 'Script', 'tab/tab.js');
+			this.addFile(Type, 'Style', 'tab/tab.css');
 		}
 		else if(Type == 'Form'){
-			this.addFile(Type, 'Script', 'creator/module/form/form.js');
-			this.addFile(Type, 'Style', 'creator/module/form/form.css');
+			this.addFile(Type, 'Script', 'form/form.js');
+			this.addFile(Type, 'Style', 'form/form.css');
 		}
 		else if(Type == 'Galerie'){
-			this.addFile(Type, 'Style', 'creator/module/galerie/mooflow.css');
-			this.addFile(Type, 'Style', 'creator/module/galerie/milkbox.css');
-			this.addFile(Type, 'Style', 'creator/module/galerie/galerie.css');
-			this.addFile(Type, 'Script', 'creator/module/galerie/milkbox.js');
-			this.addFile(Type, 'Script', 'creator/module/galerie/mooflow.js');
-			this.addFile(Type, 'Script', 'creator/module/galerie/galerie.js');
+			this.addFile(Type, 'Style', 'galerie/galerie.css');
+			this.addFile(Type, 'Script', 'galerie/galerie.js');
 		}
 	}
 	else{
@@ -758,15 +754,17 @@ loadScript: function(Type, CallBack)
 
 addFile: function(Type, Mode, Url)
 {
+	var pathModule = '/bundles/salonramamain/buildsite/module/';
+
 	if(Mode == 'Style')
 	{
 		var Style = Ot.addStyle(document);
-		Style.href = Url;
+		Style.href = pathModule+Url;
 	}
 	else if(Mode == 'Script')
 	{
 		var Script = Ot.addScript(document);
-		Script.src = Url;
+		Script.src = pathModule+Url;
 
 		this.LoadList[Type].Script[Url] = 0; //En chargement
 	}
@@ -827,27 +825,39 @@ getSave: function(ModuleObj, Type)
 };
 
 
-function addBarreChargement()
-{
-	var Chargement = document.getElementById('BarreChargement');
+var bsCadreLoad = {
 
-	Chargement.onclick = removeBarreChargement;
-	Ot.setLeftTop(Chargement, 10, 150);
-	Chargement.innerHTML = 'Chargement en cours...';
-	Ot.stopFx(Chargement);
-	Ot.setOpacity(Chargement, 0);
-	Chargement.style.display = 'block';
-	new Fx(Chargement, { From: 0, To: 1, Mode: 'opacity' });
+isInit: false,
+cadre: null,
+
+init: function(){
+	this.cadre = $(document.createElement('div'));
+	this.cadre.html('<i class="icon-spinner icon-spin"></i>Chargement en cours...');
+	this.cadre.addClass('cadre-small cadre-small-blue');
+	this.cadre.attr('id', 'bsCadreLoad');
+
+	$('body').append(this.cadre);
+
+	this.isInit = true;
+},
+
+show: function()
+{
+	if(!this.isInit)
+	{
+		this.init();
+	}
+
+	this.cadre.stop();
+	this.cadre.show();
+},
+
+hide: function()
+{
+	this.cadre.hide();
 }
 
-function removeBarreChargement()
-{
-	var Chargement = document.getElementById('BarreChargement');
-
-	Chargement.onclick = null;
-	Ot.stopFx(Chargement);
-	new Fx(Chargement, { From: 1, To: 0, Mode: 'opacity', CallBack: function(){ Chargement.style.display = 'none'; } });
-}
+};
 
 function isset(Var)
 {

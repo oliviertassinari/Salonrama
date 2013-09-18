@@ -189,7 +189,7 @@ initi: function()
 
 	this.Table = Table;
 
-	this.BlockHeadOption.innerHTML = '<button type="button" class="button-small button-small-green"><i class="icon-add"></i>Ajouter une ligne</button>';
+	this.BlockHeadOption.innerHTML = '<button type="button" class="button-small button-small-green"><i class="icon-plus"></i>Ajouter une ligne</button>';
 	this.BlockHeadOption.firstChild.onclick = function()
 	{
 		self.addLigne('', ' €');
@@ -624,5 +624,5 @@ onKeyDown: function(event, Input)
 
 if(typeof GModule != 'undefined')
 {
-	GModule.ScriptCharger('Tab', 'creator/module/tab/tab.js');
+	GModule.ScriptCharger('Tab', 'tab/tab.js');
 }

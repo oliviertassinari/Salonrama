@@ -8,6 +8,8 @@
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/font_awesome.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/button.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/cadre.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/lightbox.css') }}"/>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/general.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
@@ -28,10 +30,10 @@
 	display:block;
 	width:48px;
 	height:48px;
-	background:url({{ asset('bundles/salonramamain/buildsite/image/load.gif') }}) no-repeat;
+	background:url("{{ asset('bundles/salonramamain/buildsite/image/load.gif') }}") no-repeat;
 	}
 	#CadSaveLoad.terminer{
-	background:url({{ asset('bundles/salonramamain/buildsite/image/tick.png') }}) no-repeat;
+	background:url("{{ asset('bundles/salonramamain/buildsite/image/tick.png') }}") no-repeat;
 	}
 	#CadSaveTxt{
 	text-align:center;
@@ -45,12 +47,13 @@
 	position:absolute;
 	height:48px;
 	width:48px;
-	background:url({{ asset('bundles/salonramamain/buildsite/image/save.png') }}) no-repeat;
+	background:url("{{ asset('bundles/salonramamain/buildsite/image/save.png') }}") no-repeat;
 	}
 
 	</style>
 
 	<script src="{{ asset('bundles/salonramamain/js/jquery.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/lightbox.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/json.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/history.js') }}"></script>
@@ -134,23 +137,25 @@
 
 	function voirSite()
 	{
-		addBarreChargement();
+		bsCadreLoad.show();
 
 		var BlockList = GBlock.getSave();
 		var CallBack = function()
 		{
-			Ot.SendAjax('POST', 'creator/voir_site.php', {}, function(xhr)
-			{
-				Ot.decodeAjaxReturn(xhr.responseText, function(description)
-				{
+			$.ajax({
+				type: 'POST',
+				url: 'preview',
+				data: {},
+				dataType: 'json',
+				success: function(response){
 					Ot.openPopup(LocHomeSite+'index.php?page='+GPage.Act, 'Full', '');
 				},
-				function(description)
-				{
-					alert('Erreur : ' + description);
-				});
-
-				removeBarreChargement();
+				error: function(rs, e) {
+					alert('Erreur : ' + e);
+				},
+				complete: function(jqXHR, textStatus) {
+					bsCadreLoad.hide();				
+				}
 			});
 		};
 
@@ -218,7 +223,6 @@
 <body>
 	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
 
-	<div id="BarreChargement">Chargement en cours...</div>
 	<div id="CreatorCadre">{{ include("SalonramaMainBundle:Buildsite:cadre.html.twig") }}</div>
 
 	<div id="Creator">

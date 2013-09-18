@@ -92,7 +92,7 @@ onKeyup: function(event)
     {
     	this.setPrevious();
     }
-    else
+    else if(keycode == KEYCODE_RIGHTARROW)
     {
     	this.setNext();
     }

@@ -68,6 +68,10 @@ salonrama_main_buildsite_theme_get_inte:
     pattern: /buildsite/theme/get_inte
     defaults: { _controller: SalonramaMainBundle:Buildsite/Theme:getInte }
 
+salonrama_main_buildsite_preview:
+    pattern: /buildsite/preview
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Preview:preview }
+
 salonrama_main_buildsite_wys:
     pattern: /buildsite/wys
     defaults: { _controller: SalonramaMainBundle:Buildsite/Wys:wys }

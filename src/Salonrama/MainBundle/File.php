@@ -80,7 +80,31 @@ class File
 		return true;
 	}
 
-	
+	public static function emptyFolderFile($path)
+	{
+		if(is_dir($path))
+		{
+			if($handle = opendir($path))
+			{
+				while(($file = readdir($handle)) !== false)
+				{
+					if($file === '.' || $file === '..'){
+						continue;
+					}
+					else if(is_file($path.$file)){
+						unlink($path.$file);
+					}
+				}
+				closedir($handle);
+			}
+		}
+		else{
+			mkdir($path, 0777);
+		}
+	}
+
+
+
 
 	public static function delFolder($path)
 	{
@@ -149,29 +173,6 @@ class File
 		else{
 			$size = round($size/(1024*1024*1024), 1);
 			return $size." GB";
-		}
-	}
-
-	public static function emptyFolder($path)
-	{
-		if(is_dir($path))
-		{
-			if($handle = opendir($path))
-			{
-				while(($file = readdir($handle)) !== false)
-				{
-					if($file === '.' || $file === '..'){
-						continue;
-					}
-					else if(is_file($path.$file)){
-						unlink($path.$file);
-					}
-				}
-				closedir($handle);
-			}
-		}
-		else{
-			mkdir($path, 0777);
 		}
 	}
 

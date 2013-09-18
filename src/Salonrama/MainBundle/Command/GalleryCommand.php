@@ -9,6 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Salonrama\MainBundle\File;
 use Salonrama\MainBundle\Entity\Gallery;
+use Salonrama\MainBundle\Rand;
 
 class GalleryCommand extends ContainerAwareCommand
 {
@@ -46,7 +47,7 @@ class GalleryCommand extends ContainerAwareCommand
 				{
 					if(strrpos($file, 'gallery_') !== 0)
 					{
-						$name = 'gallery_'.rand(0, 10000).'.'.File::getExtension($file);
+						$name = 'gallery_'.Rand::getId().'.'.File::getExtension($file);
 						rename($path.$file, $path.$name);
 					}
 					else

@@ -1,6 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
 GModule.ClassList['Map'] = {
 
 Module: function()
@@ -106,7 +103,7 @@ setAdresse: function(Adresse)
 	{
 		this.Input.blur();
 
-		addBarreChargement();
+		bsCadreLoad.show();
 		var self = this;
 
 		this.GoogleMap.getLatLon(Adresse, function(Etat)
@@ -134,7 +131,7 @@ setAdresse: function(Adresse)
 
 			GBlock.setBlockOptionHeight(self.BlockObj);
 
-			removeBarreChargement();
+			bsCadreLoad.hide();
 		});
 	}
 },
@@ -168,5 +165,5 @@ VerifInput: function(Mode, event)
 
 if(typeof GModule != 'undefined')
 {
-	GModule.ScriptCharger('Map', 'creator/module/map/map.js');
+	GModule.ScriptCharger('Map', 'map/map.js');
 }

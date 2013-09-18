@@ -543,5 +543,5 @@ setBlock: function()
 
 if(typeof GModule != 'undefined')
 {
-	GModule.ScriptCharger('Galerie', 'creator/module/galerie/galerie.js');
+	GModule.ScriptCharger('Galerie', 'galerie/galerie.js');
 }

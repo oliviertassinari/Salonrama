@@ -2391,7 +2391,7 @@ apply: function(Nom)
 
 addBdd: function(Nom)
 {
-	addBarreChargement();
+	bsCadreLoad.show();
 
 	if(Nom == 'PreVis'){
 		Nom = GImage.getNom(this.PreVis.Ele.ImgA.src);
@@ -2410,6 +2410,9 @@ addBdd: function(Nom)
 		error: function(rs, e) {
 			alert('Erreur : ' + e);
 		},
+		complete: function(jqXHR, textStatus) {
+			bsCadreLoad.hide();				
+		}
 	});
 },
 
@@ -2417,7 +2420,7 @@ addUrl: function(R)
 {
 	if(R == 0)
 	{
-		addBarreChargement();
+		bsCadreLoad.show();
 
 		var Input = document.getElementById('CadImageCon').getElementsByTagName('input')[0]; //URL
 
@@ -2429,12 +2432,13 @@ addUrl: function(R)
 			success: function(response){
 				GImage.add(response.text[0], response.text[1], response.text[2]);
 				CadImage.apply(response.text[0]);
-				removeBarreChargement();
 			},
 			error: function(rs, e) {
 				GFormF.setChampErr(Input, Input.nextSibling, false, e);
-				removeBarreChargement();
 			},
+			complete: function(jqXHR, textStatus) {
+				bsCadreLoad.hide();				
+			}
 		});
 	}
 },
