@@ -4,8 +4,14 @@
 
 {% block head %}
 	<title>Etape 5 - Publication</title>
+
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
 {% endblock %}
 
 {% block body %}
+	{% autoescape false %}
+	{{ storyboard }}
+	{% endautoescape %}
+
 	<h1>Etape 5 - Publication</h1>
 {% endblock %}

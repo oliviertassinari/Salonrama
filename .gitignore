@@ -1,5 +1,6 @@
 web/bundles/*
 web/site/step/*
+web/site/subdomain/*
 web/site/online/*
 app/cache/*
 app/logs/*

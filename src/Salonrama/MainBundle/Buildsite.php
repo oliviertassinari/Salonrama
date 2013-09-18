@@ -4,9 +4,10 @@ namespace Salonrama\MainBundle;
 
 class Buildsite
 {
-	public $step;
-	public $stepCurrent;
-	public $stepReach;
+	private $step;
+	private $stepCurrent;
+	private $stepReach;
+	private $session;
 
     public function __construct($session, $stepCurrent)
     {
@@ -20,6 +21,7 @@ class Buildsite
 
         $this->stepCurrent = $stepCurrent;
 		$this->stepReach = $session->get('buildsite/stepReach', 1);
+		$this->session = $session;
     }
 
 	public function isAllowed($redirect = true)
@@ -37,6 +39,12 @@ class Buildsite
 	public function getStepReach()
 	{
 		return $this->stepReach;
+	}
+
+	public function setStepReach($stepReach)
+	{
+		$this->stepReach = $stepReach;
+		$this->session->set('buildsite/stepReach', $stepReach);
 	}
 
 	public function getStoryboard()

@@ -15,6 +15,9 @@ text-align:right;
 .form-fieldset .form-controls{
 margin-left:180px;
 }
+.form-fieldset .form-controls label{
+width:auto;
+}
 
 .form-fieldset input[type="text"], .form-fieldset input[type="password"], .form-fieldset select, .form-fieldset textarea{
 border:1px solid #C0C0C0;
@@ -26,7 +29,7 @@ width:250px;
 outline:0;
 border-radius:3px;
 float:left;
-margin-right:8px;
+margin:0 8px;
 }
 .form-fieldset input[type="text"]:hover, .form-fieldset input[type="password"]:hover, .form-fieldset select:hover, .form-fieldset textarea:hover{
 border-color:#7e818a;
@@ -60,7 +63,7 @@ height:150px;
 }
 
 .form-actions{
-margin:20px 0 15px 180px;
+margin:20px 0 15px 188px;
 }
 
 .form-required{

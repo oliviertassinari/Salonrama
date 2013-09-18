@@ -25,7 +25,7 @@ class Step1Controller extends Controller
         {
 			$session->set('buildsite/site/theme', htmlspecialchars($request->request->get('site-theme', 'RobinBleu')));
 
-			if($buildsite->stepReach == 1)
+			if($buildsite->getStepReach() == 1)
 			{
 				$time = explode(' ', microtime());
 				$id = str_replace('.', '-', $time[1] + $time[0]);
@@ -37,7 +37,7 @@ class Step1Controller extends Controller
 				File::addFolder($session->get('buildsite/site/pathStepBack'));
 				File::addFolder($session->get('buildsite/site/pathStepBack').'upload/');
 
-				$session->set('buildsite/stepReach', 2);
+				$buildsite->setStepReach(2);
 
 				return $this->redirect($this->generateUrl('salonrama_main_buildsite_step2'));
 			}

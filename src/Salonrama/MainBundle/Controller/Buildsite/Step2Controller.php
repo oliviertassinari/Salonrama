@@ -26,7 +26,7 @@ class Step2Controller extends Controller
 
         if($request->isMethod('POST'))
         {
-            $session->set('buildsite/salon/name', $request->request->get('salon-name'));
+            $session->set('buildsite/salon/name', trim($request->request->get('salon-name')));
 
             if($request->request->get('salon-women-allowed'))
             {
@@ -55,12 +55,12 @@ class Step2Controller extends Controller
                 $session->set('buildsite/salon/childrenAllowed', false);
             }
 
-            $session->set('buildsite/salon/address', $request->request->get('salon-address'));
-            $session->set('buildsite/salon/zipcode', $request->request->get('salon-zipcode'));
-            $session->set('buildsite/salon/city', $request->request->get('salon-city'));
-            $session->set('buildsite/salon/country', $request->request->get('salon-country'));
-            $session->set('buildsite/salon/phone', $request->request->get('salon-phone'));
-            $session->set('buildsite/salon/email', $request->request->get('salon-email'));
+            $session->set('buildsite/salon/address', trim($request->request->get('salon-address')));
+            $session->set('buildsite/salon/zipcode', trim($request->request->get('salon-zipcode')));
+            $session->set('buildsite/salon/city', trim($request->request->get('salon-city')));
+            $session->set('buildsite/salon/country', trim($request->request->get('salon-country')));
+            $session->set('buildsite/salon/phone', trim($request->request->get('salon-phone')));
+            $session->set('buildsite/salon/email', trim($request->request->get('salon-email')));
             $session->set('buildsite/salon/schedule', $request->request->get('salon-schedule'));
 
             $Nom = $session->get('buildsite/salon/name', 'Nom du Salon');
@@ -168,9 +168,9 @@ class Step2Controller extends Controller
                 ]
             }');
 
-            if($buildsite->stepReach == 2)
+            if($buildsite->getStepReach() == 2)
             {
-                $session->set('buildsite/stepReach', 3);
+                $buildsite->setStepReach(3);
 
                 File::copyFolder('site/default/', $session->get('buildsite/site/pathStepBack').'upload/');
 

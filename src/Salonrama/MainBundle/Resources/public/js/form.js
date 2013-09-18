@@ -22,8 +22,10 @@ addInput: function(inputId, param)
 	var input = $('#'+inputId);
 	var inputTagName = input.prop('tagName').toLowerCase();
 
-	param = $.extend({}, param);
-	param.isNeeded = (typeof param.isNeeded != 'undefined') ? param.isNeeded : true;
+	param = $.extend({
+		isNeeded: true,
+		inputStateEnd: false
+	}, param);
 
 	if(inputTagName == 'input' && (input.prop('type').toLowerCase() == 'text' || input.prop('type').toLowerCase() == 'password'))
 	{
@@ -39,6 +41,11 @@ addInput: function(inputId, param)
 			param.regexp = { code : /^[0-9+() _.-:]{6,30}$/, text: 'Numero invalide' };
 			param.minLength = 6;
 			param.maxLength = 20;
+		}
+		else if(param.regexp == 'subdomain'){
+			param.regexp = { code : /^[a-z0-9]{1}[a-z0-9-]*[a-z0-9]{1}$/, text: 'Caractères invalides [0-9] [a-z] et [-]' };
+			param.minLength = 3;
+			param.maxLength = 63;
 		}
 
 		input.on('input', function(){
@@ -130,17 +137,20 @@ addInputState: function(input, state)
 		span.innerHTML = '<i class="icon-remove"></i>'+state.text;
 	}
 
-	input.after($(span));
+	if(this.list[input.attr('id')].param.inputStateEnd)
+	{
+		$(span).insertAfter(input.parent().children().last());
+	}
+	else
+	{
+		input.after($(span));
+	}
 },
 
 removeInputState: function(input)
 {
 	input.removeClass('form-input-error');
-
-	if(input.next('span').length > 0)
-	{
-		input.next('span').remove();
-	}	
+	input.parent().find('.form-input-state-ok, .form-input-state-error').remove();
 },
 
 valideInputText: function(item)

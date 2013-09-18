@@ -4,8 +4,150 @@
 
 {% block head %}
 	<title>Etape 4 - Adresse internet</title>
+
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/tooltip.css') }}"/>
+
+	<style>
+	#subdomain-suggest{
+	margin-bottom:25px;
+	}
+	#subdomain-suggest li{
+	list-style:disc inside; 
+	margin-top:5px;
+	margin-left:10px;
+	}
+	#subdomain-suggest li span{
+	cursor:pointer;
+	}
+	#subdomain-suggest li span:hover{
+	color:#294773;
+	}
+	</style>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<script>
+
+	var busy = false;
+
+	$(document).ready(function()
+	{
+		$('#subdomain-subdomain').focus();
+
+		var subdomainForm = new Form($('#subdomain-post'), function(result, values, self){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					self.setGlobalState(2, 'Vérification en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							if(response.state == 0)
+							{
+								eval(response.exec);
+								self.setGlobalState(response.state, response.text);
+							}
+							else
+							{
+								self.setInputState($('#subdomain-subdomain'), response);
+								self.setGlobalState(null);
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							self.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+		});
+		subdomainForm.addInput('subdomain-subdomain', { regexp: 'subdomain', inputStateEnd: true });
+
+		$('#subdomain-suggest').find('span').click(function(){
+			setSuggest($(this).find('b').html());
+		});
+		$('#subdomain-suggest').find('a').click(function(event){
+			event.preventDefault();
+			setSuggest($(this).prev().find('b').html());
+			subdomainForm.valide();
+		});
+
+		if(!document.getElementById('EtapeValide'))
+		{
+			document.getElementById('EtapeSuivant').onclick = function(){ subdomainForm.valide(); };
+		}
+		else
+		{
+			document.getElementById('EtapeValide').onclick = function(){ subdomainForm.valide(); };
+		}
+	});
+
+	function setSuggest(suggest)
+	{
+		$('#subdomain-subdomain').val(suggest);
+		$('#subdomain-subdomain').focus();
+	}
+
+	</script>
 {% endblock %}
 
 {% block body %}
+	{% autoescape false %}
+	{{ storyboard }}
+	{% endautoescape %}
+
 	<h1>Etape 4 - Adresse internet</h1>
+
+	<div class="cadre-small cadre-small-orange">
+		<i class="icon-info-sign"></i>Votre adresse internet permet aux internautes d'accéder à votre site, son choix est important pour votre future visibilité sur internet.
+	</div>
+
+	{% if suggest %}
+	<strong>Propositions d'adresses :</strong>
+	<ul id="subdomain-suggest">
+		{% for value in suggest %}
+		<li><span>http://<b>{{ value }}</b>.salonrama.fr</span>	<a href="#">choisir</a></li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	<form method="post" action="" id="subdomain-post">
+	<fieldset>
+		<legend>Adresse internet</legend>
+
+		<fieldset class="form-fieldset">
+			<label for="subdomain-subdomain">
+				Adresse
+				<span class="tooltip">
+					<i class="icon-question-sign"></i>
+					<span>Les caractères autorisés sont les lettres minuscules (a-z), les nombres (0-9) et le tiret (-) entre les mots.</span>
+				</span>
+			</label>
+			<div class="form-controls">
+				<label for="subdomain-subdomain">http://</label><input type="text" name="subdomain-subdomain" id="subdomain-subdomain" value="{{ subdomain }}">
+				<label for="subdomain-subdomain" style="margin-right:8px;">.salonrama.fr</label>
+			</div>
+		</fieldset>
+
+		<div class="form-actions">
+			<div class="form-global-state cadre-small"></div>
+		</div>
+	</fieldset> 
+	</form>
+
+	{% autoescape false %}
+	{{ foot }}
+	{% endautoescape %}
 {% endblock %}
