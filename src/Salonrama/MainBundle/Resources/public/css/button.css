@@ -168,10 +168,10 @@ box-shadow:0 1px #fedc75 inset;
 color:#312500 !important;
 }
 .button-big-yellow:hover{
-background:#a97f00;
-background:linear-gradient(to top, #a97f00, #f6b901);
-background:-webkit-gradient(linear, center bottom, center top, from(#a97f00), to(#f6b901));
-border-color:#a97f00 #997300 #856400;
+background:#c89600;
+background:linear-gradient(to top, #c89600, #f6b901);
+background:-webkit-gradient(linear, center bottom, center top, from(#c89600), to(#f6b901));
+border-color:#c89600 #997300 #856400;
 }
 .button-big-yellow:active{
 background:#f6b901;

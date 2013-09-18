@@ -5,7 +5,30 @@
 {% block head %}
 	<title>Etape 5 - Publication</title>
 
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
+
+	<script>
+
+	var RecaptchaOptions = {
+		theme: 'clean',
+		lang : 'fr'
+	};
+
+	</script>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+	});
+
+	</script>
+
 {% endblock %}
 
 {% block body %}
@@ -14,4 +37,76 @@
 	{% endautoescape %}
 
 	<h1>Etape 5 - Publication</h1>
+
+	<div class="cadre-small cadre-small-orange">
+		<i class="icon-info-sign"></i>Vous venez de finir la création de votre site.<br/> 
+		Une fois publié et disponible sur internet par vos clients et futurs clients, votre site sera automatiquement référencé dans les moteurs de recherche les plus connus (Google, Bing, Yahoo, etc…).
+	</div>
+
+	<form method="post" action="" id="publish-post">
+	<fieldset>
+		<legend>Inscription</legend>
+
+		<fieldset class="form-fieldset">
+			<label for="publish-firstname">Prenom</label>
+			<div class="form-controls">
+				<input type="text" name="publish-firstname" id="publish-firstname">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="publish-lastname">Nom</label>
+			<div class="form-controls">
+				<input type="text" name="publish-lastname" id="publish-lastname">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="publish-email">Email</label>
+			<div class="form-controls">
+				<input type="text" name="publish-email" id="publish-email">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="publish-password">Mot de passe</label>
+			<div class="form-controls">
+				<input type="password" name="publish-password" id="publish-password">
+			</div>
+		</fieldset>
+
+		<fieldset class="form-fieldset">
+			<label for="recaptcha_response_field">Test anti-machine</label>
+			<div class="form-controls">
+				{{ include("SalonramaMainBundle:Main:recaptcha.html.twig") }}
+			</div>
+		</fieldset>
+
+
+		<div class="form-actions">
+			<div class="form-global-state cadre-small"></div>
+		</div>
+	</fieldset> 
+	</form>
+
+	<div class="corps_droit">	
+		<div class="button-big button-big-green" onclick="Form.Valide()">
+			<i class="icon-upload-alt"></i>
+			<span class="gros">Publier mon site</span><br/>
+			<span class="petit">et confirmer l'inscription</span>
+		</div>
+		<div class="Notification">
+			En cliquant sur le bouton « Publier » vous acceptez automatiquement<a href="condition.php" target="_blank">les conditions d'utilisation</a>.<br/>
+			Un <strong>e-mail de confirmation</strong> sera envoyé à votre adresse.
+		</div>
+		<div class="Clear"></div>
+	</div>
+	<div class="corps_gauche">
+		<div class="ButtonBigYellow" onclick="document.location='etape3.php'">Modifier mon site</div><br/><br/>
+		<div class="ButtonBigBlue" onclick="voirSite()">
+			<img src="image/icone/zoom.png" alt="" width="16" height="16"/> Voir mon site
+		</div>
+	</div>
+	<div id="EtapeAide" onclick="Ot.openPopup('aide/etape5.php', '550', '650')"><p>Aide</p></div>
+	<div class="Clear"></div>
 {% endblock %}

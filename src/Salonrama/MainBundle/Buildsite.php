@@ -50,7 +50,6 @@ class Buildsite
 	public function getStoryboard()
 	{
 		$storyboard = '';
-		$height = 0;
 
 		for($i = 1; $i < sizeof($this->step)+1; $i++)
 		{
@@ -96,22 +95,20 @@ class Buildsite
 
 			if(isset($this->step[$i][2])){
 				$more = ' style="width:'.$this->step[$i][2].'px;"';
-				$height += $this->step[$i][2]; 
 			}
 			else{
 				$more = '';
-				$height += 150; 
 			}
 
 			if($i <= $this->stepReach){
-				$storyboard .= '<li class="'.$class.'"'.$more.'><a href="step'.$i.'" title="Retourner à l\'étape '.$i.'"><span>'.$i.'</span>'.$this->step[$i][0].'</a></li>';
+				$storyboard .= '<li class="'.$class.'"'.$more.'><a href="step'.$i.'" title="Retourner à l\'étape '.$i.'">'.$i.' - '.$this->step[$i][0].'</a></li>';
 			}
 			else{
-				$storyboard .= '<li class="'.$class.'"'.$more.'><span>'.$i.'</span>'.$this->step[$i][0].'</li>';
+				$storyboard .= '<li class="'.$class.'"'.$more.'>'.$i.' - '.$this->step[$i][0].'</li>';
 			}
 		}
 
-		return '<div id="storyboard" style="width:'.$height.'px;"><ul>'.$storyboard.'</ul></div>';
+		return '<div id="storyboard"><ul>'.$storyboard.'</ul></div>';
 	}
 
     public function getFoot()
@@ -129,7 +126,7 @@ class Buildsite
 			if($this->stepCurrent < $this->stepReach)
 			{
 				$foot .= '<div id="EtapeSuivant" onclick="document.location = \'step'.$this->stepReach.'\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
-					  '<div id="EtapeValide" class="button-big button-big-yellow">Modifier</div>';
+					  '<button type="button" id="EtapeValide" class="button-big button-big-yellow">Modifier</button>';
 			}
 			else
 			{
