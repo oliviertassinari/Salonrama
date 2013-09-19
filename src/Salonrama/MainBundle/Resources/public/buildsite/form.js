@@ -24,7 +24,7 @@ addChamp: function(Type, Obj, Param)
 		if(Param.RegExp)
 		{
 			if(Param.RegExp == 'email'){
-				Param.RegExp = { Code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, errorDescription: 'e-mail invalide' };
+				Param.RegExp = { Code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, errorDescription: 'email invalide' };
 				Param.LenMax = 320;
 			}
 			else if(Param.RegExp == 'Tel'){

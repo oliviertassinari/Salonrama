@@ -689,9 +689,9 @@ addBlockNew: function(Type)
 		break;
 
 		case 'Form':
-		CadPrompt.open('Nouveau Formulaire', 'Entrée ici votre adresse e-mail', '', function(Var)
+		CadPrompt.open('Nouveau Formulaire', 'Entrée ici votre adresse email', '', function(Var)
 		{
-			GModule.addBlock({ T: 'ModuleForm', V: { "email": Var, "ChampList": [["text","Nom",1], ["email","Mon adresse e-mail",1], ["text","Sujet",1], ["textarea","Message",1]] }, P: [400, 100, 0] }, 'addByUser');
+			GModule.addBlock({ T: 'ModuleForm', V: { "email": Var, "ChampList": [["text","Nom",1], ["email","Mon adresse email",1], ["text","Sujet",1], ["textarea","Message",1]] }, P: [400, 100, 0] }, 'addByUser');
 		});
 		break;
 	}

@@ -1299,7 +1299,7 @@ open: function(Lien)
 			'<div class="Ratio">'+
 				'<input type="radio" name="CadLienTypeList" id="CadLienTypeUrl" value="Url" checked="checked" onclick="CadLien.setType(\'Url\')"/><label for="CadLienTypeUrl">adresse internet</label>'+
 				'<input type="radio" name="CadLienTypeList" id="CadLienTypeSite" value="Site" onclick="CadLien.setType(\'Site\')"/><label for="CadLienTypeSite">page du site</label>'+
-				'<input type="radio" name="CadLienTypeList" id="CadLienTypeEmail" value="Email" onclick="CadLien.setType(\'Email\')"/><label for="CadLienTypeEmail">adresse e-mail</label>'+
+				'<input type="radio" name="CadLienTypeList" id="CadLienTypeEmail" value="Email" onclick="CadLien.setType(\'Email\')"/><label for="CadLienTypeEmail">adresse email</label>'+
 			'</div>'+
 			'<div id="CadLienType">'+
 				'<div class="FormChamp" id="CadLienUrl">'+
@@ -1311,7 +1311,7 @@ open: function(Lien)
 					'<select class="FormSelect" id="CadLienSiteInput"></select>'+
 				'</div>'+
 				'<div class="FormChamp" id="CadLienEmail">'+
-					'<label class="FormLabel" for="CadLienEmailInput">Adresse e-mail : </label>'+
+					'<label class="FormLabel" for="CadLienEmailInput">Adresse email : </label>'+
 					'<input class="FormInputText" id="CadLienEmailInput" type="text" size="40"/>'+
 				'</div>'+
 				'<div class="TextLittle" style="margin-left:122px;"></div>'+

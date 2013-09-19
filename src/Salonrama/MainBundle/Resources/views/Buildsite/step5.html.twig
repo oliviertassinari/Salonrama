@@ -8,6 +8,16 @@
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
 
+	<style>
+
+	.div3{
+	float:left;
+	width:31%;
+	margin:0 1%;
+	}
+
+	</style>
+
 	<script>
 
 	var RecaptchaOptions = {
@@ -20,12 +30,34 @@
 
 {% block javascript %}
 	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/jquery.popup.js') }}"></script>
 
 	<script>
 
 	$(document).ready(function()
 	{
 	});
+
+	function redirectStep3()
+	{
+		document.location="{{ path('salonrama_main_buildsite_step3') }}";
+	}
+
+	function preview()
+	{
+		$.ajax({
+			type: 'POST',
+			url: 'preview',
+			data: {},
+			dataType: 'json',
+			success: function(response){
+				$.popupOpen('{{ pathStepFront }}index.php', 'full');
+			},
+			error: function(rs, e) {
+				alert('Erreur : ' + e);
+			}
+		});
+	}
 
 	</script>
 
@@ -48,7 +80,7 @@
 		<legend>Inscription</legend>
 
 		<fieldset class="form-fieldset">
-			<label for="publish-firstname">Prenom</label>
+			<label for="publish-firstname">Prénom</label>
 			<div class="form-controls">
 				<input type="text" name="publish-firstname" id="publish-firstname">
 			</div>
@@ -85,28 +117,31 @@
 
 		<div class="form-actions">
 			<div class="form-global-state cadre-small"></div>
+			<button type="submit" style="display:none;">Submit</button>
 		</div>
 	</fieldset> 
 	</form>
 
-	<div class="corps_droit">	
-		<div class="button-big button-big-green" onclick="Form.Valide()">
+	<div class="div3">
+		<button type="button" class="button-small button-small-blue" onclick="redirectStep3()"><i class="icon-pencil"></i>Modifier mon site</button>
+		<br/><br/>
+		<button type="button" class="button-small button-small-blue" onclick="preview()">
+			<i class="icon-search"></i>Voir mon site
+		</button>
+	</div>
+	<div class="div3">
+		<div id="EtapeAide" onclick="Ot.openPopup('aide/etape5.php', '550', '650')"><p>Aide</p></div>
+	</div>
+	<div class="div3">	
+		<button type="button" class="button-big button-big-green" onclick="Form.Valide()">
 			<i class="icon-upload-alt"></i>
 			<span class="gros">Publier mon site</span><br/>
 			<span class="petit">et confirmer l'inscription</span>
-		</div>
+		</button>
 		<div class="Notification">
-			En cliquant sur le bouton « Publier » vous acceptez automatiquement<a href="condition.php" target="_blank">les conditions d'utilisation</a>.<br/>
-			Un <strong>e-mail de confirmation</strong> sera envoyé à votre adresse.
+			En cliquant sur le bouton « Publier » vous acceptez <a href="{{ path('salonrama_main_policy') }}" target="_blank">les conditions d'utilisation</a>.
 		</div>
 		<div class="Clear"></div>
 	</div>
-	<div class="corps_gauche">
-		<div class="ButtonBigYellow" onclick="document.location='etape3.php'">Modifier mon site</div><br/><br/>
-		<div class="ButtonBigBlue" onclick="voirSite()">
-			<img src="image/icone/zoom.png" alt="" width="16" height="16"/> Voir mon site
-		</div>
-	</div>
-	<div id="EtapeAide" onclick="Ot.openPopup('aide/etape5.php', '550', '650')"><p>Aide</p></div>
-	<div class="Clear"></div>
+	<div class="clear"></div>
 {% endblock %}

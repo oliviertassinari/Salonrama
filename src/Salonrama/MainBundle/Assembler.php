@@ -601,7 +601,7 @@ else
 	{
 		if($V['email'] == '')
 		{
-			return '<div class="BlockVide">Module contact désactivé : aucune e-mail de destination</div>';
+			return '<div class="BlockVide">Module contact désactivé : aucune email de destination</div>';
 		}
 
 		$this->addFile($this->pathPublic.'buildsite/ot.js', 'Script');
@@ -632,12 +632,12 @@ if($R == 0)
 		}
 		else
 		{
-			$Class->getEtatHtml(false, "Echec lors de l\\\'envoi de l\\\'e-mail", "'.$EtatId.'");
+			$Class->getEtatHtml(false, "Echec lors de l\\\'envoi de l\\\'email", "'.$EtatId.'");
 		}
 	}
 	else
 	{
-		$Class->getEtatHtml(false, "Votre e-mail n\\\'a pas été envoyé : module desactivé pendant la création du site.", "'.$EtatId.'");
+		$Class->getEtatHtml(false, "Votre email n\\\'a pas été envoyé : module desactivé pendant la création du site.", "'.$EtatId.'");
 	}
 }
 else if($R == 1)

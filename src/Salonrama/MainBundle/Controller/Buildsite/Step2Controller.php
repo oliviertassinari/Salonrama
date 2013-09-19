@@ -163,7 +163,7 @@ class Step2Controller extends Controller
                         '<br/><br/>N\'hésitez pas non plus à poser vos questions via le formulaire ci-dessous.</div><br/><br/><font size=\"5\"><strong>Nous contacter</strong></font>", "P": [220, 100, 0] },
                     { "T": "ModuleForm", "V": {
                         "email": "'.$session->get('buildsite/salon/email', '').'",
-                        "ChampList": [["text","Nom",1], ["email","Mon adresse e-mail",1], ["text","Sujet",1], ["textarea","Message",1]]
+                        "ChampList": [["text","Nom",1], ["email","Mon adresse email",1], ["text","Sujet",1], ["textarea","Message",1]]
                     }, "P": [430, 100, 0]}
                 ]
             }');

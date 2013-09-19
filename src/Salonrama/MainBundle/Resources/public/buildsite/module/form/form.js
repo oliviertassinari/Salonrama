@@ -49,7 +49,7 @@ initi: function()
 	var InputId = this.ModuleObj.id+'Input';
 
 	this.BlockHeadOption.innerHTML = '<div class="FormChamp" style="margin:2px 0 5px;">'+
-		'<label class="FormLabel" for="'+InputId+'" style="width:140px; padding-left:10px;">Votre adresse e-mail :</label>'+
+		'<label class="FormLabel" for="'+InputId+'" style="width:140px; padding-left:10px;">Votre adresse email :</label>'+
 		'<input type="text" id="'+InputId+'" class="FormInputText" size="40" style="width:50%;"/><span></span>'+
 	'</div>';
 

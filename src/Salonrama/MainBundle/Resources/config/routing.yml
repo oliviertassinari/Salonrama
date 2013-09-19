@@ -40,6 +40,10 @@ salonrama_main_legal:
     pattern:  /legal
     defaults: { _controller: SalonramaMainBundle:Legal:legal }
 
+salonrama_main_policy:
+    pattern:  /conditions
+    defaults: { _controller: SalonramaMainBundle:Policy:policy }
+
 salonrama_main_buildsite_step1:
     pattern:  /buildsite/step1
     defaults: { _controller: SalonramaMainBundle:Buildsite/Step1:step1 }

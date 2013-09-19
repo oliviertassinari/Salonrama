@@ -21,7 +21,10 @@ class Step5Controller extends Controller
 
 		$storyboard = $buildsite->getStoryboard();
 
-        return $this->render('SalonramaMainBundle:Buildsite:step5.html.twig', array('storyboard' => $storyboard));
+        return $this->render('SalonramaMainBundle:Buildsite:step5.html.twig', array(
+                                                                                'storyboard' => $storyboard,
+                                                                                'pathStepFront' => $session->get('buildsite/site/pathStepFront')
+                                                                            ));
     }
 }
 
