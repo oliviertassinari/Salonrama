@@ -55,13 +55,12 @@
 					busy = true;
 					self.setGlobalState(2, 'Vérification en cours...');
 
+					values['recaptcha_challenge_field'] = $('#recaptcha_challenge_field').val();
+
 					$.ajax({
 						type: "POST",
 						url: "",
-						data: { 
-							recaptcha_challenge_field: $('#recaptcha_challenge_field').val(),
-							recaptcha_response_field: $('#recaptcha_response_field').val()
-						},
+						data: values,
 						dataType: "json",
 						success: function(response){
 							if(response.state == 0)
@@ -71,8 +70,7 @@
 							}
 							else
 							{
-								Recaptcha.reload();
-								self.setInputState($('#recaptcha_response_field'), response);
+								eval(response.exec);
 								self.setGlobalState(null);
 							}
 

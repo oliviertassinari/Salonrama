@@ -65,6 +65,11 @@ class Salon
     protected $womenAllowed;
 
     /**
+     * @ORM\Column(name="children_allowed", type="boolean")
+     */
+    protected $childrenAllowed;
+
+    /**
      * @ORM\Column(name="schedule", type="text")
      */
     protected $schedule;
@@ -307,5 +312,28 @@ class Salon
     public function getWomenAllowed()
     {
         return $this->womenAllowed;
+    }
+
+    /**
+     * Set childrenAllowed
+     *
+     * @param boolean $childrenAllowed
+     * @return Salon
+     */
+    public function setChildrenAllowed($childrenAllowed)
+    {
+        $this->childrenAllowed = $childrenAllowed;
+    
+        return $this;
+    }
+
+    /**
+     * Get childrenAllowed
+     *
+     * @return boolean 
+     */
+    public function getChildrenAllowed()
+    {
+        return $this->childrenAllowed;
     }
 }

@@ -23,9 +23,9 @@ class Site
     protected $theme;
 
     /**
-     * @ORM\Column(name="loc_home_site", type="string", length=100)
+     * @ORM\Column(name="path_back", type="string", length=100)
      */
-    protected $locHomeSite;
+    protected $pathBack;
 
     /**
      * @ORM\Column(name="subdomain", type="string", length=63)
@@ -33,24 +33,24 @@ class Site
     protected $subdomain;
 
     /**
-     * @ORM\Column(name="image", type="string", length=65535)
+     * @ORM\Column(name="image_list", type="string", length=65535)
      */
-    protected $image;
+    protected $imageList;
 
     /**
-     * @ORM\Column(name="block", type="string", length=16777215)
+     * @ORM\Column(name="block_list", type="string", length=16777215)
      */
-    protected $block;
+    protected $blockList;
 
     /**
-     * @ORM\Column(name="page", type="string", length=65535)
+     * @ORM\Column(name="page_list", type="string", length=65535)
      */
-    protected $page;
+    protected $pageList;
 
     /**
-     * @ORM\Column(name="data", type="string", length=65535)
+     * @ORM\Column(name="data_list", type="string", length=65535)
      */
-    protected $data;
+    protected $dataList;
 
     /**
      * @ORM\Column(name="creation", type="datetime")
@@ -58,9 +58,9 @@ class Site
     protected $creation;
 
     /**
-     * @ORM\Column(name="update", type="datetime")
+     * @ORM\Column(name="last_update", type="datetime")
      */
-    protected $update;
+    protected $lastUpdate;
 
     /**
      * @ORM\Column(name="is_online", type="boolean")
@@ -101,26 +101,26 @@ class Site
     }
 
     /**
-     * Set locHomeSite
+     * Set pathBack
      *
-     * @param string $locHomeSite
+     * @param string $pathBack
      * @return Site
      */
-    public function setLocHomeSite($locHomeSite)
+    public function setPathBack($pathBack)
     {
-        $this->locHomeSite = $locHomeSite;
+        $this->pathBack = $pathBack;
     
         return $this;
     }
 
     /**
-     * Get locHomeSite
+     * Get pathBack
      *
      * @return string 
      */
-    public function getLocHomeSite()
+    public function getPathBack()
     {
-        return $this->locHomeSite;
+        return $this->pathBack;
     }
 
     /**
@@ -147,95 +147,95 @@ class Site
     }
 
     /**
-     * Set image
+     * Set imageList
      *
-     * @param string $image
+     * @param string $imageList
      * @return Site
      */
-    public function setImage($image)
+    public function setImageList($imageList)
     {
-        $this->image = $image;
+        $this->imageList = $imageList;
     
         return $this;
     }
 
     /**
-     * Get image
+     * Get imageList
      *
      * @return string 
      */
-    public function getImage()
+    public function getImageList()
     {
-        return $this->image;
+        return $this->imageList;
     }
 
     /**
-     * Set block
+     * Set blockList
      *
-     * @param string $block
+     * @param string $blockList
      * @return Site
      */
-    public function setBlock($block)
+    public function setBlockList($blockList)
     {
-        $this->block = $block;
+        $this->blockList = $blockList;
     
         return $this;
     }
 
     /**
-     * Get block
+     * Get blockList
      *
      * @return string 
      */
-    public function getBlock()
+    public function getBlockList()
     {
-        return $this->block;
+        return $this->blockList;
     }
 
     /**
-     * Set page
+     * Set pageList
      *
-     * @param string $page
+     * @param string $pageList
      * @return Site
      */
-    public function setPage($page)
+    public function setPageList($pageList)
     {
-        $this->page = $page;
+        $this->pageList = $pageList;
     
         return $this;
     }
 
     /**
-     * Get page
+     * Get pageList
      *
      * @return string 
      */
-    public function getPage()
+    public function getPageList()
     {
-        return $this->page;
+        return $this->pageList;
     }
 
     /**
-     * Set data
+     * Set dataList
      *
-     * @param string $data
+     * @param string $dataList
      * @return Site
      */
-    public function setData($data)
+    public function setDataList($dataList)
     {
-        $this->data = $data;
+        $this->dataList = $dataList;
     
         return $this;
     }
 
     /**
-     * Get data
+     * Get dataList
      *
      * @return string 
      */
-    public function getData()
+    public function getDataList()
     {
-        return $this->data;
+        return $this->dataList;
     }
 
     /**
@@ -262,26 +262,26 @@ class Site
     }
 
     /**
-     * Set update
+     * Set lastUpdate
      *
-     * @param \DateTime $update
+     * @param \DateTime $lastUpdate
      * @return Site
      */
-    public function setUpdate($update)
+    public function setLastUpdate($lastUpdate)
     {
-        $this->update = $update;
+        $this->lastUpdate = $lastUpdate;
     
         return $this;
     }
 
     /**
-     * Get update
+     * Get lastUpdate
      *
      * @return \DateTime 
      */
-    public function getUpdate()
+    public function getLastUpdate()
     {
-        return $this->update;
+        return $this->lastUpdate;
     }
 
     /**

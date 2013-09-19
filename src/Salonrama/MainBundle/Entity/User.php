@@ -57,6 +57,9 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->resetPasswordToken = '';
+        $this->confirmEmail = '';
+        $this->confirmEmailToken = '';
         $this->isActive = false;
     }
 

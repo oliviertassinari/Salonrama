@@ -45,7 +45,7 @@ class Account
     protected $site;
 
     /**
-     * @ORM\Column(name="last_login", type="datetime")
+     * @ORM\Column(name="last_login", type="datetime", nullable=true)
      */
     protected $lastLogin;
 

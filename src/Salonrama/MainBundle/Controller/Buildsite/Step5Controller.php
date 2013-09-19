@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Salonrama\MainBundle\Buildsite;
 use Salonrama\MainBundle\Entity\User;
+use Salonrama\MainBundle\Entity\Salon;
+use Salonrama\MainBundle\Entity\Site;
 use Salonrama\MainBundle\Entity\Account;
 
 class Step5Controller extends Controller
@@ -33,15 +35,34 @@ class Step5Controller extends Controller
                 $request->request->get('recaptcha_response_field')
             );
 
+            $firstName = trim($request->request->get('publish-firstname'));
+            $lastName = trim($request->request->get('publish-lastname'));
+            $email = trim($request->request->get('publish-email'));
+            $password = trim($request->request->get('publish-password'));
+
+            $em = $this->getDoctrine()->getManager();
+
             if($request->isXmlHttpRequest())
             {
-                if($resp->is_valid)
+                $userRepository = $em->getRepository('SalonramaMainBundle:User');
+                $findUser = $userRepository->findOneByEmail($email);
+
+                if(!$findUser)
                 {
-                    $state = array('state' => 0, 'text' => "Ok");
+                    if($resp->is_valid)
+                    {
+                        $state = array('state' => 0, 'text' => "Ok");
+                    }
+                    else
+                    {
+                        $state = array('state' => 1, 'text' => "Les caractères que vous avez saisis ne correspondent pas à l'image de vérification des mots. Veuillez réessayer.",
+                                        'exec' => "Recaptcha.reload();self.setInputState($('#recaptcha_response_field'), response)");
+                    }
                 }
                 else
                 {
-                    $state = array('state' => 1, 'text' => "Les caractères que vous avez saisis ne correspondent pas à l'image de vérification des mots. Veuillez réessayer.");
+                    $state = array('state' => 1, 'text' => 'Adresse email déjà utilisée',
+                                        'exec' => "self.setInputState($('#publish-email'), response)");
                 }
 
                 return new JsonResponse($state);
@@ -50,26 +71,50 @@ class Step5Controller extends Controller
             {
                 if($resp->is_valid)
                 {
-                    $firstName = trim($request->request->get('publish-firstname'));
-                    $lastName = trim($request->request->get('publish-lastname'));
-                    $email = trim($request->request->get('publish-email'));
-                    $password = trim($request->request->get('publish-password'));
 
-                    $em = $this->getDoctrine()->getManager();
-                 
+                    $salon = new Salon();
+                    $salon->setName($session->get('buildsite/salon/name'))
+                    ->setEmail($session->get('buildsite/salon/email'))
+                    ->setPhone($session->get('buildsite/salon/phone'))
+                    ->setAddress($session->get('buildsite/salon/address'))
+                    ->setZipcode($session->get('buildsite/salon/zipcode'))
+                    ->setCity($session->get('buildsite/salon/city'))
+                    ->setCountry($session->get('buildsite/salon/country'))
+                    ->setSchedule($session->get('buildsite/salon/schedule'))
+                    ->setMenAllowed($session->get('buildsite/salon/menAllowed'))
+                    ->setWomenAllowed($session->get('buildsite/salon/womenAllowed'))
+                    ->setChildrenAllowed($session->get('buildsite/salon/childrenAllowed'));
+
+                    $site = new Site();
+                    $site->setTheme($session->get('buildsite/site/theme'))
+                    ->setPathBack($session->get('buildsite/site/pathStepBack'))
+                    ->setSubdomain($session->get('buildsite/site/subdomain'))
+                    ->setImageList($session->get('buildsite/site/imageList'))
+                    ->setBlockList($session->get('buildsite/site/blockList'))
+                    ->setPageList($session->get('buildsite/site/pageList'))
+                    ->setDataList($session->get('buildsite/site/dataList'))
+                    ->setCreation(new \DateTime())
+                    ->setLastUpdate(new \DateTime())
+                    ->setIsOnline(false);
+
                     $account = new Account();
-                    $account->setFirstName($firstName);
-                    $account->setLastName($lastName);
+                    $account->setFirstName($firstName)
+                    ->setLastName($lastName)
+                    ->setNewsletterSend(true)
+                    ->setSite($site)
+                    ->setSalon($salon);
 
                     $user = new User();
-                    $user->setEmail($email);
-                    $user->setPassword($password);
-                    $user->setAccount($account);
+                    $user->setEmail($email)
+                    ->setPassword($password)
+                    ->setAccount($account);
 
-                    //$em->persist($account);
-                    //$em->persist($user);
+                    $em->persist($site);
+                    $em->persist($salon);
+                    $em->persist($account);
+                    $em->persist($user);
 
-                    //$em->flush();
+                    $em->flush();
                 }
             }
         }
