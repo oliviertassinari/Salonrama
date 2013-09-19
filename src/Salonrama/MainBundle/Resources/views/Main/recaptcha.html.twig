@@ -1,1 +1,22 @@
+<div id="recaptcha_widget" style="display:none">
+	<div id="recaptcha_image"></div>
+
+	<div class="recaptcha-button">
+		<div><a href="javascript:Recaptcha.reload()" title="Nouveau test"><i class="icon-rotate-right"></i></a></div>
+		<div class="recaptcha_only_if_image" title="Test audio"><a href="javascript:Recaptcha.switch_type('audio')"><i class="icon-volume-up"></i></a></div>
+		<div class="recaptcha_only_if_audio" title="Test visuel"><a href="javascript:Recaptcha.switch_type('image')"><i class="icon-align-center"></i></a></div>
+		<div><a href="javascript:Recaptcha.showhelp()" title="Aide"><i class="icon-question"></i></a></div>
+	</div>
+
+	<div class="clear"></div>
+
+	<label for="recaptcha_response_field">
+		<span class="recaptcha_only_if_image">Saisissez les deux mots :</span>
+		<span class="recaptcha_only_if_audio">Saisissez ce que vous entendez :</span>
+	</label>
+
+	<div class="clear"></div>
+
+	<input type="text" id="recaptcha_response_field" name="recaptcha_response_field"/>
+</div>
 <script type="text/javascript" src="http://www.google.com/recaptcha/api/challenge?k=6LeyqucSAAAAANUBSLkryKjTwR_UeXH2JLy4KUUl"></script>

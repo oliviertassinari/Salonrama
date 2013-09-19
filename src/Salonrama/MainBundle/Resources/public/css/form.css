@@ -36,7 +36,7 @@ border-color:#7e818a;
 box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset;
 }
 .form-fieldset input[type="text"]:focus, .form-fieldset input[type="password"]:focus, .form-fieldset select:focus, .form-fieldset textarea:focus{
-border-color:#51A7E8;
+border-color:#51A7E8 !important;
 box-shadow:0 1px 2px rgba(0, 0, 0, 0.15) inset, 0 0 6px rgba(82, 168, 236, 0.5);
 }
 

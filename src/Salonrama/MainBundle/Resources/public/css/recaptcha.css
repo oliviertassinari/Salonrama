@@ -1,0 +1,18 @@
+#recaptcha_image{
+float:left;
+background:#fff;
+text-align:center;
+margin:0 12px 8px 0;
+}
+
+.recaptcha-button{
+float:left;
+font-size:16px;
+}
+.recaptcha-button a{
+text-decoration:none !important;
+color:#646464;
+}
+.recaptcha-button a:hover, .recaptcha-button a:focus {
+color:#000;
+}

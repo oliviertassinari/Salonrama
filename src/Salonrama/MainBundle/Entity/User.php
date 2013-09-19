@@ -58,7 +58,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->isActive = false;
-        $this->signin = new \DateTime();
     }
 
     public function getUsername()

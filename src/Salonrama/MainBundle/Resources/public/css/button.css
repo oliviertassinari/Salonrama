@@ -7,8 +7,7 @@ border-color:#BCBCBC #BCBCBC #8C8C8C;
 text-decoration:none !important;
 cursor:pointer;
 padding:5px 10px 4px 7px;
-font:normal 14px arial,helvetica,tahoma,sans-serif;
-font-weight:700;
+font:700 14px arial,verdana,tahoma,helvetica,sans-serif;
 overflow:visible;
 border-radius:4px;
 box-shadow:0 1px rgba(0, 0, 0, 0.05) inset;
@@ -104,11 +103,11 @@ border-style:solid;
 border-width:1px;
 text-align:center;
 padding:8px 10px;
+font:700 14px arial,verdana,tahoma,helvetica,sans-serif;
 text-decoration:none !important;
-font-weight:700;
 color:#fff !important;
-font-size:14px;
 cursor:pointer;
+margin:0;
 }
 .button-big:focus{
 border-color:#51A7E8;
@@ -116,6 +115,9 @@ box-shadow:0 0 0 1px rgba(255, 255, 255, 0.5) inset, 0 0 6px rgba(82, 168, 236, 
 }
 .button-big::-moz-focus-inner{
 border:0;
+}
+.button-big i{
+margin-right:5px;
 }
 
 .button-big-blue{

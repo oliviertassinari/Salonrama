@@ -6,6 +6,7 @@
 	<title>Etape 5 - Publication</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/recaptcha.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/step.css') }}"/>
 
 	<style>
@@ -16,13 +17,20 @@
 	margin:0 1%;
 	}
 
+	#policy{
+	font-size:12px;
+	margin-top:10px;
+	padding:2px;
+	}
+
 	</style>
 
 	<script>
 
 	var RecaptchaOptions = {
-		theme: 'clean',
-		lang : 'fr'
+		lang : 'fr',
+		theme : 'custom',
+		custom_theme_widget: 'recaptcha_widget'
 	};
 
 	</script>
@@ -34,8 +42,57 @@
 
 	<script>
 
+	var publishForm;
+	var busy = false;
+
 	$(document).ready(function()
 	{
+		publishForm = new Form($('#publish-post'), function(result, values, self){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					self.setGlobalState(2, 'Vérification en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: { 
+							recaptcha_challenge_field: $('#recaptcha_challenge_field').val(),
+							recaptcha_response_field: $('#recaptcha_response_field').val()
+						},
+						dataType: "json",
+						success: function(response){
+							if(response.state == 0)
+							{
+								self.form.submit();
+								self.setGlobalState(response.state, response.text);
+							}
+							else
+							{
+								Recaptcha.reload();
+								self.setInputState($('#recaptcha_response_field'), response);
+								self.setGlobalState(null);
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							self.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
+			else{ self.setGlobalState(1, 'Champs Invalides.'); }
+		});
+		publishForm.addInput('publish-lastname');
+		publishForm.addInput('publish-firstname');
+		publishForm.addInput('publish-email', { regexp: 'email' });
+		publishForm.addInput('publish-password', { minLength: 4, maxLength: 25 });
+		publishForm.addInput('recaptcha_response_field');
 	});
 
 	function redirectStep3()
@@ -133,12 +190,11 @@
 		<div id="EtapeAide" onclick="Ot.openPopup('aide/etape5.php', '550', '650')"><p>Aide</p></div>
 	</div>
 	<div class="div3">	
-		<button type="button" class="button-big button-big-green" onclick="Form.Valide()">
-			<i class="icon-upload-alt"></i>
-			<span class="gros">Publier mon site</span><br/>
-			<span class="petit">et confirmer l'inscription</span>
+		<button type="button" class="button-big button-big-green" onclick="publishForm.valide()">
+			<span style="font-size:18px;"><i class="icon-upload-alt"></i>Publier mon site</span><br/>
+			<span style="font-size:12px;">et terminer l'inscription</span>
 		</button>
-		<div class="Notification">
+		<div id="policy">
 			En cliquant sur le bouton « Publier » vous acceptez <a href="{{ path('salonrama_main_policy') }}" target="_blank">les conditions d'utilisation</a>.
 		</div>
 		<div class="Clear"></div>

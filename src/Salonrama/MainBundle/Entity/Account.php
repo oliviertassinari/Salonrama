@@ -54,6 +54,11 @@ class Account
      */
     protected $signin;
 
+    public function __construct()
+    {
+        $this->signin = new \DateTime();
+    }
+
     public function getName()
     {
         return $this->getFirstName().' '.$this->getLastName();
