@@ -92,7 +92,9 @@ class Step4Controller extends Controller
 
     public function addSuggest($subdomain, $suggest)
     {
-    	if(Subdomain::isAvailableSite($subdomain)['state'] == 0)
+    	$isAvailableSite = Subdomain::isAvailableSite($subdomain);
+
+    	if($isAvailableSite['state'] == 0)
     	{
     		array_push($suggest, $subdomain);
     	}
