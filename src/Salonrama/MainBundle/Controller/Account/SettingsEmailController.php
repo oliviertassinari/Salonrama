@@ -16,7 +16,7 @@ class SettingsEmailController extends Controller
         {
             if($request->request->has('email-email'))
             {
-                $email = trim($request->request->get('email-email', ''));
+                $email = strtolower(trim($request->request->get('email-email', '')));
 
                 $errors = $this->container->get('validator')->validateValue($email, array(
                                                                                 new Assert\NotBlank(),
@@ -35,7 +35,7 @@ class SettingsEmailController extends Controller
                         {
                             $em = $this->getDoctrine()->getManager();
                             $user->setConfirmEmail($email);
-                            $user->setConfirmEmailToken(md5(uniqid(null, true)));
+                            $user->setConfirmEmailToken('regenerate');
                             $em->flush();
 
                             $mailer = $this->get('salonrama_main_mailer');
@@ -48,17 +48,17 @@ class SettingsEmailController extends Controller
                         }
                         else
                         {
-                            $state = array('state' => 1, 'text' => 'Adresse email déjà utilisée');
+                            $state = array('state' => 1, 'text' => 'Adresse email déjà utilisée.');
                         }
                     }
                     else
                     {
-                        $state = array('state' => 1, 'text' => "C'est vous");
+                        $state = array('state' => 1, 'text' => "C'est vous.");
                     }
                 }
                 else
                 {
-                    $state = array('state' => 1, 'text' => "L'email est invalide");
+                    $state = array('state' => 1, 'text' => "L'email est invalide.");
                 }
             }
             else

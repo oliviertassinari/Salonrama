@@ -96,6 +96,10 @@ salonrama_main_help_articles:
     pattern:  /aide/article/{id}
     defaults: { _controller: SalonramaMainBundle:Help:article }
 
+salonrama_main_confirm_email:
+    pattern:  /confirm_email/{id}/{token}
+    defaults: { _controller: SalonramaMainBundle:ConfirmEmail:confirmEmail }
+
 salonrama_main_account:
     pattern:  /mon_compte/
     defaults: { _controller: SalonramaMainBundle:Account/Index:index }

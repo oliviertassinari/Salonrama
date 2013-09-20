@@ -87,10 +87,11 @@ var CadreConfirm = function(message, callback)
 	this.cadreBig = new CadreBig(true);
 
 	this.cadreBig.open(400, 'Attention', message, '<button type="button" class="button-small button-small-green"><i class="icon-ok"></i>Ok</button>'+
-												'<button type="submit" class="button-small button-small-red"></i>Annuler</button>');
+												'<button type="button" class="button-small button-small-red"></i>Annuler</button>');
 
 	var foot = this.cadreBig.cadreBig.find('.cadre-big-foot');
 	foot.find('.button-small-green').click(function(){ self.valide(); });
+	foot.find('.button-small-green').focus();
 	foot.find('.button-small-red').click(function(){ self.close(); });
 };
 

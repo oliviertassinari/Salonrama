@@ -15,11 +15,11 @@ class Subdomain
 				$state = array('state' => 0, 'text' => 'Ok');
 			}
 			else{
-				$state = array('state' => 1, 'text' => 'Caractères invalides [0-9] [a-z] et [-]');
+				$state = array('state' => 1, 'text' => 'Caractères invalides [0-9] [a-z] et [-].');
 			}
 		}
 		else{
-			$state = array('state' => 1, 'text' => 'Doit comporter entre 3 et 63 caractères');
+			$state = array('state' => 1, 'text' => 'Doit comporter entre 3 et 63 caractères.');
 		}
 
 		return $state;
@@ -38,7 +38,7 @@ class Subdomain
 			}
 			else
 			{
-				$state = array('state' => 1, 'text' => 'Nom deja utilisé');
+				$state = array('state' => 1, 'text' => 'Nom deja utilisé.');
 			}
 		}
 

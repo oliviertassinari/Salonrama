@@ -30,7 +30,6 @@ class Step1Controller extends Controller
 				$time = explode(' ', microtime());
 				$id = str_replace('.', '-', $time[1] + $time[0]);
 
-				$session->set('buildsite/id', $id);
 				$session->set('buildsite/site/pathStepBack', 'site/step/'.$id.'/');
 				$session->set('buildsite/site/pathStepFront', '/site/step/'.$id.'/');
 

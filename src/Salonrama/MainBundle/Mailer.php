@@ -51,6 +51,15 @@ class Mailer
         return $this->send("Salonrama a reçu une demande de changement de l'adresse email liée à votre compte", $to, 'Bonjour, '.$name, $message);
     }
 
+    public function sendConfirmEmail($to, $name, $link)
+    {
+        $message = "Vous venez de créez votre compte Salonrama (<b>".$to."</b>).<br><br>".
+                    "Pour l'activer et mettre votre site en ligne, cliquez sur le lien ci-dessous (ou copiez/collez l'URL dans votre navigateur) :<br>".
+                    '<a href="'.$link.'">'.$link.'</a>';
+
+        return $this->send("Activer votre compte Salonrama", $to, 'Bonjour, '.$name, $message);
+    }
+
 	public function send($subject, $to, $title, $body)
 	{
 	    $message = \Swift_Message::newInstance()

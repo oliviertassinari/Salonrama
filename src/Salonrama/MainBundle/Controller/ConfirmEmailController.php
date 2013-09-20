@@ -1,8 +1,8 @@
 <?php
 
-namespace Salonrama\MainBundle\Controller\Account;
+namespace Salonrama\MainBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller;
 
 class ConfirmEmailController extends Controller
 {

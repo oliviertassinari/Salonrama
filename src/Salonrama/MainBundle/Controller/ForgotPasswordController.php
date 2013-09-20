@@ -30,7 +30,7 @@ class ForgotPasswordController extends Controller
                     if($user->getResetPasswordToken() == '')
                     {
                     	$em = $this->getDoctrine()->getManager();
-						$user->setResetPasswordToken(md5(uniqid(null, true)));
+						$user->setResetPasswordToken('regenerate');
                     	$em->flush();
                     }
 
@@ -50,12 +50,12 @@ class ForgotPasswordController extends Controller
 				}
 				else
 				{				
-					$state = array('state' => 1, 'text' => "L'email est introuvable");
+					$state = array('state' => 1, 'text' => "L'email est introuvable.");
 				}
             }
             else
             {
-				$state = array('state' => 1, 'text' => "L'email est invalide");
+				$state = array('state' => 1, 'text' => "L'email est invalide.");
             }
 
 			return new JsonResponse($state);

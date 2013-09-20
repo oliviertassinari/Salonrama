@@ -169,6 +169,11 @@ class User implements UserInterface
      */
     public function setResetPasswordToken($resetPasswordToken)
     {
+        if($resetPasswordToken == 'regenerate')
+        {
+            $resetPasswordToken = md5(uniqid(null, true));
+        }
+
         $this->resetPasswordToken = $resetPasswordToken;
     
         return $this;
@@ -192,8 +197,8 @@ class User implements UserInterface
      */
     public function setConfirmEmail($confirmEmail)
     {
-        $this->confirmEmail = $confirmEmail;
-    
+        $this->confirmEmail = strtolower($confirmEmail);
+
         return $this;
     }
 
@@ -215,6 +220,11 @@ class User implements UserInterface
      */
     public function setConfirmEmailToken($confirmEmailToken)
     {
+        if($confirmEmailToken == 'regenerate')
+        {
+            $confirmEmailToken = md5(uniqid(null, true));
+        }
+
         $this->confirmEmailToken = $confirmEmailToken;
     
         return $this;

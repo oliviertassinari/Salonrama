@@ -60,7 +60,7 @@ class Step2Controller extends Controller
             $session->set('buildsite/salon/city', trim($request->request->get('salon-city')));
             $session->set('buildsite/salon/country', trim($request->request->get('salon-country')));
             $session->set('buildsite/salon/phone', trim($request->request->get('salon-phone')));
-            $session->set('buildsite/salon/email', trim($request->request->get('salon-email')));
+            $session->set('buildsite/salon/email', strtolower(trim($request->request->get('salon-email'))));
             $session->set('buildsite/salon/schedule', $request->request->get('salon-schedule'));
 
             $Nom = $session->get('buildsite/salon/name', 'Nom du Salon');
