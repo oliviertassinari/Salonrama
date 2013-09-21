@@ -1,0 +1,19 @@
+{% extends "SalonramaMainBundle:Main:main.html.twig" %}
+
+{% block head %}
+	<title>{{ title }}</title>
+{% endblock %}
+
+{% block body %}
+	<h1>{{ title }}</h1>
+
+	{% if state.state == 0 %}
+	<div class="cadre-small cadre-small-green">
+		<i class="icon-ok"></i><strong>{{ state.text }}
+	</div>
+	{% else %}
+	<div class="cadre-small cadre-small-red">
+		<i class="icon-warning-sign"></i><strong>{{ state.text }}
+	</div>
+	{% endif %}
+{% endblock %}

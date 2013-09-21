@@ -41,7 +41,7 @@ class File
 
 	public static function getExtension($path)
 	{
-		return strtolower(substr(strrchr($path, '.'), 1));
+		return mb_strtolower(substr(strrchr($path, '.'), 1), 'UTF-8');
 	}
 
 	public static function removeFile($path)
@@ -71,10 +71,10 @@ class File
 		}
 	}
 
-	public static function addFile($txt, $path)
+	public static function addFile($text, $path)
 	{
 		$file = fopen($path, 'w');
-		fwrite($file, $txt);
+		fwrite($file, $text);
 		fclose($file);
 
 		return true;
@@ -103,10 +103,7 @@ class File
 		}
 	}
 
-
-
-
-	public static function delFolder($path)
+	public static function removeFolder($path)
 	{
 		if(is_dir($path))
 		{
@@ -118,7 +115,7 @@ class File
 						continue;
 					}
 					else if(is_dir($path.$file)){
-						File::delFolder($path.$file.'/');
+						File::removeFolder($path.$file.'/');
 					}
 					else{
 						unlink($path.$file);
@@ -129,6 +126,8 @@ class File
 			rmdir($path);
 		}
 	}
+
+
 
 	public static function getFolderSize($path)
 	{

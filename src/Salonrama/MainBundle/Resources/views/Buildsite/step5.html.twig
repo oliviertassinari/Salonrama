@@ -12,7 +12,7 @@
 	<style>
 
 	.div3{
-	float:left;
+	float:right;
 	width:31%;
 	margin:0 1%;
 	}
@@ -70,8 +70,8 @@
 							}
 							else
 							{
-								eval(response.exec);
 								self.setGlobalState(null);
+								eval(response.exec);
 							}
 
 							busy = false;
@@ -177,16 +177,6 @@
 	</fieldset> 
 	</form>
 
-	<div class="div3">
-		<button type="button" class="button-small button-small-blue" onclick="redirectStep3()"><i class="icon-pencil"></i>Modifier mon site</button>
-		<br/><br/>
-		<button type="button" class="button-small button-small-blue" onclick="preview()">
-			<i class="icon-search"></i>Voir mon site
-		</button>
-	</div>
-	<div class="div3">
-		<div id="EtapeAide" onclick="Ot.openPopup('aide/etape5.php', '550', '650')"><p>Aide</p></div>
-	</div>
 	<div class="div3">	
 		<button type="button" class="button-big button-big-green" onclick="publishForm.valide()">
 			<span style="font-size:18px;"><i class="icon-upload-alt"></i>Publier mon site</span><br/>
@@ -196,6 +186,16 @@
 			En cliquant sur « Publier mon site » vous acceptez <a href="{{ path('salonrama_main_policy') }}" target="_blank">les conditions d'utilisation</a>.
 		</div>
 		<div class="Clear"></div>
+	</div>
+	<div class="div3">
+		<div id="EtapeAide" onclick="Ot.openPopup('aide/etape5.php', '550', '650')"><p>Aide</p></div>
+	</div>
+	<div class="div3">
+		<button type="button" class="button-small button-small-blue" onclick="redirectStep3()"><i class="icon-pencil"></i>Modifier mon site</button>
+		<br/><br/>
+		<button type="button" class="button-small button-small-blue" onclick="preview()">
+			<i class="icon-search"></i>Voir mon site
+		</button>
 	</div>
 	<div class="clear"></div>
 {% endblock %}

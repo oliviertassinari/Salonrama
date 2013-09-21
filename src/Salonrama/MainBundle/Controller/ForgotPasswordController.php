@@ -14,7 +14,7 @@ class ForgotPasswordController extends Controller
 
 		if($request->isXmlHttpRequest())
 		{
-            $email = htmlspecialchars(strtolower(trim($request->request->get('forgot-email', ''))));
+            $email = htmlspecialchars(mb_strtolower(trim($request->request->get('forgot-email', '')), 'UTF-8'));
             $errors = $this->container->get('validator')->validateValue($email, array(
 														                            new Assert\NotBlank(),
 														                            new Assert\Email()

@@ -22,6 +22,11 @@ class LoginListener
 		$user = $event->getAuthenticationToken()->getUser();
 		$user->getAccount()->setLastLogin(new \DateTime());
 
+		if(!$user->getIsActive())
+		{
+			//$this->securityContext->setToken(null); 
+		}
+
 		$this->em->flush();
 	}
 }

@@ -60,6 +60,16 @@ class Mailer
         return $this->send("Activer votre compte Salonrama", $to, 'Bonjour, '.$name, $message);
     }
 
+    public function sendSignin($to, $name, $link)
+    {
+        $message = 'Félicitations votre site a été créé.<br><br>'.
+                    'Bienvenue sur Salonrama et merci pour votre confiance.<br>'.
+                    'Votre site est désormais disponible à cette adresse :<br>'.
+                    '<a href="'.$link.'">'.$link.'</a>';
+
+        return $this->send("Bienvenu sur Salonrama", $to, 'Bonjour, '.$name, $message);
+    }
+
 	public function send($subject, $to, $title, $body)
 	{
 	    $message = \Swift_Message::newInstance()

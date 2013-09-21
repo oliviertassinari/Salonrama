@@ -5,7 +5,6 @@ namespace Salonrama\MainBundle\Controller\Buildsite;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Salonrama\MainBundle\Buildsite;
-use Salonrama\MainBundle\Subdomain;
 
 class Step4Controller extends Controller
 {
@@ -31,8 +30,9 @@ class Step4Controller extends Controller
 
 		if($request->isXmlHttpRequest())
 		{
+			$subdomainService = $this->get('salonrama_main_subdomain');
 			$subdomain = trim($request->request->get('subdomain-subdomain', ''));
-			$state = Subdomain::isAvailableSite($subdomain);
+			$state = $subdomainService->isAvailableSite($subdomain);
 
 			if($state['state'] == 0)
 			{
@@ -55,8 +55,8 @@ class Step4Controller extends Controller
 		$subdomain = $session->get('buildsite/site/subdomain', '');
 		$suggest = array();
 
-		$name = str_replace(' ', '-', strtolower($session->get('buildsite/salon/name')));
-		$city = str_replace(' ', '-', strtolower($session->get('buildsite/salon/city')));
+		$name = str_replace(' ', '-', mb_strtolower($session->get('buildsite/salon/name'), 'UTF-8'));
+		$city = str_replace(' ', '-', mb_strtolower($session->get('buildsite/salon/city'), 'UTF-8'));
 		$zipcode = substr($session->get('buildsite/salon/zipcode'), 0, 2);
 		$client = $this->getClient($session);
 

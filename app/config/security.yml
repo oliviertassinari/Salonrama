@@ -7,11 +7,6 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
-        in_memory:
-            memory:
-                users:
-                    ryan:  { password: ryanpass, roles: 'ROLE_USER' }
-                    admin: { password: kitten, roles: 'ROLE_ADMIN' }
         user_provider:
             entity: { class: SalonramaMainBundle:User }
 

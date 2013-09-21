@@ -2,9 +2,19 @@
 
 namespace Salonrama\MainBundle;
 
+use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
+use Salonrama\MainBundle\File;
+
 class Subdomain
 {
-	public static function isValid($subdomain)
+	private $em;
+
+	public function __construct(Doctrine $doctrine)
+	{
+		$this->em = $doctrine->getManager();
+	}
+
+	public function isValid($subdomain)
 	{
 		$length = strlen($subdomain);
 
@@ -12,7 +22,7 @@ class Subdomain
 		{
 			if(preg_match("#^[a-z0-9]{1}[a-z0-9-]*[a-z0-9]{1}$#", $subdomain)) //Les caractères autorisés sont les lettres minuscules (a-z), les nombres (0-9) et le tiret (-).  Le tiret ne peuve se trouver en première ni en dernière position.
 			{
-				$state = array('state' => 0, 'text' => 'Ok');
+				$state = array('state' => 0, 'text' => 'Ok.');
 			}
 			else{
 				$state = array('state' => 1, 'text' => 'Caractères invalides [0-9] [a-z] et [-].');
@@ -25,16 +35,18 @@ class Subdomain
 		return $state;
 	}
 
-	public static function isAvailableSite($subdomain)
+	public function isAvailableSite($subdomain)
 	{
-		$state = self::isValid($subdomain);
+		$state = $this->isValid($subdomain);
 
 		if($state['state'] == 0)
 		{
-			if(!is_dir('site/subdomain/'.$subdomain.'/'))
+			$siteRepository = $this->em->getRepository('SalonramaMainBundle:Site');
+			$findSubdomain = $siteRepository->findOneBySubdomain($subdomain);
+
+			if(!$findSubdomain)
 			{
-				$state = array('state' => 0, 'text' => 'Ok');
-				//$state = selft::isAvailable($subdomain);
+				$state = $this->isAvailable($subdomain);
 			}
 			else
 			{
@@ -45,47 +57,122 @@ class Subdomain
 		return $state;
 	}
 
-	public static function addSousDomSite($subdomain, $Num)
+	public function getList()
 	{
-		global $LocFileHome;
-		
-		require_once($LocFileHome.'php/GFileDos.php');
+		$state = array('state' => 1, 'text' => "Erreur avec l'API.");
 
-		$R = '';
-		$subdomain = str_replace('/', '', $subdomain);
-		$Num = str_replace('/', '', $Num);
-		$Loc = $LocFileHome.'site/sous_dom/'.$subdomain.'/';
-
-		if(!is_dir($Loc))
+		if(class_exists('SoapClient'))
 		{
-			if(mkdir($Loc, 0777))
+			try
 			{
-				$Txt = '<?php
+				$client = new SoapClient('https://api.dinhosting.fr/api.wsdl', array('trace' => 1, 'soap_version' => SOAP_1_1));
+				$session = $client->login('TP1-DIN', 'tassiforever');
 
-	$Num = "'.$Num.'";
+				if($session == false){
+					$state = array('state' => 1, 'text' => 'API indisponible.');
+				}
 
-	include("../sous_dom.php");
+				$subdomainaines = $client->mutualiseSousDomaineListe($session, 'salonrama', 'salonrama.fr');
 
-	?>';
+				if($subdomainaines != false){ //OK
+					$state = $subdomainaines;
+				}
+				else{
+					$state = array('state' => 1, 'text' => 'Liste indisponible.');
+				}
 
-				addFile($Txt, $Loc.'index.php');
-
-				$R = true;
+				$logout = $client->logout($session);
 			}
-			else
+			catch(SoapFault $fault)
 			{
-				$R = 'Ajout impossible';
+				$state = array('state' => 1, 'text' => $fault);
 			}
 		}
 		else
 		{
-			$R = 'Ajout impossible';
+			$state = array(); //Localhost
 		}
 
-		return $R;
+		return $state;
 	}
 
-	public static function removeSousDomSite($subdomain)
+	private $list;
+
+	public function isAvailable($subdomain)
+	{
+		if($this->checkList($this->list) == false)
+		{
+			$this->list = $this->getList();
+		}
+
+		if(is_array($this->list) && $this->checkList($this->list))
+		{
+			if(in_array($subdomain, $this->list))
+			{
+				$state = array('state' => 1, 'text' => 'Nom deja utilisé.');
+			}
+			else
+			{
+				$state = array('state' => 0, 'text' => 'Ok.');
+			}
+		}
+		else{
+			$state = $this->list;
+		}
+
+		return $state;
+	}
+
+	public function checkList($list)
+	{
+		if(is_array($this->list))
+		{
+			if(isset($this->list['state']))
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+
+		return true;
+	}
+
+	public function addSite($subdomain, $id)
+	{
+		$state = $this->isValid($subdomain);
+
+		if($state['state'] == 0)
+		{
+			$path = 'site/subdomain/'.$subdomain.'/';
+			$state = array('state' => 1, 'text' => 'Erreur.');
+
+			if(!is_dir($path))
+			{
+				if(mkdir($path, 0777))
+				{
+					$text = ''.
+'<?php
+
+	$Num = "'.$id.'";
+
+	include("../sous_dom.php");
+
+?>';
+
+					File::addFile($text, $path.'index.php');
+
+					$state = array('state' => 0, 'text' => 'Ok.');
+				}
+			}
+		}
+
+		return $state;
+	}
+
+	public function removeSite($subdomain)
 	{
 		global $LocFileHome;
 		
@@ -94,131 +181,6 @@ class Subdomain
 		$subdomain = str_replace('/', '', $subdomain);
 
 		removeDos($LocFileHome.'site/sous_dom/'.$subdomain.'/');
-	}
-
-	public static function getSousDomList()
-	{
-		$R = '';
-
-		try
-		{
-			$client = new SoapClient('https://api.dinhosting.fr/api.wsdl', array('trace' => 1, 'soap_version' => SOAP_1_1));
-			$session = $client->login('TP1-DIN', 'tassiforever');
-
-			if($session == false){
-				$R = 'API indisponible';
-			}
-
-			$subdomainaines = $client->mutualiseSousDomaineListe($session, 'salonrama', 'salonrama.fr');
-
-			if($subdomainaines != false){ //OK
-				$R = $subdomainaines;
-			}
-			else{
-				$R = 'Liste indisponible';
-			}
-
-			$logout = $client->logout($session);
-		}
-		catch(SoapFault $fault)
-		{
-			$R = $fault;
-		}
-
-		return $R;
-	}
-
-	public static $subdomainList = '';
-
-	public static function isAvailable($subdomain)
-	{
-		global $subdomainList;
-
-		if($subdomainList == '')
-		{
-			$subdomainList = getSousDomList();
-		}
-
-		$R = '';
-
-		if(is_array($subdomainList))
-		{
-			if(in_array($subdomain, $subdomainList)){
-				$R = 'Nom deja utilisé';
-			}
-			else{ //OK
-				$R = true;
-			}
-		}
-		else{
-			$R = $subdomainList;
-		}
-
-		return $R;
-	}
-
-	public static function addSousDom($subdomain, $Chemin)
-	{
-		$R = '';
-
-		try
-		{
-			$client = new SoapClient('https://api.dinhosting.fr/api.wsdl', array('trace' => 1, 'soap_version' => SOAP_1_1));
-			$session = $client->login('TP1-DIN', 'tassiforever');
-
-			if($session == false){
-				$R = 'API indisponible';
-			}
-
-			$subdomainaine = $client->mutualiseSousDomaineAjouter($session, 'salonrama', 'salonrama.fr', $subdomain, 'www/'.$Chemin);
-
-			if($subdomainaine == true){ //OK
-				$R = true;
-			}
-			else{
-				$R = 'Ajout impossible';
-			}
-
-			$logout = $client->logout($session);
-		}
-		catch(SoapFault $fault)
-		{
-			$R = $fault;
-		}
-
-		return $R;
-	}
-
-	public static function removeSousDom($subdomain)
-	{
-		$R = '';
-
-		try
-		{
-			$client = new SoapClient('https://api.dinhosting.fr/api.wsdl', array('trace' => 1, 'soap_version' => SOAP_1_1));
-			$session = $client->login('TP1-DIN', 'tassiforever');
-
-			if($session == false){
-				$R = 'API indisponible';
-			}
-
-			$subdomainaine = $client->mutualiseSousDomaineRetirer($session, 'salonrama', 'salonrama.fr', $subdomain);
-
-			if($subdomainaine == true){ //OK
-				$R = true;
-			}
-			else{
-				$R = 'Suppression impossible';
-			}
-
-			$logout = $client->logout($session);
-		}
-		catch(SoapFault $fault)
-		{
-			$R = $fault;
-		}
-
-		return $R;
 	}
 }
 

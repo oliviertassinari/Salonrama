@@ -26,11 +26,11 @@ class Assembler
 	private $File = array();
 	private $BlockListWidth;
 
-	private $Num = '';
+	private $id = '';
 
 	private $BlockObjHeightLast;
 
-	public function __construct($pathSiteBack, $BlockList, $DataList, $ImageList, $ThemeAct, $PageList, $Num)
+	public function __construct($pathSiteBack, $BlockList, $DataList, $ImageList, $ThemeAct, $PageList, $id)
 	{
 		$this->LocSiteHome = '../../../../';
 		$this->pathSiteBack = $pathSiteBack;
@@ -40,7 +40,7 @@ class Assembler
 		$this->ThemeAct = $ThemeAct;
 		$this->PageList = json_decode($PageList, true);
 
-		$this->Num = $Num;
+		$this->id = $id;
 
 		if($_SERVER['SERVER_NAME'] == '127.0.0.1'){
 			$this->pathPublic = 'http://127.0.0.1/bundles/salonramamain/';
@@ -57,7 +57,7 @@ class Assembler
 
 		$this->BlockListWidth = eval('return '.$this->ThemeAct.'::$BlockListWidth;');
 
-		if($this->pathSiteBack != '' && stripos($this->pathSiteBack, 'site/step/') === 0)
+		if($this->pathSiteBack != '' && stripos($this->pathSiteBack, 'site/') === 0)
 		{
 			File::emptyFolderFile($this->pathSiteBack);
 
@@ -111,8 +111,9 @@ else
 		{
 			$id = $this->PageList[$j]['id'];
 			$name = $this->PageList[$j]['name'];
-			$name = strtolower($name);
-			$name = str_replace(' ', '_', $name);
+			$name = mb_strtolower($name, 'UTF-8');
+			$name = $this->stripAccents($name);
+			$name = str_replace(array(' ', '/'), '_', $name);
 
 			$i = 1;
 
@@ -130,6 +131,31 @@ else
 		}
 		
 		return $PageNomList;
+	}
+
+	function stripAccents($text)
+	{
+	    $text = str_replace(
+	        array(
+	            'à', 'â', 'ä', 'á', 'ã', 'å',
+	            'î', 'ï', 'ì', 'í', 
+	            'ô', 'ö', 'ò', 'ó', 'õ', 'ø', 
+	            'ù', 'û', 'ü', 'ú', 
+	            'é', 'è', 'ê', 'ë', 
+	            'ç', 'ÿ', 'ñ', 
+	        ),
+	        array(
+	            'a', 'a', 'a', 'a', 'a', 'a', 
+	            'i', 'i', 'i', 'i', 
+	            'o', 'o', 'o', 'o', 'o', 'o', 
+	            'u', 'u', 'u', 'u', 
+	            'e', 'e', 'e', 'e', 
+	            'c', 'y', 'n', 
+	        ),
+	        $text
+	    );
+	 
+	    return $text;        
 	}
 
 	public function getMenu($PageAct)
@@ -624,9 +650,9 @@ $'.$FonctionId.' = create_function(\'$Class, $R\', \'
 
 if($R == 0)
 {
-	if("'.$this->Num.'" != "")
+	if("'.$this->id.'" != "")
 	{
-		if(EmailModuleForm("'.$this->LocSiteHome.'", "'.$this->Num.'") === true)
+		if(EmailModuleForm("'.$this->LocSiteHome.'", "'.$this->id.'") === true)
 		{
 			$Class->getEtatHtml(true, "Votre message a bien été envoyé.<br/>Nous traiterons votre demande dans les plus brefs délais.", "'.$EtatId.'");
 		}

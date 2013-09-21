@@ -16,7 +16,7 @@ class SettingsEmailController extends Controller
         {
             if($request->request->has('email-email'))
             {
-                $email = strtolower(trim($request->request->get('email-email', '')));
+                $email = mb_strtolower(trim($request->request->get('email-email', '')), 'UTF-8');
 
                 $errors = $this->container->get('validator')->validateValue($email, array(
                                                                                 new Assert\NotBlank(),

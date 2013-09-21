@@ -31,7 +31,7 @@ class Step5Controller extends Controller
 		{
 			$firstName = trim($request->request->get('publish-firstname'));
 			$lastName = trim($request->request->get('publish-lastname'));
-			$email = strtolower(trim($request->request->get('publish-email')));
+			$email = mb_strtolower(trim($request->request->get('publish-email')), 'UTF-8');
 			$password = trim($request->request->get('publish-password'));
 
 			$collectionConstraint = new Assert\Collection(array(
@@ -74,7 +74,17 @@ class Step5Controller extends Controller
 					{
 						if($resp->is_valid)
 						{
-							$state = array('state' => 0, 'text' => "Ok.");
+							$subdomainService = $this->get('salonrama_main_subdomain');
+							$state = $subdomainService->isAvailableSite($session->get('buildsite/site/subdomain'));
+
+							if($state['state'] == 0)
+							{
+								$state = array('state' => 0, 'text' => "Ok.");
+							}
+							else
+							{
+								$state = array('state' => 1, 'text' => "Le sous domaine choisie à l'étape4 n'est plus disponible.", 'exec' => 'self.setGlobalState(response.state, response.text)');
+							}
 						}
 						else
 						{

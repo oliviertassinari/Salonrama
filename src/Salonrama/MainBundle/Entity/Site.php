@@ -3,6 +3,7 @@
 namespace Salonrama\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Salonrama\MainBundle\Assembler;
 
 /**
  * @ORM\Table(name="site")
@@ -66,6 +67,26 @@ class Site
      * @ORM\Column(name="is_online", type="boolean")
      */
     protected $isOnline;
+
+    public function getUrl()
+    {
+        return 'http://'.$this->subdomain.'.salonrama.fr';
+    }
+
+    public function update()
+    {
+        new Assembler(
+            $this->pathBack,
+            $this->blockList,
+            $this->dataList,
+            $this->imageList,
+            $this->theme,
+            $this->pageList,
+            $this->id
+        );
+
+        $this->lastUpdate = new \DateTime();
+    }
 
     /**
      * Get id

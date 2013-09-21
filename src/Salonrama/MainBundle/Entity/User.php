@@ -100,7 +100,7 @@ class User implements UserInterface
      */
     public function setEmail($email)
     {
-        $this->email = strtolower($email);
+        $this->email = mb_strtolower($email, 'UTF-8');
     
         return $this;
     }
@@ -197,7 +197,7 @@ class User implements UserInterface
      */
     public function setConfirmEmail($confirmEmail)
     {
-        $this->confirmEmail = strtolower($confirmEmail);
+        $this->confirmEmail = mb_strtolower($confirmEmail, 'UTF-8');
 
         return $this;
     }
