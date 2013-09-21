@@ -47,6 +47,15 @@
 
 	$(document).ready(function()
 	{
+		if($('#publish-email').val() != '')
+		{
+			$('#publish-email').focus();
+		}
+		else
+		{
+			$('#publish-firstname').focus();
+		}
+
 		publishForm = new Form($('#publish-post'), function(result, values, self){
 			if(result == 0)
 			{
@@ -151,7 +160,7 @@
 		<fieldset class="form-fieldset">
 			<label for="publish-email">Email</label>
 			<div class="form-controls">
-				<input type="text" name="publish-email" id="publish-email">
+				<input type="text" name="publish-email" id="publish-email" value="{{ email }}">
 			</div>
 		</fieldset>
 

@@ -62,8 +62,7 @@ class Mailer
 
     public function sendSignin($to, $name, $link)
     {
-        $message = 'Félicitations votre site a été créé.<br><br>'.
-                    'Bienvenue sur Salonrama et merci pour votre confiance.<br>'.
+        $message = 'Bienvenue sur Salonrama et merci pour votre confiance.<br><br>'.
                     'Votre site est désormais disponible à cette adresse :<br>'.
                     '<a href="'.$link.'">'.$link.'</a>';
 

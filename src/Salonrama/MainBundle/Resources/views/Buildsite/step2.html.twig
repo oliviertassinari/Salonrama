@@ -24,6 +24,8 @@
 
 	$(document).ready(function()
 	{
+		$('#salon-name').focus();
+
 		var salonForm = new Form($('#salon-post'), function(result, values, self){
 			if(result == 0)
 			{

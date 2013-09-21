@@ -57,11 +57,7 @@ class ConfirmEmailController extends Controller
 
 		if($state['state'] == 0)
 		{
-			return $this->render('SalonramaMainBundle:Main:display_state.html.twig', array(
-																						'state' => array('state' => 0, 'text' => 'Champs Invalides.'),
-																						'title' => 'Activer votre compte Salonrama'
-																						));
-
+			return $this->redirect($this->generateUrl('salonrama_main_account'));
 		}
 		else
 		{

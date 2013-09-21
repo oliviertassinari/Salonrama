@@ -4,6 +4,7 @@ namespace Salonrama\MainBundle;
 
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Salonrama\MainBundle\File;
+use SoapClient;
 
 class Subdomain
 {

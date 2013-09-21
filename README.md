@@ -62,3 +62,9 @@ Mettre à jour la gallery
 ```bash
 php app/console gallery:update
 ```
+
+Mettre à jour la liste de themes
+
+```bash
+php app/console theme:update
+```
