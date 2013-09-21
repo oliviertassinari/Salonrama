@@ -8,10 +8,13 @@ use Salonrama\MainBundle\Buildsite;
 
 class Step4Controller extends Controller
 {
+    private $subdomainService;
+
     public function step4Action()
     {
         $request = $this->getRequest();
         $session = $request->getSession();
+		$this->subdomainService = $this->get('salonrama_main_subdomain');
 
 		$buildsite = new Buildsite($session, 4);
 
@@ -27,12 +30,12 @@ class Step4Controller extends Controller
 
 		$storyboard = $buildsite->getStoryboard();
 		$foot = $buildsite->getFoot();
+		
 
 		if($request->isXmlHttpRequest())
 		{
-			$subdomainService = $this->get('salonrama_main_subdomain');
 			$subdomain = trim($request->request->get('subdomain-subdomain', ''));
-			$state = $subdomainService->isAvailableSite($subdomain);
+			$state = $this->subdomainService->isAvailableSite($subdomain);
 
 			if($state['state'] == 0)
 			{
@@ -92,7 +95,7 @@ class Step4Controller extends Controller
 
     public function addSuggest($subdomain, $suggest)
     {
-    	$isAvailableSite = Subdomain::isAvailableSite($subdomain);
+    	$isAvailableSite = $this->subdomainService->isAvailableSite($subdomain);
 
     	if($isAvailableSite['state'] == 0)
     	{
