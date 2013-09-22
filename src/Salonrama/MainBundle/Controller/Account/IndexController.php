@@ -3,6 +3,7 @@
 namespace Salonrama\MainBundle\Controller\Account;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Salonrama\MainBundle\Date;
 
 class IndexController extends Controller
 {
@@ -20,7 +21,10 @@ class IndexController extends Controller
 
         return $this->render('SalonramaMainBundle:Account:index.html.twig', array(
         																		'message' => $message,
-        																		'snapshotUrl' => $site->getSnapshotUrl()
+        																		'snapshotUrl' => $site->getSnapshotUrl(),
+                                                                                'siteUrl' => $site->getUrl(),
+                                                                                'last_update_interval' => Date::formatDateDiff($site->getLastUpdate()),
+                                                                                'creation_interval' => Date::formatDateDiff($site->getCreation())
         																	));
     }
 }

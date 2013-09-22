@@ -1,4 +1,4 @@
-var Form = function(form, onSubmit)
+var Form = function(form, onSubmit, editMode)
 {
 	var self = this;
 
@@ -12,6 +12,15 @@ var Form = function(form, onSubmit)
 		event.preventDefault();
 		self.valide();
 	});
+
+	if(typeof(editMode) != 'undefined')
+	{
+		this.editMode = editMode;
+	}
+	else
+	{
+		this.editMode = false;
+	}
 };
 
 Form.prototype = {
@@ -49,8 +58,7 @@ addInput: function(inputId, param)
 		}
 
 		input.on('input', function(){
-			self.removeInputState(input);
-			self.setGlobalState(null);
+			self.onChange(input);
 		});
 
 		this.list[inputId] = { input: input, type: 'inputText', param: param };
@@ -60,15 +68,21 @@ addInput: function(inputId, param)
 		this.list[inputId] = { input: input, type: 'checkbox', param: param };
 
 		input.change(function(){
-			self.removeInputState(input);
-			self.setGlobalState(null);
+			self.onChange(input);
+		});
+	}
+	else if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'hidden')
+	{
+		this.list[inputId] = { input: input, type: 'hidden', param: param };
+
+		input.change(function(){
+			self.onChange(input);
 		});
 	}
 	else if(inputTagName == 'textarea')
 	{
 		input.on('input', function(){
-			self.removeInputState(input);
-			self.setGlobalState(null);
+			self.onChange(input);
 		});
 
 		this.list[inputId] = { input: input, type: 'textarea', param: param };
@@ -78,11 +92,62 @@ addInput: function(inputId, param)
 		input.children('option:first-child').attr('disabled', 'disabled');
 
 		input.change(function(){
-			self.removeInputState(input);
-			self.setGlobalState(null);
+			self.onChange(input);
 		});
 
 		this.list[inputId] = { input: input, type: 'select', param: param };
+	}
+},
+
+setInitValue: function()
+{
+	for(var inputId in this.list)
+	{
+		var item = this.list[inputId];
+
+		if(item.type == 'inputText' || item.type == 'hidden')
+		{
+			item.initValue = item.input.val();
+		}
+		else if(item.type == 'checkbox')
+		{
+			item.initValue = item.input.prop('checked')
+		}
+	}
+
+	this.submit.prop('disabled', true);
+},
+
+onChange: function(input)
+{
+	this.removeInputState(input);
+	this.setGlobalState(null);
+
+	if(this.editMode)
+	{
+		var disable = true;
+
+		for(var inputId in this.list)
+		{
+			var item = this.list[inputId];
+
+			if(item.type == 'inputText' || item.type == 'hidden')
+			{
+				var value = item.input.val();
+			}
+			else if(item.type == 'checkbox')
+			{
+				var value = item.input.prop('checked');
+			}
+
+			if(value != item.initValue)
+			{
+				disable = false;
+				break;
+			}
+		}
+
+		this.submit.prop('disabled', disable);
 	}
 },
 
@@ -271,6 +336,10 @@ valide: function()
 		else if(item.type == 'checkbox')
 		{
 			values[inputId] = item.input.prop('checked');
+		}
+		else if(item.type == 'hidden')
+		{
+			values[inputId] = item.input.val();
 		}
 	}
 

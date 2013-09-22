@@ -94,6 +94,9 @@ setJourOpen: function(JourAct, isOver)
 	CellAct.lastChild.style.display = 'none';
 
 	Horaire.JourList[JourAct] = [];
+
+	$('#salon-schedule').val(JSON.stringify(Horaire.JourList));
+	$('#salon-schedule').change();
 },
 
 setJourClose: function(JourAct, isOver)
@@ -111,6 +114,9 @@ setJourClose: function(JourAct, isOver)
 	CellAct.lastChild.style.display = 'block';
 
 	Horaire.JourList[JourAct] = '0';
+
+	$('#salon-schedule').val(JSON.stringify(Horaire.JourList));
+	$('#salon-schedule').change();
 },
 
 setIJourTxt: function(JourAct)
@@ -285,6 +291,8 @@ valide: function()
 		{
 			this.setJourOpen(this.JourAct, false);
 			this.JourList[this.JourAct] = JourList;
+			$('#salon-schedule').val(JSON.stringify(this.JourList));
+			$('#salon-schedule').change();
 			this.setIJourTxt(this.JourAct);
 			this.close();
 		}

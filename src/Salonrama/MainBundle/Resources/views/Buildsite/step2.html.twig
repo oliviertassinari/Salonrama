@@ -27,7 +27,6 @@
 		var salonForm = new Form($('#salon-post'), function(result, values, self){
 			if(result == 0)
 			{
-				document.getElementById('salon-schedule').value = JSON.stringify(Horaire.JourList);
 				self.form.submit();
 			}
 			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }

@@ -2,6 +2,24 @@
 
 {% block head %}
 	<title>Mon compte</title>
+
+	<style>
+
+	.site1{
+	margin:8px;
+	float:left;
+	}
+	.site2{
+	margin:8px;
+	margin-top:25px;
+	float:left;
+	}
+	.site2 strong{
+	width:150px;
+	display:inline-block;
+	}
+
+	</style>
 {% endblock %}
 
 {% block body %}
@@ -21,6 +39,20 @@
 	{% endif %}
 	{% endif %}
 
-	<img src="{{ snapshotUrl }}"/>
+	<div class="cadre-box">
+		<div class="cadre-box-head"><h2>Mon site</h2></div>
+		<div class="cadre-box-body">
+			<div class="site1">
+				<img src="{{ snapshotUrl }}"/>
+			</div>
+			<div class="site2">
+				<strong>Adresse</strong><a href="{{ siteUrl }}" target="_blanc" title="Voir mon site">{{ siteUrl }}</a><br>
+				<strong>Mise à jour</strong>Il y a {{ last_update_interval }}<br>
+				<strong>Date de création</strong>Il y a {{ creation_interval }}<br><br>
+				<a class="button-small button-small-blue"><i class="icon-pencil"></i>Modifier mon site</a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
 
 {% endblock %}

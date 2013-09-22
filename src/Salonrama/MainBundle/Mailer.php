@@ -66,7 +66,7 @@ class Mailer
                     'Votre site est désormais disponible à cette adresse :<br>'.
                     '<a href="'.$link.'">'.$link.'</a>';
 
-        return $this->send("Bienvenu sur Salonrama", $to, 'Bonjour, '.$name, $message);
+        return $this->send("Bienvenue sur Salonrama", $to, 'Bonjour, '.$name, $message);
     }
 
 	public function send($subject, $to, $title, $body)

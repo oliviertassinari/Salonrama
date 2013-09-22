@@ -1,3 +1,5 @@
+{% set add_noscript = true %}
+
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
@@ -15,6 +17,8 @@
 
 	<script>
 
+	var busy = false;
+
 	$(document).ready(function()
 	{
 		$('#salon-name').focus();
@@ -22,13 +26,48 @@
 		var salonForm = new Form($('#salon-post'), function(result, values, self){
 			if(result == 0)
 			{
-				document.getElementById('salon-schedule').value = JSON.stringify(Horaire.JourList);
+				if(busy == false)
+				{
+					busy = true;
+					self.setGlobalState(2, 'Modifications en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							self.setGlobalState(response.state, response.text);
+
+							if(response.state == 0)
+							{
+								salonForm.setInitValue();
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							self.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
 			}
 			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
 			else{ self.setGlobalState(1, 'Champs Invalides.'); }
-		});
+		}, true);
+		salonForm.addInput('salon-name', { isNeeded: false });
+		salonForm.addInput('salon-women-allowed', { isNeeded: false });
+		salonForm.addInput('salon-men-allowed', { isNeeded: false });
+		salonForm.addInput('salon-children-allowed', { isNeeded: false });
+		salonForm.addInput('salon-address', { isNeeded: false });
+		salonForm.addInput('salon-zipcode', { isNeeded: false });
+		salonForm.addInput('salon-city', { isNeeded: false });
+		salonForm.addInput('salon-country', { isNeeded: false });
 		salonForm.addInput('salon-phone', { regexp: 'phone', isNeeded: false });
 		salonForm.addInput('salon-email', { regexp: 'email', isNeeded: false });
+		salonForm.addInput('salon-schedule');
+		salonForm.setInitValue();
 	});
 
 	Horaire.Initi();
@@ -86,16 +125,16 @@
 			</fieldset>
 
 			<fieldset class="form-fieldset">
-				<label for="salon-citz">Ville</label>
+				<label for="salon-city">Ville</label>
 				<div class="form-controls">
-					<input type="text" name="salon-citz" id="salon-citz" value="{{ salon.city }}">
+					<input type="text" name="salon-city" id="salon-city" value="{{ salon.city }}">
 				</div>
 			</fieldset>
 
 			<fieldset class="form-fieldset">
-				<label for="salon-citz">Pays</label>
+				<label for="salon-country">Pays</label>
 				<div class="form-controls">
-					<input type="text" name="salon-citz" id="salon-citz" value="{{ salon.country }}">
+					<input type="text" name="salon-country" id="salon-country" value="{{ salon.country }}">
 				</div>
 			</fieldset>
 
@@ -160,7 +199,8 @@
 
 			<div class="form-actions">
 				<div class="form-global-state cadre-small"></div>
-				<button type="submit" class="button-small button-small-green" disabled="disabled"><i class="icon-hdd"></i>Sauvegarder les modifications</button>
+				<button type="submit" class="button-small button-small-green"><i class="icon-hdd"></i>Sauvegarder les modifications</button>| 
+				<button type="button" class="button-small button-small-blue"><i class="icon-rotate-right"></i>Réinitialiser mon site avec ces données</button>
 			</div>
 		</fieldset> 
 		</form>

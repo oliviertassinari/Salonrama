@@ -33,9 +33,7 @@
 
 							if(response.state == 0)
 							{
-								lastName = values['general-lastname'];
-								firstName = values['general-firstname'];
-								self.submit.prop('disabled', true);
+								self.setInitValue();
 							}
 
 							busy = false;
@@ -49,30 +47,10 @@
 			}
 			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
 			else{ self.setGlobalState(1, 'Champs Invalides.'); }
-		});
+		}, true);
 		generalForm.addInput('general-lastname');
 		generalForm.addInput('general-firstname');
-
-		var generalLastname = $('#general-lastname');
-		var generalFirstname = $('#general-firstname');
-
-		var lastName = generalLastname.val();
-		var firstName = generalFirstname.val();
-
-		generalLastname.on('input', onChange);
-		generalFirstname.on('input', onChange);
-
-		function onChange()
-		{
-			if(generalLastname.val() != lastName || generalFirstname.val() != firstName)
-			{
-				generalForm.submit.prop('disabled', false);
-			}
-			else
-			{
-				generalForm.submit.prop('disabled', true);
-			}
-		}
+		generalForm.setInitValue();
 	});
 
 	</script>

@@ -39,8 +39,7 @@
 						success: function(response){
 							if(response.state == 0)
 							{
-								email = values['email-email'];
-								self.submit.prop('disabled', true);
+								self.setInitValue();
 								self.setGlobalState(response.state, response.text);
 							}
 							else
@@ -58,22 +57,9 @@
 					});
 				}
 			}
-		});
+		}, true);
 		emailForm.addInput('email-email', { regexp: 'email' });
-
-		var emailEmail = $('#email-email');
-		var email = emailEmail.val();
-
-		emailEmail.on('input', function(){
-			if(emailEmail.val() != email)
-			{
-				emailForm.submit.prop('disabled', false);
-			}
-			else
-			{
-				emailForm.submit.prop('disabled', true);
-			}
-		});
+		emailForm.setInitValue();
 
 		var newsletterForm = new Form($('#newsletter-post'), function(result, values, self){
 			if(result == 0)
@@ -93,8 +79,7 @@
 
 							if(response.state == 0)
 							{
-								send = values['newsletter-send'];
-								self.submit.prop('disabled', true);
+								self.setInitValue();
 							}
 
 							busy = false;
@@ -106,22 +91,9 @@
 					});
 				}
 			}
-		});
+		}, true);
 		newsletterForm.addInput('newsletter-send');
-
-		var newsletterSend = $('#newsletter-send');
-		var send = newsletterSend.prop('checked');
-
-		newsletterSend.change(function(){
-			if(newsletterSend.prop('checked') != send)
-			{
-				newsletterForm.submit.prop('disabled', false);
-			}
-			else
-			{
-				newsletterForm.submit.prop('disabled', true);
-			}
-		});
+		newsletterForm.setInitValue();
 	});
 
 	</script>
