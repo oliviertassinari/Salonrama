@@ -12,87 +12,42 @@
 
 {% block javascript %}
 	<script src="{{ asset('bundles/salonramamain/js/lightbox.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/theme_select.js') }}"></script>
 
 	<script>
 
-	var themeSelected;
 	var lightbox;
 
 	$(document).ready(function()
 	{
 		lightbox = new Lightbox({
 			getDetailsCaption: function(title, imageNumber){
-				return '<button type="button" onclick="setThemeFromLightbox('+imageNumber+')" class="button-small button-small-green"><i class="icon-ok"></i>Valider ce thème</button>';
+				return '<button type="button" onclick="ThemeSelect.setFromLightbox('+imageNumber+', lightbox)" class="button-small button-small-green"><i class="icon-ok"></i>Valider ce thème</button>';
 			}
 		});
 
-		$('#themeSelect .themeSelectItem').each(function(){
+		$('#theme-select .theme-select-item').each(function(){
 			var item = $(this);
-			var radio = item.find('.themeSelectItemRadio');
-			radio.click(function(){ setTheme(item); });
+			var radio = item.find('.theme-select-item-radio');
+			radio.click(function(){ ThemeSelect.set(item); });
 
 			if(radio.find('input').prop('checked'))
 			{
-				themeSelected = item;
-				themeSelected.addClass('select');
-				setScroll(0);
+				ThemeSelect.selected = item;
+				item.addClass('select');
+				ThemeSelect.setScroll(0);
 			}
 		});
 
 		if(!document.getElementById('EtapeValide'))
 		{
-			document.getElementById('EtapeSuivant').onclick = submit;
+			document.getElementById('EtapeSuivant').onclick = ThemeSelect.submit;
 		}
 		else
 		{
-			document.getElementById('EtapeValide').onclick = submit;
+			document.getElementById('EtapeValide').onclick = ThemeSelect.submit;
 		}
 	});
-
-	function setTheme(item)
-	{
-		themeSelected.removeClass('select');
-		themeSelected = item;
-
-		themeSelected.addClass('select');
-		themeSelected.find('input').prop('checked', true);
-
-		setScroll();
-	}
-
-	function setThemeFromLightbox(imageNumber)
-	{
-		lightbox.end();
-		setTheme($($('#themeSelect .themeSelectItem')[imageNumber]));
-		submit();
-	}
-
-	function setScroll(duration)
-	{
-		var duration = (typeof duration == 'number') ? duration : 'fast';
-		var scrollTop = $('#themeSelect').scrollTop();
-
-		var heightHiddenTop = $('#themeSelect').offset().top + 10 - themeSelected.offset().top;
-		var heightHiddenBottom = themeSelected.height() - $('#themeSelect').height() - heightHiddenTop + 25;
-
-		if(heightHiddenTop > 0)
-		{
-			$('#themeSelect').animate({  
-				scrollTop: $('#themeSelect').scrollTop() - heightHiddenTop
-			}, duration);
-		}
-		else if(heightHiddenBottom > 0)
-		{
-			$('#themeSelect').animate({  
-				scrollTop: $('#themeSelect').scrollTop() + heightHiddenBottom
-			}, duration);
-		}
-	}
-
-	function submit()
-	{
-		$('#themeSelect form').submit();
-	}
 
 	</script>
 {% endblock %}
@@ -116,24 +71,23 @@
 
 	<h3>Liste des thèmes :</h3>
 
-	<div id="themeSelect">
-	<form method="post" action="">
-		{% for value in theme %}
-		<div class="themeSelectItem">
-			<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightboxLink">
-				<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_min.jpg') }}" width="130" height="115"/>
-				<span class="lightboxNotif" title="Agrandir cette image"></span>
-			</a>
-			<div class="themeSelectItemRadio">
-				<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>
-				<label for="{{ value.name }}">Sélectionner</label>
+	<form method="post" action="" id="theme-post">
+		<div id="theme-select">
+			{% for value in theme %}
+			<div class="theme-select-item">
+				<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightboxLink">
+					<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_min.jpg') }}" width="130" height="115"/>
+					<span class="lightboxNotif" title="Agrandir cette image"></span>
+				</a>
+				<div class="theme-select-item-radio">
+					<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>
+					<label for="{{ value.name }}">Sélectionner</label>
+				</div>
 			</div>
+			{% endfor %}
 		</div>
-		{% endfor %}
-
 		<button type="submit" style="display:none;">Submit</button>
 	</form>
-	</div>
 
 	{% autoescape false %}
 	{{ foot }}

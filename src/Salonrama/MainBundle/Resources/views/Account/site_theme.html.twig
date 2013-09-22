@@ -1,0 +1,110 @@
+{% set add_noscript = true %}
+
+{% extends "SalonramaMainBundle:Main:main.html.twig" %}
+
+{% block head %}
+	<title>Site - Thème</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/theme_select.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/lightbox.css') }}"/>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{{ asset('bundles/salonramamain/js/lightbox.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/theme_select.js') }}"></script>
+
+	<script>
+
+	var lightbox;
+	var busy = false;
+
+	$(document).ready(function()
+	{
+		var themeForm = new Form($('#theme-post'), function(result, values, self){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					self.setGlobalState(2, 'Modification en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							self.setGlobalState(response.state, response.text);
+							busy = false;
+						},
+						error: function(rs, e) {
+							self.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
+			else{ self.setGlobalState(1, 'Champs Invalides.'); }
+		});
+
+		lightbox = new Lightbox({
+			getDetailsCaption: function(title, imageNumber){
+				return '<button type="button" onclick="ThemeSelect.setFromLightbox('+imageNumber+', lightbox)" class="button-small button-small-green"><i class="icon-ok"></i>Valider ce thème</button>';
+			}
+		});
+
+		$('#theme-select .theme-select-item').each(function(){
+			var item = $(this);
+			var radio = item.find('.theme-select-item-radio');
+			radio.click(function(){ ThemeSelect.set(item); });
+
+			if(radio.find('input').prop('checked'))
+			{
+				ThemeSelect.selected = item;
+				item.addClass('select');
+				ThemeSelect.setScroll(0);
+			}
+		});
+	});
+
+	</script>
+{% endblock %}
+
+{% block body %}
+	<h1>Thème</h1>
+	<div id="nav-left-left">
+		{{ include("SalonramaMainBundle:Account:site_nav.html.twig") }}
+	</div>
+	<div id="nav-left-right">
+		<div class="cadre-small cadre-small-orange">
+			<i class="icon-info-sign"></i>Vous pouvez choisir un nouveau thème.
+		</div>
+
+		<h3>Liste des thèmes :</h3>
+
+		<form method="post" action="" id="theme-post">
+			<div id="theme-select">
+				{% for value in theme %}
+				<div class="theme-select-item">
+					<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightboxLink">
+						<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_min.jpg') }}" width="130" height="115"/>
+						<span class="lightboxNotif" title="Agrandir cette image"></span>
+					</a>
+					<div class="theme-select-item-radio">
+						<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>
+						<label for="{{ value.name }}">Sélectionner</label>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="form-actions">
+				<div class="form-global-state cadre-small"></div>
+				<button type="submit" class="button-small button-small-green"><i class="icon-pencil"></i>Modifier mon thème</button>
+			</div>
+		</form>
+	</div>
+	<div class="clear"></div>
+{% endblock %}

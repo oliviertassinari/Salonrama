@@ -114,7 +114,15 @@ salonrama_main_account_confirm_email:
 
 salonrama_main_account_site:
     pattern:  /mon_compte/site
-    defaults: { _controller: SalonramaMainBundle:Account/Site:site }
+    defaults: { _controller: SalonramaMainBundle:Account/SiteTheme:theme }
+
+salonrama_main_account_site_theme:
+    pattern:  /mon_compte/site/theme
+    defaults: { _controller: SalonramaMainBundle:Account/SiteTheme:theme }
+
+salonrama_main_account_site_edit:
+    pattern:  /mon_compte/site/edit
+    defaults: { _controller: SalonramaMainBundle:Account/SiteEdit:edit }
 
 salonrama_main_account_salon:
     pattern:  /mon_compte/salon

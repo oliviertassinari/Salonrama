@@ -1,0 +1,11 @@
+{% set site_nav = [
+	['Theme', 'salonrama_main_account_site_theme', 'salonrama_main_account_site'],
+	["Modifier mon site", 'salonrama_main_account_site_edit', '']
+]%}
+<ul>
+	{% for item in site_nav %}
+    <li>
+    	<a href="{{ path(item[1]) }}" {% if item[1] == route or item[2] == route %} class="select"{% endif %}>{{ item[0] }}</a>
+   	</li>
+	{% endfor %}
+</ul>
