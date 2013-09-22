@@ -50,6 +50,9 @@ class ConfirmEmailController extends Controller
 					new InteractiveLoginEvent($this->container->get('request'), $token)
 				);
 
+				$session = $this->getRequest()->getSession();
+				$session->getFlashBag()->add('message', array('state' => 0, 'text' => 'Bienvenue sur Salonrama et merci pour votre confiance.'));
+
 				$mailer = $this->get('salonrama_main_mailer');
 				$mailer->sendSignin($user->getEmail(), $account->getName(), $site->getUrl());
 			}
@@ -66,6 +69,37 @@ class ConfirmEmailController extends Controller
 																						'title' => 'Activer votre compte Salonrama'
 																						));
 		}
+	}
+
+	public function confirmEmailSendAction($email)
+	{
+		$email = mb_strtolower(trim($email), 'UTF-8');
+
+		$em = $this->getDoctrine()->getManager();
+		$userRepository = $em->getRepository('SalonramaMainBundle:User');
+		$user = $userRepository->findOneByEmail($email);
+
+		if($user && !$user->getIsActive())
+		{
+			$account = $user->getAccount();
+
+			$mailer = $this->get('salonrama_main_mailer');
+			$mailer->sendConfirmEmail($email, $account->getName(), 'http://www.salonrama.fr/confirm_email/'.
+																	$user->getId().'/'.$user->getConfirmEmailToken());
+
+			$state = array('state' => 0, 'text' => "Un email d'activation vous a été renvoyé à <strong>".$email."</strong>.");
+		}
+		else
+		{
+			$state = array('state' => 1, 'text' => 'Champs Invalides.');
+		}
+
+
+
+		return $this->render('SalonramaMainBundle:Main:display_state.html.twig', array(
+																					'state' => $state,
+																					'title' => 'Activer votre compte Salonrama'
+																					));
 	}
 }
 

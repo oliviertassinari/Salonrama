@@ -100,6 +100,10 @@ salonrama_main_confirm_email:
     pattern:  /confirm_email/{id}/{token}
     defaults: { _controller: SalonramaMainBundle:ConfirmEmail:confirmEmail }
 
+salonrama_main_confirm_email_send:
+    pattern:  /confirm_email/{email}
+    defaults: { _controller: SalonramaMainBundle:ConfirmEmail:confirmEmailSend }
+
 salonrama_main_account:
     pattern:  /mon_compte/
     defaults: { _controller: SalonramaMainBundle:Account/Index:index }

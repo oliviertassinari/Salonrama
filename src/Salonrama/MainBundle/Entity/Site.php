@@ -88,6 +88,11 @@ class Site
         $this->lastUpdate = new \DateTime();
     }
 
+    public function getSnapshotUrl()
+    {
+        return 'http://www.apercite.fr/api/apercite/160x120/non/non/'.$this->getUrl().'/?q='.$this->lastUpdate->getTimestamp();
+    }
+
     /**
      * Get id
      *

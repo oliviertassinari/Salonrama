@@ -4,10 +4,36 @@
 	<title>Mon salon</title>
 
     <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/horaire.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/buildsite/cadre.css') }}"/>
 {% endblock %}
 
 {% block javascript %}
 	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/buildsite/horaire.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+		$('#salon-name').focus();
+
+		var salonForm = new Form($('#salon-post'), function(result, values, self){
+			if(result == 0)
+			{
+				document.getElementById('salon-schedule').value = JSON.stringify(Horaire.JourList);
+			}
+			else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
+			else{ self.setGlobalState(1, 'Champs Invalides.'); }
+		});
+		salonForm.addInput('salon-phone', { regexp: 'phone', isNeeded: false });
+		salonForm.addInput('salon-email', { regexp: 'email', isNeeded: false });
+	});
+
+	Horaire.Initi();
+
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -25,14 +51,22 @@
 			<fieldset class="form-fieldset">
 				<label>Client</label>
 				<div class="form-controls">
-					<label for="salon-client-femme">Femmmes</label>
+					<label for="salon-women-allowed">Femmes</label>
 					<div class="form-controls">
-						<input type="checkbox" name="salon-client-femme" id="salon-client-femme"/>
+						<input type="checkbox" name="salon-women-allowed" id="salon-women-allowed"
+						{% if salon.womenAllowed %} checked="checked"{% endif %}/>
 					</div>
-					<br/>
-					<label for="salon-client-homme">Hommes</label>
+					<br>
+					<label for="salon-men-allowed">Hommes</label>
 					<div class="form-controls">
-						<input type="checkbox" name="salon-client-homme" id="salon-client-homme"/>
+						<input type="checkbox" name="salon-men-allowed" id="salon-men-allowed"
+						{% if salon.menAllowed %} checked="checked"{% endif %}/>
+					</div>
+					<br>
+					<label for="salon-children-allowed">Enfants</label>
+					<div class="form-controls">
+						<input type="checkbox" name="salon-children-allowed" id="salon-children-allowed"
+						{% if salon.childrenAllowed %} checked="checked"{% endif %}/>
 					</div>
 				</div>
 			</fieldset>
@@ -79,9 +113,54 @@
 				</div>
 			</fieldset>
 
+			<fieldset class="form-fieldset">
+				<label for="salon-email">Horaires</label>
+				<div class="form-controls">
+					<table id="Horaire">
+						<tr id="HoraireJour">
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr id="HoraireCell">
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+						<tr id="HoraireChange">
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+					</table>
+				</div>
+			</fieldset>
+
+			<div id="CadHoraire" class="InfoBulle">
+				<span class="InfoBulleFleche"></span>
+				<div class="InfoBulleCon CadJaune">
+					<h3>Horaires d'ouverture du <span id="CadHoraireJour"></span></h3>
+
+					<div class="FormChamp">
+						<label class="FormLabel">Je suis : </label>
+						<span id="CadHoraireCheckBox">
+							<input type="radio" name="CadHoraireEtat" id="CadHoraireOuvert" value="Ouvert"/><label for="CadHoraireOuvert" style="color:#006000;">Ouvert</label>
+							<input type="radio" name="CadHoraireEtat" id="CadHoraireFermé" value="Fermé"/><label for="CadHoraireFermé" style="color:#de1f1f;">Fermé</label>
+						</span>
+					</div>
+
+					<div id="CadHoraireCreneau">
+						De :
+						<ul id="CadHoraireCreneauList"></ul>
+						<button type="button" class="button-small button-small-green" onclick="Horaire.addCreneau('', '')"><img src="image/icone/add.png" alt=""/>Ajouter un créneau horaire</button><br/>
+						<span class="TextLittle">exemple : 9h à 20h30</span>
+					</div>
+					<div class="CadFoot">
+						<button type="button" class="button-small button-small-red" style="float:left;" onclick="Horaire.close()"><img src="image/icone/erreur.png" alt=""/>Annuler</button>
+						<button type="button" class="button-small button-small-green" onclick="Horaire.valide()"><img src="image/icone/ok.png" alt=""/>Modifier</button>
+					</div>
+				</div>
+			</div>
+
+			<input type="hidden" id="salon-schedule" name="salon-schedule" value="{{ salon.schedule }}"/>
+
 			<div class="form-actions">
 				<div class="form-global-state cadre-small"></div>
-				<button type="submit" class="button-small button-small-green" disabled="disabled">Sauvegarder les modifications</button>
+				<button type="submit" class="button-small button-small-green" disabled="disabled"><i class="icon-hdd"></i>Sauvegarder les modifications</button>
 			</div>
 		</fieldset> 
 		</form>

@@ -16,7 +16,12 @@ class IndexController extends Controller
 			$message = $value;
 		}
 
-        return $this->render('SalonramaMainBundle:Account:index.html.twig', array('message' => $message));
+		$site = $this->getUser()->getAccount()->getSite();
+
+        return $this->render('SalonramaMainBundle:Account:index.html.twig', array(
+        																		'message' => $message,
+        																		'snapshotUrl' => $site->getSnapshotUrl()
+        																	));
     }
 }
 

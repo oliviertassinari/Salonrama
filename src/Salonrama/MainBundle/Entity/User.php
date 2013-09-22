@@ -3,14 +3,14 @@
 namespace Salonrama\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Salonrama\MainBundle\Encrypter;
 
 /**
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="Salonrama\MainBundle\Entity\UserRepository")
  */
-class User implements UserInterface
+class User implements AdvancedUserInterface
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -261,5 +261,25 @@ class User implements UserInterface
     public function getAccount()
     {
         return $this->account;
+    }
+
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
     }
 }

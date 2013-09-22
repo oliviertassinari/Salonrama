@@ -7,13 +7,15 @@
 {% block body %}
 	<h1>{{ title }}</h1>
 
+	{% autoescape false %}
 	{% if state.state == 0 %}
 	<div class="cadre-small cadre-small-green">
-		<i class="icon-ok"></i><strong>{{ state.text }}
+		<i class="icon-ok"></i>{{ state.text }}
 	</div>
 	{% else %}
 	<div class="cadre-small cadre-small-red">
-		<i class="icon-warning-sign"></i><strong>{{ state.text }}
+		<i class="icon-warning-sign"></i>{{ state.text }}
 	</div>
 	{% endif %}
+	{% endautoescape %}
 {% endblock %}

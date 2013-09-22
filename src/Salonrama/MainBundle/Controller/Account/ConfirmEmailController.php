@@ -37,7 +37,7 @@ class ConfirmEmailController extends Controller
 		}
 
 		$session = $this->getRequest()->getSession();
-        $session->getFlashBag()->add('message', $state);
+		$session->getFlashBag()->add('message', $state);
         return $this->redirect($this->generateUrl('salonrama_main_account'));
 	}
 }
