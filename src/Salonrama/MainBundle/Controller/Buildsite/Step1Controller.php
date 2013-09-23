@@ -14,7 +14,7 @@ class Step1Controller extends Controller
         $session = $request->getSession();
 
         $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
-        $theme = $themeRepository->findAll();
+        $themeList = $themeRepository->getAllList();
 
 		$buildsite = new Buildsite($session, 1);
 		$storyboard = $buildsite->getStoryboard();
@@ -23,32 +23,37 @@ class Step1Controller extends Controller
 
         if($request->isMethod('POST'))
         {
-			$session->set('buildsite/site/theme', htmlspecialchars($request->request->get('site-theme', 'RobinBleu')));
+			$theme = $request->request->get('site-theme', 'RobinBleu');
 
-			if($buildsite->getStepReach() == 1)
+			if(in_array($theme, $themeList))
 			{
-				$time = explode(' ', microtime());
-				$id = str_replace('.', '-', $time[1] + $time[0]);
+				$session->set('buildsite/site/theme', $theme);
 
-				$session->set('buildsite/site/pathStepBack', 'site/step/'.$id.'/');
-				$session->set('buildsite/site/pathStepFront', '/site/step/'.$id.'/');
+				if($buildsite->getStepReach() == 1)
+				{
+					$time = explode(' ', microtime());
+					$id = str_replace('.', '-', $time[1] + $time[0]);
 
-				File::addFolder($session->get('buildsite/site/pathStepBack'));
-				File::addFolder($session->get('buildsite/site/pathStepBack').'upload/');
+					$session->set('buildsite/site/pathStepBack', 'site/step/'.$id.'/');
+					$session->set('buildsite/site/pathStepFront', '/site/step/'.$id.'/');
 
-				$buildsite->setStepReach(2);
+					File::addFolder($session->get('buildsite/site/pathStepBack'));
+					File::addFolder($session->get('buildsite/site/pathStepBack').'upload/');
 
-				return $this->redirect($this->generateUrl('salonrama_main_buildsite_step2'));
-			}
-			else
-			{
-				$message = 'Votre thème a bien été modifié.';
+					$buildsite->setStepReach(2);
+
+					return $this->redirect($this->generateUrl('salonrama_main_buildsite_step2'));
+				}
+				else
+				{
+					$message = 'Votre thème a bien été modifié.';
+				}
 			}
         }
 
 		return $this->render('SalonramaMainBundle:Buildsite:step1.html.twig', array(
-																				'theme' => $theme,
-																				'theme_current' => $session->get('buildsite/site/theme', 'RobinBleu'), 
+																				'theme_list' => $themeList,
+																				'theme' => $session->get('buildsite/site/theme', 'RobinBleu'), 
 																				'storyboard' => $storyboard,
 																				'foot' => $foot,
 																				'message' => $message

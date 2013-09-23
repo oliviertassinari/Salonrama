@@ -4,7 +4,6 @@ namespace Salonrama\MainBundle\Controller\Buildsite;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Salonrama\MainBundle\Buildsite;
-use Salonrama\MainBundle\File;
 
 class Step3Controller extends Controller
 {
@@ -12,6 +11,8 @@ class Step3Controller extends Controller
     {
         $request = $this->getRequest();
         $session = $request->getSession();
+
+        $site = $this->getUser()->getAccount()->getSite();
 
         $em = $this->getDoctrine()->getManager();
         $themeList = $em->getRepository('SalonramaMainBundle:Theme')->getAllList();
@@ -35,14 +36,14 @@ class Step3Controller extends Controller
         return $this->render('SalonramaMainBundle:Buildsite:step3.html.twig', array(
 																				'storyboard' => $storyboard,
 																				'foot' => $foot,
-																				'blockList' => $session->get('buildsite/site/blockList'),
-																				'dataList' => $session->get('buildsite/site/dataList'),
-																				'imageList' => $session->get('buildsite/site/imageList'),
-																				'themeAct' => $session->get('buildsite/site/theme'),
+																				'blockList' => $site->get('buildsite/site/blockList'),
+																				'dataList' => $site->get('buildsite/site/dataList'),
+																				'imageList' => $site->get('buildsite/site/imageList'),
+																				'themeAct' => $site->get('buildsite/site/theme'),
 																				'themeList' => json_encode($themeList),
-																				'pageList' => $session->get('buildsite/site/pageList'),
+																				'pageList' => $site->get('buildsite/site/pageList'),
 																				'pageAct' => 'index',
-																				'pathStepFront' => $session->get('buildsite/site/pathStepFront'),
+																				'pathStepFront' => $site->get('buildsite/site/pathStepFront'),
 																				'galleryList' => json_encode($galleryList),
 																				'onload' => $onload
 																				));

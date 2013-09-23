@@ -29,6 +29,12 @@ addInput: function(inputId, param)
 {
 	var self = this;
 	var input = $('#'+inputId);
+
+	if(input.length == 0)
+	{
+		input = this.form.find("input:radio[name="+inputId+"]");
+	}
+
 	var inputTagName = input.prop('tagName').toLowerCase();
 
 	param = $.extend({
@@ -78,6 +84,10 @@ addInput: function(inputId, param)
 		input.change(function(){
 			self.onChange(input);
 		});
+	}
+	else if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'radio')
+	{
+		this.list[inputId] = { input: input, type: 'radio', param: param };
 	}
 	else if(inputTagName == 'textarea')
 	{
@@ -340,6 +350,10 @@ valide: function()
 		else if(item.type == 'hidden')
 		{
 			values[inputId] = item.input.val();
+		}
+		else if(item.type == 'radio')
+		{
+			values[inputId] = this.form.find("input:radio[name="+inputId+"]:checked").val();
 		}
 	}
 

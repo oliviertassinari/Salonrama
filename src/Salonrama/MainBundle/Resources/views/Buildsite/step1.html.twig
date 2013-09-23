@@ -73,15 +73,15 @@
 
 	<form method="post" action="" id="theme-post">
 		<div id="theme-select">
-			{% for value in theme %}
+			{% for name in theme_list %}
 			<div class="theme-select-item">
-				<a href="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightboxLink">
-					<img src="{{ asset('bundles/salonramamain/theme/' ~ value.name ~ '/screenshot_min.jpg') }}" width="130" height="115"/>
+				<a href="{{ asset('bundles/salonramamain/theme/' ~ name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightboxLink">
+					<img src="{{ asset('bundles/salonramamain/theme/' ~ name ~ '/screenshot_min.jpg') }}" width="130" height="115"/>
 					<span class="lightboxNotif" title="Agrandir cette image"></span>
 				</a>
 				<div class="theme-select-item-radio">
-					<input type="radio" name="site-theme" value="{{ value.name }}" id="{{ value.name }}"{% if theme_current == value.name %} checked="checked"{% endif %}/>
-					<label for="{{ value.name }}">Sélectionner</label>
+					<input type="radio" name="site-theme" value="{{ name }}" id="{{ name }}"{% if theme == name %} checked="checked"{% endif %}/>
+					<label for="{{ name }}">Sélectionner</label>
 				</div>
 			</div>
 			{% endfor %}
