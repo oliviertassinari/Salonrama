@@ -172,7 +172,7 @@ class Step2Controller extends Controller
             {
                 $buildsite->setStepReach(3);
 
-                File::copyFolder('site/default/', $session->get('buildsite/site/pathStepBack').'upload/');
+                File::copyFolder('site/default/', $session->get('buildsite/site/pathBack').'upload/');
 
                 $onload = "CadInfo.open('Etape 3', '".
                             '<h1 style="text-align:center;">Votre site a été pré-rempli avec succès!</h1><br/><br/>'.

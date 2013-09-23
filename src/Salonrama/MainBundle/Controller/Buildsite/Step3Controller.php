@@ -12,8 +12,6 @@ class Step3Controller extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
 
-        $site = $this->getUser()->getAccount()->getSite();
-
         $em = $this->getDoctrine()->getManager();
         $themeList = $em->getRepository('SalonramaMainBundle:Theme')->getAllList();
         $galleryList = $em->getRepository('SalonramaMainBundle:Gallery')->getAllList();
@@ -36,14 +34,14 @@ class Step3Controller extends Controller
         return $this->render('SalonramaMainBundle:Buildsite:step3.html.twig', array(
 																				'storyboard' => $storyboard,
 																				'foot' => $foot,
-																				'blockList' => $site->get('buildsite/site/blockList'),
-																				'dataList' => $site->get('buildsite/site/dataList'),
-																				'imageList' => $site->get('buildsite/site/imageList'),
-																				'themeAct' => $site->get('buildsite/site/theme'),
+																				'blockList' => $session->get('buildsite/site/blockList'),
+																				'dataList' => $session->get('buildsite/site/dataList'),
+																				'imageList' => $session->get('buildsite/site/imageList'),
+																				'themeAct' => $session->get('buildsite/site/theme'),
 																				'themeList' => json_encode($themeList),
-																				'pageList' => $site->get('buildsite/site/pageList'),
+																				'pageList' => $session->get('buildsite/site/pageList'),
 																				'pageAct' => 'index',
-																				'pathStepFront' => $site->get('buildsite/site/pathStepFront'),
+																				'pathFront' => '/'.$session->get('buildsite/site/pathBack'),
 																				'galleryList' => json_encode($galleryList),
 																				'onload' => $onload
 																				));

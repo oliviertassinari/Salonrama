@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="{{ asset('bundles/salonramamain/images/favicon.ico') }}"/>
 
-	<title>Etape 3 - Mon site</title>
+	<title>Modifier mon site</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/font_awesome.css') }}"/>
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/button.css') }}"/>
@@ -93,131 +93,98 @@
 
 		Initi();
 
+	window.onbeforeunload = function(){ return 'Vos modifications n\'on pas été enregistrées.\nPour les enregistrer : cliquez sur "Annuler", puis sur "Modifier", en bas.'; };
 
-		window.onbeforeunload = function(){ return 'Voulez vous vraiment quitter cette page ? Cela supprimera l\'avancement de votre site internet.'; };
-
-		var AList = document.getElementById('storyboard').getElementsByTagName('a');
-		for(var i = 0; i < AList.length; i++)
+	document.getElementById('EtapeValide').onclick = function(){ setCadSave(); };
+	document.getElementById('EtapeSuivant').onclick = function()
+	{
+		if(confirm('Voulez-vous publier vos modifications avant de quitter cette page ?'))
 		{
-			(function(z){
-				var Href = AList[z].href;
-				AList[z].onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = Href; }); return false; };
-			})(i);
-		}
-
-		if(!document.getElementById('EtapeValide'))
-		{
-			document.getElementById('EtapeSuivant').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'step4'; }); };
-			document.getElementById('EtapePrecedent').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; document.location = 'step2'; }); };
+			setCadSave(function(){ window.onbeforeunload = ''; document.location = '/mon_compte'; });
 		}
 		else
 		{
-			var onclick = document.getElementById('EtapeSuivant').onclick;
-
-			document.getElementById('EtapeSuivant').onclick = function(){ setCadSave(function(){ window.onbeforeunload = ''; onclick(); }); };
-
-			document.getElementById('EtapeValide').onclick = function(){ setCadSave(); };
-			document.getElementById('EtapeValide').firstChild.innerHTML = 'Enregistrer';
+			window.onbeforeunload = '';
+			document.location = '/mon_compte';
 		}
+	};
 
-		document.getElementById('CreatorHeadLogo').onclick = function()
+	document.getElementById('CreatorHeadLogo').onclick = function()
+	{
+		if(confirm('Voulez-vous retourner à la page d\'accueil de Salonrama et sauvegarder vos modifications ?'))
 		{
-			if(confirm('Voulez-vous retourner à la page d\'accueil de Salonrama ?'))
+			setCadSave(function(){ window.onbeforeunload = ''; document.location = '/'; });
+		}
+	};
+}
+
+function setCadSave(CallBack)
+{
+	CadInfo.open('Modification', '<div id="CadSaveIcone"></div><div id="CadSaveLoad"></div><div id="CadSaveTxt">Modification en cours...</div><div id="CadSaveMore"></div>');
+
+	var d = Ot.getTime();
+	var retard = 2000;
+	var BlockList = GBlock.getSave();
+
+	var CallBack2 = function()
+	{
+		Ot.SendAjax('POST', 'admin/site-publier.php', {}, function(xhr)
+		{
+			Ot.decodeAjaxReturn(xhr.responseText, function(description)
 			{
-				setCadSave(function(){ window.onbeforeunload = ''; document.location = '../'; });
-			}
-		};
+				var d2 = Ot.getTime() - d;
 
-		{% autoescape false %}
-		{% if onload %}
-		{{ onload }}
-		{% endif %}
-		{% endautoescape %}
-	}
-
-	function voirSite()
-	{
-		bsCadreLoad.show();
-
-		var BlockList = GBlock.getSave();
-		var CallBack = function()
-		{
-			$.ajax({
-				type: 'POST',
-				url: 'preview',
-				data: {},
-				dataType: 'json',
-				success: function(response){
-					Ot.openPopup(LocHomeSite+'index.php?page='+GPage.Act, 'Full', '');
-				},
-				error: function(rs, e) {
-					alert('Erreur : ' + e);
-				},
-				complete: function(jqXHR, textStatus) {
-					bsCadreLoad.hide();				
+				if(d2 < retard){
+					setTimeout(function(){ CallBack4(); }, retard - d2);
 				}
+				else{
+					CallBack4();
+				}
+			},
+			function(description)
+			{
+				alert('Erreur : ' + description);
 			});
-		};
 
-		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
-			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack);
-		}
-		else{
-			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack);
-		}
-	}
+			removeBarreChargement();
+		});
+	};
 
-	function setCadSave(CallBack)
+	var CallBack4 = function()
 	{
-		CadInfo.open('Sauvegarde', '<div class="CadSaveIcone"></div><div id="CadSaveLoad"></div><div id="CadSaveTxt">Sauvegarde de vos modifications en cours...</div>');
-
-		var d = Ot.getTime();
-		var retard = 2000;
-		var BlockList = GBlock.getSave();
-
-		var CallBack2 = function()
-		{
-			var d2 = Ot.getTime() - d;
-
-			if(d2 < retard){
-				setTimeout(function(){ CallBack3(); }, retard - d2);
-			}
-			else{
-				CallBack3();
-			}
-		};
-
-		var CallBack3 = function()
+		if(Ot.isFonc(CallBack))
 		{
 			setTimeout(function()
 			{
-				if(Ot.isFonc(CallBack)){
-					CallBack();
-				}
-
+				CallBack();
 				CadInfo.close();
 			}, 1000);
-
-			document.getElementById('CadSaveLoad').className = 'terminer'; 
-			document.getElementById('CadSaveTxt').className = 'terminer'; 
-			document.getElementById('CadSaveTxt').innerHTML = 'Sauvegarde terminée';
-		};
-
-		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
-			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack2);
 		}
-		else{
-			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack2);
+		else
+		{
+			document.getElementById('CadSaveMore').innerHTML += 'Vos modifications on été publiées sur <a href="{{ site_url }}" target="_blank">{{ site_url }}</a>. Maintenant vous pouvez :<br/>'+
+			'<button type="button" class="ButtonSmallBlue" onclick="window.onbeforeunload = \'\'; document.location=\'/admin/site-page.php\'" title="Retourner à l\'administration de votre site"><img src="image/icone/back.png"/>Arrêter et retourner à la page "Mon compte".</button>'+
+			' ou  <button type="button" class="ButtonSmallGreen" onclick="CadInfo.close()"><img src="image/icone/modif.png"/>Continuer à modifier votre site</button>';
 		}
+
+		document.getElementById('CadSaveLoad').className = 'terminer'; 
+		document.getElementById('CadSaveTxt').className = 'terminer'; 
+		document.getElementById('CadSaveTxt').innerHTML = 'Modification terminée';
+	};
+
+	if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
+		GBlock.List[GPage.Act] = BlockList;
+		GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack2);
 	}
+	else{
+		GBlock.List[GPage.Act] = BlockList;
+		GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack2);
+	}
+}
 
-	Ot.domReady.add(Initialisation);
+Ot.domReady.add(Initialisation);
 
-	</script>
+</script>
 
 </head>
 <body>
@@ -229,10 +196,6 @@
 		<div id="CreatorHead">
 			<div id="CreatorHeadBarre">
 				<div id="CreatorHeadLogo"></div>
-				{% autoescape false %}
-				{{ storyboard }}
-				{% endautoescape %}
-				<button type="button" class="button-small button-small-blue" onclick="voirSite()"><i class="icon-search"></i>Aperçu du site</button>
 			</div>
 			<div id="BarreOutil">{{ include("SalonramaMainBundle:Buildsite:barre_outil.html.twig") }}</div>
 		</div>
@@ -244,9 +207,9 @@
 
 		<div id="CreatorFoot">
 		<div id="CreatorFootCon">
-			{% autoescape false %}
-			{{ foot }}
-			{% endautoescape %}
+			<div id="EtapeSuivant" title="retour à l'administration"><p>retour à l'admin.</p></div>
+			<div id="EtapeValide" class="button-big button-big-yellow">Sauvegarder</div>
+			<div id="EtapeAide" onclick="Ot.openPopup('aide/etape3.php', '560', '650')" title="Aide"><p>Aide</p></div>
 		</div>
 		</div>
 	</div>

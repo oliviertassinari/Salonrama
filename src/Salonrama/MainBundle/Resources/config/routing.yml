@@ -76,10 +76,6 @@ salonrama_main_buildsite_preview:
     pattern: /buildsite/preview
     defaults: { _controller: SalonramaMainBundle:Buildsite/Preview:preview }
 
-salonrama_main_buildsite_wys:
-    pattern: /buildsite/wys
-    defaults: { _controller: SalonramaMainBundle:Buildsite/Wys:wys }
-
 salonrama_main_buildsite_save:
     pattern: /buildsite/save
     defaults: { _controller: SalonramaMainBundle:Buildsite/Save:save }

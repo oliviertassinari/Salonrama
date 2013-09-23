@@ -115,31 +115,22 @@ class Buildsite
 	{
 		$foot = '';
 
-		if(!isset($this->stepCurrent)) // Administration
+		if($this->stepCurrent < $this->stepReach)
 		{
-			$foot .= '<div id="EtapeSuivant" title="retour à l\'administration"><p>retour à l\'admin.</p></div>'.
-				  '<div id="EtapeValide" class="button-big button-big-yellow">Sauvegarder</div>'.
-				  '<div id="EtapeAide" onclick="Ot.openPopup(\'aide/etape3.php\', \'560\', \'650\')" title="Aide"><p>Aide</p></div>';
+			$foot .= '<div id="EtapeSuivant" onclick="document.location = \'step'.$this->stepReach.'\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
+				  '<button type="button" id="EtapeValide" class="button-big button-big-yellow">Modifier</button>';
 		}
 		else
 		{
-			if($this->stepCurrent < $this->stepReach)
+			if($this->stepCurrent > 1)
 			{
-				$foot .= '<div id="EtapeSuivant" onclick="document.location = \'step'.$this->stepReach.'\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
-					  '<button type="button" id="EtapeValide" class="button-big button-big-yellow">Modifier</button>';
-			}
-			else
-			{
-				if($this->stepCurrent > 1)
-				{
-					$foot .= '<div id="EtapePrecedent" onclick="document.location = \'step'.($this->stepCurrent-1).'\'" title="Etape '.($this->stepCurrent-1).' : '.$this->step[$this->stepCurrent-1][0].'"><p>Etape précédente</p></div>';
-				}
-
-				$foot .= '<div id="EtapeSuivant" title="Etape '.($this->stepCurrent+1).' : '.$this->step[$this->stepCurrent+1][0].'"><p>Etape suivante</p></div>';
+				$foot .= '<div id="EtapePrecedent" onclick="document.location = \'step'.($this->stepCurrent-1).'\'" title="Etape '.($this->stepCurrent-1).' : '.$this->step[$this->stepCurrent-1][0].'"><p>Etape précédente</p></div>';
 			}
 
-			$foot .= '<div id="EtapeAide" onclick="Ot.openPopup(\'aide/etape'.$this->stepCurrent.'.php\', \'560\', \'650\')" title="Aide"><p>Aide</p></div>';
+			$foot .= '<div id="EtapeSuivant" title="Etape '.($this->stepCurrent+1).' : '.$this->step[$this->stepCurrent+1][0].'"><p>Etape suivante</p></div>';
 		}
+
+		$foot .= '<div id="EtapeAide" onclick="Ot.openPopup(\'aide/etape'.$this->stepCurrent.'.php\', \'560\', \'650\')" title="Aide"><p>Aide</p></div>';
 
 		return $foot.'<div class="clear"></div>';
 	}

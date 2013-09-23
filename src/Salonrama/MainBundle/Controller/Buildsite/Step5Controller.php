@@ -124,7 +124,7 @@ class Step5Controller extends Controller
 
 					$site = new Site();
 					$site->setTheme($session->get('buildsite/site/theme'))
-					->setPathBack($session->get('buildsite/site/pathStepBack'))
+					->setPathBack($session->get('buildsite/site/pathBack'))
 					->setSubdomain($session->get('buildsite/site/subdomain'))
 					->setImageList($session->get('buildsite/site/imageList'))
 					->setBlockList($session->get('buildsite/site/blockList'))
@@ -175,7 +175,7 @@ class Step5Controller extends Controller
 
 		return $this->render('SalonramaMainBundle:Buildsite:step5.html.twig', array(
 																				'storyboard' => $storyboard,
-																				'pathStepFront' => $session->get('buildsite/site/pathStepFront'),
+																				'pathFront' => '/'.$session->get('buildsite/site/pathBack'),
 																				'email' => $session->get('buildsite/salon/email')
 																			));
 	}

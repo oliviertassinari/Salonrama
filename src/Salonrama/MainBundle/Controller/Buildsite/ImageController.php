@@ -17,7 +17,7 @@ class ImageController extends Controller
 		$session = $request->getSession();
 		$state = array('state' => 1, 'text' => 'Requête invalide.');
 
-		$this->pathUpload = $session->get('buildsite/site/pathStepBack').'upload/';
+		$this->pathUpload = $session->get('buildsite/site/pathBack').'upload/';
 
 		if(is_dir($this->pathUpload))
 		{

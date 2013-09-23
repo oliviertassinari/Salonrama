@@ -121,7 +121,7 @@ loadInte: function()
 						GWys.List[Id] = { Etat: 'stage0', DefHtml: Html };
 						WysList.push(Id);
 
-						return '><iframe id="'+Id+'" src="wys" class="BlockWHFull" frameborder="0"></iframe><';
+						return '><iframe id="'+Id+'" src="/wys.html" class="BlockWHFull" frameborder="0"></iframe><';
 					});
 
 					Html = Html.replace(/(>Data<)/g, function()

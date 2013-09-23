@@ -15,7 +15,7 @@ class PreviewController extends Controller
 		$state = array('state' => 0, 'text' => 'Ok.');
 
 		new Assembler(
-			$session->get('buildsite/site/pathStepBack'),
+			$session->get('buildsite/site/pathBack'),
 			$session->get('buildsite/site/blockList'),
 			$session->get('buildsite/site/dataList'),
 			$session->get('buildsite/site/imageList'),

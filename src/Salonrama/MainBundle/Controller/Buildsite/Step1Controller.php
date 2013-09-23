@@ -34,11 +34,10 @@ class Step1Controller extends Controller
 					$time = explode(' ', microtime());
 					$id = str_replace('.', '-', $time[1] + $time[0]);
 
-					$session->set('buildsite/site/pathStepBack', 'site/step/'.$id.'/');
-					$session->set('buildsite/site/pathStepFront', '/site/step/'.$id.'/');
+					$session->set('buildsite/site/pathBack', 'site/step/'.$id.'/');
 
-					File::addFolder($session->get('buildsite/site/pathStepBack'));
-					File::addFolder($session->get('buildsite/site/pathStepBack').'upload/');
+					File::addFolder($session->get('buildsite/site/pathBack'));
+					File::addFolder($session->get('buildsite/site/pathBack').'upload/');
 
 					$buildsite->setStepReach(2);
 
