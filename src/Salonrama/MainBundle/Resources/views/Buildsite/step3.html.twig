@@ -43,12 +43,6 @@
 	#CadSaveTxt.terminer{
 	color:#439005;
 	}
-	.CadSaveIcone{
-	position:absolute;
-	height:48px;
-	width:48px;
-	background:url("{{ asset('bundles/salonramamain/buildsite/image/save.png') }}") no-repeat;
-	}
 
 	</style>
 
@@ -73,6 +67,7 @@
 	<script>
 
 	var LocHomeSite = '{{ pathFront }}';
+	var pathBuildsite = '';
 
 	function Initialisation()
 	{
@@ -161,33 +156,19 @@
 
 		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
 			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack);
+			GPage.saveVar(['imageList', 'dataList', 'blockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack);
 		}
 		else{
 			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack);
+			GPage.saveVar(['imageList', 'dataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack);
 		}
 	}
 
 	function setCadSave(CallBack)
 	{
-		CadInfo.open('Sauvegarde', '<div class="CadSaveIcone"></div><div id="CadSaveLoad"></div><div id="CadSaveTxt">Sauvegarde de vos modifications en cours...</div>');
+		CadInfo.open('Sauvegarde', '<div id="CadSaveLoad"></div><div id="CadSaveTxt">Sauvegarde en cours...</div>');
 
-		var d = Ot.getTime();
-		var retard = 2000;
 		var BlockList = GBlock.getSave();
-
-		var CallBack2 = function()
-		{
-			var d2 = Ot.getTime() - d;
-
-			if(d2 < retard){
-				setTimeout(function(){ CallBack3(); }, retard - d2);
-			}
-			else{
-				CallBack3();
-			}
-		};
 
 		var CallBack3 = function()
 		{
@@ -207,11 +188,11 @@
 
 		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
 			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack2);
+			GPage.saveVar(['imageList', 'dataList', 'blockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack3);
 		}
 		else{
 			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack2);
+			GPage.saveVar(['imageList', 'dataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack3);
 		}
 	}
 

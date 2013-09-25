@@ -1960,7 +1960,7 @@ apply: function()
 	}
 
 	GBlock.List = GBlockList;
-	GPage.saveVar(['PageList', 'BlockList'], [JSON.encode(GPage.List), JSON.encode(GBlock.List)]);
+	GPage.saveVar(['pageList', 'blockList'], [JSON.encode(GPage.List), JSON.encode(GBlock.List)]);
 
 	GCadre.close('CadPage');
 
@@ -2400,7 +2400,7 @@ addBdd: function(Nom)
 
 	$.ajax({
 		type: 'POST',
-		url: 'image',
+		url: pathBuildsite+'image',
 		data: { addBdd: Nom },
 		dataType: 'json',
 		success: function(response){
@@ -2426,7 +2426,7 @@ addUrl: function(R)
 
 		$.ajax({
 			type: 'POST',
-			url: 'image',
+			url: pathBuildsite+'image',
 			data: { addUrl: Input.value },
 			dataType: 'json',
 			success: function(response){

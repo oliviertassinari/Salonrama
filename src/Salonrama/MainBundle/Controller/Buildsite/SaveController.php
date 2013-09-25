@@ -17,9 +17,9 @@ class SaveController extends Controller
 		{
 			$i = 0;
 
-			while(isset($_POST['Nom'.$i], $_POST['Var'.$i]))
+			while($request->request->has('Nom'.$i) && $request->request->has('Var'.$i))
 			{
-				$session->set('buildsite/site/'.$_POST['Nom'.$i], $_POST['Var'.$i]);
+				$session->set('buildsite/site/'.$request->request->get('Nom'.$i), $request->request->get('Var'.$i));
 				$i++;
 			}
 

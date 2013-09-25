@@ -80,7 +80,7 @@ set: function(Theme, CallBack)
 
 	$.ajax({
 		type: "POST",
-		url: "theme/get_structure",
+		url: pathBuildsite+"theme/get_structure",
 		data: { theme: Theme },
 		dataType: "json",
 		success: function(response){
@@ -133,11 +133,11 @@ change: function(Theme, CallBack)
 
 		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
 			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList', 'BlockList', 'Theme'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List), Theme], CallBack1);
+			GPage.saveVar(['imageList', 'dataList', 'blockList', 'theme'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List), Theme], CallBack1);
 		}
 		else{
 			GBlock.List[GPage.Act] = BlockList;
-			GPage.saveVar(['ImageList', 'DataList', 'Theme'], [JSON.encode(GImage.List), JSON.encode(GData.List), Theme], CallBack1);
+			GPage.saveVar(['imageList', 'dataList', 'theme'], [JSON.encode(GImage.List), JSON.encode(GData.List), Theme], CallBack1);
 		}
 	}
 }
@@ -384,11 +384,11 @@ change: function(Page)
 
 		if(JSON.encode(BlockList) != JSON.encode(GBlock.List[this.Act])){
 			GBlock.List[this.Act] = BlockList;
-			this.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack);
+			this.saveVar(['imageList', 'dataList', 'blockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack);
 		}
 		else{
 			GBlock.List[this.Act] = BlockList;
-			this.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack);
+			this.saveVar(['imageList', 'dataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack);
 		}
 	}
 },
@@ -425,7 +425,7 @@ saveVar: function(NomList, VarList, CallBack)
 
 	$.ajax({
 		type: "POST",
-		url: "save",
+		url: pathBuildsite+"save",
 		data: oParam,
 		dataType: "json",
 		success: function(response){
@@ -511,7 +511,7 @@ remove: function(Nom, CallBack)
 
 	$.ajax({
 		type: 'POST',
-		url: 'image',
+		url: pathBuildsite+'image',
 		data: { remove: Nom },
 		dataType: 'json',
 		success: function(response){

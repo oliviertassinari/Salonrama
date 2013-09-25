@@ -87,7 +87,7 @@ loadInte: function()
 
 		$.ajax({
 			type: "POST",
-			url: "theme/get_inte",
+			url: pathBuildsite+"theme/get_inte",
 			data: { 'theme': GTheme.Act, 'inte': JSON.stringify(T) },
 			dataType: "json",
 			success: function(response){

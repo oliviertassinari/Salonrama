@@ -120,6 +120,10 @@ salonrama_main_account_site_edit:
     pattern:  /mon_compte/site/edit
     defaults: { _controller: SalonramaMainBundle:Account/SiteEdit:edit }
 
+salonrama_main_account_site_publish:
+    pattern:  /mon_compte/site/publish
+    defaults: { _controller: SalonramaMainBundle:Account/SitePublish:publish }
+
 salonrama_main_account_salon:
     pattern:  /mon_compte/salon
     defaults: { _controller: SalonramaMainBundle:Account/Salon:salon }

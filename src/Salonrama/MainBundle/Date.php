@@ -77,7 +77,7 @@ class Date
         }
 
         // Prepend 'since ' or whatever you like
-        return $interval->format($format);
+        return 'Il y a '.$interval->format($format);
     }
 }
 

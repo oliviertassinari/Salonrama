@@ -43,11 +43,11 @@
 	#CadSaveTxt.terminer{
 	color:#439005;
 	}
-	.CadSaveIcone{
-	position:absolute;
-	height:48px;
-	width:48px;
-	background:url("{{ asset('bundles/salonramamain/buildsite/image/save.png') }}") no-repeat;
+	#CadSaveMore{
+	text-align:center;
+	}
+	#CadSaveMore .button-small{
+	margin-top:8px;
 	}
 
 	</style>
@@ -73,6 +73,7 @@
 	<script>
 
 	var LocHomeSite = '{{ pathFront }}';
+	var pathBuildsite = '../../buildsite/';
 
 	function Initialisation()
 	{
@@ -98,87 +99,78 @@
 	document.getElementById('EtapeValide').onclick = function(){ setCadSave(); };
 	document.getElementById('EtapeSuivant').onclick = function()
 	{
-		if(confirm('Voulez-vous publier vos modifications avant de quitter cette page ?'))
+		if(confirm('Voulez-vous publier vos modifications avant de quitter cette page ?\nLes modifications non publiées seront perdu.'))
 		{
-			setCadSave(function(){ window.onbeforeunload = ''; document.location = '/mon_compte'; });
+			setCadSave(function(){ window.onbeforeunload = ''; document.location = "{{ path('salonrama_main_account') }}"; });
 		}
 		else
 		{
 			window.onbeforeunload = '';
-			document.location = '/mon_compte';
+			document.location = "{{ path('salonrama_main_account') }}";
 		}
 	};
 
 	document.getElementById('CreatorHeadLogo').onclick = function()
 	{
-		if(confirm('Voulez-vous retourner à la page d\'accueil de Salonrama et sauvegarder vos modifications ?'))
+		if(confirm('Voulez-vous retourner à la page d\'accueil de Salonrama ?\nLes modifications non publiées seront perdu.'))
 		{
-			setCadSave(function(){ window.onbeforeunload = ''; document.location = '/'; });
+			window.onbeforeunload = '';
+			document.location = "{{ path('salonrama_main_index') }}";
 		}
 	};
 }
 
 function setCadSave(CallBack)
 {
-	CadInfo.open('Modification', '<div id="CadSaveIcone"></div><div id="CadSaveLoad"></div><div id="CadSaveTxt">Modification en cours...</div><div id="CadSaveMore"></div>');
+	CadInfo.open('Publication', '<div id="CadSaveLoad"></div><div id="CadSaveTxt">Publication en cours...</div><div id="CadSaveMore"></div>');
 
-	var d = Ot.getTime();
-	var retard = 2000;
 	var BlockList = GBlock.getSave();
 
 	var CallBack2 = function()
 	{
-		Ot.SendAjax('POST', 'admin/site-publier.php', {}, function(xhr)
-		{
-			Ot.decodeAjaxReturn(xhr.responseText, function(description)
-			{
-				var d2 = Ot.getTime() - d;
+		$.ajax({
+			type: "POST",
+			url: "publish",
+			data: {},
+			dataType: "json",
+			success: function(response){
+				if(Ot.isFonc(CallBack))
+				{
+					setTimeout(function()
+					{
+						CallBack();
+						CadInfo.close();
+					}, 1000);
+				}
+				else
+				{
+					document.getElementById('CadSaveMore').innerHTML = 'Vos modifications on été publiées sur <a href="{{ site_url }}" target="_blank">{{ site_url }}</a>.<br>'+
+					'<button type="button" class="button-small button-small-blue" title="Retourner à l\'administration de votre site"><i class="icon-angle-left"></i>Retourner sur la page Mon compte</button>'+
+					'ou  <button type="button" class="button-small button-small-green" onclick="CadInfo.close()"><i class="icon-pencil"></i>Continuer les modifications</button>';
 
-				if(d2 < retard){
-					setTimeout(function(){ CallBack4(); }, retard - d2);
+					$('#CadSaveMore .button-small-blue').click(function(){
+						window.onbeforeunload = '';
+						document.location = "{{ path('salonrama_main_account') }}";
+					});
 				}
-				else{
-					CallBack4();
-				}
+
+				document.getElementById('CadSaveLoad').className = 'terminer'; 
+				document.getElementById('CadSaveTxt').className = 'terminer'; 
+				document.getElementById('CadSaveTxt').innerHTML = 'Publication terminée';
 			},
-			function(description)
-			{
-				alert('Erreur : ' + description);
-			});
-
-			removeBarreChargement();
+			error: function(rs, e) {
+				alert('Erreur : ' + e);
+			},
 		});
-	};
-
-	var CallBack4 = function()
-	{
-		if(Ot.isFonc(CallBack))
-		{
-			setTimeout(function()
-			{
-				CallBack();
-				CadInfo.close();
-			}, 1000);
-		}
-		else
-		{
-			document.getElementById('CadSaveMore').innerHTML += 'Vos modifications on été publiées sur <a href="{{ site_url }}" target="_blank">{{ site_url }}</a>. Maintenant vous pouvez :<br/>'+
-			'<button type="button" class="ButtonSmallBlue" onclick="window.onbeforeunload = \'\'; document.location=\'/admin/site-page.php\'" title="Retourner à l\'administration de votre site"><img src="image/icone/back.png"/>Arrêter et retourner à la page "Mon compte".</button>'+
-			' ou  <button type="button" class="ButtonSmallGreen" onclick="CadInfo.close()"><img src="image/icone/modif.png"/>Continuer à modifier votre site</button>';
-		}
-
-		document.getElementById('CadSaveLoad').className = 'terminer'; 
-		document.getElementById('CadSaveTxt').className = 'terminer'; 
-		document.getElementById('CadSaveTxt').innerHTML = 'Modification terminée';
 	};
 
 	if(JSON.encode(BlockList) != JSON.encode(GBlock.List[GPage.Act])){
 		GBlock.List[GPage.Act] = BlockList;
-		GPage.saveVar(['ImageList', 'DataList', 'BlockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack2);
+		GPage.saveVar(['imageList', 'dataList', 'blockList'], [JSON.encode(GImage.List), JSON.encode(GData.List), JSON.encode(GBlock.List)], CallBack2);
 	}
 	else{
 		GBlock.List[GPage.Act] = BlockList;
-		GPage.saveVar(['ImageList', 'DataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack2);
+		GPage.saveVar(['imageList', 'dataList'], [JSON.encode(GImage.List), JSON.encode(GData.List)], CallBack2);
 	}
 }
 
@@ -208,7 +200,7 @@ Ot.domReady.add(Initialisation);
 		<div id="CreatorFoot">
 		<div id="CreatorFootCon">
 			<div id="EtapeSuivant" title="retour à l'administration"><p>retour à l'admin.</p></div>
-			<div id="EtapeValide" class="button-big button-big-yellow">Sauvegarder</div>
+			<div id="EtapeValide" class="button-big button-big-yellow">Publier</div>
 			<div id="EtapeAide" onclick="Ot.openPopup('aide/etape3.php', '560', '650')" title="Aide"><p>Aide</p></div>
 		</div>
 		</div>
