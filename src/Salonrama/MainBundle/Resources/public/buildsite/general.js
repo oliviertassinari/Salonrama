@@ -739,7 +739,6 @@ loadScript: function(Type, CallBack)
 		}
 		else if(Type == 'Form'){
 			this.addFile(Type, 'Script', 'form/form.js');
-			this.addFile(Type, 'Style', 'form/form.css');
 		}
 		else if(Type == 'Galerie'){
 			this.addFile(Type, 'Style', 'galerie/galerie.css');

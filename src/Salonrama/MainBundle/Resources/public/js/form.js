@@ -3,7 +3,7 @@ var Form = function(form, onSubmit, editMode)
 	var self = this;
 
 	this.form = form;
-	this.globalState = form.find('.form-global-state');
+	this.globalState = form.find('.form-global-state').first();
 	this.onSubmit = onSubmit;
 	this.submit = form.find('button[type="submit"]');
 	this.list = {};

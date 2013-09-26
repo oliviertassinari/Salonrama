@@ -33,18 +33,14 @@ initi: function()
 	var Class = GModule.ClassList['Form'];
 	var self = this;
 
-	this.ModuleObj.innerHTML = '<div class="ModuleForm">'+
-		'<div class="ModuleFormChampList"></div>'+
-		'<div class="FormValid">'+
-			'<div style="height:30px;"></div>'+
-			'<button type="button" class="button-small button-small-green" onclick="GModule.ClassList[\'Form\'].submit()">'+
-				'<i class="icon-envelope"></i>Envoyer mon message'+
-			'</button>'+
+	this.ModuleObj.innerHTML = '<div class="ModuleFormChampList"></div>'+
+		'<div class="form-actions">'+
+			'<div class="form-global-state frame-small"></div>'+
+			'<button type="submit" class="button-small button-small-green" onclick="GModule.ClassList[\'Form\'].submit()"><i class="icon-envelope"></i>Envoyer mon message</button>'+
 		'</div>'+
-		'<p class="etoile">* champ à remplir obligatoirement</p>'+
-	'</div>';
+		'<p class="etoile">* champ à remplir obligatoirement</p>';
 
-	this.ModuleFormChampList = this.ModuleObj.firstChild.firstChild;
+	this.ModuleFormChampList = this.ModuleObj.firstChild;
 
 	var InputId = this.ModuleObj.id+'Input';
 
@@ -71,32 +67,32 @@ set: function()
 		var ChampAct = this.V.ChampList[i];
 		var Id = Ot.getRandId('ModuleFormChamp');
 
-		var Html = '<label class="FormLabel" for="'+Id+'"></label>';
-
-		if(ChampAct[0] == 'text' || ChampAct[0] == 'email'){
-			Html += '<input class="FormInputText" type="text" size="35" id="'+Id+'"/>';
-		}
-		else if(ChampAct[0] == 'textarea'){
-			Html += '<textarea class="FormTexta" rows="8" cols="80" id="'+Id+'"></textarea>';
-		}
-
-		var Champ = document.createElement('div');
-		Champ.className = 'FormChamp';
-		Champ.innerHTML = Html;
-
 		if(ChampAct[2] == 1){
-			Champ.firstChild.innerHTML += ChampAct[1]+'<span class="etoile">*</span>:';
+			var label = ChampAct[1]+'<span class="form-required">*</span>';
 			isObligatoire = true;
 		}
 		else{
-			Champ.firstChild.innerHTML += ChampAct[1]+' :';
+			var label = ChampAct[1];
 		}
 
-		this.ModuleFormChampList.appendChild(Champ);
+		var Html = '<fieldset class="form-fieldset">'+
+						'<label for="for="'+Id+'"">'+label+'</label>'+
+						'<div class="form-controls">';
+
+		if(ChampAct[0] == 'text' || ChampAct[0] == 'email'){
+			Html += '<input type="text" id="'+Id+'"/>';
+		}
+		else if(ChampAct[0] == 'textarea'){
+			Html += '<textarea id="'+Id+'"></textarea>';
+		}
+
+		Html += '</div></fieldset>';
+
+		$(this.ModuleFormChampList).append(Html);
 	}
 
 	if(isObligatoire){
-		this.ModuleObj.firstChild.lastChild.style.display = 'block';
+		this.ModuleObj.lastChild.style.display = 'block';
 	}
 }
 

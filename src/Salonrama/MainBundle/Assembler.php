@@ -114,6 +114,7 @@ else
 			$name = mb_strtolower($name, 'UTF-8');
 			$name = $this->stripAccents($name);
 			$name = str_replace(array(' ', '/'), '_', $name);
+			$name = str_replace(array('"', "'"), '', $name);
 
 			$i = 1;
 
@@ -482,7 +483,6 @@ else
 		$this->addFile($this->pathPublic.'buildsite/ot.js', 'Script');
 		$this->addFile($this->pathPublic.'buildsite/module/map/googlemap.js', 'Script');
 		$this->addFile($this->pathPublic.'buildsite/module/map/map.css', 'Style');
-		$this->addFile($this->pathPublic.'buildsite/form.css', 'Style');
 
 		$ClassId = 'v'.Rand::getId();
 		$GoogleMapId = Rand::getId();
@@ -598,21 +598,21 @@ else
 			return '<div class="BlockVide">Module contact désactivé : aucune email de destination</div>';
 		}
 
-		$this->addFile($this->pathPublic.'buildsite/ot.js', 'Script');
-		$this->addFile($this->pathPublic.'buildsite/form.js', 'Script');
-		$this->addFile($this->pathPublic.'buildsite/form.css', 'Style');
-		$this->addFile($this->pathPublic.'buildsite/button.css', 'Style');
-		$this->addFile($this->pathPublic.'buildsite/cadre.css', 'Style');
-		$this->addFile($this->pathPublic.'buildsite/module/form/form.css', 'Style');
+		$this->addFile($this->pathPublic.'js/jquery.js', 'Script');
+		$this->addFile($this->pathPublic.'js/form.js', 'Script');
+		$this->addFile($this->pathPublic.'css/font_awesome.css', 'Style');
+		$this->addFile($this->pathPublic.'css/form.css', 'Style');
+		$this->addFile($this->pathPublic.'css/button.css', 'Style');
+		$this->addFile($this->pathPublic.'css/frame.css', 'Style');
 
-		$ClassId = Rand::getId();
-		$FonctionId = Rand::getId();
+		$ClassId = 'v'.Rand::getId();
+		$FonctionId = 'v'.Rand::getId();
 		$EtatId = Rand::getId();
 		$FormId = Rand::getId();
 
 		$this->Php .= '
-require_once("'.$this->LocSiteHome.'creator/module/form/form.php");
-require_once("'.$this->LocSiteHome.'php/GForm.php");
+require_once("'.$this->LocSiteHome.'src/Salonrama/MainBundle/Resources/public/buildsite/module/form/form.php");
+require_once("'.$this->LocSiteHome.'src/Salonrama/MainBundle/Resources/public/buildsite/module/form/GForm.php");
 
 $'.$FonctionId.' = create_function(\'$Class, $R\', \'
 
@@ -622,7 +622,7 @@ if($R == 0)
 	{
 		if(EmailModuleForm("'.$this->LocSiteHome.'", "'.$this->id.'") === true)
 		{
-			$Class->getEtatHtml(true, "Votre message a bien été envoyé.<br/>Nous traiterons votre demande dans les plus brefs délais.", "'.$EtatId.'");
+			$Class->getEtatHtml(true, "Votre message a bien été envoyé.<br>Nous traiterons votre demande dans les plus brefs délais.", "'.$EtatId.'");
 		}
 		else
 		{
@@ -631,7 +631,7 @@ if($R == 0)
 	}
 	else
 	{
-		$Class->getEtatHtml(false, "Votre email n\\\'a pas été envoyé : module desactivé pendant la création du site.", "'.$EtatId.'");
+		$Class->getEtatHtml(false, "Votre email n\\\'a pas été envoyé : module désactivé pendant la création du site.", "'.$EtatId.'");
 	}
 }
 else if($R == 1)
@@ -645,28 +645,17 @@ else
 
 \');
 
-$'.$ClassId.' = new GForm("'.$this->pathPublic.'", $'.$FonctionId.');';
-
-		$this->Js .= "var ".$ClassId.";
-
-		function ".$FonctionId."(R)
-		{
-			var FormEtat = document.getElementById('".$EtatId."');
-
-			".$ClassId.".setFormEtat(FormEtat, '', '');
-			new Fx(FormEtat, { From: 0, To: 1, Mode: 'opacity' });
-
-			if(R == 0)
-			{
-				".$ClassId.".setFormEtat(FormEtat, 'load', 'Envoye en cours...');
-				document.getElementById('".$FormId."').submit();
-			}
-			else if(R == 1){ ".$ClassId.".setFormEtat(FormEtat, false, 'Champ Invalide.'); }
-			else{ ".$ClassId.".setFormEtat(FormEtat, false, 'Champs Invalides.'); }
-		}";
+$'.$ClassId.' = new GForm($'.$FonctionId.');';
 
 		$this->JsIniti .= "
-			".$ClassId." = new GForm('".$this->pathPublic."', ".$FonctionId.");";
+			var ".$ClassId." = new Form($('#".$FormId."'), function(result, values, self){
+				if(result == 0){
+					self.setGlobalState(2, 'Envoi en cours...');
+					self.form.submit();
+				}
+				else if(result == 1){ self.setGlobalState(1, 'Champ Invalide.'); }
+				else{ self.setGlobalState(1, 'Champs Invalides.'); }
+			});";
 
 		$isObligatoire = false;
 		$Html = '<form method="post" action="?#'.$FormId.'" id="'.$FormId.'">'.
@@ -684,9 +673,7 @@ if(strpos($tempon, "CadColor CadVert"))
 else
 {
 
-?>'.
-				'<div class="ModuleForm">'.
-					'<div class="ModuleFormChampList">';
+?>';
 
 		foreach($V['ChampList'] as $Info)
 		{
@@ -697,47 +684,48 @@ else
 			$Name = str_replace(' ', '_', $Name);
 
 			if($Info[2] == 1){
-				$Label = $Var.'<span class="etoile">*</span>:';
+				$Label = $Var.'<span class="form-required">*</span>';
 				$isObligatoire = true;
-				$Facul = 'false';
+				$isNeeded = 'true';
 			}
 			else{
-				$Label = $Var.' :';
-				$Facul = 'true';
+				$Label = $Var;
+				$isNeeded = 'false';
 			}
 
-			$Html .= '<div class="FormChamp">'.
-						'<label class="FormLabel" for="'.$ChampId.'">'.$Label.'</label>';
+			$Html .= '<fieldset class="form-fieldset">
+						<label for="for="'.$ChampId.'"">'.$Label.'</label>
+						<div class="form-controls">';
 
 			if($Type == 'text' || $Type == 'email'){
-				$Html .= '<input class="FormInputText" type="text" size="35" id="'.$ChampId.'" name="'.$Name.'" <?php $'.$ClassId.'->getValue("'.$Name.'"); ?>/>'.
-						 '<?php $'.$ClassId.'->getChampErr("'.$Name.'"); ?>';
+				$Html .= '<input type="text" id="'.$ChampId.'" name="'.$Name.'" <?php $'.$ClassId.'->getValue("'.$Name.'"); ?>/>';
 			}
 			else if($Type == 'textarea'){
-				$Html .= '<?php $'.$ClassId.'->getChampErr("'.$Name.'"); ?>'.
-						 '<textarea class="FormTexta" rows="8" cols="80" id="'.$ChampId.'" name="'.$Name.'"><?php $'.$ClassId.'->getTexta("'.$Name.'"); ?></textarea>';
+				$Html .= '<textarea id="'.$ChampId.'" name="'.$Name.'"><?php $'.$ClassId.'->getTexta("'.$Name.'"); ?></textarea>';
 			}
 
-			$Html .= '</div>';
+			$Html .= '<?php $'.$ClassId.'->getChampErr("'.$Name.'"); ?>
+					</div>
+				</fieldset>';
 
 			if($Type == 'email')
 			{
 				$this->JsIniti .= "
-			".$ClassId.".addChamp('Input', document.getElementById('".$ChampId."'), { RegExp: 'email', Facul: ".$Facul."  });";
+			".$ClassId.".addInput('".$ChampId."', { regexp: 'email', isNeeded: ".$isNeeded." });";
 				$this->Php .= '
 $'.$ClassId.'->addChamp("Input", "'.$Name.'", array("RegExp" => "email"));';
 			}
 			else if($Type == 'textarea')
 			{
 				$this->JsIniti .= "
-			".$ClassId.".addChamp('Texta', document.getElementById('".$ChampId."'), { Facul: ".$Facul." });";
+			".$ClassId.".addInput('".$ChampId."', { isNeeded: ".$isNeeded." });";
 				$this->Php .= '
 $'.$ClassId.'->addChamp("Texta", "'.$Name.'", array());';
 			}
 			else
 			{
 				$this->JsIniti .= "
-			".$ClassId.".addChamp('Input', document.getElementById('".$ChampId."'), { Facul: ".$Facul." });";
+			".$ClassId.".addInput('".$ChampId."', { isNeeded: ".$isNeeded." });";
 				$this->Php .= '
 $'.$ClassId.'->addChamp("Input", "'.$Name.'", array());';
 			}
@@ -750,19 +738,16 @@ $'.$ClassId.'->addChamp("Input", "'.$Name.'", array());';
 			$Style = 'none';
 		}
 
-		$Html .= 		'<input type="hidden" name="P_Email" value="'.$V['email'].'"/>'.
-					'</div>'.
-					'<div class="FormValid">'.
-						'<?php $'.$ClassId.'->getEtat(); ?>'.
-						'<div id="'.$EtatId.'"></div>'.
-						'<button type="submit" class="ButtonSmallGreen" onclick="'.$ClassId.'.Valide(); return false;">'.
-							'<img src="'.$this->pathPublic.'image/icone/ok.png"/>Envoyer mon message'.
-						'</button>'.
-					'</div>'.
-					'<p class="etoile" style="display:'.$Style.'">* champ à remplir obligatoirement</p>'.
-				'</div>'.
-				'<?php } ?>'.
-				'</form>';
+		$Html .=  '<input type="hidden" name="P_Email" value="'.$V['email'].'"/>
+
+					<div class="form-actions">
+						<?php $'.$ClassId.'->getEtat(); ?>
+						<div class="form-global-state frame-small"></div>
+						<button type="submit" class="button-small button-small-green"><i class="icon-envelope"></i>Envoyer mon message</button>
+					</div>
+					<p class="etoile" style="display:'.$Style.'">* champ à remplir obligatoirement</p>
+				<?php } ?>
+				</form>';
 
 		return $Html;
 	}
