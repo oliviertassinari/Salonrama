@@ -27,13 +27,13 @@
 
 	{% if message %}
 	{% if message.state == 0 %}
-	<div class="cadre-small cadre-small-green">
+	<div class="frame-small frame-small-green">
 		{% autoescape false %}
 		<i class="icon-ok"></i>{{ message.text }}
 		{% endautoescape %}
 	</div>
 	{% elseif message.state == 1 %}
-	<div class="cadre-small cadre-small-red">
+	<div class="frame-small frame-small-red">
 		<i class="icon-warning-sign"></i>{{ message.text }}
 	</div>
 	{% endif %}

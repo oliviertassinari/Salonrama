@@ -79,11 +79,11 @@
 		</fieldset>
 		<div class="form-actions">
 			{% if error %}
-			<div class="form-global-state cadre-small cadre-small-red" style="display:block;">
+			<div class="form-global-state frame-small frame-small-red" style="display:block;">
 				<i class="icon-warning-sign"></i>{{ error.message|trans([], 'error') }}
 			</div>
 			{% else %}
-			<div class="form-global-state cadre-small"></div>
+			<div class="form-global-state frame-small"></div>
 			{% endif %}
 			<button type="submit" class="button-small button-small-green"><i class="icon-lock"></i>Se connecter</button>
 		</div>

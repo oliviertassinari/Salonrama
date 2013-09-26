@@ -833,7 +833,7 @@ cadre: null,
 init: function(){
 	this.cadre = $(document.createElement('div'));
 	this.cadre.html('<i class="icon-spinner icon-spin"></i>Chargement en cours...');
-	this.cadre.addClass('cadre-small cadre-small-blue');
+	this.cadre.addClass('frame-small frame-small-blue');
 	this.cadre.attr('id', 'bsCadreLoad');
 
 	$('body').append(this.cadre);

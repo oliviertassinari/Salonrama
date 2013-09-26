@@ -43,8 +43,8 @@
 		{
 			document.getElementById('EtapeValide').onclick = function()
 			{
-				new FrameConfirm('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
-					salonForm.valide();
+				new FrameConfirm('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', {
+					yes: function(){ salonForm.valide(); }
 				});
 			};
 		}
@@ -63,12 +63,12 @@
 	<h1>Etape 2 - Mon salon</h1>
 
 	{% if message %}
-	<div class="cadre-small cadre-small-green">
+	<div class="frame-small frame-small-green">
 		<i class="icon-ok"></i>{{ message }}
 	</div>
 	{% endif %}
 
-	<div class="cadre-small cadre-small-orange">
+	<div class="frame-small frame-small-orange">
 		<i class="icon-info-sign"></i>Vous pouvez remplir les informations sur votre salon afin que <strong>votre site soit pré-rempli. (facultatif)</strong>
 	</div>
 
@@ -200,7 +200,7 @@
 		<input type="hidden" id="salon-schedule" name="salon-schedule" value="{{ salon.schedule }}"/>
 
 		<div class="form-actions">
-			<div class="form-global-state cadre-small"></div>
+			<div class="form-global-state frame-small"></div>
 			<button type="submit" style="display:none;">Submit</button>
 		</div>
 	</fieldset> 

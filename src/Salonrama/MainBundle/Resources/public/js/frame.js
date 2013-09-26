@@ -1,13 +1,16 @@
-var FrameBig = function(removeOnClose)
+var FrameBig = function(option)
 {
-	this.frameBigBackground = $('<div class="cadre-big-background"></div>');
+	this.frameBigBackground = $('<div class="frame-big-background"></div>');
 	this.frameBigBackground.hide();
-	this.removeOnClose = removeOnClose ? removeOnClose : false;
 
-	this.frameBigOuter = $('<div class="cadre-big-outer"><div class="cadre-big"></div></div>');
+	this.option = $.extend({
+		removeOnClose: false
+	}, option);
+
+	this.frameBigOuter = $('<div class="frame-big-outer"><div class="frame-big"></div></div>');
 	this.frameBigOuter.hide();
 
-	this.frameBig = this.frameBigOuter.find('.cadre-big');
+	this.frameBig = this.frameBigOuter.find('.frame-big');
 
 	$('body').append(this.frameBigBackground);
 	$('body').append(this.frameBigOuter);
@@ -21,20 +24,20 @@ open: function(width, head, body, foot)
 
 	if(head && head != '')
 	{
-		this.frameBig.append($('<div class="cadre-big-head">'+head+'<span class="cadre-big-close" title="Fermer"><i class="icon-remove"></i></span></div>'));
+		this.frameBig.append($('<div class="frame-big-head">'+head+'<span class="frame-big-close" title="Fermer"><i class="icon-remove"></i></span></div>'));
 	}
 
 	if(body )
 	{
-		this.frameBig.append($('<div class="cadre-big-body">'+body+'</div>'));
+		this.frameBig.append($('<div class="frame-big-body">'+body+'</div>'));
 	}
 
 	if(foot)
 	{
-		this.frameBig.append($('<div class="cadre-big-foot">'+foot+'<div class="clear"></div></div>'));
+		this.frameBig.append($('<div class="frame-big-foot">'+foot+'<div class="clear"></div></div>'));
 	}
 
-	this.frameBig.find('.cadre-big-close').click(function(){ self.close(); });
+	this.frameBig.find('.frame-big-close').click(function(){ self.close(); });
 	this.frameBig.css('width', width);
 	this.frameBigBackground.fadeIn(400);
 	this.frameBigOuter.fadeIn(400);
@@ -62,7 +65,7 @@ close: function()
 	$(document).off('keyup');
 	this.frameBigBackground.fadeOut(400);
 	this.frameBigOuter.fadeOut(400, function(){
-		if(self.removeOnClose)
+		if(self.option.removeOnClose)
 		{
 			self.remove();
 		}
@@ -79,28 +82,38 @@ remove: function()
 
 
 
-var FrameConfirm = function(message, callback)
+var FrameConfirm = function(message, option)
 {
 	var self = this;
 
-	this.callback = callback;
-	this.frameBig = new FrameBig(true);
+	this.option = $.extend({
+		yes: function(){},
+		no: function(){}
+	}, option);
+
+	this.frameBig = new FrameBig({ removeOnClose: true });
 
 	this.frameBig.open(400, 'Attention', message, '<button type="button" class="button-small button-small-green"><i class="icon-ok"></i>Ok</button>'+
 												'<button type="button" class="button-small button-small-red"></i>Annuler</button>');
 
-	var foot = this.frameBig.frameBig.find('.cadre-big-foot');
-	foot.find('.button-small-green').click(function(){ self.valide(); });
+	var foot = this.frameBig.frameBig.find('.frame-big-foot');
+	foot.find('.button-small-green').click(function(){ self.yes(); });
 	foot.find('.button-small-green').focus();
-	foot.find('.button-small-red').click(function(){ self.close(); });
+	foot.find('.button-small-red').click(function(){ self.no(); });
 };
 
 FrameConfirm.prototype = {
 
-valide: function()
+yes: function()
 {
 	this.close();
-	this.callback();
+	this.option.yes();
+},
+
+no: function()
+{
+	this.close();
+	this.option.no();
 },
 
 close: function()

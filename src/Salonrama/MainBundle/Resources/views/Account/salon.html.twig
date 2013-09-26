@@ -67,6 +67,37 @@
 		salonForm.addInput('salon-email', { regexp: 'email', isNeeded: false });
 		salonForm.addInput('salon-schedule');
 		salonForm.setInitValue();
+
+		$('#salon-reset').click(function(){
+			if(busy == false)
+			{
+				busy = true;
+
+				new FrameConfirm('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', {
+					yes: function(){
+						salonForm.setGlobalState(2, 'Réinitialisation en cours...');
+						$.ajax({
+							type: "POST",
+							url: "",
+							data: { reset : true},
+							dataType: "json",
+							success: function(response){
+								salonForm.setGlobalState(response.state, response.text);
+								busy = false;
+							},
+							error: function(rs, e) {
+								salonForm.setGlobalState(1, "Échec lors de la requête.");
+								busy = false;
+							},
+						});
+					},
+					no: function()
+					{
+						busy = false;
+					}
+				});
+			}
+		});
 	});
 
 	Horaire.Initi();
@@ -197,9 +228,9 @@
 			<input type="hidden" id="salon-schedule" name="salon-schedule" value="{{ salon.schedule }}"/>
 
 			<div class="form-actions">
-				<div class="form-global-state cadre-small"></div>
+				<div class="form-global-state frame-small"></div>
 				<button type="submit" class="button-small button-small-green"><i class="icon-hdd"></i>Sauvegarder les modifications</button>| 
-				<button type="button" class="button-small button-small-blue"><i class="icon-rotate-right"></i>Réinitialiser mon site avec ces données</button>
+				<button type="button" class="button-small button-small-blue" id="salon-reset"><i class="icon-rotate-right"></i>Réinitialiser mon site avec ces données</button>
 			</div>
 		</fieldset> 
 		</form>

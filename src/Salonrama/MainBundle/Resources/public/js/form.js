@@ -25,7 +25,7 @@ var Form = function(form, onSubmit, editMode)
 
 Form.prototype = {
 
-addInput: function(inputId, param)
+addInput: function(inputId, option)
 {
 	var self = this;
 	var input = $('#'+inputId);
@@ -37,41 +37,41 @@ addInput: function(inputId, param)
 
 	var inputTagName = input.prop('tagName').toLowerCase();
 
-	param = $.extend({
+	option = $.extend({
 		isNeeded: true,
 		inputStateEnd: false
-	}, param);
+	}, option);
 
 	if(inputTagName == 'input' && (input.prop('type').toLowerCase() == 'text' || input.prop('type').toLowerCase() == 'password'))
 	{
-		param.minLength = (typeof param.minLength == 'number') ? param.minLength : 0;
-		param.maxLength = (typeof param.maxLength == 'number') ? param.maxLength : 40;
+		option.minLength = (typeof option.minLength == 'number') ? option.minLength : 0;
+		option.maxLength = (typeof option.maxLength == 'number') ? option.maxLength : 40;
 
-		if(param.regexp == 'email')
+		if(option.regexp == 'email')
 		{
-			param.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: "L'email est invalide" };
-			param.maxLength = 320;
+			option.regexp = { code : /^[a-zA-Z0-9!#$%&'*+-\/=?^_`.{|}~]{0,64}@[a-z0-9._-]{2,255}\.[a-z]{2,4}$/, text: "L'email est invalide" };
+			option.maxLength = 320;
 		}
-		else if(param.regexp == 'phone'){
-			param.regexp = { code : /^[0-9+() _.-:]{6,30}$/, text: 'Numero invalide' };
-			param.minLength = 6;
-			param.maxLength = 20;
+		else if(option.regexp == 'phone'){
+			option.regexp = { code : /^[0-9+() _.-:]{6,30}$/, text: 'Numero invalide' };
+			option.minLength = 6;
+			option.maxLength = 20;
 		}
-		else if(param.regexp == 'subdomain'){
-			param.regexp = { code : /^[a-z0-9]{1}[a-z0-9-]*[a-z0-9]{1}$/, text: 'Caractères invalides [0-9] [a-z] et [-]' };
-			param.minLength = 3;
-			param.maxLength = 63;
+		else if(option.regexp == 'subdomain'){
+			option.regexp = { code : /^[a-z0-9]{1}[a-z0-9-]*[a-z0-9]{1}$/, text: 'Caractères invalides [0-9] [a-z] et [-]' };
+			option.minLength = 3;
+			option.maxLength = 63;
 		}
 
 		input.on('input', function(){
 			self.onChange(input);
 		});
 
-		this.list[inputId] = { input: input, type: 'inputText', param: param };
+		this.list[inputId] = { input: input, type: 'inputText', option: option };
 	}
 	else if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'checkbox')
 	{
-		this.list[inputId] = { input: input, type: 'checkbox', param: param };
+		this.list[inputId] = { input: input, type: 'checkbox', option: option };
 
 		input.change(function(){
 			self.onChange(input);
@@ -79,7 +79,7 @@ addInput: function(inputId, param)
 	}
 	else if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'hidden')
 	{
-		this.list[inputId] = { input: input, type: 'hidden', param: param };
+		this.list[inputId] = { input: input, type: 'hidden', option: option };
 
 		input.change(function(){
 			self.onChange(input);
@@ -87,7 +87,7 @@ addInput: function(inputId, param)
 	}
 	else if(inputTagName == 'input' && input.prop('type').toLowerCase() == 'radio')
 	{
-		this.list[inputId] = { input: input, type: 'radio', param: param };
+		this.list[inputId] = { input: input, type: 'radio', option: option };
 	}
 	else if(inputTagName == 'textarea')
 	{
@@ -95,7 +95,7 @@ addInput: function(inputId, param)
 			self.onChange(input);
 		});
 
-		this.list[inputId] = { input: input, type: 'textarea', param: param };
+		this.list[inputId] = { input: input, type: 'textarea', option: option };
 	}
 	else if(inputTagName == 'select')
 	{
@@ -105,7 +105,7 @@ addInput: function(inputId, param)
 			self.onChange(input);
 		});
 
-		this.list[inputId] = { input: input, type: 'select', param: param };
+		this.list[inputId] = { input: input, type: 'select', option: option };
 	}
 },
 
@@ -169,22 +169,22 @@ setGlobalState: function(state, text)
 	}
 	else
 	{
-		this.globalState.removeClass('cadre-small-red cadre-small-blue cadre-small-green');
+		this.globalState.removeClass('frame-small-red frame-small-blue frame-small-green');
 		this.globalState.css('display', 'block');
 
 		if(state == 1) //error
 		{
-			this.globalState.addClass('cadre-small-red');
+			this.globalState.addClass('frame-small-red');
 			this.globalState.html('<i class="icon-warning-sign"></i>'+text);
 		}
 		else if(state == 2) //wait
 		{
-			this.globalState.addClass('cadre-small-blue');
+			this.globalState.addClass('frame-small-blue');
 			this.globalState.html('<i class="icon-spinner icon-spin"></i>'+text);
 		}
 		else if(state == 0) //ok
 		{
-			this.globalState.addClass('cadre-small-green');
+			this.globalState.addClass('frame-small-green');
 			this.globalState.html('<i class=icon-ok></i>'+text);
 		}
 	}
@@ -212,7 +212,7 @@ addInputState: function(input, state)
 		span.innerHTML = '<i class="icon-remove"></i>'+state.text;
 	}
 
-	if(this.list[input.attr('id')].param.inputStateEnd)
+	if(this.list[input.attr('id')].option.inputStateEnd)
 	{
 		$(span).insertAfter(input.parent().children().last());
 	}
@@ -232,27 +232,27 @@ valideInputText: function(item)
 {
 	item.input.val($.trim(item.input.val()));
 
-	if(item.param.isNeeded || item.input.val().length > 0)
+	if(item.option.isNeeded || item.input.val().length > 0)
 	{
-		if(item.input.val().length > item.param.maxLength){
-			var state = { state: 1, text: 'Champ trop long ('+item.param.maxLength+' max)' };
+		if(item.input.val().length > item.option.maxLength){
+			var state = { state: 1, text: 'Champ trop long ('+item.option.maxLength+' max)' };
 		}
-		else if(item.input.val().length < item.param.minLength)
+		else if(item.input.val().length < item.option.minLength)
 		{
 			if(item.input.val().length == 0){
 				var state = { state: 1, text: 'Champ vide' };
 			}
 			else{
-				var state = { state: 1, text: 'Champ trop court ('+item.param.minLength+' min)' };
+				var state = { state: 1, text: 'Champ trop court ('+item.option.minLength+' min)' };
 			}
 		}
-		else if(item.param.isNeeded && item.input.val().length == 0)
+		else if(item.option.isNeeded && item.input.val().length == 0)
 		{
 			var state = { state: 1, text: 'Champ vide' };
 		}
-		else if(item.param.regexp && item.param.regexp.code.test(item.input.val()) == false)
+		else if(item.option.regexp && item.option.regexp.code.test(item.input.val()) == false)
 		{
-			var state = { state: 1, text: item.param.regexp.text };
+			var state = { state: 1, text: item.option.regexp.text };
 		}
 		else{
 			var state = { state: 0, text: 'Ok' };
@@ -272,9 +272,9 @@ valideInputText: function(item)
 
 valideTextarea: function(item)
 {
-	if(item.param.isNeeded || item.input.val().length > 0)
+	if(item.option.isNeeded || item.input.val().length > 0)
 	{
-		if(item.param.isNeeded && item.input.val().length == 0)
+		if(item.option.isNeeded && item.input.val().length == 0)
 		{
 			var state = { state: 1, text: 'Champ vide' };
 		}
@@ -296,7 +296,7 @@ valideTextarea: function(item)
 
 valideSelect: function(item)
 {
-	if(item.param.isNeeded)
+	if(item.option.isNeeded)
 	{
 		if(item.input.val() == null)
 		{

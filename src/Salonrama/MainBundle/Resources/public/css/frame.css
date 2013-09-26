@@ -1,5 +1,5 @@
 /* Cadre Small */
-.cadre-small{
+.frame-small{
 padding:6px 6px 6px 30px;
 font:13px arial,verdana,tahoma,helvetica,sans-serif;
 margin:4px 12px 13px;
@@ -7,47 +7,47 @@ position:relative;
 overflow:hidden;
 border-radius:4px;
 }
-.cadre-small i{
+.frame-small i{
 font-size:16px;
 position:absolute;
 left:9px;
 top:6px;
 }
-.cadre-small i.icon-info-sign{
+.frame-small i.icon-info-sign{
 color:#658FBE;
 }
-.cadre-small i.icon-warning-sign{
+.frame-small i.icon-warning-sign{
 color:#e8002a;
 }
-.cadre-small i.icon-spinner{
+.frame-small i.icon-spinner{
 color:#273b6e;
 }
-.cadre-small i.icon-ok{
+.frame-small i.icon-ok{
 color:#529214;
 }
 
-.cadre-small-orange{
+.frame-small-orange{
 border:1px solid #f9d5a1;
 background:#ffedd5;
 color:#502d00;
 }
-.cadre-small-red{
+.frame-small-red{
 border:1px solid #ff7b7b;
 background:#fae7e6;
 color:#420f0d;
 }
-.cadre-small-blue{
+.frame-small-blue{
 border:1px solid #87a5c6;
 background:#eef2f6;
 }
-.cadre-small-green{
+.frame-small-green{
 border:1px solid #C6D880;
 background:#E6EFC2;
 }
 
 /* Cadre Big */
 
-.cadre-big-outer{
+.frame-big-outer{
 position:absolute;
 left:0;
 top:0;
@@ -55,7 +55,7 @@ width:100%;
 z-index:5;
 }
 
-.cadre-big{
+.frame-big{
 position:relative;
 margin:0 auto;
 overflow:auto;
@@ -65,10 +65,10 @@ box-shadow:0 2px 6px rgba(0, 0, 0, 0.2);
 background:#fff;
 border-radius:6px;
 }
-.cadre-big p{
+.frame-big p{
 margin:0;
 }
-.cadre-big-head{
+.frame-big-head{
 color:#fff;
 text-align:center;
 border:1px solid #A7D0F6;
@@ -81,7 +81,7 @@ border-radius:6px 6px 0 0;
 padding:3px;
 position:relative;
 }
-.cadre-big-close{
+.frame-big-close{
 font-size:16px;
 display:inline-block;
 width:20px;
@@ -92,26 +92,26 @@ right:5px;
 color:#c1d7f4;
 cursor:pointer;
 }
-.cadre-big-close:hover{
+.frame-big-close:hover{
 color:#fff;
 }
 
-.cadre-big-body{
+.frame-big-body{
 border-top:1px solid #ddd;
 padding:5px;
 font-size:13px;
 }
-.cadre-big-foot{
+.frame-big-foot{
 background:#f6f8ea;
 border-top:1px solid #ccc;
 padding:10px;
 text-align:right;
 }
-.cadre-big-foot .button-small-red{
+.frame-big-foot .button-small-red{
 float:left;
 }
 
-.cadre-big-background{
+.frame-big-background{
 position:fixed;
 display:block;
 top:0;
