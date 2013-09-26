@@ -17,6 +17,7 @@ class Step5Controller extends Controller
 	{
 		$request = $this->getRequest();
 		$session = $request->getSession();
+		$error = '';
 
 		$buildsite = new Buildsite($session, 5);
 
@@ -58,13 +59,6 @@ class Step5Controller extends Controller
 
 			$userRepository = $em->getRepository('SalonramaMainBundle:User');
 			$findUser = $userRepository->findOneByEmail($email);
-				
-			require_once('../src/Salonrama/MainBundle/Recaptchalib.php');
-			$privatekey = '6LeyqucSAAAAAAgcPlMvhUwamHlQG087Ih-fU11j ';
-			$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"],
-				$request->request->get('recaptcha_challenge_field'),
-				$request->request->get('recaptcha_response_field')
-			);
 
 			if($request->isXmlHttpRequest())
 			{
@@ -72,30 +66,21 @@ class Step5Controller extends Controller
 				{
 					if(!$findUser)
 					{
-						if($resp->is_valid)
-						{
-							$subdomainService = $this->get('salonrama_main_subdomain');
-							$state = $subdomainService->isAvailableSite($session->get('buildsite/site/subdomain'));
+						$subdomainService = $this->get('salonrama_main_subdomain');
+						$state = $subdomainService->isAvailableSite($session->get('buildsite/site/subdomain'));
 
-							if($state['state'] == 0)
-							{
-								$state = array('state' => 0, 'text' => "Ok.");
-							}
-							else
-							{
-								$state = array('state' => 1, 'text' => "Le sous domaine choisie à l'étape4 n'est plus disponible.", 'exec' => 'self.setGlobalState(response.state, response.text)');
-							}
+						if($state['state'] == 0)
+						{
+							$state = array('state' => 0, 'text' => "Ok.");
 						}
 						else
 						{
-							$state = array('state' => 1, 'text' => "Les caractères que vous avez saisis ne correspondent pas à l'image. Veuillez réessayer.",
-											'exec' => "Recaptcha.reload();self.setInputState($('#recaptcha_response_field'), response)");
+							$state = array('state' => 1, 'text' => "Le sous domaine choisie à l'étape4 n'est plus disponible.", 'exec' => 'self.setGlobalState(response.state, response.text)');
 						}
 					}
 					else
 					{
-						$state = array('state' => 1, 'text' => 'Adresse email déjà utilisée.',
-											'exec' => "self.setInputState($('#publish-email'), response)");
+						$state = array('state' => 1, 'text' => 'Adresse email déjà utilisée.', 'exec' => "self.setInputState($('#publish-email'), response)");
 					}
 				}
 				else
@@ -105,9 +90,16 @@ class Step5Controller extends Controller
 
 				return new JsonResponse($state);
 			}
-			else 
+			else if(count($errors) == 0 && !$findUser)
 			{
-				if(count($errors) == 0 && $resp->is_valid && !$findUser)
+				require_once('../src/Salonrama/MainBundle/Recaptchalib.php');
+				$privatekey = '6LeyqucSAAAAAAgcPlMvhUwamHlQG087Ih-fU11j ';
+				$resp = recaptcha_check_answer($privatekey, $_SERVER["REMOTE_ADDR"],
+					$request->request->get('recaptcha_challenge_field'),
+					$request->request->get('recaptcha_response_field')
+				);
+
+				if($resp->is_valid)
 				{
 					$salon = new Salon();
 					$salon->setName($session->get('buildsite/salon/name'))
@@ -170,13 +162,18 @@ class Step5Controller extends Controller
 
 					return $this->render('SalonramaMainBundle:Buildsite:step_end.html.twig', array('email' => $email));
 				}
+				else
+				{
+					$error = "Les caractères que vous avez saisis ne correspondent pas à l'image. Veuillez réessayer.";
+				}
 			}
 		}
 
 		return $this->render('SalonramaMainBundle:Buildsite:step5.html.twig', array(
 																				'storyboard' => $storyboard,
 																				'pathFront' => '/'.$session->get('buildsite/site/pathBack'),
-																				'email' => $session->get('buildsite/salon/email')
+																				'email' => $session->get('buildsite/salon/email'),
+																				'error' => $error
 																			));
 	}
 }

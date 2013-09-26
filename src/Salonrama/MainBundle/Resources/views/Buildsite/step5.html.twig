@@ -64,8 +64,6 @@
 					busy = true;
 					self.setGlobalState(2, 'Vérification en cours...');
 
-					values['recaptcha_challenge_field'] = $('#recaptcha_challenge_field').val();
-
 					$.ajax({
 						type: "POST",
 						url: "",
@@ -180,7 +178,13 @@
 
 
 		<div class="form-actions">
+			{% if error %}
+			<div class="form-global-state frame-small frame-small-red" style="display:block;">
+				<i class="icon-warning-sign"></i>{{ error }}
+			</div>
+			{% else %}
 			<div class="form-global-state frame-small"></div>
+			{% endif %}
 			<button type="submit" style="display:none;">Submit</button>
 		</div>
 	</fieldset> 
