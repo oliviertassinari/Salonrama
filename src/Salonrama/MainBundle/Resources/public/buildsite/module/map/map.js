@@ -26,7 +26,7 @@ initi: function()
 	var ModuleObjId = this.ModuleObj.id;
 
 	this.ModuleObj.parentNode.innerHTML = '<div class="BlockVide">Chargement du module en cours...</div>'+
-	'<iframe id="'+ModuleObjId+'" src="creator/module/map/map.php?id='+ModuleObjId+'" class="BlockWHFull" frameborder="0" style="display:none;"></iframe>';
+	'<iframe id="'+ModuleObjId+'" src="/bundles/salonramamain/buildsite/module/map/map.php?id='+ModuleObjId+'" class="BlockWHFull" frameborder="0" style="display:none;"></iframe>';
 
 	this.ModuleObj = document.getElementById(ModuleObjId);
 },

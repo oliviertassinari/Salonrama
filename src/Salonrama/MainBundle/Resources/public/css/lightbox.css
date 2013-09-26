@@ -1,4 +1,9 @@
-.lightboxLink:hover .lightboxNotif{
+.lightbox-link{
+display:inline-block;
+position:relative;
+}
+
+.lightbox-link:hover .lightbox-notif{
 background:url(../images/lightbox.png) 0 -112px no-repeat;
 display:block;
 height:40px;

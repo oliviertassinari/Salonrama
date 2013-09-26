@@ -12,8 +12,7 @@ ImageList: [],
 Type: '',
 ImageListSave: '',
 TypeList: {
-	'MilkBox': ['MilkBox', 'Afficher les images sous forme de grille', 'grille'],
-	'MooFlow': ['Cover flow', 'Afficher les images sous forme de liste', 'liste']
+	'lightbox': ['Lightbox', 'Afficher les images sous forme de grille', 'grille']
 },
 
 open: function(Module)
@@ -439,25 +438,9 @@ initi: function()
 
 	this.Type = this.V.Type;
 	this.ImageList = this.V.ImageList;
-	this.PreVis = new PreVis('');
-	this.MilkBox = new MilkBox();
-	this.MooFlow = null;
 
 	this.BlockHeadOption.innerHTML = '<button type="button" class="button-small button-small-blue"><i class="icon-angle-right"></i>Modifier la galerie</button>';
 	this.BlockHeadOption.firstChild.onclick = function(){ Class.open(self); };
-
-	var Width;
-	GBlock.addEventOutOver(this.BlockObj, 'out', function()
-	{
-		if(self.Type == 'MooFlow')
-		{
-			if(Width && Width != self.BlockObj.offsetWidth)
-			{
-				self.setBlock();
-			}
-		}
-		Width = self.BlockObj.offsetWidth;
-	});
 
 	if(this.ImageList.length == 0)
 	{
@@ -476,7 +459,7 @@ setBlock: function()
 	var ImageList = this.ImageList;
 	var ImageListObj = this.ModuleObj.firstChild;
 
-	if(this.Type == 'PreVis')
+	if(this.Type == 'lightbox')
 	{
 		var Html = '';
 		for(var i = 0, l = ImageList.length; i < l; i++)
@@ -485,57 +468,15 @@ setBlock: function()
 			var ImageSizeOpt = GImage.getSizeOpt(ImageInfo.w, ImageInfo.h, 150, 150);
 
 			Html += '<div class="ModuleGalerieImage">'+
-						'<a href="'+ImageInfo.src+'" class="MPreVis" title="Agrandir cette image"><img src="'+ImageInfo.src+'" width="'+ImageSizeOpt.w+'" height="'+ImageSizeOpt.h+'"/><span class="Zoom"></span></a>'+
+					'<a href="'+ImageInfo.src+'" data-lightbox="'+this.ModuleObj.id+'" class="lightbox-link">'+
+						'<img src="'+ImageInfo.src+'" width="'+ImageSizeOpt.w+'" height="'+ImageSizeOpt.h+'"/>'+
+						'<span class="lightbox-notif" title="Agrandir cette image"></span>'+
+					'</a>'+
 					'</div>';
 		}
 		ImageListObj.innerHTML = Html+'<div class="Clear"></div>';
 
-		this.PreVis.Initi(ImageListObj);
-	}
-	else if(this.Type == 'MilkBox')
-	{
-		var Html = '';
-		for(var i = 0, l = ImageList.length; i < l; i++)
-		{
-			var ImageInfo = GImage.getInfo(ImageList[i]);
-			var ImageSizeOpt = GImage.getSizeOpt(ImageInfo.w, ImageInfo.h, 150, 150);
-
-			Html += '<div class="ModuleGalerieImage">'+
-						'<a href="'+ImageInfo.src+'" class="MMilkBox" title="Agrandir cette image"><img src="'+ImageInfo.src+'" title="" width="'+ImageSizeOpt.w+'" height="'+ImageSizeOpt.h+'"/><span class="Zoom"></span></a>'+
-					'</div>';
-		}
-		ImageListObj.innerHTML = Html+'<div class="Clear"></div>';
-
-		this.MilkBox.prepareGalleries(ImageListObj);
-	}
-	else if(this.Type == 'MooFlow')
-	{
-		var self = this;
-
-		ImageListObj.innerHTML = '';
-
-		this.MooFlow = new MooFlow($(ImageListObj), {
-			useSlider: true,
-			useCaption: true,
-			useMouseWheel: true,
-			useKeyInput: true,
-			useViewer: true,
-			onClickView: function(obj){ self.MilkBox.showThisImage(obj.href, ''); }
-		});
-
-		this.MooFlow.master = { 'images':[] };
-
-		for(var i = 0, l = ImageList.length; i < l; i++)
-		{
-			var ImageInfo = GImage.getInfo(ImageList[i]);
-
-			this.MooFlow.master.images.push({
-				href: ImageInfo.src,
-				src: ImageInfo.src
-			});
-		}
-
-		this.MooFlow.clearMain();
+		new Lightbox({ parent: $(this.ModuleObj) });
 	}
 }
 

@@ -63,6 +63,12 @@ Mettre à jour la gallery
 php app/console gallery:update
 ```
 
+Check l'environement
+
+```bash
+php app/check.php
+```
+
 Mettre à jour la liste de themes
 
 ```bash

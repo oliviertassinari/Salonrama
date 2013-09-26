@@ -89,7 +89,7 @@ class SiteData
             ],
             "2222": [
                 { "T": "Wys", "V": "<strong><font size=\"5\">Nos réalisations</font></strong>", "P": [50, 100, 0] },
-                { "T": "ModuleGalerie", "V": { "Type": "MilkBox", "ImageList": ["photo2.jpg", "photo3.jpg"] }, "P": [200, 100, 0] }
+                { "T": "ModuleGalerie", "V": { "Type": "lightbox", "ImageList": ["photo2.jpg", "photo3.jpg"] }, "P": [200, 100, 0] }
             ],
             "3333": [
                 { "T": "Wys", "V": "<strong><font size=\"5\">Comment y accéder ?</font></strong><br/><br/><strong>Adresse</strong> : '.$Adresse.'<br/><br/>Le salon est en face du collège Salonrama.<br/>En métro : Par la ligne 6 : Descendez à  la station \'Bel Air\'<br/>En bus : Prenez le bus numéro 2 et arrêtez vous à l\'arrêt Salonrama.", "P": [150, 100, 0] },

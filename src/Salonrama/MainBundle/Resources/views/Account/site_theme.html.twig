@@ -86,9 +86,9 @@
 			<div id="theme-select">
 				{% for name in theme_list %}
 				<div class="theme-select-item">
-					<a href="{{ asset('bundles/salonramamain/theme/' ~ name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightboxLink">
+					<a href="{{ asset('bundles/salonramamain/theme/' ~ name ~ '/screenshot_max.jpg') }}" data-lightbox="theme-select" class="lightbox-link">
 						<img src="{{ asset('bundles/salonramamain/theme/' ~ name ~ '/screenshot_min.jpg') }}" width="130" height="115"/>
-						<span class="lightboxNotif" title="Agrandir cette image"></span>
+						<span class="lightbox-notif" title="Agrandir cette image"></span>
 					</a>
 					<div class="theme-select-item-radio">
 						<input type="radio" name="site-theme" value="{{ name }}" id="{{ name }}"{% if theme == name %} checked="checked"{% endif %}/>

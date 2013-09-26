@@ -560,13 +560,13 @@ else
 		$ImageList = $V['ImageList'];
 		$Html = '';
 		$Id = Rand::getId();
-		$ClassId = Rand::getId();
+		$ClassId = 'v'.Rand::getId();
 
-		if($Type == 'MilkBox')
+		if($Type == 'lightbox')
 		{
-			$this->addFile($this->pathPublic.'buildsite/mootools.js', 'Script');
-			$this->addFile($this->pathPublic.'buildsite/module/galerie/milkbox.js', 'Script');
-			$this->addFile($this->pathPublic.'buildsite/module/galerie/milkbox.css', 'Style');
+			$this->addFile($this->pathPublic.'js/jquery.js', 'Script');
+			$this->addFile($this->pathPublic.'js/lightbox.js', 'Script');
+			$this->addFile($this->pathPublic.'css/lightbox.css', 'Style');
 			$this->addFile($this->pathPublic.'buildsite/module/galerie/galerie.css', 'Style');
 
 			foreach($ImageList as $Nom)
@@ -575,48 +575,16 @@ else
 				$ImageSizeOpt = $this->getImageSizeOpt($ImageInfo['w'], $ImageInfo['h'], 150, 150);
 
 				$Html .= '<div class="ModuleGalerieImage">'.
-							'<a href="'.$ImageInfo['src'].'" class="MMilkBox" title="Agrandir cette image"><img src="'.$ImageInfo['src'].'" alt="photo" width="'.$ImageSizeOpt['w'].'" height="'.$ImageSizeOpt['h'].'"/><span class="Zoom"></span></a>'.
-						'</div>';
+					'<a href="'.$ImageInfo['src'].'" data-lightbox="'.$ClassId.'" class="lightbox-link">'.
+						'<img src="'.$ImageInfo['src'].'" width="'.$ImageSizeOpt['w'].'" height="'.$ImageSizeOpt['h'].'"/>'.
+						'<span class="lightbox-notif" title="Agrandir cette image"></span>'.
+					'</a>'.
+					'</div>';
 			}
 			$Html .= '<div class="Clear"></div>';
 
 			$this->JsIniti .= "
-			var ".$ClassId." = new MilkBox();
-			".$ClassId.".prepareGalleries(document.getElementById('".$Id."'));
-			";
-		}
-		else if($Type == 'MooFlow')
-		{
-			$this->addFile($this->pathPublic.'buildsite/mootools.js', 'Script');
-			$this->addFile($this->pathPublic.'buildsite/module/galerie/milkbox.js', 'Script');
-			$this->addFile($this->pathPublic.'buildsite/module/galerie/milkbox.css', 'Style');
-			$this->addFile($this->pathPublic.'buildsite/module/galerie/mooflow.js', 'Script');
-			$this->addFile($this->pathPublic.'buildsite/module/galerie/mooflow.css', 'Style');
-
-			$master = array();
-
-			foreach($ImageList as $Nom)
-			{
-				$ImageInfo = $this->getImageInfo($Nom);
-				array_push($master, array('href' => $ImageInfo['src'], 'src' => $ImageInfo['src']));
-			}
-
-			$master = json_encode($master);
-
-			$this->JsIniti .= "
-			var Galerie = new MilkBox();
-
-			".$ClassId." = new MooFlow($(document.getElementById('".$Id."')), {
-				useSlider: true,
-				useCaption: true,
-				useMouseWheel: true,
-				useKeyInput: true,
-				useViewer: true,
-				onClickView: function(obj){ Galerie.showThisImage(obj.href, ''); }
-			});
-
-			".$ClassId.".master = {'images':".$master."};
-			".$ClassId.".clearMain();
+			var ".$ClassId." = new Lightbox();
 			";
 		}
 

@@ -1,16 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
-function Extend(Class, Method)
-{
-	var o = Class.prototype;
-
-	for(var i in Method)
-	{
-		o[i] = Method[i];
-	}
-}
-
 var GoogleMap = function(ObjId, Mode)
 {
 	if(Mode){
@@ -35,7 +22,7 @@ var GoogleMap = function(ObjId, Mode)
 	}
 };
 
-Extend(GoogleMap,{
+GoogleMap.prototype = {
 
 Map: '',
 V: ['', 0, 0, 4, 'plan', 47.219568, 1.582031, ''],
@@ -266,4 +253,4 @@ getMapTypeString: function(Type)
 	}
 }
 
-});
+};

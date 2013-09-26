@@ -668,7 +668,7 @@ addBlockNew: function(Type)
 	switch(Type)
 	{
 		case 'Galerie':
-		GModule.addBlock({ T: 'ModuleGalerie', V: { Type: "MilkBox", ImageList: [] }, P: [100, 100, 0] }, 'addByUser');
+		GModule.addBlock({ T: 'ModuleGalerie', V: { Type: "lightbox", ImageList: [] }, P: [100, 100, 0] }, 'addByUser');
 		break;
 
 		case 'Map':
