@@ -2,14 +2,12 @@
 
 {% block head %}
 	<title>Erreur : {{ status_text }}</title>
-
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
 {% endblock %}
 
 {% block body %}
     <h1>Erreur "{{ status_code }} {{ status_text }}"</h1>
 
-    <div class="cadre-small cadre-small-red">
+    <div class="frame-small frame-small-red">
 		<i class="icon-warning-sign"></i>{{ exception.message }}</a>.
 	</div>
 {% endblock %}
