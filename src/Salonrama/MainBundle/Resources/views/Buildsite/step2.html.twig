@@ -14,7 +14,7 @@
 
 {% block javascript %}
 	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/js/cadre.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/frame.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/ot.js') }}"></script>
 	<script src="{{ asset('bundles/salonramamain/buildsite/horaire.js') }}"></script>
 
@@ -43,7 +43,7 @@
 		{
 			document.getElementById('EtapeValide').onclick = function()
 			{
-				new CadreConfirm('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
+				new FrameConfirm('Si vous continuez, votre site sera régénéré et vous perdrez toutes vos modifications.<br><br>Voulez vous continuer ?', function(){
 					salonForm.valide();
 				});
 			};
