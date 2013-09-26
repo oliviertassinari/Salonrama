@@ -11,22 +11,22 @@
 
 	<style>
 
-	#subdomain-suggest{
+	#url-suggest{
 	margin-bottom:25px;
 	}
-	#subdomain-suggest li{
+	#url-suggest li{
 	list-style:disc inside; 
 	margin-top:5px;
 	margin-left:10px;
 	}
-	#subdomain-suggest li span{
+	#url-suggest li span{
 	cursor:pointer;
 	}
-	#subdomain-suggest li span:hover{
+	#url-suggest li span:hover{
 	color:#294773;
 	}
 
-	#subdomain-post .form-fieldset label{
+	#url-post .form-fieldset label{
 	margin-right:8px;
 	}
 
@@ -42,9 +42,9 @@
 
 	$(document).ready(function()
 	{
-		$('#subdomain-subdomain').focus();
+		$('#url-subdomain').focus();
 
-		var subdomainForm = new Form($('#subdomain-post'), function(result, values, self){
+		var urlForm = new Form($('#url-post'), function(result, values, self){
 			if(result == 0)
 			{
 				if(busy == false)
@@ -65,7 +65,7 @@
 							}
 							else
 							{
-								self.setInputState($('#subdomain-subdomain'), response);
+								self.setInputState($('#url-subdomain'), response);
 								self.setGlobalState(null);
 							}
 
@@ -79,31 +79,31 @@
 				}
 			}
 		});
-		subdomainForm.addInput('subdomain-subdomain', { regexp: 'subdomain', inputStateEnd: true });
+		urlForm.addInput('url-subdomain', { regexp: 'subdomain', inputStateEnd: true });
 
-		$('#subdomain-suggest').find('span').click(function(){
+		$('#url-suggest').find('span').click(function(){
 			setSuggest($(this).find('b').html());
 		});
-		$('#subdomain-suggest').find('a').click(function(event){
+		$('#url-suggest').find('a').click(function(event){
 			event.preventDefault();
 			setSuggest($(this).prev().find('b').html());
-			subdomainForm.valide();
+			urlForm.valide();
 		});
 
 		if(!document.getElementById('EtapeValide'))
 		{
-			document.getElementById('EtapeSuivant').onclick = function(){ subdomainForm.valide(); };
+			document.getElementById('EtapeSuivant').onclick = function(){ urlForm.valide(); };
 		}
 		else
 		{
-			document.getElementById('EtapeValide').onclick = function(){ subdomainForm.valide(); };
+			document.getElementById('EtapeValide').onclick = function(){ urlForm.valide(); };
 		}
 	});
 
 	function setSuggest(suggest)
 	{
-		$('#subdomain-subdomain').val(suggest);
-		$('#subdomain-subdomain').focus();
+		$('#url-subdomain').val(suggest);
+		$('#url-subdomain').focus();
 	}
 
 	</script>
@@ -122,28 +122,28 @@
 
 	{% if suggest %}
 	<strong>Propositions d'adresses :</strong>
-	<ul id="subdomain-suggest">
+	<ul id="url-suggest">
 		{% for value in suggest %}
 		<li><span>http://<b>{{ value }}</b>.salonrama.fr</span>	<a href="#">choisir</a></li>
 		{% endfor %}
 	</ul>
 	{% endif %}
 
-	<form method="post" action="" id="subdomain-post">
+	<form method="post" action="" id="url-post">
 	<fieldset>
 		<legend>Adresse internet</legend>
 
 		<fieldset class="form-fieldset">
-			<label for="subdomain-subdomain">
+			<label for="url-subdomain">
 				Adresse
 				<span class="tooltip">
 					<i class="icon-question-sign"></i>
-					<span>Les caractères autorisés sont les lettres minuscules (a-z), les nombres (0-9) et le tiret (-) entre les mots.</span>
+					<span class="frame-small frame-small-orange">Les caractères autorisés sont les lettres minuscules (a-z), les nombres (0-9) et le tiret (-) entre les mots.</span>
 				</span>
 			</label>
 			<div class="form-controls">
-				<label for="subdomain-subdomain">http://</label><input type="text" name="subdomain-subdomain" id="subdomain-subdomain" value="{{ subdomain }}">
-				<label for="subdomain-subdomain">.salonrama.fr</label>
+				<label for="url-subdomain">http://</label><input type="text" name="url-subdomain" id="url-subdomain" value="{{ subdomain }}">
+				<label for="url-subdomain">.salonrama.fr</label>
 			</div>
 		</fieldset>
 

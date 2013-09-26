@@ -175,13 +175,9 @@ class Subdomain
 
 	public function removeSite($subdomain)
 	{
-		global $LocFileHome;
-		
-		require_once($LocFileHome.'php/GFileDos.php');
-
 		$subdomain = str_replace('/', '', $subdomain);
 
-		removeDos($LocFileHome.'site/sous_dom/'.$subdomain.'/');
+		File::removeFolder('site/subdomain/'.$subdomain.'/');
 	}
 }
 

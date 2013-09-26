@@ -124,6 +124,10 @@ salonrama_main_account_site_publish:
     pattern:  /mon_compte/site/publish
     defaults: { _controller: SalonramaMainBundle:Account/SitePublish:publish }
 
+salonrama_main_account_site_url:
+    pattern:  /mon_compte/site/url
+    defaults: { _controller: SalonramaMainBundle:Account/SiteUrl:url }
+
 salonrama_main_account_salon:
     pattern:  /mon_compte/salon
     defaults: { _controller: SalonramaMainBundle:Account/Salon:salon }

@@ -1,0 +1,109 @@
+{% set add_noscript = true %}
+
+{% extends "SalonramaMainBundle:Main:main.html.twig" %}
+
+{% block head %}
+	<title>Site - Adresse internet</title>
+
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/tooltip.css') }}"/>
+
+	<style>
+
+	#url-post .form-fieldset label{
+	margin-right:8px;
+	}
+
+	</style>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+
+	<script>
+
+	var busy = false;
+
+	$(document).ready(function()
+	{
+		$('#url-subdomain').focus();
+
+		var urlForm = new Form($('#url-post'), function(result, values, self){
+			if(result == 0)
+			{
+				if(busy == false)
+				{
+					busy = true;
+					self.setGlobalState(2, 'Vérification en cours...');
+
+					$.ajax({
+						type: "POST",
+						url: "",
+						data: values,
+						dataType: "json",
+						success: function(response){
+							if(response.state == 0)
+							{
+								self.setInitValue();
+								self.setGlobalState(response.state, response.text);
+							}
+							else
+							{
+								self.setInputState($('#url-subdomain'), response);
+								self.setGlobalState(null);
+							}
+
+							busy = false;
+						},
+						error: function(rs, e) {
+							self.setGlobalState(1, "Échec lors de la requête.");
+							busy = false;
+						},
+					});
+				}
+			}
+		}, true);
+		urlForm.addInput('url-subdomain', { regexp: 'subdomain', inputStateEnd: true });
+		urlForm.setInitValue();
+	});
+
+	</script>
+{% endblock %}
+
+{% block body %}
+	<h1>Adresse internet</h1>
+	<div id="nav-left-left">
+		{{ include("SalonramaMainBundle:Account:site_nav.html.twig") }}
+	</div>
+	<div id="nav-left-right">
+		<div class="frame-small frame-small-orange">
+			<i class="icon-info-sign"></i>Votre adresse internet permet aux internautes d'accéder à votre site, son choix est important pour votre future visibilité sur internet.
+		</div>
+
+		<form method="post" action="" id="url-post">
+		<fieldset>
+			<legend>Adresse internet</legend>
+
+			<fieldset class="form-fieldset">
+				<label for="url-subdomain">
+					Adresse
+					<span class="tooltip">
+						<i class="icon-question-sign"></i>
+						<span class="frame-small frame-small-orange">Les caractères autorisés sont les lettres minuscules (a-z), les nombres (0-9) et le tiret (-) entre les mots.</span>
+					</span>
+				</label>
+				<div class="form-controls">
+					<label for="url-subdomain">http://</label><input type="text" name="url-subdomain" id="url-subdomain" value="{{ subdomain }}">
+					<label for="url-subdomain">.salonrama.fr</label>
+				</div>
+			</fieldset>
+
+			<div class="form-actions">
+				<div class="form-global-state frame-small"></div>
+				<button type="submit" class="button-small button-small-green"><i class="icon-pencil"></i>Modifier</button>
+			</div>
+		</fieldset> 
+		</form>
+	</div>
+	<div class="clear"></div>
+{% endblock %}

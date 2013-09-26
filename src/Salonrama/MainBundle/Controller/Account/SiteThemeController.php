@@ -11,7 +11,6 @@ class SiteThemeController extends Controller
     {
         $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
-
         $site = $this->getUser()->getAccount()->getSite();
 
         $themeRepository = $em->getRepository('SalonramaMainBundle:Theme');
