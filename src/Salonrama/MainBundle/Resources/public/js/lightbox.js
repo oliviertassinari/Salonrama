@@ -36,16 +36,16 @@ var Lightbox = (function() {
 
 	Lightbox.prototype.build = function() {
 		var _this = this;
-		$("<div id='lightbox-overlay' class='lightbox-overlay'></div><div id='lightbox' class='lightbox'><div class='lb-outerContainer'>"+
-			"<div class='lb-container'>"+
-			"<div class='lb-nav'><a class='lb-prev' href='' ><span title='Précédent'></span></a><a class='lb-next' href='' ><span title='Suivant'></span></a></div>"+
-			"<div class='lb-loader'><i class='icon-spinner icon-spin'></i></div></div></div><div class='lb-dataContainer'><div class='lb-data'>"+
-			"<div class='lb-details'><span class='lb-caption'></span><span class='lb-number'></span></div>"+
-			"<a class='lb-close' title='Fermer'></a></div></div></div>").appendTo($('body'));
+		$("<div id='lightbox-overlay' class='lightbox-overlay'></div><div id='lightbox' class='lightbox'><div class='lightbox-outerContainer'>"+
+			"<div class='lightbox-container'>"+
+			"<div class='lightbox-nav'><a class='lightbox-prev' href='' ><span title='Précédent'></span></a><a class='lightbox-next' href='' ><span title='Suivant'></span></a></div>"+
+			"<div class='lightbox-loader'><i class='icon-spinner icon-spin'></i></div></div></div><div class='lightbox-dataContainer'><div class='lightbox-data'>"+
+			"<div class='lightbox-details'><span class='lightbox-caption'></span><span class='lightbox-number'></span></div>"+
+			"<a class='lightbox-close' title='Fermer'></a></div></div></div>").appendTo($('body'));
 		this.$lightbox = $('#lightbox');
 		this.$overlay = $('#lightbox-overlay');
-		this.$outerContainer = this.$lightbox.find('.lb-outerContainer');
-		this.$container = this.$lightbox.find('.lb-container');
+		this.$outerContainer = this.$lightbox.find('.lightbox-outerContainer');
+		this.$container = this.$lightbox.find('.lightbox-container');
 		this.containerTopPadding = parseInt(this.$container.css('padding-top'), 10);
 		this.containerRightPadding = parseInt(this.$container.css('padding-right'), 10);
 		this.containerBottomPadding = parseInt(this.$container.css('padding-bottom'), 10);
@@ -66,7 +66,7 @@ var Lightbox = (function() {
 			}
 			return false;
 		});
-		this.$lightbox.find('.lb-prev').on('click', function() {
+		this.$lightbox.find('.lightbox-prev').on('click', function() {
 			if (_this.currentImageIndex === 0) {
 				_this.changeImage(_this.album.length - 1);
 			} else {
@@ -74,7 +74,7 @@ var Lightbox = (function() {
 			}
 			return false;
 		});
-		this.$lightbox.find('.lb-next').on('click', function() {
+		this.$lightbox.find('.lightbox-next').on('click', function() {
 			if (_this.currentImageIndex === _this.album.length - 1) {
 				_this.changeImage(0);
 			} else {
@@ -82,7 +82,7 @@ var Lightbox = (function() {
 			}
 			return false;
 		});
-		return this.$lightbox.find('.lb-loader, .lb-close').on('click', function() {
+		return this.$lightbox.find('.lightbox-loader, .lightbox-close').on('click', function() {
 			_this.end();
 			return false;
 		});
@@ -111,7 +111,7 @@ var Lightbox = (function() {
 			}
 		}
 
-		this.$lightbox.find('.lb-image').remove();
+		this.$lightbox.find('.lightbox-image').remove();
 
 		$window = $(window);
 		top = $window.scrollTop() + 40;
@@ -128,15 +128,15 @@ var Lightbox = (function() {
 		var $image, preloader,
 			_this = this;
 		this.disableKeyboardNav();
-		$image = $('<img class="lb-image" src=/>');
+		$image = $('<img class="lightbox-image" src=/>');
 		this.$container.append($image);
 		$image.hide();
-		this.$lightbox.find('.lb-image').last().hide();
+		this.$lightbox.find('.lightbox-image').last().hide();
 
 		this.sizeOverlay();
 		this.$overlay.fadeIn(this.options.fadeDuration);
-		this.$lightbox.find('.lb-loader').fadeIn('slow');
-		this.$lightbox.find('.lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
+		this.$lightbox.find('.lightbox-loader').fadeIn('slow');
+		this.$lightbox.find('.lightbox-nav, .lightbox-prev, .lightbox-next, .lightbox-dataContainer, .lightbox-numbers, .lightbox-caption').hide();
 		preloader = new Image();
 		preloader.onload = function() {
 			var $preloader, imageHeight, imageWidth, maxImageHeight, maxImageWidth, windowHeight, windowWidth;
@@ -181,7 +181,7 @@ var Lightbox = (function() {
 		newWidth = imageWidth + this.containerLeftPadding + this.containerRightPadding;
 		newHeight = imageHeight + this.containerTopPadding + this.containerBottomPadding;
 		var callback = function(){
-			_this.$lightbox.find('.lb-dataContainer').width(newWidth);
+			_this.$lightbox.find('.lightbox-dataContainer').width(newWidth);
 			_this.showImage();
 		};
 
@@ -200,11 +200,11 @@ var Lightbox = (function() {
 
 	Lightbox.prototype.showImage = function()
 	{
-		this.$lightbox.find('.lb-loader').stop();
-		this.$lightbox.find('.lb-loader').hide();
-		this.$lightbox.find('.lb-image').last().fadeIn('slow');
-		if(this.$lightbox.find('.lb-image').length > 1){
-			this.$lightbox.find('.lb-image').first().fadeOut('slow', function(){ $(this).remove(); });
+		this.$lightbox.find('.lightbox-loader').stop();
+		this.$lightbox.find('.lightbox-loader').hide();
+		this.$lightbox.find('.lightbox-image').last().fadeIn(300);
+		if(this.$lightbox.find('.lightbox-image').length > 1){
+			this.$lightbox.find('.lightbox-image').first().fadeOut(600, function(){ $(this).remove(); });
 		}
 		this.updateNav();
 		this.updateDetails();
@@ -213,16 +213,16 @@ var Lightbox = (function() {
 	};
 
 	Lightbox.prototype.updateNav = function() {
-		this.$lightbox.find('.lb-nav').show();
+		this.$lightbox.find('.lightbox-nav').show();
 		if (this.album.length > 1) {
 			if (this.options.wrapAround) {
-				this.$lightbox.find('.lb-prev, .lb-next').show();
+				this.$lightbox.find('.lightbox-prev, .lightbox-next').show();
 			} else {
 				if (this.currentImageIndex > 0) {
-					this.$lightbox.find('.lb-prev').show();
+					this.$lightbox.find('.lightbox-prev').show();
 				}
 				if (this.currentImageIndex < this.album.length - 1) {
-					this.$lightbox.find('.lb-next').show();
+					this.$lightbox.find('.lightbox-next').show();
 				}
 			}
 		}
@@ -231,14 +231,14 @@ var Lightbox = (function() {
 	Lightbox.prototype.updateDetails = function() {
 		var _this = this;
 
-		this.$lightbox.find('.lb-caption').html(this.options.getDetailsCaption(this.album[this.currentImageIndex].title, this.currentImageIndex)).fadeIn('fast');
+		this.$lightbox.find('.lightbox-caption').html(this.options.getDetailsCaption(this.album[this.currentImageIndex].title, this.currentImageIndex)).fadeIn('fast');
 
 		if (this.album.length > 1 && this.options.showImageNumberLabel) {
-			this.$lightbox.find('.lb-number').text(this.options.getDetailsNumber(this.currentImageIndex + 1, this.album.length)).fadeIn('fast');
+			this.$lightbox.find('.lightbox-number').text(this.options.getDetailsNumber(this.currentImageIndex + 1, this.album.length)).fadeIn('fast');
 		} else {
-			this.$lightbox.find('.lb-number').hide();
+			this.$lightbox.find('.lightbox-number').hide();
 		}
-		this.$lightbox.find('.lb-dataContainer').fadeIn(this.resizeDuration, function() {
+		this.$lightbox.find('.lightbox-dataContainer').fadeIn(this.resizeDuration, function() {
 			return _this.sizeOverlay();
 		});
 	};

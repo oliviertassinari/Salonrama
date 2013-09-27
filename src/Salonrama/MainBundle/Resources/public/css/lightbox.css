@@ -33,7 +33,7 @@ text-align:center;
 line-height:0;
 font-weight:normal;
 }
-.lb-image{
+.lightbox-image{
 display:block;
 height:auto;
 border-radius:3px;
@@ -45,21 +45,20 @@ left:4px;
 border:none;
 }
 
-.lb-outerContainer{
+.lightbox-outerContainer{
 background-color:#fff;
 width:250px;
 height:250px;
 margin:0 auto;
 border-radius:4px;
-}
-
-.lb-container{
-padding:4px;
 position:relative;
-height:100%;
 }
 
-.lb-loader{
+.lightbox-container{
+padding:4px;
+}
+
+.lightbox-loader{
 position:absolute;
 top:43%;
 left:0%;
@@ -68,12 +67,12 @@ width:100%;
 text-align:center;
 line-height:0;
 }
-.lb-loader i{
+.lightbox-loader i{
 font-size:37px;
 line-height:37px;
 }
 
-.lb-nav{
+.lightbox-nav{
 position:absolute;
 top:0;
 left:0;
@@ -82,15 +81,15 @@ width:100%;
 z-index:10;
 }
 
-.lb-container > .nav{
+.lightbox-container > .nav{
 left:0;
 }
 
-.lb-nav a{
+.lightbox-nav a{
 outline:none;
 }
 
-.lb-prev, .lb-next{
+.lightbox-prev, .lightbox-next{
 width:45%;
 height:100%;
 cursor:pointer;
@@ -98,11 +97,11 @@ display:block;
 opacity:0;
 transition:opacity 0.2s ease 0s;
 }
-.lb-container:hover .lb-prev, .lb-container:hover .lb-next{
+.lightbox-container:hover .lightbox-prev, .lightbox-container:hover .lightbox-next{
 opacity:0.4;
 }
 
-.lb-prev span, .lb-next span{
+.lightbox-prev span, .lightbox-next span{
 width:28px;
 height:43px;
 display:block;
@@ -111,64 +110,64 @@ background:url(../images/lightbox.png) no-repeat;
 top:43%;
 }
 
-.lb-prev{
+.lightbox-prev{
 left:0;
 float:left;
 }
-.lb-prev span{
+.lightbox-prev span{
 left:15px;
 background-position:0 -43px;
 }
-.lb-prev:hover{
+.lightbox-prev:hover{
 opacity:1 !important;
 }
 
-.lb-next{
+.lightbox-next{
 right:0;
 float:right;
 }
-.lb-next span{
+.lightbox-next span{
 right:15px;
 background-position:0 0;
 }
-.lb-next:hover{
+.lightbox-next:hover{
 opacity:1 !important;
 }
 
-.lb-dataContainer{
+.lightbox-dataContainer{
 margin:0 auto;
 padding-top:5px;
 width:100%;
 }
-.lb-dataContainer:after{
+.lightbox-dataContainer:after{
 content:"";
 display:table;
 clear:both;
 }
 
-.lb-data{
+.lightbox-data{
 padding:0 4px;
 }
-.lb-details{
+.lightbox-details{
 width:85%;
 float:left;
 text-align:left;
 line-height:1.1em;
 }
-.lb-caption{
+.lightbox-caption{
 font-size:13px;
 font-weight:bold;
 line-height:1em;
 color:#bbb;
 }
-.lb-number{
+.lightbox-number{
 display:block;
 clear:left;
 padding-bottom:1em;
 font-size:12px;
 color:#999;
 }
-.lb-close{
+.lightbox-close{
 display:block;
 float:right;
 width:28px;
@@ -180,6 +179,6 @@ opacity:0.7;
 cursor:pointer;
 transition:opacity 0.2s ease 0s;
 }
-.lb-close:hover{
+.lightbox-close:hover{
 opacity:1;
 }
