@@ -28,9 +28,10 @@ class HelpArticle
     private $text;
 
     /**
-     * @ORM\Column(name="last_update", type="date")
-     */
-    private $lastUpdate;
+    * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\HelpNode")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $parent;
 
     /**
      * Get id
@@ -89,25 +90,25 @@ class HelpArticle
     }
 
     /**
-     * Set lastUpdate
+     * Set parent
      *
-     * @param \DateTime $lastUpdate
-     * @return Help
+     * @param \Salonrama\MainBundle\Entity\HelpNode $parent
+     * @return HelpArticle
      */
-    public function setLastUpdate($lastUpdate)
+    public function setParent(\Salonrama\MainBundle\Entity\HelpNode $parent)
     {
-        $this->lastUpdate = $lastUpdate;
+        $this->parent = $parent;
     
         return $this;
     }
 
     /**
-     * Get lastUpdate
+     * Get parent
      *
-     * @return \DateTime 
+     * @return \Salonrama\MainBundle\Entity\HelpNode 
      */
-    public function getLastUpdate()
+    public function getParent()
     {
-        return $this->lastUpdate;
+        return $this->parent;
     }
 }

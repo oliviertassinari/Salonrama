@@ -119,31 +119,34 @@ height:39px;
 margin:20px 45px 0;
 }
 
-#nav-left-left{
-float:left;
-width:189px;
+.nav-tab{
 margin-right:20px;
 border-right:1px solid #DEDEDE;
 }
-#nav-left-left ul{
+.nav-tab ul{
 margin:0;
 padding:0;
 }
-#nav-left-left li{
+.nav-tab li{
 list-style:none;
 }
-#nav-left-left li a{
+.nav-tab li a{
 display:block;
 padding:7px 10px;
 border-radius:3px 0 0 3px;
 }
-#nav-left-left li a:hover, #nav-left-left li a:focus{
+.nav-tab li a:hover, #nav-left-left li a:focus{
 background:#EFF2F7;
 text-decoration:none;
 }
-#nav-left-left li a.select{
+.nav-tab li a.select{
 font-weight:700;
 background:#D8DFEA;
+}
+
+#nav-left-left{
+float:left;
+width:189px;
 }
 #nav-left-right{
 float:left;

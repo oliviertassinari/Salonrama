@@ -14,4 +14,16 @@
 		<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
 		<div class="clear"></div>
 	</div>
+
+	<div id="nav-left-left" class="nav-tab">
+		<ul>
+			{% for item in nav_tab %}
+			<li><a href="lol">{{ item.name }}</a></li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div id="nav-left-right">
+	</div>
+	<div class="clear"></div>
+
 {% endblock %}

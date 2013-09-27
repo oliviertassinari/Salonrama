@@ -5,10 +5,10 @@ namespace Salonrama\MainBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Table(name="help_categorie")
- * @ORM\Entity(repositoryClass="Salonrama\MainBundle\Entity\HelpCategorieRepository")
+ * @ORM\Table(name="help_node")
+ * @ORM\Entity(repositoryClass="Salonrama\MainBundle\Entity\HelpNodeRepository")
  */
-class HelpArticleCategorie
+class HelpNode
 {
     /**
      * @ORM\Column(name="id", type="integer")
@@ -21,6 +21,12 @@ class HelpArticleCategorie
      * @ORM\Column(name="name", type="string", length=40)
      */
     private $name;
+
+    /**
+    * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\HelpNode")
+    * @ORM\JoinColumn(nullable=true)
+    */
+    private $parent;
 
     /**
      * Get id
@@ -53,5 +59,28 @@ class HelpArticleCategorie
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Salonrama\MainBundle\Entity\HelpNode $parent
+     * @return HelpNode
+     */
+    public function setParent(\Salonrama\MainBundle\Entity\HelpNode $parent = null)
+    {
+        $this->parent = $parent;
+    
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Salonrama\MainBundle\Entity\HelpNode 
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

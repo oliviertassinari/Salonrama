@@ -8,7 +8,15 @@ class HelpController extends Controller
 {
     public function helpAction()
     {
-        return $this->render('SalonramaMainBundle:Main:help.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $helpArticleRepository = $em->getRepository('SalonramaMainBundle:HelpArticle');
+        $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
+
+        $subArray = $helpArticleRepository->findByParent(null);
+        $myArray = $helpNodeRepository->findByParent(null);
+        $navTab = array_merge($subArray, $myArray);
+
+        return $this->render('SalonramaMainBundle:Main:help.html.twig', array('nav_tab' => $navTab));
     }
 
     public function articleAction($id)
