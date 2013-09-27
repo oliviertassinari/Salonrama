@@ -36,14 +36,14 @@ var Lightbox = (function() {
 
 	Lightbox.prototype.build = function() {
 		var _this = this;
-		$("<div id='lightboxOverlay' class='lightboxOverlay'></div><div id='lightbox' class='lightbox'><div class='lb-outerContainer'>"+
-			"<div class='lb-container'><img class='lb-image' src='' />"+
+		$("<div id='lightbox-overlay' class='lightbox-overlay'></div><div id='lightbox' class='lightbox'><div class='lb-outerContainer'>"+
+			"<div class='lb-container'>"+
 			"<div class='lb-nav'><a class='lb-prev' href='' ><span title='Précédent'></span></a><a class='lb-next' href='' ><span title='Suivant'></span></a></div>"+
 			"<div class='lb-loader'><i class='icon-spinner icon-spin'></i></div></div></div><div class='lb-dataContainer'><div class='lb-data'>"+
 			"<div class='lb-details'><span class='lb-caption'></span><span class='lb-number'></span></div>"+
 			"<a class='lb-close' title='Fermer'></a></div></div></div>").appendTo($('body'));
 		this.$lightbox = $('#lightbox');
-		this.$overlay = $('#lightboxOverlay');
+		this.$overlay = $('#lightbox-overlay');
 		this.$outerContainer = this.$lightbox.find('.lb-outerContainer');
 		this.$container = this.$lightbox.find('.lb-container');
 		this.containerTopPadding = parseInt(this.$container.css('padding-top'), 10);
@@ -111,6 +111,8 @@ var Lightbox = (function() {
 			}
 		}
 
+		this.$lightbox.find('.lb-image').remove();
+
 		$window = $(window);
 		top = $window.scrollTop() + 40;
 		left = $window.scrollLeft();
@@ -121,15 +123,20 @@ var Lightbox = (function() {
 		this.changeImage(imageNumber);
 	};
 
-	Lightbox.prototype.changeImage = function(imageNumber) {
+	Lightbox.prototype.changeImage = function(imageNumber)
+	{
 		var $image, preloader,
 			_this = this;
 		this.disableKeyboardNav();
-		$image = this.$lightbox.find('.lb-image');
+		$image = $('<img class="lb-image" src=/>');
+		this.$container.append($image);
+		$image.hide();
+		this.$lightbox.find('.lb-image').last().hide();
+
 		this.sizeOverlay();
 		this.$overlay.fadeIn(this.options.fadeDuration);
 		this.$lightbox.find('.lb-loader').fadeIn('slow');
-		this.$lightbox.find('.lb-image, .lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
+		this.$lightbox.find('.lb-nav, .lb-prev, .lb-next, .lb-dataContainer, .lb-numbers, .lb-caption').hide();
 		preloader = new Image();
 		preloader.onload = function() {
 			var $preloader, imageHeight, imageWidth, maxImageHeight, maxImageWidth, windowHeight, windowWidth;
@@ -163,7 +170,7 @@ var Lightbox = (function() {
 	};
 
 	Lightbox.prototype.sizeOverlay = function() {
-		return $('#lightboxOverlay').width($(document).width()).height($(document).height());
+		return $('#lightbox-overlay').width($(document).width()).height($(document).height());
 	};
 
 	Lightbox.prototype.sizeContainer = function(imageWidth, imageHeight) {
@@ -173,7 +180,6 @@ var Lightbox = (function() {
 		oldHeight = this.$outerContainer.outerHeight();
 		newWidth = imageWidth + this.containerLeftPadding + this.containerRightPadding;
 		newHeight = imageHeight + this.containerTopPadding + this.containerBottomPadding;
-
 		var callback = function(){
 			_this.$lightbox.find('.lb-dataContainer').width(newWidth);
 			_this.showImage();
@@ -192,10 +198,14 @@ var Lightbox = (function() {
 		}
 	};
 
-	Lightbox.prototype.showImage = function() {
+	Lightbox.prototype.showImage = function()
+	{
 		this.$lightbox.find('.lb-loader').stop();
 		this.$lightbox.find('.lb-loader').hide();
-		this.$lightbox.find('.lb-image').fadeIn('slow');
+		this.$lightbox.find('.lb-image').last().fadeIn('slow');
+		if(this.$lightbox.find('.lb-image').length > 1){
+			this.$lightbox.find('.lb-image').first().fadeOut('slow', function(){ $(this).remove(); });
+		}
 		this.updateNav();
 		this.updateDetails();
 		this.preloadNeighboringImages();

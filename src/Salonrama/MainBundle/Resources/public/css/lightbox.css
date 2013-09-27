@@ -14,7 +14,7 @@ width:40px;
 cursor:pointer;
 }
 
-.lightboxOverlay{
+.lightbox-overlay{
 position:absolute;
 top:0;
 left:0;
@@ -33,31 +33,30 @@ text-align:center;
 line-height:0;
 font-weight:normal;
 }
-.lightbox .lb-image{
+.lb-image{
 display:block;
 height:auto;
 border-radius:3px;
+position:absolute;
+top:4px;
+left:4px;
 }
 .lightbox a img{
 border:none;
 }
 
 .lb-outerContainer{
-position:relative;
 background-color:#fff;
 width:250px;
 height:250px;
 margin:0 auto;
 border-radius:4px;
 }
-.lb-outerContainer:after{
-content:"";
-display:table;
-clear:both;
-}
 
 .lb-container{
 padding:4px;
+position:relative;
+height:100%;
 }
 
 .lb-loader{
