@@ -15,10 +15,22 @@
 		<div class="clear"></div>
 	</div>
 
+	{% macro ul(node) %}
+	    <ul>
+	    	
+	    </ul>
+	{% endmacro %}
+
 	<div id="nav-left-left" class="nav-tab">
 		<ul>
-			{% for item in nav_tab %}
-			<li><a href="lol">{{ item.name }}</a></li>
+			{% for node in nav_tab %}
+			<li>
+				{% if 'id' in node|keys %}
+				<a href="{{ path("salonrama_main_help_articles", { 'id': node.id }) }}">{{ node.name }}</a>
+				{% else %}
+				<a href="">{{ node.name }}</a>
+				{% endif %}
+			</li>
 			{% endfor %}
 		</ul>
 	</div>

@@ -12,9 +12,7 @@ class HelpController extends Controller
         $helpArticleRepository = $em->getRepository('SalonramaMainBundle:HelpArticle');
         $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
 
-        $subArray = $helpArticleRepository->findByParent(null);
-        $myArray = $helpNodeRepository->findByParent(null);
-        $navTab = array_merge($subArray, $myArray);
+        $navTab = $helpNodeRepository->getAll();
 
         return $this->render('SalonramaMainBundle:Main:help.html.twig', array('nav_tab' => $navTab));
     }

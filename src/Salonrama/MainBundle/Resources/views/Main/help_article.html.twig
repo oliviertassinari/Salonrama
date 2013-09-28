@@ -1,17 +1,8 @@
-{% extends "SalonramaMainBundle:Main:main.html.twig" %}
+<h1>{{ article.name }}</h1>
 
-{% block head %}
-	<title>Aide</title>
+{{ article.text }}
 
-{% endblock %}
-
-{% block body %}
-	<h1>{{ article.name }}</h1>
-
-	{{ article.text }}
-
-	<hr/>
-	<div class="center">
-		<br/><a href="{{ path('salonrama_main_contact') }}" class="button-small button-small-blue" type="button"><i class="icon-comments"></i>Envoyez nous un message</a>
-	</div>
-{% endblock %}
+<hr/>
+<div class="center">
+	<br/><a href="{{ path('salonrama_main_contact') }}" class="button-small button-small-blue" type="button"><i class="icon-comments"></i>Envoyez nous un message</a>
+</div>

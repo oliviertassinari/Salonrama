@@ -23,10 +23,20 @@ class HelpNode
     private $name;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\HelpNode")
-    * @ORM\JoinColumn(nullable=true)
-    */
+     * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\HelpNode", inversedBy="childrenNode")
+     * @ORM\JoinColumn(nullable=true)
+     */
     private $parent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Salonrama\MainBundle\Entity\HelpNode", mappedBy="parent")
+     */
+    private $childrenNode;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Salonrama\MainBundle\Entity\HelpArticle", mappedBy="parent")
+     */
+    private $childrenArticle;
 
     /**
      * Get id
@@ -82,5 +92,79 @@ class HelpNode
     public function getParent()
     {
         return $this->parent;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->childrenNode = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->childrenArticle = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add childrenNode
+     *
+     * @param \Salonrama\MainBundle\Entity\HelpNode $childrenNode
+     * @return HelpNode
+     */
+    public function addChildrenNode(\Salonrama\MainBundle\Entity\HelpNode $childrenNode)
+    {
+        $this->childrenNode[] = $childrenNode;
+    
+        return $this;
+    }
+
+    /**
+     * Remove childrenNode
+     *
+     * @param \Salonrama\MainBundle\Entity\HelpNode $childrenNode
+     */
+    public function removeChildrenNode(\Salonrama\MainBundle\Entity\HelpNode $childrenNode)
+    {
+        $this->childrenNode->removeElement($childrenNode);
+    }
+
+    /**
+     * Get childrenNode
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildrenNode()
+    {
+        return $this->childrenNode;
+    }
+
+    /**
+     * Add childrenArticle
+     *
+     * @param \Salonrama\MainBundle\Entity\HelpArticle $childrenArticle
+     * @return HelpNode
+     */
+    public function addChildrenArticle(\Salonrama\MainBundle\Entity\HelpArticle $childrenArticle)
+    {
+        $this->childrenArticle[] = $childrenArticle;
+    
+        return $this;
+    }
+
+    /**
+     * Remove childrenArticle
+     *
+     * @param \Salonrama\MainBundle\Entity\HelpArticle $childrenArticle
+     */
+    public function removeChildrenArticle(\Salonrama\MainBundle\Entity\HelpArticle $childrenArticle)
+    {
+        $this->childrenArticle->removeElement($childrenArticle);
+    }
+
+    /**
+     * Get childrenArticle
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getChildrenArticle()
+    {
+        return $this->childrenArticle;
     }
 }
