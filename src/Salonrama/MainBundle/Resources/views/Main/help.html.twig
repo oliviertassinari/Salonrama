@@ -17,22 +17,20 @@
 
 	{% macro ul(node) %}
 	    <ul>
-	    	
+			{% for child in node %}
+			<li>
+				{% if 'id' in child|keys %}
+				<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}">{{ child.name }}</a>
+				{% else %}
+				<a href="">{{ child.name }}</a>
+				{% endif %}
+			</li>
+			{% endfor %}
 	    </ul>
 	{% endmacro %}
 
 	<div id="nav-left-left" class="nav-tab">
-		<ul>
-			{% for node in nav_tab %}
-			<li>
-				{% if 'id' in node|keys %}
-				<a href="{{ path("salonrama_main_help_articles", { 'id': node.id }) }}">{{ node.name }}</a>
-				{% else %}
-				<a href="">{{ node.name }}</a>
-				{% endif %}
-			</li>
-			{% endfor %}
-		</ul>
+		{{ _self.ul(nav_tab) }}
 	</div>
 	<div id="nav-left-right">
 	</div>
