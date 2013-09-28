@@ -1,9 +1,69 @@
+{% set add_noscript = true %}
+
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
 	<title>Aide</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
+
+	<style>
+
+	#nav-tab-left{
+	overflow:hidden;
+	position:relative;
+	height:350px;
+	}
+	#nav-tab-offset{
+	position:relative;
+	top:0;
+	left:0;
+	transition:all 0.3s ease 0s;
+	-webkit-transition:all 0.3s ease 0s;
+	}
+	#nav-tab-left ul{
+	width:189px;
+	}
+
+	</style>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{{ asset('bundles/salonramamain/js/smartLoad.js') }}"></script>
+
+	<script>
+
+	$(document).ready(function()
+	{
+		var smartLoad = new SmartLoad($('#nav-tab-right'));
+
+		$('#nav-tab-left').find('a').click(function(event)
+		{
+			if($(this).find('.icon-reply').length > 0)
+			{
+				event.preventDefault();
+				$(this).parent().parent().hide();
+				$('#nav-tab-offset').css('left', '+=189px');
+			}
+			else
+			{
+				var child = $(this).next('ul');
+
+				if(child.length > 0)
+				{
+					event.preventDefault();
+					child.show();
+					$('#nav-tab-offset').css('left', '-=189px');
+				}
+				else
+				{
+					smartLoad.click(this, event);
+				}
+			}
+		});
+	});
+
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -15,24 +75,32 @@
 		<div class="clear"></div>
 	</div>
 
-	{% macro ul(node) %}
-	    <ul>
+	{% macro ul(node, isFirstNode) %}
+	    <ul{% if not isFirstNode %} class="nav-tab-nextlevel"{% endif %}>
 			{% for child in node %}
 			<li>
-				{% if 'id' in child|keys %}
-				<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}">{{ child.name }}</a>
+				{% if child.children %}
+				<a href="">{{ child.name }}<i class="icon-angle-right"></i></a>
 				{% else %}
-				<a href="">{{ child.name }}</a>
+				<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}">{{ child.name }}</a>
+				{% endif %}
+				{% if child.children %}
+				{{ _self.ul(child.children, false) }}
 				{% endif %}
 			</li>
 			{% endfor %}
+			{% if not isFirstNode %}
+			<li><a href="">Précédent<i class="icon-reply"></i></a></li>
+			{% endif %}
 	    </ul>
 	{% endmacro %}
 
-	<div id="nav-left-left" class="nav-tab">
-		{{ _self.ul(nav_tab) }}
+	<div id="nav-tab-left" class="nav-tab">
+		<div id="nav-tab-offset">
+			{{ _self.ul(nav_tab, true) }}
+		</div>
 	</div>
-	<div id="nav-left-right">
+	<div id="nav-tab-right">
 	</div>
 	<div class="clear"></div>
 

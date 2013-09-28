@@ -122,6 +122,7 @@ margin:20px 45px 0;
 .nav-tab{
 margin-right:20px;
 border-right:1px solid #DEDEDE;
+position:relative;
 }
 .nav-tab ul{
 margin:0;
@@ -135,20 +136,40 @@ display:block;
 padding:7px 10px;
 border-radius:3px 0 0 3px;
 }
-.nav-tab li a:hover, #nav-left-left li a:focus{
-background:#EFF2F7;
+.nav-tab li a:hover, #nav-tab-left li a:focus{
+background:#eaedf4;
 text-decoration:none;
 }
 .nav-tab li a.select{
 font-weight:700;
 background:#D8DFEA;
 }
+.nav-tab a{
+position:relative;
+}
+.nav-tab a i{
+position:absolute;
+top:7px;
+right:10px;
+font-size:16px;
+}
+.nav-tab a .icon-reply{
+top:10px;
+font-size:12px;
+}
 
-#nav-left-left{
+.nav-tab-nextlevel{
+display:none;
+position:absolute;
+top:0;
+left:100%;
+}
+
+#nav-tab-left{
 float:left;
 width:189px;
 }
-#nav-left-right{
+#nav-tab-right{
 float:left;
 width:600px;
 }
