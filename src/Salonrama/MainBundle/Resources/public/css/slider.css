@@ -1,6 +1,6 @@
 .slider{
 position:relative;
-height:400px;
+height:320px;
 overflow:hidden;
 }
 .slider-list{
@@ -12,14 +12,14 @@ transition:left 0.4s cubic-bezier(0, 0, 0.25, 1) 0s;
 }
 
 .slider .slide{
-height:400px;
+height:320px;
 float:left;
 position:relative;
 text-align:center;
 }
 .slider .slide h1{
-font-size:31px;
-line-height:40px;
+font-size:23px;
+line-height:30px;
 margin:0 0 4px;
 color:#000;
 }
@@ -32,7 +32,6 @@ margin:0;
 position:absolute;
 height:100%;
 width:140px;
-top:0;
 cursor:pointer;
 opacity:0;
 transition:opacity 0.25s ease-out 0s;
