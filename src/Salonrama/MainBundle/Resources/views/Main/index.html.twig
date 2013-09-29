@@ -1,7 +1,7 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Salonrama - Créez le site internet de votre salon de coiffure</title>
+	<title>Salonrama - Créez le site internet de votre salon de coiffure gratuitement</title>
 
 	<meta name="description" content="Créez le site internet de votre salon de coiffure en 5 minutes"/>
 	<meta name="keywords" content="création, créer, crée, site, internet, salon, coiffure, gratuit, coiffeur, web, vitrine, logiciel, en ligne, salonrama, tassi, conseil, agence, sans difficultés, facile, sans connaissances informatique, sans jargon informatique, simple, simplicité, hébergement, nom de domaine, outil, webmaster, gratuitement, construire, facile, débutant, pas cher, coder, programmer, propre, comment, annuaire, notoriété, pub"/>
@@ -42,49 +42,45 @@
 	position:relative;
 	}
 	#bouton .button-big{
-	padding-left:120px;
-	padding-right:120px;
+	padding-left:100px;
+	padding-right:100px;
 	}
 
 	#free{
 	position:absolute;
-	left:577px;
-	top:-50px;
+	left:557px;
+	top:-40px;
 	}
 
-	#titre
-	{
+	#titre{
 	text-align: center;
 	}
 
-	#titre h1
-	{
+	#titre h1{
 	font-size:31px;
 	line-height:40px;
 	margin:0 0 4px;
 	color:#000;
 	}
 
-	#titre h2
-	{
+	#titre h2{
 	color:#808080;
 	margin:0;
 	}
 
-	.popup-holder
-	{ 
+	.popup-holder{ 
 	text-align: center; 
 	position: relative;
 	top:20px;
 	margin-top:30px;
 	margin-bottom:17px;
 	}
-	.popup-holder img
-	{
+
+	.popup-holder img{
 	box-shadow: -2px -2px 10px -3px #ccc, -2px -2px 10px -3px #ccc, 4px -2px 10px -3px #ccc;
 	}
-	.popup-holder .popup-link
-	{
+
+	.popup-holder .popup-link{
 	position: absolute;
 	top: 50%;
 	outline: none;
@@ -95,31 +91,54 @@
 	margin-left: -46px; 
 	background: url({{ asset('bundles/salonramamain/images/popup_link.png') }}) no-repeat 0 0; 
 	}
-	.popup-holder:hover .popup-link
-	{
+
+	.popup-holder:hover .popup-link{
 	background-position: center !important; 
 	}
 
-	.popup-holder .popup-link:active
-	{
+	.popup-holder .popup-link:active{
 	background-position: bottom !important; 
 	}
 
 	.design{
-
-box-shadow:0 0 6px rgba(0, 0, 0, 0.4);
-
-margin-right:10px;
-margin-left:10px;
-margin-top:10px;
-margin-bottom:10px;
+	box-shadow:0 0 6px rgba(0, 0, 0, 0.4);
+	margin-right:10px;
+	margin-left:10px;
+	margin-top:10px;
+	margin-bottom:10px;
 	}
 
-	.design:hover
-	{
-		opacity:0.5;
+	.design:hover{
+	opacity:0.5;
 	}
 
+	.advantage{
+	width:270px;
+	height:130px;
+	float:left;
+	display:inline-block ;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+
+	.advantage p{
+	font-size:18px;
+	padding-top:10px;
+	}
+	.advantage i{
+	font-size: 50px;
+	color:grey;
+	}
+
+	.advantage p{
+	padding-right:20px;
+	padding-left:20px;
+	}
+
+	#extra{
+	font-size:10px;	
+	margin-top:5px;
+	}
 
 	</style>
 {% endblock %}
@@ -194,11 +213,12 @@ margin-bottom:10px;
 	<div id="bouton">
 
 		<a href="{{ path('salonrama_main_buildsite_step1') }}" class="button-big button-big-blue">
-			<span style="font-size:38px; position:absolute; top:15px; left:220px;"><i class="icon-circle-arrow-right"></i></span>
+			<span style="font-size:33px; position:absolute; top:15px; left:220px;"><i class="icon-circle-arrow-right"></i></span>
 			<span style="font-size:20px;">Créez le site de votre</span><br>
 			<span style="font-size:28px;">Salon de coiffure</span>
 		</a>
 		<div id="free"><img src="{{ asset('bundles/salonramamain/images/index/free.png') }}"  width="98" height="98"/></div>
+		<div id="extra">Fonctionne aussi pour la coiffure à domicile</div>
 	</div>
 
 	<div class="popup-holder" >
@@ -206,44 +226,42 @@ margin-bottom:10px;
           <img alt="Créez le site de votre salon de coiffure gratuitement avec Salonrama" src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}">
 	</div>
 
-<div class="separation" style:"margin-bottom:50px;"></div>
-<h2 style="color:#616161; margin-top:40px;">À vous de choisir le site de votre salon :</h2>
+	<div class="separation-horizontal" style:"margin-bottom:50px;"></div>
 
+	<h2 style="color:#616161; margin-top:40px;">À vous de personnaliser le site de votre salon :</h2>
 
-		<div id="Slider2" class="slider" style="height:370px;">
+	<div id="Slider2" class="slider" style="height:370px; margin-bottom:30px;">
 		<div class="slider-list">
 			<div class="slide">
-	<a href="" title="Choisir ce thème"><img class="design"  src="{{ asset('bundles/salonramamain/theme/Beauty/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FanShion/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Fashion/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FashionHouse/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FashionHouse2/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FlorentBlack/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Flower/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Hairdresser1/screenshot_min.jpg') }}"/></a>		
+				<a href="" title="Choisir ce thème"><img class="design"  src="{{ asset('bundles/salonramamain/theme/Beauty/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FanShion/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Fashion/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FashionHouse/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FashionHouse2/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/FlorentBlack/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Flower/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Hairdresser1/screenshot_min.jpg') }}"/></a>		
 			</div>
 			<div class="slide">
-<a href="" title="Choisir ce thème"><img class="design"  src="{{ asset('bundles/salonramamain/theme/Hairdresser2/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Hairdresser3/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/HairMode/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/LouisDeezer/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Model/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/PinkHat/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/RobinBleu/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/RobinOrange/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design"  src="{{ asset('bundles/salonramamain/theme/Hairdresser2/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Hairdresser3/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/HairMode/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/LouisDeezer/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Model/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/PinkHat/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/RobinBleu/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/RobinOrange/screenshot_min.jpg') }}"/></a>
 			</div>
 			<div class="slide">	
-	<a href="" title="Choisir ce thème"><img class="design"  src="{{ asset('bundles/salonramamain/theme/RobinStarac/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Vector/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/VertusBleu/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/VertusNoir/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/BlackHat/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/China/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Ciseau/screenshot_min.jpg') }}"/></a>
-	<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Creative/screenshot_min.jpg') }}"/></a>
-			</div>
-			
-
+				<a href="" title="Choisir ce thème"><img class="design"  src="{{ asset('bundles/salonramamain/theme/RobinStarac/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Vector/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/VertusBleu/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/VertusNoir/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/BlackHat/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/China/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Ciseau/screenshot_min.jpg') }}"/></a>
+				<a href="" title="Choisir ce thème"><img class="design" src="{{ asset('bundles/salonramamain/theme/Creative/screenshot_min.jpg') }}"/></a>
+			</div>			
 		</div>
 		<div class="slider-paddle-left" style="left:-50px; top:50px;" title="Précédent"><div></div></div>
 		<div class="slider-paddle-right" style="right:-50px; top:50px;" title="Suivant"><div></div></div>
@@ -256,15 +274,23 @@ margin-bottom:10px;
 		</div>
 	</div>
 
-	<div class="separation" style:"margin-bottom:50px;"></div>
+	<div class="separation-horizontal" style="margin-bottom:15px"></div>
+	<div style="display:inline-block;">
+
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-check-sign"></i><br/>Aucune connaissance informatique nécessaire</p></div>
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-question-sign"></i><br/>Une aide gratuite et rapide</p></div>
+		<div class="advantage"><p><i class="icon-ban-circle"></i><br/>Aucune publicité</p></div>
+
+		<div class="separation-horizontal" style="position:relative; top:135px; background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#D7D7D7), to(#fff));"></div>
+
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-camera"></i><br/>Une galerie photo pour présenter vos réalisations</p></div>
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-map-marker"></i><br/>Un plan pour guider vos clients</p></div>
+		<div class="advantage"><p><i class="icon-thumbs-up-alt"></i><br/>Des conseils spécialisés pour les réseaux sociaux</p></div>
+	</div>
 
 
-	<br/><br/><br/><br/><br/><br/>
+	<div class="separation-horizontal" style="margin-top:-10px;margin-bottom:30px"></div>
 
-
-
-
-
-
+	<p style="margin-bottom:100px;"><a href="{{ path('salonrama_main_presentation') }}" class="button-big button-big-green" style="float:right;">En savoir plus :<br/><span style="font-size:18px;">Le concept Salonrama</span></a></p>
 
 {% endblock %}

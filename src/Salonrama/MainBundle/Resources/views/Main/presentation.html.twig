@@ -2,8 +2,464 @@
 
 {% block head %}
 	<title>Présentation</title>
+	
+
+	<style>
+#corps{
+margin-left:45px;
+}
+
+.ligne{
+margin-top:10px;
+}
+
+.ribbon{
+background:url({{ asset('bundles/salonramamain/images/presentation/ribbon.png') }}) no-repeat;
+width:615px;
+height:69px;
+margin:auto;
+text-align:center;
+}
+.ribbon h2{
+font-size:30px; 
+padding-top:15px;
+color:white;
+}
+
+.gauche{
+float:left;
+}
+
+.droite{
+float:right;
+}
+
+.citation{
+padding-bottom:20px;
+border-bottom:solid #d3d1d1 2px;
+margin-bottom:20px;
+}
+.titre{
+color:#3399ff;
+font-size:20px;
+font-weight:bold;
+margin-bottom:10px;
+}
+.texte{
+font-size:17px;
+text-align:justify;
+color:#333333;
+}
+.gauche {
+margin-right:10px;
+}
+.droite{
+margin-left:10px;
+}
+.argument .titre{
+margin-bottom:0px;
+}
+.argument{
+margin-bottom:20px;
+width:700px;
+margin-left:20px;
+}
+
+.pourquoi .argument{
+margin-bottom:50px;
+}
+
+.bordure{
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+background-color:#E3E5E5;
+width:600px;
+height:60px;
+margin-left:-30px;
+margin-top:30px;
+margin-bottom:30px;
+}
+
+.bordure .etape{
+color:#3399FF;
+float:left;
+text-align:center;
+width:120px;
+font-size:22px;
+font-weight:bold;
+margin-left:3px;
+}
+
+.bordure .etape2{
+font-family:impact,sans-serif;
+font-size:30px;
+}
+
+.bordure .texte_etape{
+font-weight:bold;
+font-size:22px;
+padding-top:15px;
+}
+
+#bouton{
+text-align:left;
+margin-top:25px;
+position:relative;
+}
+#bouton .button-big{
+padding-left:100px;
+padding-right:100px;
+}
+
+.fonctionnalite
+{
+padding-bottom:30px;
+margin-top:20px;
+}
+	.fonctionnalite img
+	{
+		margin-right:20px;
+		margin-bottom: 20px;
+		box-shadow:0 0 6px rgba(0, 0, 0, 0.4);
+	}
+	
+	.fonctionnalite .gauche
+	{
+	float:left;
+margin-right:30px;
+	}
+	
+	.fonctionnalite .droite
+	
+	{
+	float:right;
+	margin-left:30px;
+	}
+	
+	.fonctionnalite h2
+	{
+	margin-bottom:20px;
+	font-size:25px;
+	text-align:left;
+	color:#3B3B3B;
+	}
+	
+	.fonctionnalite p
+	{
+	text-align:justify;
+	font-size:16px;
+	}
+
+.advantage{
+	width:270px;
+	height:130px;
+	float:left;
+	display:inline-block ;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+
+	.advantage p{
+	font-size:18px;
+	padding-top:10px;
+	}
+	.advantage i{
+	font-size: 50px;
+	color:grey;
+	}
+
+	.advantage p{
+	padding-right:20px;
+	padding-left:20px;
+	}
+
+	.advantage:hover
+	{
+background-color: rgba(232, 232, 232, 0.5);
+
+	}
+	.advantage a
+	{
+	color:black;
+	text-decoration:none;
+}
+	</style>
+
+
 {% endblock %}
 
 {% block body %}
-	<h1>Présentation</h1>
+<div class="margin">
+
+<h1 style="text-align:center; font-size:31px; color:black; line-height:30px; margin:0 0 4px;">VOTRE SALON SUR INTERNET</h1><h2 style="text-align:center; color:#808080; margin:0;">LE CONCEPT SALONRAMA</span></h2> 
+
+<div style="-webkit-border-radius: 20px; -moz-border-radius: 20px; border-radius: 20px; background-color:#55bdda; width:650px; height:60px; margin:auto; margin-top:30px;"><h2 style="color:white; text-align:center; font-size:25px; padding-top:15px;">Comment développer votre activité sur internet ?</h2></div>
+
+
+	<div class="separation-horizontal" style="margin-top:30px; margin-bottom:15px"></div>
+	<div style="display:inline-block;">
+
+		<div class="advantage"><a href="#1"><div class="separation-vertical" style="float:right"></div><p><i class="icon-group"></i><br/>Votre salon et vos clients</p></a></div>
+		<div class="advantage"><a href="#2"><div class="separation-vertical" style="float:right"></div><p><i class="icon-laptop"></i><br/>Pourquoi créer un site internet ?</p></a></div>
+		<div class="advantage"><a href="#3"><p><i class="icon-sitemap"></i><br/>Votre salon et vos concurrents</p></a></div>
+
+		<div class="separation-horizontal" style="position:relative; top:135px; background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#D7D7D7), to(#fff));"></div>
+
+		<div class="advantage"><a href="#4"><div class="separation-vertical" style="float:right"></div><p><i class="icon-facebook-sign"></i><br/>Un site internet ou Faceboook ?</p></a></div>
+		<div class="advantage"><a href="#5"><div class="separation-vertical" style="float:right"></div><p><i class="icon-cut"></i><br/>Pourquoi avec Salonrama ?</p></a></div>
+		<div class="advantage"><a href="#6"><p><i class="icon-cogs"></i><br/>Salonrama: comment ça marche ?</p></div>
+<div class="separation-horizontal" style="position:relative; top:285px; background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#D7D7D7), to(#fff));"></a></div>
+		<div class="advantage"><a href="#7"><div class="separation-vertical" style="float:right"></div><p><i class="icon-puzzle-piece"></i><br/>Salonrama: en détails</p></a></div>
+	</div>
+
+
+
+<div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne1.png') }}" alt="-------------------" /></div>
+
+<div class="ribbon"><h2 id="1">Votre salon et vos clients</h2></div>
+
+<img src="{{ asset('bundles/salonramamain/images/presentation/votre salon de coiffure et vos clients.png') }}" style="text-align:center;" alt="votre salon de coiffure et vos clients" />
+
+<div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne2.png') }}" alt="-------------------" /></div>
+
+<div class="ribbon" style="margin-bottom:30px;"><h2 id="2">Pourquoi créer un site internet ?</h2></div>
+
+<div class="argument">
+	<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/pourquoi1.png') }}" alt="pourquoi1"/><p class="titre">Trouvez de nouveaux clients</p>
+	<p class="texte">Votre site internet sera enregistré dans les moteurs de recherche tels que Google, Bing ou Yahoo. Lorsqu’une personne cherchera alors un salon de coiffure dans votre ville, il verra votre site internet.</p>
+</div>
+
+<div class="argument">
+	<img class="gauche" style="padding-bottom:10px;" src="{{ asset('bundles/salonramamain/images/presentation/pourquoi2.png') }}" alt="pourquoi1"/><p class="titre">Ne perdez plus votre temps</p>
+	<p class="texte">Rien de plus désagréable quand vous vous occupez d'un client lorsque le téléphone ne cesse de sonner. Le temps passé à répondre nuit alors à votre concentration et pourrait déranger votre client. Avec un site internet et aux informations présentes (horaires d’ouverture, tarifs…), le nombre d’appels diminuera fortement.</p>
+</div>
+
+<div class="argument" style="margin-bottom:35px;">
+	<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/pourquoi3.png') }}" alt="pourquoi1"/><p class="titre" style="padding-top:10px;">Augmentez votre notoriété</p>
+	<p class="texte">Présentez votre savoir-faire
+	Sur votre site internet vous pourrez ajouter des photos de vos réalisations et ainsi impressionner vos visiteurs. </p>
+</div>
+
+<div class="argument">
+	<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/pourquoi4.png') }}" alt="pourquoi1"/><p class="titre">Présentez votre savoir-faire</p>
+	<p class="texte">Sur votre site internet vous pourrez ajouter des photos de vos réalisations et ainsi impressionner vos visiteurs. </p>
+</div>
+
+<div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne3.png') }}" alt="-------------------" /></div>
+
+<div class="ribbon" style="margin-bottom:30px;"><h2 id="3">Votre salon et vos concurrents</h2></div>
+
+	<p class="gauche" style="color:#333333; font-size:25px; margin-left:20px;" ><span style="font-size:130px; font-family:impact, sans-serif; margin-right: 40px;">27 %</span><br/>des salons de coiffure<br/> ont un site internet</p><img src="{{ asset('bundles/salonramamain/images/presentation/stat.png') }}" alt="stat"/>
+
+<div style="background: url({{ asset('bundles/salonramamain/images/presentation/ribbon2.png') }}) no-repeat; width:815px; height:172px; font-size:45px; font-family:impact, sans-serif; padding-top:20px; text-align:center; margin:auto;"><p>DÉMARQUEZ-VOUS<br/>MAINTENANT</p></div>
+
+<div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne4.png') }}" alt="-------------------" /></div>
+
+<div class="ribbon" style="margin-bottom:30px;"><h2 id="4">Un site internet ou Facebook ?</h2></div>
+
+<div style="float:left; width:350px; background-color:#55BCDA; border:1px solid #D3EEF5; color:white; padding:10px; ">
+<img style=""src="{{ asset('bundles/salonramamain/images/presentation/fb.png') }}" alt="facebook"/><span style=" font-size:22px; font-weight:bold; position:relative; margin-left:10px; top:-10px;">FACEBOOK</span>
+<div style="width:320px; margin:auto; border-bottom:2px solid #A9DDEC; margin-top:10px; margin-bottom:10px;"></div>
+<p style="font-size:16px; font-weight:bold; margin-bottom:10px;">PERMET DE:<img style="float:right;"src="{{ asset('bundles/salonramamain/images/presentation/valider.png') }}" alt="valider"/></p>
+<p class="texte" style="color:white; width:300px;">- créer une communauté autour des clients de votre salon et les fidéliser<br/><br/>
+- afficher l'actualité de votre salon de coiffure et prévenir des modifications de votre site</p>
+<div style="width:320px; margin:auto; border-bottom:2px solid #A9DDEC; margin-top:10px; margin-bottom:10px;"></div>
+
+<p style="font-size:16px; font-weight:bold; margin-bottom:10px;">NE PERMET PAS DE:<img style="float:right;"src="{{ asset('bundles/salonramamain/images/presentation/erreur.png') }}" alt="erreur"/></p>
+
+<p class="texte" style="color:white; width:300px;">- être trouvé facilement sur internet<br/><br/>
+
+- transmettre votre style et l'atmosphère de votre salon</p>
+</div>
+
+<div style="float:right; width:400px; background-color:#66CC99; border:1px solid #66CC99; color:white; padding:10px; height:347px; ">
+<img style=""src="{{ asset('bundles/salonramamain/images/presentation/site.png') }}" alt="site"/><span style=" font-size:22px; font-weight:bold; position:relative; margin-left:10px; top:-10px;">SITE INTERNET</span>
+<div style="width:380px; margin:auto; border-bottom:2px solid #B2E5CB; margin-top:10px; margin-bottom:10px;"></div>
+<p style="font-size:16px; font-weight:bold; margin-bottom:10px;">PERMET DE:<img style="float:right;"src="{{ asset('bundles/salonramamain/images/presentation/valider2.png') }}" alt="valider"/></p>
+<p class="texte" style="color:white; width:350px;">- être trouvé facilement sur internet grâce aux moteurs de recherche (ex: Google)<br/><br/>
+
+- transmettre le style et l'atmosphère de votre salon grâce au thème choisi pour votre site. Tout est personnalisable !<br/><br/>
+
+- présenter votre savoir-faire et vos réalisations.<br/><br/>
+
+- rester en contact avec votre clientèle et afficher l'actualité de votre salon.</p>
+
+</div>
+
+<img style="margin-top:20px;" src="{{ asset('bundles/salonramamain/images/presentation/dialogue.png') }}" alt="dialogue" />
+
+<div style="background:url({{ asset('bundles/salonramamain/images/presentation/salonrama_ok.png') }}) no-repeat; width:825px; height:225px;"><p style="font-size:32px; color:white; font-weight:bold; position:relative; top:40px;left:100px;">Salonrama vous permet de<br/> créer le site de votre salon de<br/> coiffure et vous aide pour<br/> votre page Facebook</p></div>
+
+<div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne5.png') }}" alt="-------------------" /></div>
+
+<div class="ribbon" style="margin-bottom:30px;"><h2 id="5">Pourquoi avec Salonrama ?</h2></div>
+
+<div class="pourquoi">
+<div class="argument">
+<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/avec1.png') }}" alt="avec1"/><p class="titre">C'est facile ! </p>
+<p class="texte">Vous créez le site de votre salon de coiffure en temps réel en ligne, comme sur un logiciel de traitement de texte. Il n'y a rien à installer sur votre ordinateur et aucune connaissance informatique n'est requise.</p>
+</div>
+
+<div class="argument">
+<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/avec2.png') }}" alt="avec2"/><p class="titre">Exclusivement dédié aux salons de coiffure</p>
+<p class="texte">Nous connaissons parfaitement les salons de coiffure et sommes ainsi mieux à même de répondre à vos besoins. Votre site internet sera pré-rempli avec les pages les plus demandés pour un salon !</p>
+</div>
+
+<div class="argument" >
+<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/avec3.png') }}" alt="avec3"/><p class="titre">Vous créez un site professionnel</p>
+<p class="texte">Choissisez le thème de votre site parmi liste proposée et personnalisez le pour vous démarquer !</p>
+</div>
+
+<div class="argument" >
+<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/avec4.png') }}" alt="avec4"/><p class="titre">Modifiez votre site à tout moment</p>
+<p class="texte">Ne passer pas par quelqu'un pour modifier votre site. Modifiez-le vous même, immédiatement et sans perdre de temps. L'internet n'attend pas !</p>
+</div>
+
+<div class="argument">
+<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/avec5.png') }}" alt="avec5"/><p class="titre">Le site de votre salon en première page sur les moteurs de recherche</p>
+<p class="texte">Soyez visible immédiatement sur les moteurs de recherche (ex: Google) grâce aux outils techniques spécifiquement développés par Salonrama et nos conseils  ! </p>
+</div>
+
+<div class="argument">
+<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/avec6.png') }}" alt="avec6"/><p class="titre">Aucune publicité sur votre site</p>
+<p class="texte">Nous avons décidé de ne pas mettre de publicité sur votre site car elles pourraient distraire vos clients et nuire à votre image.</p>
+</div>
+
+<div class="argument">
+<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/avec7.png') }}" alt="avec7"/><p class="titre">Une aide gratuite avec une réponse rapide</p>
+<p class="texte">Parce que nous savons que l'internet n'est pas toujours facile à prendre en main, nous sommes présent pour vous aider à tout moment pour la création de votre site ou vous aider à le faire connaître. 
+</p>
+</div>
+</div>
+
+<div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne6.png') }}" alt="-------------------" /></div>
+
+<div class="ribbon" style="margin-bottom:30px;"><h2 id="6">Salonrama: comment ça marche ?</h2></div>
+
+<div style="background:url({{ asset('bundles/salonramamain/images/presentation/fleche.png') }}) no-repeat; height:532px; margin-left:50px; padding-top:5px;">
+
+<div class="bordure">
+<p class="etape">ETAPE<br/><span class="etape2">1</span></p>
+<p class="texte_etape">Vous choissisez le thème de votre site</p>
+</div>
+
+
+<div class="bordure">
+<p class="etape">ETAPE<br/><span class="etape2">2</span></p>
+<p class="texte_etape">Les coordonnées de votre salon</p>
+</div>
+
+
+<div class="bordure">
+<p class="etape">ETAPE<br/><span class="etape2">3</span></p>
+<p class="texte_etape">Vous modifiez votre site déjà pré-rempli</p>
+</div>
+
+<div class="bordure">
+<p class="etape">ETAPE<br/><span class="etape2">4</span></p>
+<p class="texte_etape">Vous choissisez l'adresse web de votre site</p>
+</div>
+
+<div class="bordure">
+<p class="etape">ETAPE<br/><span class="etape2">5</span></p>
+<p class="texte_etape">Vous publiez votre site sur internet !</p>
+</div>
+
+<div style="margin-left:80px; font-size:25px; font-weight:bold;">
+<img src="{{ asset('bundles/salonramamain/images/presentation/pouce.png') }}" alt="pouce"/><p style="margin-left:70px; margin-top:-47px;">C'est gratuit !</p>
+</div>
+
+</div>
+
+	<div id="bouton">
+
+		<a href="{{ path('salonrama_main_buildsite_step1') }}" class="button-big button-big-blue">
+			<span style="font-size:33px; position:absolute; top:15px; left:50px;"><i class="icon-circle-arrow-right"></i></span>
+			<span style="font-size:20px;">Créez le site de votre</span><br>
+			<span style="font-size:28px;">Salon de coiffure</span>
+		</a>
+		<div id="extra" style="margin-left:80px;">Fonctionne aussi pour la coiffure à domicile</div>
+	</div>
+
+<div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne7.png') }}" alt="-------------------" /></div>
+
+<div class="ribbon" style="margin-bottom:30px;"><h2 id="7">Salonrama: en détails</h2></div>
+
+
+                <div class="fonctionnalite" style="height:212px">
+				<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/traitementdetexte.jpg') }}" alt="traitement_de_texte"/>
+				<h2>Facile, comme un logiciel de traitement de texte </h2>
+				<p>La modification de votre site se fait directement en ligne et en temps réel. Parce que nous savons que la création d'un site internet n'est pas évidente, nous avons décidé de la simplifier au maximum. Pour modifier un texte, cliquez dessus, écrivez, et voilà ! Comme sur Word !</p>
+                </div>
+               
+				
+				
+                <div class="separation-horizontal"></div>
+                <div class="fonctionnalite">
+				<img class="droite" src="{{ asset('bundles/salonramamain/images/presentation/menu.jpg') }}" alt="menu"/>
+				<h2>Votre site déjà pré-rempli ! </h2>
+				<p>Parce que Salonrama est exclusivement dédié aux salons de coiffure, nous connaissons au mieux ce qu'attendent vos clients sur votre site. Vos pages sont alors pré-rempli et vous facilitent la vie !</p>
+                </div>
+            
+				
+				<div class="separation-horizontal"></div>
+                <div class="fonctionnalite" style="height:233px">
+				<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/galerie.jpg') }}" alt="galerie_photo"/>
+				<h2>Une galerie photo professionnelle </h2>
+				<p>Pour présenter les réalisations de vos coiffeurs, rien de mieux qu'une présentation claire, esthétique et professionnelle. Avec Salonrama, assurez votre notoriété en présentant vos dernières coupes dans la page "Galerie Photo" que nous vous avons réservé.</p>
+                </div>
+                
+				
+				<div class="separation-horizontal"></div>
+                <div class="fonctionnalite" style="height:235px">
+				<img class="droite" src="{{ asset('bundles/salonramamain/images/presentation/deplacer.jpg') }}" alt="deplacer"/>
+				<h2>Glissez & Déposez !</h2>
+				<p>Pour changer la place d'un texte ou d'une photo, il suffit de prendre cet élément avec la souris et de le mettre où vous le souhaiter. Facile ! Par exemple, si vous prenez le cadre de texte "Découvrez notre salon" et que vous souhaitez le mettre à la place de la photo à gauche, cliquez, glissez, déposez, la photo ira directement à droite et le texte à gauche. C'est automatique et presque magique !</p>
+                </div>
+            
+				
+				<div class="separation-horizontal"></div>
+                <div class="fonctionnalite" style="height:233px">
+				<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/plan.jpg') }}" alt="galerie_photo"/>
+				<h2>Un plan pour guider vos clients </h2>
+				<p>Illustrez d'une facon claire et simple où se trouve votre salon. A partir de cette carte présente préalablement sur votre site, vos clients pourront définir un itinéraire (exemple : de chez eux à votre salon) et ainsi vous trouver beaucoup plus facilement.</p>
+                </div>
+             
+
+				<div class="separation-horizontal"></div>
+                <div class="fonctionnalite" style="height:304px">
+				<img class="droite" src="{{ asset('bundles/salonramamain/images/presentation/mail.jpg') }}" alt="mail"/>
+				<h2>Un formulaire de contact sur votre site </h2>
+				<p>Grâce à ce formulaire de contact par l'envoi d'e-mail, vos clients pourront vous contacter rapidement et sans perte de temps. Un client satisfait est un client qui revient !</p>
+                </div>
+                
+
+
+
+
+
+
+
+<div style="border-top:2px solid #E5E5E5; margin-top:20px; padding-top:10px;font-style:italic; color:grey;">
+<p><strong>Sources:</strong></p>
+<ul class="PuceList">
+
+
+<li>
+Le site de votre salon en première page sur les moteurs de recherche grâce à Salonrama - Selon notre dernière étude, si vous avez créé votre site avec Salonrama, dans la majorité des cas votre site sera en première page sur les moteurs de recherche pour les mots clés concernant votre activité ! Ainsi si votre salon s’appelle « Hair Look » et que vous habitez à Annecy, lorsqu’une personne tapera « Hair Look Annecy Salon de coiffure » sur un moteur de recherche (exemple Google), vous serez en première page ! Ainsi mis en avant, vos clients et vos clients potentiels vous trouveront rapidement et aisément ! Aucune connaissance technique nécessaire. Il faut compter environ un mois pour les moteurs de recherche pour prendre en compte la création de votre site. <a>http://www.salonrama.fr/news.php/2013/07/07/comment-faire-connaitre-le-site-de-votre-salon-de-coiffure/</a> 
+</li>
+<li>70% des personnes connectées ont tendance à se renseigner sur internet (savoir-faire du salon, horaires, tarifs, compétence des coiffeurs, atmosphère ou spécialité du salon) avant de bénéficier d'un service (comme se faire couper les cheveux) ou d'acheter un produit en magasin. - <a>http://www.camagazine.com/archives-fr/articles-web/2007/camagazine5179.aspx</a></li>
+
+<li>27%
+des salons de coiffure
+ont un site internet - livre blanc de la FNC  </li>
+
+</ul>
+
+
+</div>
+</div>
+
+
 {% endblock %}
