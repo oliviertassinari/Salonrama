@@ -1,0 +1,51 @@
+{% macro ul(node, isFirstNode) %}
+    <ul{% if not isFirstNode %} class="nav-tab-nextlevel{% if '123' in node|keys %} show{% endif %}"{% endif %}>
+		{% for child in node %}
+		{% if 'name' in child|keys %}
+		<li>
+			{% if child.children %}
+			<a href="">{{ child.name }}<i class="icon-angle-right"></i></a>
+			{% else %}
+			<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}"{% if 'className' in child|keys %} class="{{ child.className }}"{% endif %}>{{ child.name }}</a>
+			{% endif %}
+			{% if child.children %}
+			{{ _self.ul(child.children, false) }}
+			{% endif %}
+		</li>
+		{% endif %}
+		{% endfor %}
+		{% if not isFirstNode %}
+		<li><a href="">Précédent<i class="icon-reply"></i></a></li>
+		{% endif %}
+    </ul>
+{% endmacro %}
+
+<div id="nav-bar">
+	<ul>
+		{% for name in nav_bar %}
+		<li{% if loop.last %} class="last"{% endif %}><a href="">{% if loop.first %}<i class="icon-home"></i>{% endif %}{{ name }}</a><i class="icon-caret-right"></i></li>
+		{% endfor %}
+	</ul>
+</div>
+<div class="clear"></div>
+
+<div id="nav-tab-left" class="nav-tab">
+	<div id="nav-tab-offset" style="left:{{ nav_tab_offset }}px;">
+		{{ _self.ul(nav_tab, true) }}
+	</div>
+</div>
+<div id="nav-tab-right">
+	{% if article %}
+	<h1>{{ article.name }}</h1>
+
+	{% autoescape false %}
+	{{ article.text }}
+	{% endautoescape %}
+
+	<hr/>
+	<div class="center">
+		<br/><a href="{{ path('salonrama_main_contact') }}" class="button-small button-small-blue" type="button"><i class="icon-comments"></i>Envoyez nous un message</a>
+	</div>
+	{% endif %}
+</div>
+<div class="clear"></div>

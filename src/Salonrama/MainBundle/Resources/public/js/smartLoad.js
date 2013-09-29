@@ -1,13 +1,14 @@
-var SmartLoad = function(dom){
+var SmartLoad = function(dom, callback){
 	var self = this;
 
 	this.dom = dom;
+	this.callback = callback;
 
 	$(window).bind('popstate', function(event){
 		if(self.cache[window.location.href])
 		{
 			self.dom.html(self.cache[window.location.href]);
-			self.init();
+			self.callback();
 		}
 		else
 		{
@@ -39,8 +40,9 @@ load: function(url)
 		dataType: "text",
 		success: function(response){
     		history.pushState({ path: this.path }, '', url);
-			self.dom.html(response);
 			self.cache[window.location.href] = response;
+			self.dom.html(response);
+			self.callback();
 		},
 		error: function(rs, e) {
 			console.log(rs.responseText);

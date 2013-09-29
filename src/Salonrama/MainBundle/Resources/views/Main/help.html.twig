@@ -6,26 +6,6 @@
 	<title>Aide</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
-
-	<style>
-
-	#nav-tab-left{
-	overflow:hidden;
-	position:relative;
-	height:350px;
-	}
-	#nav-tab-offset{
-	position:relative;
-	top:0;
-	left:0;
-	transition:all 0.3s ease 0s;
-	-webkit-transition:all 0.3s ease 0s;
-	}
-	#nav-tab-left ul{
-	width:189px;
-	}
-
-	</style>
 {% endblock %}
 
 {% block javascript %}
@@ -35,15 +15,21 @@
 
 	$(document).ready(function()
 	{
-		var smartLoad = new SmartLoad($('#nav-tab-right'));
+		initLink();
+		var smartLoad = new SmartLoad($('#smartLoad'), initLink);
+	});
 
+	function initLink()
+	{
 		$('#nav-tab-left').find('a').click(function(event)
 		{
+			var self = this;
+
 			if($(this).find('.icon-reply').length > 0)
 			{
 				event.preventDefault();
-				$(this).parent().parent().hide();
-				$('#nav-tab-offset').css('left', '+=189px');
+				setTimeout(function(){ $(self).parent().parent().hide(); }, 300);
+				$('#nav-tab-offset').css('left', '+='+$('#nav-tab-left').width()+'px');
 			}
 			else
 			{
@@ -53,15 +39,19 @@
 				{
 					event.preventDefault();
 					child.show();
-					$('#nav-tab-offset').css('left', '-=189px');
+					$('#nav-tab-offset').css('left', '-='+$('#nav-tab-left').width()+'px');
 				}
 				else
 				{
+					if($(this).find('.icon-spinner').length == 0)
+					{
+						$(this).append('<i class="icon-spinner icon-spin"></i>');
+					}
 					smartLoad.click(this, event);
 				}
 			}
 		});
-	});
+	}
 
 	</script>
 {% endblock %}
@@ -69,39 +59,13 @@
 {% block body %}
 	<h1>Aide</h1>
 
-	<div class="help-search">
+	<div id="help-search">
 		<input type="text" placeholder="Comment pouvons-nous vous aider ?">
 		<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
 		<div class="clear"></div>
 	</div>
 
-	{% macro ul(node, isFirstNode) %}
-	    <ul{% if not isFirstNode %} class="nav-tab-nextlevel"{% endif %}>
-			{% for child in node %}
-			<li>
-				{% if child.children %}
-				<a href="">{{ child.name }}<i class="icon-angle-right"></i></a>
-				{% else %}
-				<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}">{{ child.name }}</a>
-				{% endif %}
-				{% if child.children %}
-				{{ _self.ul(child.children, false) }}
-				{% endif %}
-			</li>
-			{% endfor %}
-			{% if not isFirstNode %}
-			<li><a href="">Précédent<i class="icon-reply"></i></a></li>
-			{% endif %}
-	    </ul>
-	{% endmacro %}
-
-	<div id="nav-tab-left" class="nav-tab">
-		<div id="nav-tab-offset">
-			{{ _self.ul(nav_tab, true) }}
-		</div>
+	<div id="smartLoad">
+	{{ include("SalonramaMainBundle:Main:help_body.html.twig") }}
 	</div>
-	<div id="nav-tab-right">
-	</div>
-	<div class="clear"></div>
-
 {% endblock %}

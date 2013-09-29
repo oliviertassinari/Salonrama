@@ -133,8 +133,10 @@ list-style:none;
 }
 .nav-tab li a{
 display:block;
-padding:7px 10px;
+padding:7px 30px 7px 10px;
 border-radius:3px 0 0 3px;
+position:relative;
+margin-bottom:1px;
 }
 .nav-tab li a:hover, #nav-tab-left li a:focus{
 background:#eaedf4;
@@ -144,18 +146,19 @@ text-decoration:none;
 font-weight:700;
 background:#D8DFEA;
 }
-.nav-tab a{
-position:relative;
-}
-.nav-tab a i{
+.nav-tab li a i{
 position:absolute;
 top:7px;
 right:10px;
 font-size:16px;
 }
-.nav-tab a .icon-reply{
+.nav-tab li a .icon-reply{
 top:10px;
-font-size:12px;
+font-size:11px;
+}
+
+.nav-tab .show{
+display:block;
 }
 
 .nav-tab-nextlevel{
@@ -216,6 +219,7 @@ font-weight:400;
 #footer-social li i{
 margin-right:4px;
 font-size:16px;
+text-decoration:none;
 }
 
 .clear{
