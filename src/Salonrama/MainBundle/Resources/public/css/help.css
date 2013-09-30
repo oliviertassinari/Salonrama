@@ -1,7 +1,3 @@
-#help-search{
-margin-bottom:30px;
-}
-
 #help-search input{
 border:1px solid #C0C0C0;
 padding:6px 10px;
@@ -32,7 +28,7 @@ padding:0;
 }
 
 #nav-bar{
-
+margin:15px 0;
 }
 #nav-bar ul{
 margin:0;
@@ -50,8 +46,14 @@ margin-right:10px;
 margin-right:5px;
 text-decoration:none;
 }
+#nav-bar .last a{
+color:#5A5A5A;
+}
 #nav-bar .last .icon-caret-right{
 display:none;
+}
+#nav-bar li .icon-caret-right{
+color:#a9b0c0;
 }
 
 #nav-tab-left{

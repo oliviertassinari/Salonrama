@@ -26,7 +26,7 @@ class HelpNodeRepository extends EntityRepository
 			$result = array(
 						'name' => $node->getName(),
 						'id' => $node->getId(),
-						'children' => null
+						'children' => array()
 					);
 		}
 		else if(is_object($node) && get_class($node) == 'Salonrama\MainBundle\Entity\HelpNode')
