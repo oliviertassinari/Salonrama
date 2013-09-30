@@ -27,7 +27,7 @@
 <div id="nav-bar">
 	<ul>
 		{% for name in nav_bar %}
-		<li{% if loop.last %} class="last"{% endif %}><a href="">{% if loop.first %}<i class="icon-home"></i>{% endif %}{{ name }}</a><i class="icon-caret-right"></i></li>
+		<li><a href="">{% if loop.first %}<i class="icon-home"></i>{% endif %}{{ name }}</a><i class="icon-caret-right"></i></li>
 		{% endfor %}
 	</ul>
 	<div class="clear"></div>

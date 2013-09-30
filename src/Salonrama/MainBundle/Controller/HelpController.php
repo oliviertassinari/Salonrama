@@ -62,12 +62,12 @@ class HelpController extends Controller
 
         foreach($navTab as $key => $value)
         {
-            $f = $this->getNav($value['children'], $id, $navBar, $depth + 1);
+            $nav = $this->getNav($value['children'], $id, $navBar, $depth + 1);
 
-            $navTab[$key]['children'] = $f[0];
-            $navBar = $f[1];
-            $found = $f[2];
-            $offset += $f[3];
+            $navTab[$key]['children'] = $nav[0];
+            $navBar = $nav[1];
+            $found = $nav[2];
+            $offset += $nav[3];
             
             if(!$foundNew)
             {

@@ -28,7 +28,7 @@ padding:0;
 }
 
 #nav-bar{
-margin:15px 0;
+padding:20px 10px 10px;
 }
 #nav-bar ul{
 margin:0;
@@ -46,10 +46,10 @@ margin-right:10px;
 margin-right:5px;
 text-decoration:none;
 }
-#nav-bar .last a{
+#nav-bar li:last-child a{
 color:#5A5A5A;
 }
-#nav-bar .last .icon-caret-right{
+#nav-bar li:last-child .icon-caret-right{
 display:none;
 }
 #nav-bar li .icon-caret-right{
