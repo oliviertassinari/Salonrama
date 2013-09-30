@@ -12,13 +12,12 @@ class HelpController extends Controller
         $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
 
         $navTab = $helpNodeRepository->getAll();
-
-        $navBar = array('Aide', 'Adresse Internet');
+        $nav = $this->getNav($navTab);
 
         return $this->render('SalonramaMainBundle:Main:help.html.twig', array(
-                                                                            'nav_tab' => $navTab,
+                                                                            'nav_tab' => $nav[0],
                                                                             'nav_tab_offset' => 0,
-                                                                            'nav_bar' => $navBar,
+                                                                            'nav_bar' => $nav[1],
                                                                             'article' => ''
                                                                         ));
     }
@@ -32,63 +31,69 @@ class HelpController extends Controller
         $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
 
         $navTab = $helpNodeRepository->getAll();
-
-        $navTabFull = $this->getNavTabFull($navTab, $id, 0);
-        $navTab = $navTabFull[0];
-        $navTabOffset = -$navTabFull[1]/2*189;
-
-        //echo "<pre>";
-        //print_r($navTab);
-        //echo "</pre>";
+        $nav = $this->getNav($navTab, $id);
 
         $article = $helpArticleRepository->find($id);
 
         if($request->isXmlHttpRequest())
         {
             return $this->render('SalonramaMainBundle:Main:help_body.html.twig', array(
-                                                                                'nav_tab' => $navTab,
-                                                                                'nav_tab_offset' => $navTabOffset,
+                                                                                'nav_tab' => $nav[0],
+                                                                                'nav_tab_offset' => -$nav[3]*189,
+                                                                                'nav_bar' => $nav[1],
                                                                                 'article' => $article
                                                                             ));
         }
         else
         {
             return $this->render('SalonramaMainBundle:Main:help.html.twig', array(
-                                                                                'nav_tab' => $navTab,
-                                                                                'nav_tab_offset' => $navTabOffset,
+                                                                                'nav_tab' => $nav[0],
+                                                                                'nav_tab_offset' => -$nav[3]*189,
+                                                                                'nav_bar' => $nav[1],
                                                                                 'article' => $article
                                                                             ));
         }
     }
 
-    public function getNavTabFull($navTab, $id, $depth)
+    public function getNav($navTab, $id = -1, $navBar = array(), $depth = 0)
     {
+        $foundNew = false;
         $offset = 0;
 
-        if(is_array($navTab))
+        foreach($navTab as $key => $value)
         {
-            foreach($navTab as $key => $value)
+            $f = $this->getNav($value['children'], $id, $navBar, $depth + 1);
+
+            $navTab[$key]['children'] = $f[0];
+            $navBar = $f[1];
+            $found = $f[2];
+            $offset += $f[3];
+            
+            if(!$foundNew)
             {
-                $full = $this->getNavTabFull($value, $id, $depth + 1);
+                $foundNew = $found;
+            }
 
-                $navTab[$key] = $full[0];
+            if($found)
+            {
+                array_unshift($navBar, $value['name']);
+                $navTab[$key]['class'] = 'show';
+            }
 
-                $offset += $full[1];
-
-                if($full[1] != 0 && $key == 'children')
-                {
-                    $navTab[$key]['123'] = 'show';
-                }
-
-                if(isset($value['id']) && $value['id'] == $id)
-                {
-                    $offset = $depth;
-                    $navTab[$key]['className'] = 'select';
-                }
+            if(isset($value['id']) && $value['id'] == $id)
+            {
+                $offset = $depth;
+                $foundNew = true;
+                $navTab[$key]['class'] = 'select';
             }
         }
 
-        return array($navTab, $offset);
+        if($depth == 0)
+        {
+            array_unshift($navBar, 'Aide');
+        }
+
+        return array($navTab, $navBar, $foundNew, $offset);
     }
 }
 

@@ -1,15 +1,19 @@
-{% macro ul(node, isFirstNode) %}
-    <ul{% if not isFirstNode %} class="nav-tab-nextlevel{% if '123' in node|keys %} show{% endif %}"{% endif %}>
+{% macro ul(node, isFirstNode, class) %}
+    <ul{% if not isFirstNode %} class="nav-tab-nextlevel{% if class %} {{ class }}{% endif %}"{% endif %}>
 		{% for child in node %}
 		{% if 'name' in child|keys %}
 		<li>
 			{% if child.children %}
 			<a href="">{{ child.name }}<i class="icon-angle-right"></i></a>
 			{% else %}
-			<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}"{% if 'className' in child|keys %} class="{{ child.className }}"{% endif %}>{{ child.name }}</a>
+			<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}"{% if 'class' in child|keys %} class="{{ child.class }}"{% endif %}>{{ child.name }}</a>
 			{% endif %}
 			{% if child.children %}
+			{% if 'class' in child|keys %}
+			{{ _self.ul(child.children, false, child.class) }}
+			{% else %}
 			{{ _self.ul(child.children, false) }}
+			{% endif %}
 			{% endif %}
 		</li>
 		{% endif %}
@@ -26,12 +30,12 @@
 		<li{% if loop.last %} class="last"{% endif %}><a href="">{% if loop.first %}<i class="icon-home"></i>{% endif %}{{ name }}</a><i class="icon-caret-right"></i></li>
 		{% endfor %}
 	</ul>
+	<div class="clear"></div>
 </div>
-<div class="clear"></div>
 
 <div id="nav-tab-left" class="nav-tab">
 	<div id="nav-tab-offset" style="left:{{ nav_tab_offset }}px;">
-		{{ _self.ul(nav_tab, true) }}
+		{{ _self.ul(nav_tab, true, '') }}
 	</div>
 </div>
 <div id="nav-tab-right">
