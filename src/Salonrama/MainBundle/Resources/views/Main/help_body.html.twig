@@ -46,10 +46,19 @@
 	{{ article.text }}
 	{% endautoescape %}
 
-	<hr/>
 	<div class="center">
-		<br/><a href="{{ path('salonrama_main_contact') }}" class="button-small button-small-blue" type="button"><i class="icon-comments"></i>Envoyez nous un message</a>
+		<hr/>
+		<div class="feedback">Le contenu de cette page vous a-t-il été utile ? <a href="">Oui</a> - <a href="">Non</a></div>
+		<a href="{{ path('salonrama_main_contact') }}" class="button-small button-small-blue" type="button"><i class="icon-comments"></i>Envoyez nous un message</a>
 	</div>
 	{% endif %}
 </div>
 <div class="clear"></div>
+
+{% if article %}
+<script>
+
+document.title = "Aide - {{ article.name|escape('js') }}";
+
+</script>
+{% endif %}

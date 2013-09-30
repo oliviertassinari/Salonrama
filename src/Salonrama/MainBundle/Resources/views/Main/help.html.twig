@@ -3,7 +3,7 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Aide</title>
+	<title>Aide{% if article %} - {{ article.name }}{% endif %}</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
 {% endblock %}
@@ -13,18 +13,19 @@
 
 	<script>
 
+	var smartLoad;
+
 	$(document).ready(function()
 	{
 		initLink();
-		var smartLoad = new SmartLoad($('#smartLoad'), initLink);
+		smartLoad = new SmartLoad($('#smartLoad'), initLink);
 	});
 
 	function initLink()
 	{
 		$('#nav-bar a').click(function(event){ setPage(event, $(this)); });
 
-		$('#nav-tab-left a').click(function(event)
-		{
+		$('#nav-tab-left a').click(function(event){
 			var self = this;
 
 			if($(this).find('.icon-reply').length > 0)
@@ -58,6 +59,11 @@
 					smartLoad.click(this, event);
 				}
 			}
+		});
+
+		$('#nav-tab-right .feedback a').click(function(event){
+			event.preventDefault();
+			$('#nav-tab-right .feedback').html('Nous vous remercions de nous avoir contactés.');
 		});
 	}
 

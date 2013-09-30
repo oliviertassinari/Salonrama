@@ -72,3 +72,12 @@ transition:all 0.3s ease 0s;
 width:189px;
 }
 
+
+#nav-tab-right .center{
+font-size:12px;
+margin-top:20px;
+}
+#nav-tab-right .center .button-small{
+font-size:12px;
+margin-top:4px;
+}
