@@ -28,7 +28,7 @@ class HelpArticle
     private $text;
 
     /**
-    * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\HelpNode")
+    * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\HelpNode", inversedBy="childrenArticle")
     * @ORM\JoinColumn(nullable=true)
     */
     private $parent;

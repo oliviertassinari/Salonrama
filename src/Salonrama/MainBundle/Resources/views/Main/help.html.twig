@@ -1,29 +1,105 @@
+{% set add_noscript = true %}
+
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Aide</title>
+	<title>Aide{% if article %} - {{ article.name }}{% endif %}</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
+{% endblock %}
+
+{% block javascript %}
+	<script src="{{ asset('bundles/salonramamain/js/smartLoad.js') }}"></script>
+
+	<script>
+
+	var smartLoad;
+
+	$(document).ready(function()
+	{
+		initLink();
+		smartLoad = new SmartLoad($('#smartLoad'), initLink);
+	});
+
+	function initLink()
+	{
+		$('#nav-bar a').click(function(event){ setPage(event, $(this)); });
+
+		$('#nav-tab-left a').click(function(event){
+			var self = this;
+
+			if($(this).find('.icon-reply').length > 0)
+			{
+				event.preventDefault();
+				setTimeout(function(){
+					$('#nav-tab-left ul.show').last().removeClass('show');
+					$('#nav-bar li:last-child').remove();
+				}, 300);
+				$('#nav-tab-offset').css('left', '+='+$('#nav-tab-left').width()+'px');
+			}
+			else
+			{
+				var child = $(this).next('ul');
+
+				if(child.length > 0)
+				{
+					event.preventDefault();
+					child.addClass('show');
+					var li = $('<li><a>'+$(this).text()+'</a><i class="icon-caret-right"></i></li>');
+					li.find('a').click(function(event){ setPage(event, $(this)); });
+					$('#nav-bar ul').append(li);
+					$('#nav-tab-offset').css('left', '-='+$('#nav-tab-left').width()+'px');
+				}
+				else
+				{
+					if($(this).find('.icon-spinner').length == 0)
+					{
+						$(this).append('<i class="icon-spinner icon-spin"></i>');
+					}
+					smartLoad.click(this, event);
+				}
+			}
+		});
+
+		$('#nav-tab-right .feedback a').click(function(event){
+			event.preventDefault();
+			$('#nav-tab-right .feedback').html('Nous vous remercions de nous avoir contactés.');
+		});
+	}
+
+	function setPage(event, a)
+	{
+		event.preventDefault();
+		
+		var $a = $('#nav-bar a');
+		var length = $a.length - 1 - $a.index(a);
+
+		if(length > 0)
+		{
+			setTimeout(function(){
+				for(var i = 0; i < length; i++)
+				{
+					$('#nav-tab-left ul.show').last().removeClass('show');
+					$('#nav-bar li:last-child').remove();
+				}
+			}, 300);
+			$('#nav-tab-offset').css('left', '+='+$('#nav-tab-left').width()*length+'px');
+		}
+	}
+
+	</script>
 {% endblock %}
 
 {% block body %}
 	<h1>Aide</h1>
 
-	<div class="help-search">
+	<div id="help-search">
 		<input type="text" placeholder="Comment pouvons-nous vous aider ?">
 		<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
 		<div class="clear"></div>
 	</div>
 
-	<div id="nav-left-left" class="nav-tab">
-		<ul>
-			{% for item in nav_tab %}
-			<li><a href="lol">{{ item.name }}</a></li>
-			{% endfor %}
-		</ul>
+	<div id="smartLoad">
+	{{ include("SalonramaMainBundle:Main:help_body.html.twig") }}
 	</div>
-	<div id="nav-left-right">
-	</div>
-	<div class="clear"></div>
-
 {% endblock %}

@@ -96,6 +96,7 @@ cursor:pointer;
 display:block;
 opacity:0;
 transition:opacity 0.2s ease 0s;
+-webkit-transition:opacity 0.2s ease 0s;
 }
 .lightbox-container:hover .lightbox-prev, .lightbox-container:hover .lightbox-next{
 opacity:0.4;
@@ -178,6 +179,7 @@ outline:none;
 opacity:0.7;
 cursor:pointer;
 transition:opacity 0.2s ease 0s;
+-webkit-transition:opacity 0.2s ease 0s;
 }
 .lightbox-close:hover{
 opacity:1;

@@ -12,6 +12,7 @@ overflow:visible;
 border-radius:4px;
 box-shadow:0 1px rgba(0, 0, 0, 0.05) inset;
 outline:none;
+display:inline-block;
 }
 .button-small img{
 margin:0 5px -3px 0;
