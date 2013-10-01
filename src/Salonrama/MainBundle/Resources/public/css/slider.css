@@ -17,16 +17,6 @@ float:left;
 position:relative;
 text-align:center;
 }
-.slider .slide h1{
-font-size:23px;
-line-height:30px;
-margin:0 0 4px;
-color:#000;
-}
-.slider .slide h2{
-color:#808080;
-margin:0;
-}
 
 .slider-paddle-left, .slider-paddle-right{
 position:absolute;

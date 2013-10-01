@@ -179,20 +179,18 @@ width:600px;
 }
 .separation-horizontal{
 display:block;
-border:none;
-color:white;
 height:1px;
-background:grey;
-background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 550, from(#D7D7D7), to(#fff));
+background:#808080;
+background:linear-gradient(to left, #f1f1f1, #D7D7D7, #f1f1f1);
+background:-webkit-linear-gradient(to left, #f1f1f1, #D7D7D7, #f1f1f1);
 }
 .separation-vertical{
 display:inline-block;
-height : 130px;
-width : 1px;
-background-image: -webkit-linear-gradient(top, #FFF, #D7D7D7, #FFF);
-background-image: -moz-linear-gradient(top, #FFF, #D7D7D7, #FFF);
-background-image: -ms-linear-gradient(top, #FFF, #D7D7D7, #FFF);
-background-image: -o-linear-gradient(top, #FFF, #D7D7D7, #FFF);
+height:130px;
+width:1px;
+background:#808080;
+background:linear-gradient(to top, #f1f1f1, #D7D7D7, #f1f1f1);
+background:-webkit-linear-gradient(to top, #f1f1f1, #D7D7D7, #f1f1f1);
 }
 
 
@@ -245,6 +243,16 @@ clear:both;
 }
 .center{
 text-align:center;
+}
+.center h1{
+font-size:31px;
+line-height:30px;
+margin:0 0 4px;
+color:#000;
+}
+.center h2{
+color:#808080;
+margin:0;
 }
 
 h1{

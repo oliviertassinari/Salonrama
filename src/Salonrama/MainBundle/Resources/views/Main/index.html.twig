@@ -10,31 +10,29 @@
 
 	<style>
 
+	#Slider1{
+	margin-top:30px;
+	}
 	#Slider1 .div2{
 	width:43%;
 	margin:0 3%;
 	float:left;
 	}
-
 	#Slider1 .div1{
 	margin:0 3%;
-	float:right;
+	float:left;
 	}
-
-	#Slider1 .text-slide{
+	#Slider1 ul{
 	list-style-type:none;
-	font-size:25px;
+	padding:0;
+	margin:85px 0 0 50px;
+	}
+	#Slider1 ul li{
 	font-weight:bold;
+	font-size:20px;
+	margin-bottom:10px;
+	text-align:left;
 	}
-
-	#Slider1 .text-slide li{
-	margin-bottom:20px;
-	}
-
-	#Slider1 .text-slide li{
-	margin-bottom:20px;
-	}
-
 
 	#bouton{
 	text-align:center;
@@ -50,22 +48,6 @@
 	position:absolute;
 	left:557px;
 	top:-40px;
-	}
-
-	#titre{
-	text-align: center;
-	}
-
-	#titre h1{
-	font-size:31px;
-	line-height:40px;
-	margin:0 0 4px;
-	color:#000;
-	}
-
-	#titre h2{
-	color:#808080;
-	margin:0;
 	}
 
 	.popup-holder{ 
@@ -101,7 +83,7 @@
 	}
 
 	.design{
-	box-shadow:0 0 6px rgba(0, 0, 0, 0.4);
+	box-shadow:0 0 4px rgba(0, 0, 0, 0.3);
 	margin-right:10px;
 	margin-left:10px;
 	margin-top:10px;
@@ -120,14 +102,13 @@
 	text-align: center;
 	margin-bottom: 20px;
 	}
-
 	.advantage p{
 	font-size:18px;
 	padding-top:10px;
 	}
 	.advantage i{
-	font-size: 50px;
-	color:grey;
+	font-size:40px;
+	color:#808080;
 	}
 
 	.advantage p{
@@ -163,7 +144,7 @@
 {% endblock %}
 
 {% block body %}
-	<div id="titre" style="margin-bottom:20px">
+	<div class="center">
 		<h1>Votre salon sur internet</h1>
 		<h2>Facile et intuitif, à vous de jouer !</h2>
 	</div>
@@ -171,17 +152,19 @@
 	<div id="Slider1" class="slider">
 		<div class="slider-list">
 			<div class="slide">
-				<ul class="text-slide" style="margin-top:100px; margin-left:30px; float:left;">
+				<div class="div1">
+					<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>
+				</div>
+				<div class="div1">
+				<ul>
 					<li>Facile</li>
 					<li>Moderne</li>
 					<li>Gratuit</li>
 				</ul>
-				<div class="div1">
-				<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>
 				</div>
 			</div>
 			<div class="slide">
-				<div class="text-slide" style="float:right; width:410px; margin-top:100px;">
+				<div>
 				<h1>Démarquez vous de vos concurrents</h1>
 				<h2>Les salons de coiffure les plus recherchés ont un site internet, et vous ?</h2>
 				</div>
@@ -190,13 +173,13 @@
 				</div>
 			</div>
 			<div class="slide">	
-				<div class="text-slide" style="float:right; width:410px; margin-top:60px;">
-				<h1>Spécialement conçu pour les salons<br>de coiffure</h1>
-				</div>
 				<div class="div2">
 					<img src="{{ asset('bundles/salonramamain/images/index/hair.png') }}" width="339" height="265"/>
 				</div>
 				<div class="div2">
+					<div>
+						<h1>Spécialement conçu pour les salons de coiffure</h1>
+					</div>
 					<a target="_blank" href="http://demo.salonrama.fr" class="button-big button-big-green" style="margin-top:50px;">
 						Voir la démonstration <br>
 						<span style="font-size:18px;">Un site créé avec Salonrama</span>
