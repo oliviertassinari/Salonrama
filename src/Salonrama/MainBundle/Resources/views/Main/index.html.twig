@@ -140,6 +140,11 @@
 	margin-top:5px;
 	}
 
+	#Slider2{
+	height:375px;
+	margin-bottom:30px;
+	}
+
 	</style>
 {% endblock %}
 
@@ -159,8 +164,8 @@
 
 {% block body %}
 	<div id="titre" style="margin-bottom:20px">
-		<h1>VOTRE SALON SUR INTERNET</h1>
-		<h2>FACILE ET INTUITIF, À VOUS DE JOUER !</h2>
+		<h1>Votre salon sur internet</h1>
+		<h2>Facile et intuitif, à vous de jouer !</h2>
 	</div>
 
 	<div id="Slider1" class="slider">
@@ -172,7 +177,7 @@
 					<li>Gratuit</li>
 				</ul>
 				<div class="div1">
-				<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="500" height="287"/>
+				<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>
 				</div>
 			</div>
 			<div class="slide">
@@ -189,7 +194,7 @@
 				<h1>Spécialement conçu pour les salons<br>de coiffure</h1>
 				</div>
 				<div class="div2">
-					<img src="{{ asset('bundles/salonramamain/images/index/hair.png') }}" width="359" height="281"/>
+					<img src="{{ asset('bundles/salonramamain/images/index/hair.png') }}" width="339" height="265"/>
 				</div>
 				<div class="div2">
 					<a target="_blank" href="http://demo.salonrama.fr" class="button-big button-big-green" style="margin-top:50px;">
@@ -228,9 +233,9 @@
 
 	<div class="separation-horizontal" style:"margin-bottom:50px;"></div>
 
-	<h2 style="color:#616161; margin-top:40px;">À vous de personnaliser le site de votre salon :</h2>
+	<h3>À vous de personnaliser le site de votre salon :</h3>
 
-	<div id="Slider2" class="slider" style="height:370px; margin-bottom:30px;">
+	<div id="Slider2" class="slider">
 		<div class="slider-list">
 			<div class="slide">
 				<a href="" title="Choisir ce thème"><img class="design"  src="{{ asset('bundles/salonramamain/theme/Beauty/screenshot_min.jpg') }}"/></a>
@@ -275,22 +280,27 @@
 	</div>
 
 	<div class="separation-horizontal" style="margin-bottom:15px"></div>
-	<div style="display:inline-block;">
+	<div>
 
-		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-check-sign"></i><br/>Aucune connaissance informatique nécessaire</p></div>
-		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-question-sign"></i><br/>Une aide gratuite et rapide</p></div>
-		<div class="advantage"><p><i class="icon-ban-circle"></i><br/>Aucune publicité</p></div>
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-check-sign"></i><br>Aucune connaissance informatique nécessaire</p></div>
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-question-sign"></i><br>Une aide gratuite et rapide</p></div>
+		<div class="advantage"><p><i class="icon-ban-circle"></i><br>Aucune publicité</p></div>
 
 		<div class="separation-horizontal" style="position:relative; top:135px; background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#D7D7D7), to(#fff));"></div>
 
-		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-camera"></i><br/>Une galerie photo pour présenter vos réalisations</p></div>
-		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-map-marker"></i><br/>Un plan pour guider vos clients</p></div>
-		<div class="advantage"><p><i class="icon-thumbs-up-alt"></i><br/>Des conseils spécialisés pour les réseaux sociaux</p></div>
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-camera"></i><br>Une galerie photo pour présenter vos réalisations</p></div>
+		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-map-marker"></i><br>Un plan pour guider vos clients</p></div>
+		<div class="advantage"><p><i class="icon-thumbs-up-alt"></i><br>Des conseils spécialisés pour les réseaux sociaux</p></div>
 	</div>
-
+	<div class="clear"></div>
 
 	<div class="separation-horizontal" style="margin-top:-10px;margin-bottom:30px"></div>
 
-	<p style="margin-bottom:100px;"><a href="{{ path('salonrama_main_presentation') }}" class="button-big button-big-green" style="float:right;">En savoir plus :<br/><span style="font-size:18px;">Le concept Salonrama</span></a></p>
+	<p class="center">
+		<a href="{{ path('salonrama_main_presentation') }}" class="button-big button-big-green">
+			En savoir plus :<br>
+			<span style="font-size:18px;">Le concept Salonrama</span>
+		</a>
+	</p>
 
 {% endblock %}

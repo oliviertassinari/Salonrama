@@ -2,141 +2,140 @@
 
 {% block head %}
 	<title>Présentation</title>
-	
 
 	<style>
-#corps{
-margin-left:45px;
-}
+	#corps{
+	margin-left:45px;
+	}
 
-.ligne{
-margin-top:10px;
-}
+	.ligne{
+	margin-top:10px;
+	}
 
-.ribbon{
-background:url({{ asset('bundles/salonramamain/images/presentation/ribbon.png') }}) no-repeat;
-width:615px;
-height:69px;
-margin:auto;
-text-align:center;
-}
-.ribbon h2{
-font-size:30px; 
-padding-top:15px;
-color:white;
-}
+	.ribbon{
+	background:url({{ asset('bundles/salonramamain/images/presentation/ribbon.png') }}) no-repeat;
+	width:615px;
+	height:69px;
+	margin:auto;
+	text-align:center;
+	}
+	.ribbon h2{
+	font-size:30px; 
+	padding-top:15px;
+	color:white;
+	}
 
-.gauche{
-float:left;
-}
+	.gauche{
+	float:left;
+	}
 
-.droite{
-float:right;
-}
+	.droite{
+	float:right;
+	}
 
-.citation{
-padding-bottom:20px;
-border-bottom:solid #d3d1d1 2px;
-margin-bottom:20px;
-}
-.titre{
-color:#3399ff;
-font-size:20px;
-font-weight:bold;
-margin-bottom:10px;
-}
-.texte{
-font-size:17px;
-text-align:justify;
-color:#333333;
-}
-.gauche {
-margin-right:10px;
-}
-.droite{
-margin-left:10px;
-}
-.argument .titre{
-margin-bottom:0px;
-}
-.argument{
-margin-bottom:20px;
-width:700px;
-margin-left:20px;
-}
+	.citation{
+	padding-bottom:20px;
+	border-bottom:solid #d3d1d1 2px;
+	margin-bottom:20px;
+	}
+	.titre{
+	color:#3399ff;
+	font-size:20px;
+	font-weight:bold;
+	margin-bottom:10px;
+	}
+	.texte{
+	font-size:17px;
+	text-align:justify;
+	color:#333333;
+	}
+	.gauche {
+	margin-right:10px;
+	}
+	.droite{
+	margin-left:10px;
+	}
+	.argument .titre{
+	margin-bottom:0px;
+	}
+	.argument{
+	margin-bottom:20px;
+	width:700px;
+	margin-left:20px;
+	}
 
-.pourquoi .argument{
-margin-bottom:50px;
-}
+	.pourquoi .argument{
+	margin-bottom:50px;
+	}
 
-.bordure{
--webkit-border-radius: 10px;
--moz-border-radius: 10px;
-border-radius: 10px;
-background-color:#E3E5E5;
-width:600px;
-height:60px;
-margin-left:-30px;
-margin-top:30px;
-margin-bottom:30px;
-}
+	.bordure{
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	background-color:#E3E5E5;
+	width:600px;
+	height:60px;
+	margin-left:-30px;
+	margin-top:30px;
+	margin-bottom:30px;
+	}
 
-.bordure .etape{
-color:#3399FF;
-float:left;
-text-align:center;
-width:120px;
-font-size:22px;
-font-weight:bold;
-margin-left:3px;
-}
+	.bordure .etape{
+	color:#3399FF;
+	float:left;
+	text-align:center;
+	width:120px;
+	font-size:22px;
+	font-weight:bold;
+	margin-left:3px;
+	}
 
-.bordure .etape2{
-font-family:impact,sans-serif;
-font-size:30px;
-}
+	.bordure .etape2{
+	font-family:impact,sans-serif;
+	font-size:30px;
+	}
 
-.bordure .texte_etape{
-font-weight:bold;
-font-size:22px;
-padding-top:15px;
-}
+	.bordure .texte_etape{
+	font-weight:bold;
+	font-size:22px;
+	padding-top:15px;
+	}
 
-#bouton{
-text-align:left;
-margin-top:25px;
-position:relative;
-}
-#bouton .button-big{
-padding-left:100px;
-padding-right:100px;
-}
+	#bouton{
+	text-align:left;
+	margin-top:25px;
+	position:relative;
+	}
+	#bouton .button-big{
+	padding-left:100px;
+	padding-right:100px;
+	}
 
-.fonctionnalite
-{
-padding-bottom:30px;
-margin-top:20px;
-}
+	.fonctionnalite
+	{
+	padding-bottom:30px;
+	margin-top:20px;
+	}
 	.fonctionnalite img
 	{
-		margin-right:20px;
-		margin-bottom: 20px;
-		box-shadow:0 0 6px rgba(0, 0, 0, 0.4);
+	margin-right:20px;
+	margin-bottom: 20px;
+	box-shadow:0 0 6px rgba(0, 0, 0, 0.4);
 	}
-	
+
 	.fonctionnalite .gauche
 	{
 	float:left;
-margin-right:30px;
+	margin-right:30px;
 	}
-	
+
 	.fonctionnalite .droite
-	
+
 	{
 	float:right;
 	margin-left:30px;
 	}
-	
+
 	.fonctionnalite h2
 	{
 	margin-bottom:20px;
@@ -144,14 +143,14 @@ margin-right:30px;
 	text-align:left;
 	color:#3B3B3B;
 	}
-	
+
 	.fonctionnalite p
 	{
 	text-align:justify;
 	font-size:16px;
 	}
 
-.advantage{
+	.advantage{
 	width:270px;
 	height:130px;
 	float:left;
@@ -176,17 +175,31 @@ margin-right:30px;
 
 	.advantage:hover
 	{
-background-color: rgba(232, 232, 232, 0.5);
+	background-color: rgba(232, 232, 232, 0.5);
 
 	}
 	.advantage a
 	{
 	color:black;
 	text-decoration:none;
-}
+	}
 	</style>
+{% endblock %}
 
+{% block javascript %}
+	<script>
 
+	$(document).ready(function()
+	{
+		$('a[href^="#"]').click(function(){ 
+			var id = $(this).attr("href");
+			var offset = $(id).offset().top
+			$('html, body').animate({scrollTop: offset}, 'slow');
+			return false; 
+		}); 
+	});
+
+	</script>
 {% endblock %}
 
 {% block body %}
@@ -198,19 +211,19 @@ background-color: rgba(232, 232, 232, 0.5);
 
 
 	<div class="separation-horizontal" style="margin-top:30px; margin-bottom:15px"></div>
-	<div style="display:inline-block;">
+	<div>
 
-		<div class="advantage"><a href="#1"><div class="separation-vertical" style="float:right"></div><p><i class="icon-group"></i><br/>Votre salon et vos clients</p></a></div>
-		<div class="advantage"><a href="#2"><div class="separation-vertical" style="float:right"></div><p><i class="icon-laptop"></i><br/>Pourquoi créer un site internet ?</p></a></div>
-		<div class="advantage"><a href="#3"><p><i class="icon-sitemap"></i><br/>Votre salon et vos concurrents</p></a></div>
+		<div class="advantage"><a href="#1"><div class="separation-vertical" style="float:right"></div><p><i class="icon-group"></i><br>Votre salon et vos clients</p></a></div>
+		<div class="advantage"><a href="#2"><div class="separation-vertical" style="float:right"></div><p><i class="icon-laptop"></i><br>Pourquoi créer un site internet ?</p></a></div>
+		<div class="advantage"><a href="#3"><p><i class="icon-sitemap"></i><br>Votre salon et vos concurrents</p></a></div>
 
 		<div class="separation-horizontal" style="position:relative; top:135px; background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#D7D7D7), to(#fff));"></div>
 
-		<div class="advantage"><a href="#4"><div class="separation-vertical" style="float:right"></div><p><i class="icon-facebook-sign"></i><br/>Un site internet ou Faceboook ?</p></a></div>
-		<div class="advantage"><a href="#5"><div class="separation-vertical" style="float:right"></div><p><i class="icon-cut"></i><br/>Pourquoi avec Salonrama ?</p></a></div>
-		<div class="advantage"><a href="#6"><p><i class="icon-cogs"></i><br/>Salonrama: comment ça marche ?</p></div>
+		<div class="advantage"><a href="#4"><div class="separation-vertical" style="float:right"></div><p><i class="icon-facebook-sign"></i><br>Un site internet ou Faceboook ?</p></a></div>
+		<div class="advantage"><a href="#5"><div class="separation-vertical" style="float:right"></div><p><i class="icon-cut"></i><br>Pourquoi avec Salonrama ?</p></a></div>
+		<div class="advantage"><a href="#6"><p><i class="icon-cogs"></i><br>Salonrama: comment ça marche ?</p></div>
 <div class="separation-horizontal" style="position:relative; top:285px; background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#D7D7D7), to(#fff));"></a></div>
-		<div class="advantage"><a href="#7"><div class="separation-vertical" style="float:right"></div><p><i class="icon-puzzle-piece"></i><br/>Salonrama: en détails</p></a></div>
+		<div class="advantage"><a href="#7"><div class="separation-vertical" style="float:right"></div><p><i class="icon-puzzle-piece"></i><br>Salonrama: en détails</p></a></div>
 	</div>
 
 
@@ -250,9 +263,9 @@ background-color: rgba(232, 232, 232, 0.5);
 
 <div class="ribbon" style="margin-bottom:30px;"><h2 id="3">Votre salon et vos concurrents</h2></div>
 
-	<p class="gauche" style="color:#333333; font-size:25px; margin-left:20px;" ><span style="font-size:130px; font-family:impact, sans-serif; margin-right: 40px;">27 %</span><br/>des salons de coiffure<br/> ont un site internet</p><img src="{{ asset('bundles/salonramamain/images/presentation/stat.png') }}" alt="stat"/>
+	<p class="gauche" style="color:#333333; font-size:25px; margin-left:20px;" ><span style="font-size:130px; font-family:impact, sans-serif; margin-right: 40px;">27 %</span><br>des salons de coiffure<br> ont un site internet</p><img src="{{ asset('bundles/salonramamain/images/presentation/stat.png') }}" alt="stat"/>
 
-<div style="background: url({{ asset('bundles/salonramamain/images/presentation/ribbon2.png') }}) no-repeat; width:815px; height:172px; font-size:45px; font-family:impact, sans-serif; padding-top:20px; text-align:center; margin:auto;"><p>DÉMARQUEZ-VOUS<br/>MAINTENANT</p></div>
+<div style="background: url({{ asset('bundles/salonramamain/images/presentation/ribbon2.png') }}) no-repeat; width:815px; height:172px; font-size:45px; font-family:impact, sans-serif; padding-top:20px; text-align:center; margin:auto;"><p>DÉMARQUEZ-VOUS<br>MAINTENANT</p></div>
 
 <div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne4.png') }}" alt="-------------------" /></div>
 
@@ -262,13 +275,13 @@ background-color: rgba(232, 232, 232, 0.5);
 <img style=""src="{{ asset('bundles/salonramamain/images/presentation/fb.png') }}" alt="facebook"/><span style=" font-size:22px; font-weight:bold; position:relative; margin-left:10px; top:-10px;">FACEBOOK</span>
 <div style="width:320px; margin:auto; border-bottom:2px solid #A9DDEC; margin-top:10px; margin-bottom:10px;"></div>
 <p style="font-size:16px; font-weight:bold; margin-bottom:10px;">PERMET DE:<img style="float:right;"src="{{ asset('bundles/salonramamain/images/presentation/valider.png') }}" alt="valider"/></p>
-<p class="texte" style="color:white; width:300px;">- créer une communauté autour des clients de votre salon et les fidéliser<br/><br/>
+<p class="texte" style="color:white; width:300px;">- créer une communauté autour des clients de votre salon et les fidéliser<br><br>
 - afficher l'actualité de votre salon de coiffure et prévenir des modifications de votre site</p>
 <div style="width:320px; margin:auto; border-bottom:2px solid #A9DDEC; margin-top:10px; margin-bottom:10px;"></div>
 
 <p style="font-size:16px; font-weight:bold; margin-bottom:10px;">NE PERMET PAS DE:<img style="float:right;"src="{{ asset('bundles/salonramamain/images/presentation/erreur.png') }}" alt="erreur"/></p>
 
-<p class="texte" style="color:white; width:300px;">- être trouvé facilement sur internet<br/><br/>
+<p class="texte" style="color:white; width:300px;">- être trouvé facilement sur internet<br><br>
 
 - transmettre votre style et l'atmosphère de votre salon</p>
 </div>
@@ -277,11 +290,11 @@ background-color: rgba(232, 232, 232, 0.5);
 <img style=""src="{{ asset('bundles/salonramamain/images/presentation/site.png') }}" alt="site"/><span style=" font-size:22px; font-weight:bold; position:relative; margin-left:10px; top:-10px;">SITE INTERNET</span>
 <div style="width:380px; margin:auto; border-bottom:2px solid #B2E5CB; margin-top:10px; margin-bottom:10px;"></div>
 <p style="font-size:16px; font-weight:bold; margin-bottom:10px;">PERMET DE:<img style="float:right;"src="{{ asset('bundles/salonramamain/images/presentation/valider2.png') }}" alt="valider"/></p>
-<p class="texte" style="color:white; width:350px;">- être trouvé facilement sur internet grâce aux moteurs de recherche (ex: Google)<br/><br/>
+<p class="texte" style="color:white; width:350px;">- être trouvé facilement sur internet grâce aux moteurs de recherche (ex: Google)<br><br>
 
-- transmettre le style et l'atmosphère de votre salon grâce au thème choisi pour votre site. Tout est personnalisable !<br/><br/>
+- transmettre le style et l'atmosphère de votre salon grâce au thème choisi pour votre site. Tout est personnalisable !<br><br>
 
-- présenter votre savoir-faire et vos réalisations.<br/><br/>
+- présenter votre savoir-faire et vos réalisations.<br><br>
 
 - rester en contact avec votre clientèle et afficher l'actualité de votre salon.</p>
 
@@ -289,7 +302,7 @@ background-color: rgba(232, 232, 232, 0.5);
 
 <img style="margin-top:20px;" src="{{ asset('bundles/salonramamain/images/presentation/dialogue.png') }}" alt="dialogue" />
 
-<div style="background:url({{ asset('bundles/salonramamain/images/presentation/salonrama_ok.png') }}) no-repeat; width:825px; height:225px;"><p style="font-size:32px; color:white; font-weight:bold; position:relative; top:40px;left:100px;">Salonrama vous permet de<br/> créer le site de votre salon de<br/> coiffure et vous aide pour<br/> votre page Facebook</p></div>
+<div style="background:url({{ asset('bundles/salonramamain/images/presentation/salonrama_ok.png') }}) no-repeat; width:825px; height:225px;"><p style="font-size:32px; color:white; font-weight:bold; position:relative; top:40px;left:100px;">Salonrama vous permet de<br> créer le site de votre salon de<br> coiffure et vous aide pour<br> votre page Facebook</p></div>
 
 <div class="ligne"><img src="{{ asset('bundles/salonramamain/images/presentation/ligne5.png') }}" alt="-------------------" /></div>
 
@@ -340,29 +353,29 @@ background-color: rgba(232, 232, 232, 0.5);
 <div style="background:url({{ asset('bundles/salonramamain/images/presentation/fleche.png') }}) no-repeat; height:532px; margin-left:50px; padding-top:5px;">
 
 <div class="bordure">
-<p class="etape">ETAPE<br/><span class="etape2">1</span></p>
+<p class="etape">ETAPE<br><span class="etape2">1</span></p>
 <p class="texte_etape">Vous choissisez le thème de votre site</p>
 </div>
 
 
 <div class="bordure">
-<p class="etape">ETAPE<br/><span class="etape2">2</span></p>
+<p class="etape">ETAPE<br><span class="etape2">2</span></p>
 <p class="texte_etape">Les coordonnées de votre salon</p>
 </div>
 
 
 <div class="bordure">
-<p class="etape">ETAPE<br/><span class="etape2">3</span></p>
+<p class="etape">ETAPE<br><span class="etape2">3</span></p>
 <p class="texte_etape">Vous modifiez votre site déjà pré-rempli</p>
 </div>
 
 <div class="bordure">
-<p class="etape">ETAPE<br/><span class="etape2">4</span></p>
+<p class="etape">ETAPE<br><span class="etape2">4</span></p>
 <p class="texte_etape">Vous choissisez l'adresse web de votre site</p>
 </div>
 
 <div class="bordure">
-<p class="etape">ETAPE<br/><span class="etape2">5</span></p>
+<p class="etape">ETAPE<br><span class="etape2">5</span></p>
 <p class="texte_etape">Vous publiez votre site sur internet !</p>
 </div>
 
