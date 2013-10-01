@@ -18,6 +18,10 @@ position:relative;
 text-align:center;
 }
 
+.slider .slide h3{
+color:#808080;
+}
+
 .slider-paddle-left, .slider-paddle-right{
 position:absolute;
 height:100%;

@@ -25,14 +25,16 @@
 	#Slider1 ul{
 	list-style-type:none;
 	padding:0;
-	margin:85px 0 0 50px;
+	margin:85px 0 0 20px;
 	}
 	#Slider1 ul li{
 	font-weight:bold;
-	font-size:20px;
+	font-size:19px;
 	margin-bottom:10px;
 	text-align:left;
 	}
+
+
 
 	#bouton{
 	text-align:center;
@@ -40,14 +42,14 @@
 	position:relative;
 	}
 	#bouton .button-big{
-	padding-left:100px;
-	padding-right:100px;
+	padding-left:80px;
+	padding-right:80px;
 	}
 
 	#free{
 	position:absolute;
 	left:557px;
-	top:-40px;
+	top:-28px;
 	}
 
 	.popup-holder{ 
@@ -98,7 +100,7 @@
 	width:270px;
 	height:130px;
 	float:left;
-	display:inline-block ;
+	display:inline-block;
 	text-align: center;
 	margin-bottom: 20px;
 	}
@@ -164,23 +166,21 @@
 				</div>
 			</div>
 			<div class="slide">
-				<div>
-				<h1>Démarquez vous de vos concurrents</h1>
-				<h2>Les salons de coiffure les plus recherchés ont un site internet, et vous ?</h2>
-				</div>
 				<div class="div2">
-				<img src="{{ asset('bundles/salonramamain/images/index/growth.jpg') }}" width="350" height="265"/>
+					<img src="{{ asset('bundles/salonramamain/images/index/growth.jpg') }}" width="345" height="265"/>
+				</div>
+				<div class="div2" style="padding-top:70px;">
+					<h2>Démarquez vous de vos concurrents</h2>
+					<h3>Les salons de coiffure les plus recherchés ont un site internet, et vous ?</h3>
 				</div>
 			</div>
 			<div class="slide">	
 				<div class="div2">
 					<img src="{{ asset('bundles/salonramamain/images/index/hair.png') }}" width="339" height="265"/>
 				</div>
-				<div class="div2">
-					<div>
-						<h1>Spécialement conçu pour les salons de coiffure</h1>
-					</div>
-					<a target="_blank" href="http://demo.salonrama.fr" class="button-big button-big-green" style="margin-top:50px;">
+				<div class="div2" style="padding-top:50px;">
+					<h2>Spécialement conçu pour les salons de coiffure</h2>
+					<a target="_blank" href="http://demo.salonrama.fr" class="button-big button-big-green" style="margin-top:15px;">
 						Voir la démonstration <br>
 						<span style="font-size:18px;">Un site créé avec Salonrama</span>
 					</a>
@@ -199,13 +199,11 @@
 	</div>
 
 	<div id="bouton">
-
 		<a href="{{ path('salonrama_main_buildsite_step1') }}" class="button-big button-big-blue">
-			<span style="font-size:33px; position:absolute; top:15px; left:220px;"><i class="icon-circle-arrow-right"></i></span>
-			<span style="font-size:20px;">Créez le site de votre</span><br>
-			<span style="font-size:28px;">Salon de coiffure</span>
+			<span style="font-size:18px;">Créez le site de votre</span><br>
+			<span style="font-size:25px;">Salon de coiffure</span>
 		</a>
-		<div id="free"><img src="{{ asset('bundles/salonramamain/images/index/free.png') }}"  width="98" height="98"/></div>
+		<div id="free"><img src="{{ asset('bundles/salonramamain/images/index/free.png') }}"  width="82" height="82"/></div>
 		<div id="extra">Fonctionne aussi pour la coiffure à domicile</div>
 	</div>
 
