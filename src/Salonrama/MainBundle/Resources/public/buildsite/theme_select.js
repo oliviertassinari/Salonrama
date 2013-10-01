@@ -13,11 +13,15 @@ set: function(item)
 	this.setScroll();
 },
 
-setFromLightbox: function(imageNumber, lightbox)
+setFromLightbox: function(imageNumber, lightbox, submit)
 {
 	lightbox.end();
 	this.set($($('#theme-select .theme-select-item')[imageNumber]));
-	this.submit();
+
+	if(submit)
+	{
+		this.submit();
+	}
 },
 
 setScroll: function(duration)
