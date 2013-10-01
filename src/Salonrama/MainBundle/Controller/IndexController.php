@@ -8,7 +8,10 @@ class IndexController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('SalonramaMainBundle:Main:index.html.twig');
+        $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
+        $themeList = $themeRepository->getAllList();
+
+        return $this->render('SalonramaMainBundle:Main:index.html.twig', array('theme_list' => array_slice($themeList, 0, 24)));
     }
 }
 

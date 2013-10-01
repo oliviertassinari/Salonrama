@@ -8,7 +8,7 @@ use Salonrama\MainBundle\File;
 
 class Step1Controller extends Controller
 {
-    public function step1Action()
+    public function step1Action($theme = 'RobinBleu')
     {
         $request = $this->getRequest();
         $session = $request->getSession();
@@ -23,7 +23,7 @@ class Step1Controller extends Controller
 
         if($request->isMethod('POST'))
         {
-			$theme = $request->request->get('site-theme', 'RobinBleu');
+			$theme = $request->request->get('site-theme', $theme);
 
 			if(in_array($theme, $themeList))
 			{
@@ -52,7 +52,7 @@ class Step1Controller extends Controller
 
 		return $this->render('SalonramaMainBundle:Buildsite:step1.html.twig', array(
 																				'theme_list' => $themeList,
-																				'theme' => $session->get('buildsite/site/theme', 'RobinBleu'), 
+																				'theme' => $session->get('buildsite/site/theme', $theme), 
 																				'storyboard' => $storyboard,
 																				'foot' => $foot,
 																				'message' => $message

@@ -48,6 +48,10 @@ salonrama_main_buildsite_step1:
     pattern:  /buildsite/step1
     defaults: { _controller: SalonramaMainBundle:Buildsite/Step1:step1 }
 
+salonrama_main_buildsite_step1_theme:
+    pattern:  /buildsite/step1/{theme}
+    defaults: { _controller: SalonramaMainBundle:Buildsite/Step1:step1 }
+
 salonrama_main_buildsite_step2:
     pattern:  /buildsite/step2
     defaults: { _controller: SalonramaMainBundle:Buildsite/Step2:step2 }
