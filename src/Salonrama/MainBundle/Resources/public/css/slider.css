@@ -29,9 +29,9 @@ cursor:pointer;
 opacity:0;
 top:50%;
 margin-top:-39px;
+z-index:1;
 transition:opacity 0.25s ease-out 0s;
 -webkit-transition:opacity 0.25s ease-out 0s;
-z-index:1;
 }
 .slider-paddle-left{
 left:40px;

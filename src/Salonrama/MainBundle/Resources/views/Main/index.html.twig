@@ -7,6 +7,7 @@
 	<meta name="keywords" content="création, créer, crée, site, internet, salon, coiffure, gratuit, coiffeur, web, vitrine, logiciel, en ligne, salonrama, tassi, conseil, agence, sans difficultés, facile, sans connaissances informatique, sans jargon informatique, simple, simplicité, hébergement, nom de domaine, outil, webmaster, gratuitement, construire, facile, débutant, pas cher, coder, programmer, propre, comment, annuaire, notoriété, pub"/>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/slider.css') }}"/>
+	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/lightbox.css') }}"/>
 
 	<style>
 
@@ -133,13 +134,16 @@
 
 {% block javascript %}
 	<script src="{{ asset('bundles/salonramamain/js/slider.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/lightbox.js') }}"></script>
 
 	<script>
 
 	$(document).ready(function()
 	{
-		new Slider('Slider1', 6000);
-		new Slider('Slider2', 4000);
+		new Slider($('#Slider1'), 6000);
+		new Slider($('#Slider2'), 4000);
+
+		new Lightbox();
 	});
 
 	</script>
@@ -209,7 +213,7 @@
 	</div>
 
 	<div class="popup-holder" >
-          <a class="popup-link" href="http://www.youtube.com/watch?v=_JnZC7MlgZ8" title="Créez le site de votre salon de coiffure gratuitement - Salonrama.fr"></a>
+          <a class="popup-link" href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1" data-lightbox="iframe" title="Créez le site de votre salon de coiffure gratuitement - Salonrama.fr"></a>
           <img alt="Créez le site de votre salon de coiffure gratuitement avec Salonrama" src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}">
 	</div>
 

@@ -15,13 +15,15 @@ cursor:pointer;
 }
 
 .lightbox-overlay{
-position:absolute;
+display:none;
+position:fixed;
+display:block;
 top:0;
 left:0;
+width:100%;
+height:100%;
+background:rgba(0, 0, 0, 0.8);
 z-index:9999;
-background-color:#000;
-opacity:0.8;
-display:none;
 }
 
 .lightbox{
@@ -90,49 +92,32 @@ outline:none;
 }
 
 .lightbox-prev, .lightbox-next{
-width:45%;
-height:100%;
 cursor:pointer;
 display:block;
 opacity:0;
+width:28px;
+height:43px;
+position:absolute;
+background:url(../images/lightbox.png) no-repeat;
+top:50%;
+margin-top:-21px;
+z-index:1;
 transition:opacity 0.2s ease 0s;
 -webkit-transition:opacity 0.2s ease 0s;
 }
-.lightbox-container:hover .lightbox-prev, .lightbox-container:hover .lightbox-next{
-opacity:0.4;
-}
-
-.lightbox-prev span, .lightbox-next span{
-width:28px;
-height:43px;
-display:block;
-position:absolute;
-background:url(../images/lightbox.png) no-repeat;
-top:43%;
-}
-
 .lightbox-prev{
-left:0;
-float:left;
-}
-.lightbox-prev span{
 left:15px;
 background-position:0 -43px;
 }
-.lightbox-prev:hover{
-opacity:1 !important;
-}
-
 .lightbox-next{
-right:0;
-float:right;
-}
-.lightbox-next span{
 right:15px;
 background-position:0 0;
 }
-.lightbox-next:hover{
+.lightbox-prev.show, .lightbox-next.show{
 opacity:1 !important;
+}
+.lightbox-container:hover .lightbox-prev, .lightbox-container:hover .lightbox-next{
+opacity:0.4;
 }
 
 .lightbox-dataContainer{

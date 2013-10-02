@@ -1,5 +1,7 @@
-var Lightbox = (function() {
-	function Lightbox(options) {
+var Lightbox = (function()
+{
+	function Lightbox(options)
+	{
 		var optionsDefault = {
 			fadeDuration: 500,
 			fitImagesInViewport: true,
@@ -18,27 +20,23 @@ var Lightbox = (function() {
 		this.options = $.extend(optionsDefault, options);
 		this.album = [];
 		this.currentImageIndex = void 0;
-		this.init();
-	}
 
-	Lightbox.prototype.init = function() {
-		this.enable();
-		return this.build();
-	};
-
-	Lightbox.prototype.enable = function() {
 		var _this = this;
-		return this.options.parent.on('click', 'a[data-lightbox]', function(e) {
+		this.options.parent.on('click', 'a[data-lightbox]', function(e) {
 			_this.start($(e.currentTarget));
 			return false;
 		});
-	};
 
-	Lightbox.prototype.build = function() {
+		this.build();
+	}
+
+	Lightbox.prototype.build = function()
+	{
 		var _this = this;
 		$("<div id='lightbox-overlay' class='lightbox-overlay'></div><div id='lightbox' class='lightbox'><div class='lightbox-outerContainer'>"+
 			"<div class='lightbox-container'>"+
-			"<div class='lightbox-nav'><a class='lightbox-prev' href='' ><span title='Précédent'></span></a><a class='lightbox-next' href='' ><span title='Suivant'></span></a></div>"+
+			"<div class='lightbox-prev' title='Précédent'></div>"+
+			"<div class='lightbox-next' title='Suivant'></div>"+
 			"<div class='lightbox-loader'><i class='icon-spinner icon-spin'></i></div></div></div><div class='lightbox-dataContainer'><div class='lightbox-data'>"+
 			"<div class='lightbox-details'><span class='lightbox-caption'></span><span class='lightbox-number'></span></div>"+
 			"<a class='lightbox-close' title='Fermer'></a></div></div></div>").appendTo($('body'));
@@ -46,10 +44,7 @@ var Lightbox = (function() {
 		this.$overlay = $('#lightbox-overlay');
 		this.$outerContainer = this.$lightbox.find('.lightbox-outerContainer');
 		this.$container = this.$lightbox.find('.lightbox-container');
-		this.containerTopPadding = parseInt(this.$container.css('padding-top'), 10);
-		this.containerRightPadding = parseInt(this.$container.css('padding-right'), 10);
-		this.containerBottomPadding = parseInt(this.$container.css('padding-bottom'), 10);
-		this.containerLeftPadding = parseInt(this.$container.css('padding-left'), 10);
+		this.containerPadding = parseInt(this.$container.css('padding-top'), 10);
 		this.$overlay.hide().on('click', function() {
 			_this.end();
 			return false;
@@ -60,47 +55,93 @@ var Lightbox = (function() {
 			}
 			return false;
 		});
-		this.$outerContainer.on('click', function(e) {
-			if ($(e.target).attr('id') === 'lightbox') {
-				_this.end();
+		this.$outerContainer.click(function(event){
+			var over = _this.getOver(event);
+
+			if(over == 'prev')
+			{
+				if (_this.currentImageIndex === 0) {
+					_this.changeImage(_this.album.length - 1);
+				} else {
+					_this.changeImage(_this.currentImageIndex - 1);
+				}
 			}
-			return false;
-		});
-		this.$lightbox.find('.lightbox-prev').on('click', function() {
-			if (_this.currentImageIndex === 0) {
-				_this.changeImage(_this.album.length - 1);
-			} else {
-				_this.changeImage(_this.currentImageIndex - 1);
+			else if(over == 'next')
+			{
+				if (_this.currentImageIndex === _this.album.length - 1) {
+					_this.changeImage(0);
+				} else {
+					_this.changeImage(_this.currentImageIndex + 1);
+				}
 			}
-			return false;
 		});
-		this.$lightbox.find('.lightbox-next').on('click', function() {
-			if (_this.currentImageIndex === _this.album.length - 1) {
-				_this.changeImage(0);
-			} else {
-				_this.changeImage(_this.currentImageIndex + 1);
+
+		var lightboxNext = this.$lightbox.find('.lightbox-next');
+		var lightboxPrev = this.$lightbox.find('.lightbox-prev');
+
+		this.$outerContainer.mousemove(function(event){
+			var over = _this.getOver(event);
+
+			if(over == 'prev')
+			{
+				_this.$outerContainer.css('cursor', 'pointer');
+				lightboxPrev.addClass('show');
 			}
-			return false;
+			else if(over == 'next')
+			{
+				_this.$outerContainer.css('cursor', 'pointer');
+				lightboxNext.addClass('show');
+			}
+			else
+			{
+				_this.$outerContainer.css('cursor', 'default');
+				lightboxPrev.removeClass('show');
+				lightboxNext.removeClass('show');
+			}
 		});
-		return this.$lightbox.find('.lightbox-loader, .lightbox-close').on('click', function() {
+
+		this.$outerContainer.mouseleave(function(){ 
+			lightboxPrev.removeClass('show');
+			lightboxNext.removeClass('show');
+		});
+
+		this.$lightbox.find('.lightbox-loader, .lightbox-close').on('click', function() {
 			_this.end();
 			return false;
 		});
 	};
 
-	Lightbox.prototype.start = function($link) {
+	Lightbox.prototype.getOver = function(event)
+	{
+		var offset = this.$outerContainer.offset();
+
+		if(offset.left < event.pageX && event.pageX < offset.left + 200)
+		{
+			return 'prev';
+		}
+		else if(offset.left + this.$outerContainer.width() - 200 < event.pageX && event.pageX < offset.left + this.$outerContainer.width())
+		{
+			return 'next';
+		}
+		else{
+			return '';
+		}
+	};
+
+	Lightbox.prototype.start = function($link)
+	{
 		var $window, a, dataLightboxValue, i, imageNumber, left, top, _i, _j, _len, _len1, _ref, _ref1;
-		$(window).on("resize", this.sizeOverlay);
 		$('select, object, embed').css({
 			visibility: "hidden"
 		});
-		this.$overlay.width($(document).width()).height($(document).height()).fadeIn(this.options.fadeDuration);
+		this.$overlay.fadeIn(this.options.fadeDuration);
 		this.album = [];
 		imageNumber = 0;
 		dataLightboxValue = $link.attr('data-lightbox');
 
 		_ref = this.options.parent.find($link.prop("tagName") + '[data-lightbox="' + dataLightboxValue + '"]');
-		for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
+		for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i)
+		{
 			a = _ref[i];
 			this.album.push({
 				link: $(a).attr('href'),
@@ -120,7 +161,28 @@ var Lightbox = (function() {
 			top: top + 'px',
 			left: left + 'px'
 		}).fadeIn(this.options.fadeDuration);
-		this.changeImage(imageNumber);
+
+		if(dataLightboxValue == 'iframe')
+		{
+			this.changeIframe(0);
+		}
+		else
+		{
+			this.changeImage(imageNumber);
+		}
+	};
+
+	Lightbox.prototype.changeIframe = function(imageNumber)
+	{
+		var iframe = $('<iframe class="lightbox-image" src="" frameborder="0" allowfullscreen=""></iframe>');
+		iframe.attr('src', this.album[imageNumber].link);
+		iframe.width(640);
+		iframe.height(440);
+
+		this.$container.append(iframe);
+		this.sizeContainer(640, 440);
+
+		this.currentImageIndex = 0;
 	};
 
 	Lightbox.prototype.changeImage = function(imageNumber)
@@ -131,9 +193,11 @@ var Lightbox = (function() {
 		$image = $('<img class="lightbox-image" src=/>');
 		this.$container.append($image);
 		$image.hide();
-		this.$lightbox.find('.lightbox-image').last().hide();
 
-		this.sizeOverlay();
+		if(this.$lightbox.find('.lightbox-image').length > 1){
+			this.$lightbox.find('.lightbox-image').last().prev().fadeOut(600, function(){ $(this).remove(); });
+		}
+
 		this.$overlay.fadeIn(this.options.fadeDuration);
 		this.$lightbox.find('.lightbox-loader').fadeIn('slow');
 		this.$lightbox.find('.lightbox-nav, .lightbox-prev, .lightbox-next, .lightbox-dataContainer, .lightbox-numbers, .lightbox-caption').hide();
@@ -147,8 +211,8 @@ var Lightbox = (function() {
 			if (_this.options.fitImagesInViewport) {
 				windowWidth = $(window).width();
 				windowHeight = $(window).height();
-				maxImageWidth = windowWidth - _this.containerLeftPadding - _this.containerRightPadding - 20;
-				maxImageHeight = windowHeight - _this.containerTopPadding - _this.containerBottomPadding - 110;
+				maxImageWidth = windowWidth - _this.containerPadding*2 - 20;
+				maxImageHeight = windowHeight - _this.containerPadding*2 - 110;
 				if ((preloader.width > maxImageWidth) || (preloader.height > maxImageHeight)) {
 					if ((preloader.width / maxImageWidth) > (preloader.height / maxImageHeight)) {
 						imageWidth = maxImageWidth;
@@ -165,21 +229,18 @@ var Lightbox = (function() {
 			}
 			return _this.sizeContainer($image.width(), $image.height());
 		};
-		preloader.src = this.album[imageNumber].link;
 		this.currentImageIndex = imageNumber;
+		preloader.src = this.album[imageNumber].link;
 	};
 
-	Lightbox.prototype.sizeOverlay = function() {
-		return $('#lightbox-overlay').width($(document).width()).height($(document).height());
-	};
-
-	Lightbox.prototype.sizeContainer = function(imageWidth, imageHeight) {
+	Lightbox.prototype.sizeContainer = function(imageWidth, imageHeight)
+	{
 		var newHeight, newWidth, oldHeight, oldWidth,
 			_this = this;
 		oldWidth = this.$outerContainer.outerWidth();
 		oldHeight = this.$outerContainer.outerHeight();
-		newWidth = imageWidth + this.containerLeftPadding + this.containerRightPadding;
-		newHeight = imageHeight + this.containerTopPadding + this.containerBottomPadding;
+		newWidth = imageWidth + this.containerPadding*2;
+		newHeight = imageHeight + this.containerPadding*2;
 		var callback = function(){
 			_this.$lightbox.find('.lightbox-dataContainer').width(newWidth);
 			_this.showImage();
@@ -203,16 +264,14 @@ var Lightbox = (function() {
 		this.$lightbox.find('.lightbox-loader').stop();
 		this.$lightbox.find('.lightbox-loader').hide();
 		this.$lightbox.find('.lightbox-image').last().fadeIn(300);
-		if(this.$lightbox.find('.lightbox-image').length > 1){
-			this.$lightbox.find('.lightbox-image').first().fadeOut(600, function(){ $(this).remove(); });
-		}
 		this.updateNav();
 		this.updateDetails();
 		this.preloadNeighboringImages();
 		this.enableKeyboardNav();
 	};
 
-	Lightbox.prototype.updateNav = function() {
+	Lightbox.prototype.updateNav = function()
+	{
 		this.$lightbox.find('.lightbox-nav').show();
 		if (this.album.length > 1) {
 			if (this.options.wrapAround) {
@@ -228,7 +287,8 @@ var Lightbox = (function() {
 		}
 	};
 
-	Lightbox.prototype.updateDetails = function() {
+	Lightbox.prototype.updateDetails = function()
+	{
 		var _this = this;
 
 		this.$lightbox.find('.lightbox-caption').html(this.options.getDetailsCaption(this.album[this.currentImageIndex].title, this.currentImageIndex)).fadeIn('fast');
@@ -238,12 +298,11 @@ var Lightbox = (function() {
 		} else {
 			this.$lightbox.find('.lightbox-number').hide();
 		}
-		this.$lightbox.find('.lightbox-dataContainer').fadeIn(this.resizeDuration, function() {
-			return _this.sizeOverlay();
-		});
+		this.$lightbox.find('.lightbox-dataContainer').fadeIn(this.resizeDuration);
 	};
 
-	Lightbox.prototype.preloadNeighboringImages = function() {
+	Lightbox.prototype.preloadNeighboringImages = function()
+	{
 		var preloadNext, preloadPrev;
 		if (this.album.length > this.currentImageIndex + 1) {
 			preloadNext = new Image();
@@ -255,15 +314,18 @@ var Lightbox = (function() {
 		}
 	};
 
-	Lightbox.prototype.enableKeyboardNav = function() {
+	Lightbox.prototype.enableKeyboardNav = function()
+	{
 		$(document).on('keyup', $.proxy(this.keyboardAction, this));
 	};
 
-	Lightbox.prototype.disableKeyboardNav = function() {
+	Lightbox.prototype.disableKeyboardNav = function()
+	{
 		$(document).off('keyup');
 	};
 
-	Lightbox.prototype.keyboardAction = function(event) {
+	Lightbox.prototype.keyboardAction = function(event)
+	{
 		var KEYCODE_ESC, KEYCODE_LEFTARROW, KEYCODE_RIGHTARROW, key, keycode;
 		KEYCODE_ESC = 27;
 		KEYCODE_LEFTARROW = 37;
@@ -283,9 +345,9 @@ var Lightbox = (function() {
 		}
 	};
 
-	Lightbox.prototype.end = function() {
+	Lightbox.prototype.end = function()
+	{
 		this.disableKeyboardNav();
-		$(window).off("resize", this.sizeOverlay);
 		this.$lightbox.fadeOut(this.options.fadeDuration);
 		this.$overlay.fadeOut(this.options.fadeDuration);
 		return $('select, object, embed').css({
@@ -294,5 +356,4 @@ var Lightbox = (function() {
 	};
 
 	return Lightbox;
-
 })();

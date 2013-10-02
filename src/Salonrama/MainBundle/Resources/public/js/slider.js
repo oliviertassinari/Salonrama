@@ -1,8 +1,6 @@
-var Slider = function(sliderId, timeToWait)
+var Slider = function(slider, timeToWait)
 {
 	var self = this;
-
-	var slider = $('#'+sliderId);
 
 	this.width = slider.width();
 	this.timeToWait = timeToWait;
@@ -37,35 +35,40 @@ var Slider = function(sliderId, timeToWait)
 	});
 
 	slider.mousemove(function(event){ 
-		var position = self.getPosition(event);
+		var over = self.getOver(event);
 
-		if(position == 'left')
+		if(over == 'left')
 		{
+			slider.css('cursor', 'pointer');
 			sliderPaddleLeft.addClass('show');
 		}
-		else if(position == 'right')
+		else if(over == 'right')
 		{
+			slider.css('cursor', 'pointer');
 			sliderPaddleRight.addClass('show');
 		}
 		else
 		{
+			slider.css('cursor', 'default');
 			sliderPaddleLeft.removeClass('show');
 			sliderPaddleRight.removeClass('show');
 		}
 	});
 
 	slider.click(function(event){
-		var position = self.getPosition(event);
+		var over = self.getOver(event);
 
-		if(position == 'left')
+		if(over == 'left')
 		{
 			self.setPrevious();
 		}
-		else if(position == 'right')
+		else if(over == 'right')
 		{
 			self.setNext();
-		}	
+		}
 	});
+
+	this.sliderList.find('a').click(function(event){ event.stopPropagation(); });
 
 	$(document).on('keyup', $.proxy(this.onKeyup, this));
 };
@@ -74,7 +77,7 @@ Slider.prototype = {
 
 slideCurrent: 0,
 
-getPosition: function(event)
+getOver: function(event)
 {
 	var offset = this.slider.offset();
 
