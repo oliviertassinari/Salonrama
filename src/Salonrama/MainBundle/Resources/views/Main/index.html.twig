@@ -40,6 +40,7 @@
 	#bouton{
 	text-align:center;
 	margin-top:25px;
+	margin-bottom:40px;
 	position:relative;
 	}
 	#bouton .button-big{
@@ -54,17 +55,9 @@
 	}
 
 	.popup-holder{ 
-	text-align: center; 
-	position: relative;
-	top:20px;
-	margin-top:30px;
-	margin-bottom:17px;
+	position:relative;
+	display:block;
 	}
-
-	.popup-holder img{
-	box-shadow: -2px -2px 10px -3px #ccc, -2px -2px 10px -3px #ccc, 4px -2px 10px -3px #ccc;
-	}
-
 	.popup-holder .popup-link{
 	position: absolute;
 	top: 50%;
@@ -76,18 +69,20 @@
 	margin-left: -46px; 
 	background: url({{ asset('bundles/salonramamain/images/popup_link.png') }}) no-repeat 0 0; 
 	}
-
-	.popup-holder:hover .popup-link{
-	background-position: center !important; 
+	.popup-holder:hover .popup-link, .popup-holder:focus .popup-link{
+	background-position:center; 
+	}
+	.popup-holder:active .popup-link{
+	background-position:bottom; 
 	}
 
-	.popup-holder .popup-link:active{
-	background-position: bottom !important; 
+	#Slider2{
+	height:360px;
+	margin-bottom:30px;
 	}
-
 	#Slider2 .slide a{
 	box-shadow:0 0 4px rgba(0, 0, 0, 0.3);
-	margin:20px;
+	margin:15px;
 	display:inline-block;
 	}
 	#Slider2 .slide a:hover{
@@ -124,11 +119,6 @@
 	margin-top:5px;
 	}
 
-	#Slider2{
-	height:375px;
-	margin-bottom:30px;
-	}
-
 	</style>
 {% endblock %}
 
@@ -140,10 +130,14 @@
 
 	$(document).ready(function()
 	{
+		new Lightbox({
+			getDetailsCaption: function(title, imageNumber){
+				return '';
+			}
+		});
+
 		new Slider($('#Slider1'), 6000);
 		new Slider($('#Slider2'), 4000);
-
-		new Lightbox();
 	});
 
 	</script>
@@ -159,7 +153,10 @@
 		<div class="slider-list">
 			<div class="slide">
 				<div class="div1">
-					<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>
+					<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-holder" data-lightbox="iframe" title="Vidéo de présentation">
+						<div class="popup-link"></div>
+						<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>
+					</a>
 				</div>
 				<div class="div1">
 				<ul>
@@ -212,11 +209,6 @@
 		<div id="extra">Fonctionne aussi pour la coiffure à domicile</div>
 	</div>
 
-	<div class="popup-holder" >
-          <a class="popup-link" href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1" data-lightbox="iframe" title="Créez le site de votre salon de coiffure gratuitement - Salonrama.fr"></a>
-          <img alt="Créez le site de votre salon de coiffure gratuitement avec Salonrama" src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}">
-	</div>
-
 	<div class="separation-horizontal" style:"margin-bottom:50px;"></div>
 
 	<h3>À vous de personnaliser le site de votre salon :</h3>
@@ -245,14 +237,13 @@
 		</div>
 	</div>
 
-	<div class="separation-horizontal" style="margin-bottom:15px"></div>
+	<div class="separation-horizontal" style="margin-bottom:20px"></div>
 	<div>
-
 		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-check-sign"></i><br>Aucune connaissance informatique nécessaire</p></div>
 		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-question-sign"></i><br>Une aide gratuite et rapide</p></div>
 		<div class="advantage"><p><i class="icon-ban-circle"></i><br>Aucune publicité</p></div>
 
-		<div class="separation-horizontal" style="position:relative; top:135px; background: -webkit-gradient(radial, 50% 50%, 0, 50% 50%, 450, from(#D7D7D7), to(#fff));"></div>
+		<div class="separation-horizontal" style="position:relative; top:135px;"></div>
 
 		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-camera"></i><br>Une galerie photo pour présenter vos réalisations</p></div>
 		<div class="advantage"><div class="separation-vertical" style="float:right"></div><p><i class="icon-map-marker"></i><br>Un plan pour guider vos clients</p></div>
@@ -260,7 +251,6 @@
 	</div>
 	<div class="clear"></div>
 
-	<div class="separation-horizontal" style="margin-top:-10px;margin-bottom:30px"></div>
 
 	<p class="center">
 		<a href="{{ path('salonrama_main_presentation') }}" class="button-big button-big-green">

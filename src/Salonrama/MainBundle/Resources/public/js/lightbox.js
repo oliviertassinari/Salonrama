@@ -22,7 +22,7 @@ var Lightbox = (function()
 		this.currentImageIndex = void 0;
 
 		var _this = this;
-		this.options.parent.on('click', 'a[data-lightbox]', function(e) {
+		this.options.parent.find('a[data-lightbox]').click(function(e) {
 			_this.start($(e.currentTarget));
 			return false;
 		});
@@ -178,6 +178,9 @@ var Lightbox = (function()
 		iframe.attr('src', this.album[imageNumber].link);
 		iframe.width(640);
 		iframe.height(440);
+		iframe.hide();
+
+		this.$lightbox.find('.lightbox-nav, .lightbox-prev, .lightbox-next, .lightbox-dataContainer, .lightbox-numbers, .lightbox-caption').hide();
 
 		this.$container.append(iframe);
 		this.sizeContainer(640, 440);
@@ -350,7 +353,7 @@ var Lightbox = (function()
 		this.disableKeyboardNav();
 		this.$lightbox.fadeOut(this.options.fadeDuration);
 		this.$overlay.fadeOut(this.options.fadeDuration);
-		return $('select, object, embed').css({
+		$('select, object, embed').css({
 			visibility: "visible"
 		});
 	};
