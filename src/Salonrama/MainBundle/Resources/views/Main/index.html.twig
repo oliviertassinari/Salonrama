@@ -22,12 +22,12 @@
 	margin:0 3%;
 	float:left;
 	}
-	#Slider1 ul{
+	#Slider1 .slide ul{
 	list-style-type:none;
 	padding:0;
 	margin:85px 0 0 50px;
 	}
-	#Slider1 ul li{
+	#Slider1 .slide ul li{
 	font-weight:bold;
 	font-size:19px;
 	margin-bottom:10px;
@@ -86,7 +86,7 @@
 
 	#Slider2 .slide a{
 	box-shadow:0 0 4px rgba(0, 0, 0, 0.3);
-	margin:15px;
+	margin:20px;
 	display:inline-block;
 	}
 	#Slider2 .slide a:hover{
@@ -186,9 +186,10 @@
 					</a>
 				</div>
 			</div>
+			<div class="clear"></div>
 		</div>
-		<div class="slider-paddle-left" title="Précédent"><div></div></div>
-		<div class="slider-paddle-right" title="Suivant"><div></div></div>
+		<div class="slider-paddle-left" title="Précédent"></div>
+		<div class="slider-paddle-right" title="Suivant"></div>
 		<div class="slider-dot">
 			<ul>
 				<li><a class="select"></a></li>
@@ -222,14 +223,15 @@
 			{% if loop.index0 % 8 == 0 %}
 				<div class="slide">
 			{% endif %}
-				<a href="{{ path('salonrama_main_buildsite_step1_theme', { 'theme': name }) }}" title="Choisir ce thème"><img src="{{ asset('bundles/salonramamain/theme/' ~ name ~ '/screenshot_min.jpg') }}" width="160" height="141"/></a>
+				<a href="{{ path('salonrama_main_buildsite_step1_theme', { 'theme': name }) }}" title="Choisir ce thème"><img src="{{ asset('bundles/salonramamain/theme/' ~ name ~ '/screenshot_min.jpg') }}" width="150" height="132"/></a>
 			{% if loop.index0 % 8 == 7 %}
 				</div>
 			{% endif %}
-			{% endfor %}		
+			{% endfor %}
+			<div class="clear"></div>
 		</div>
-		<div class="slider-paddle-left" title="Précédent"><div style="left:0"></div></div>
-		<div class="slider-paddle-right" title="Suivant"><div style="left:100px"></div></div>
+		<div class="slider-paddle-left" title="Précédent"></div>
+		<div class="slider-paddle-right" title="Suivant"></div>
 		<div class="slider-dot">
 			<ul>
 				<li><a class="select"></a></li>

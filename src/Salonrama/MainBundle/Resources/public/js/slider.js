@@ -6,9 +6,9 @@ var Slider = function(sliderId, timeToWait)
 
 	this.width = slider.width();
 	this.timeToWait = timeToWait;
+	this.slider = slider;
 	this.sliderList = slider.children('.slider-list');
 	this.sliderDotLi = slider.find('.slider-dot li');
-	this.sliderDotLiA = this.sliderDotLi.children('a');
 
 	this.sliderList.css('width', this.width*this.sliderDotLi.length);
 
@@ -16,10 +16,10 @@ var Slider = function(sliderId, timeToWait)
 		$(this).css('width', self.width);
 	});
 
-	slider.find('.slider-paddle-left').click(function(){ self.setPrevious(); });
-	slider.find('.slider-paddle-right').click(function(){ self.setNext(); });
+	var sliderPaddleLeft = slider.find('.slider-paddle-left');
+	var sliderPaddleRight = slider.find('.slider-paddle-right');
 
-	this.sliderDotLiA.each(function(index){
+	this.sliderDotLi.children('a').each(function(index){
 		$(this).click(function(event){
 			event.preventDefault();
 			self.setSlide(index);
@@ -30,8 +30,41 @@ var Slider = function(sliderId, timeToWait)
 
 	slider.mouseenter(function(){ window.clearInterval(self.Timer); });
 	slider.mouseleave(function(){ 
+		sliderPaddleLeft.removeClass('show');
+		sliderPaddleRight.removeClass('show');
 		window.clearInterval(self.Timer);
 		self.setTimer();
+	});
+
+	slider.mousemove(function(event){ 
+		var position = self.getPosition(event);
+
+		if(position == 'left')
+		{
+			sliderPaddleLeft.addClass('show');
+		}
+		else if(position == 'right')
+		{
+			sliderPaddleRight.addClass('show');
+		}
+		else
+		{
+			sliderPaddleLeft.removeClass('show');
+			sliderPaddleRight.removeClass('show');
+		}
+	});
+
+	slider.click(function(event){
+		var position = self.getPosition(event);
+
+		if(position == 'left')
+		{
+			self.setPrevious();
+		}
+		else if(position == 'right')
+		{
+			self.setNext();
+		}	
 	});
 
 	$(document).on('keyup', $.proxy(this.onKeyup, this));
@@ -40,6 +73,23 @@ var Slider = function(sliderId, timeToWait)
 Slider.prototype = {
 
 slideCurrent: 0,
+
+getPosition: function(event)
+{
+	var offset = this.slider.offset();
+
+	if(offset.left < event.pageX && event.pageX < offset.left + 200)
+	{
+		return 'left';
+	}
+	else if(offset.left + this.slider.width() - 200 < event.pageX && event.pageX < offset.left + this.slider.width())
+	{
+		return 'right';
+	}
+	else{
+		return '';
+	}
+},
 
 setTimer: function(){
 	var self = this;
