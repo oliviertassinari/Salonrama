@@ -152,8 +152,6 @@ var Lightbox = (function()
 			}
 		}
 
-		this.$lightbox.find('.lightbox-image').remove();
-
 		$window = $(window);
 		top = $window.scrollTop() + 40;
 		left = $window.scrollLeft();
@@ -350,8 +348,10 @@ var Lightbox = (function()
 
 	Lightbox.prototype.end = function()
 	{
+		var self = this;
+
 		this.disableKeyboardNav();
-		this.$lightbox.fadeOut(this.options.fadeDuration);
+		this.$lightbox.fadeOut(this.options.fadeDuration, function(){ self.$lightbox.find('.lightbox-image').remove(); });
 		this.$overlay.fadeOut(this.options.fadeDuration);
 		$('select, object, embed').css({
 			visibility: "visible"
