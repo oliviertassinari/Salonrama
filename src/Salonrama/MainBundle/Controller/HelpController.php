@@ -3,24 +3,36 @@
 namespace Salonrama\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 class HelpController extends Controller
 {
     public function helpAction()
     {
+        $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
         $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
 
         $navTab = $helpNodeRepository->getAll();
         $nav = $this->getNav($navTab);
 
-        return $this->render('SalonramaMainBundle:Main:help.html.twig', array(
-                                                                            'nav_tab' => $nav[0],
-                                                                            'nav_tab_offset' => 0,
-                                                                            'nav_bar' => $nav[1],
-                                                                            'article' => '',
-                                                                            'query' => ''
-                                                                        ));
+        if($request->isXmlHttpRequest())
+        {
+            return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_index.html.twig")->renderBlock('help_nav', array(
+                                                                                'nav_tab' => $nav[0],
+                                                                                'nav_tab_offset' => 0,
+                                                                                'nav_bar' => $nav[1]
+                                                                            )));
+        }
+        else
+        {
+            return $this->render('SalonramaMainBundle:Main:help_index.html.twig', array(
+                                                                                'nav_tab' => $nav[0],
+                                                                                'nav_tab_offset' => 0,
+                                                                                'nav_bar' => $nav[1],
+                                                                                'focus_query' => true
+                                                                            ));
+        }
     }
 
     public function searchAction()
@@ -33,13 +45,25 @@ class HelpController extends Controller
         $navTab = $helpNodeRepository->getAll();
         $nav = $this->getNav($navTab);
 
-        return $this->render('SalonramaMainBundle:Main:help.html.twig', array(
-                                                                            'nav_tab' => $nav[0],
-                                                                            'nav_tab_offset' => 0,
-                                                                            'nav_bar' => $nav[1],
-                                                                            'article' => '',
-                                                                            'query' => $request->query->get('query', '')
-                                                                        ));
+        if($request->isXmlHttpRequest())
+        {
+            return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_search.html.twig")->renderBlock('help_nav', array(
+                                                                                'nav_tab' => $nav[0],
+                                                                                'nav_tab_offset' => 0,
+                                                                                'nav_bar' => $nav[1]
+                                                                            )));
+        }
+        else
+        {
+            return $this->render('SalonramaMainBundle:Main:help_search.html.twig', array(
+                                                                                'nav_tab' => $nav[0],
+                                                                                'nav_tab_offset' => 0,
+                                                                                'nav_bar' => $nav[1],
+                                                                                'query' => $request->query->get('query', '')
+                                                                            ));
+        }
+
+
     }
 
     public function articleAction($id)
@@ -57,22 +81,20 @@ class HelpController extends Controller
 
         if($request->isXmlHttpRequest())
         {
+            return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_article.html.twig")->renderBlock('help_nav', array(
+                                                                                'nav_tab' => $nav[0],
+                                                                                'nav_tab_offset' => -$nav[3]*189,
+                                                                                'nav_bar' => $nav[1],
+                                                                                'article' => $article
+                                                                            )));
+        }
+        else
+        {
             return $this->render('SalonramaMainBundle:Main:help_article.html.twig', array(
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => -$nav[3]*189,
                                                                                 'nav_bar' => $nav[1],
-                                                                                'article' => $article,
-                                                                                'query' => ''
-                                                                            ));
-        }
-        else
-        {
-            return $this->render('SalonramaMainBundle:Main:help.html.twig', array(
-                                                                                'nav_tab' => $nav[0],
-                                                                                'nav_tab_offset' => -$nav[3]*189,
-                                                                                'nav_bar' => $nav[1],
-                                                                                'article' => $article,
-                                                                                'query' => ''
+                                                                                'article' => $article
                                                                             ));
         }
     }

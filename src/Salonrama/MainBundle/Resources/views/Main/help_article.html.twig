@@ -1,21 +1,23 @@
-{% if article %}
-<h1>{{ article.name }}</h1>
+{% extends "SalonramaMainBundle:Main:help.html.twig" %}
 
-{% autoescape false %}
-{{ article.text }}
-{% endautoescape %}
+{% block title %}Aide - {{ article.name }}{% endblock %}
 
-<div class="center">
-	<hr/>
-	<div class="feedback">Le contenu de cette page vous a-t-il été utile ? <a href="">Oui</a> - <a href="">Non</a></div>
-	<a href="{{ path('salonrama_main_contact') }}" class="button-small button-small-blue" type="button"><i class="icon-comments"></i>Envoyez nous un message</a>
-</div>
-{% endif %}
+{% block help_body %}
+	<h1>{{ article.name }}</h1>
 
-{% if article %}
-<script>
+	{% autoescape false %}
+	{{ article.text }}
+	{% endautoescape %}
 
-document.title = "Aide - {{ article.name|escape('js') }}";
+	<div class="center">
+		<hr/>
+		<div class="feedback">Le contenu de cette page vous a-t-il été utile ? <a href="">Oui</a> - <a href="">Non</a></div>
+		<a href="{{ path('salonrama_main_contact') }}" class="button-small button-small-blue" type="button"><i class="icon-comments"></i>Envoyez nous un message</a>
+	</div>
 
-</script>
-{% endif %}
+	<script>
+
+	document.title = "Aide - {{ article.name|escape('js') }}";
+
+	</script>
+{% endblock %}

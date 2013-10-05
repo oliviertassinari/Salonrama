@@ -3,7 +3,7 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Aide{% if article %} - {{ article.name }}{% endif %}</title>
+	<title>{% block title %}{% endblock %}</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
 {% endblock %}
@@ -19,6 +19,10 @@
 	{
 		initLink();
 		smartLoad = new SmartLoad($('#smartLoad'), initLink);
+
+		{% if focus_query is defined %}
+		$('#help-search input').focus();
+		{% endif %}
 	});
 
 	function initLink()
@@ -93,13 +97,59 @@
 {% block body %}
 	<div id="help-search">
 		<form method="get" action="{{ path('salonrama_main_help_search') }}">
-			<input type="text" name="query" placeholder="Comment pouvons-nous vous aider ?" value="{{ query }}">
+			<input type="text" name="query" placeholder="Comment pouvons-nous vous aider ?" value="{% if query is defined %}{{ query }}{% endif %}">
 			<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
 			<div class="clear"></div>
 		</form>
 	</div>
 
 	<div id="smartLoad">
-	{{ include("SalonramaMainBundle:Main:help_article.html.twig") }}
+	{% block help_nav %}
+	{% macro ul(node, isFirstNode, class) %}
+	    <ul{% if not isFirstNode %} class="nav-tab-nextlevel{% if class %} {{ class }}{% endif %}"{% endif %}>
+			{% for child in node %}
+			{% if 'name' in child|keys %}
+			<li>
+				{% if child.children %}
+				<a href="">{{ child.name }}<i class="icon-angle-right"></i></a>
+				{% else %}
+				<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}"{% if 'class' in child|keys %} class="{{ child.class }}"{% endif %}>{{ child.name }}</a>
+				{% endif %}
+				{% if child.children %}
+				{% if 'class' in child|keys %}
+				{{ _self.ul(child.children, false, child.class) }}
+				{% else %}
+				{{ _self.ul(child.children, false) }}
+				{% endif %}
+				{% endif %}
+			</li>
+			{% endif %}
+			{% endfor %}
+			{% if not isFirstNode %}
+			<li><a href="">Précédent<i class="icon-reply"></i></a></li>
+			{% endif %}
+	    </ul>
+	{% endmacro %}
+
+		<div id="nav-bar">
+			<ul>
+				{% for name in nav_bar %}
+				<li>{% if loop.first %}<a href="{{ path('salonrama_main_help') }}"><i class="icon-home"></i>{% else %}<a href="">{% endif %}{{ name }}</a><i class="icon-caret-right"></i></li>
+				{% endfor %}
+			</ul>
+			<div class="clear"></div>
+		</div>
+
+		<div id="nav-tab-left" class="nav-tab">
+			<div id="nav-tab-offset" style="left:{{ nav_tab_offset }}px;">
+				{{ _self.ul(nav_tab, true, '') }}
+			</div>
+		</div>
+		<div id="nav-tab-right">
+		{% block help_body %}
+		{% endblock %}
+		</div>
+		<div class="clear"></div>
+	{% endblock %}
 	</div>
 {% endblock %}
