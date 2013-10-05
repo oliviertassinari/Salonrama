@@ -18,7 +18,27 @@ class HelpController extends Controller
                                                                             'nav_tab' => $nav[0],
                                                                             'nav_tab_offset' => 0,
                                                                             'nav_bar' => $nav[1],
-                                                                            'article' => ''
+                                                                            'article' => '',
+                                                                            'query' => ''
+                                                                        ));
+    }
+
+    public function searchAction()
+    {
+        $request = $this->getRequest();
+
+        $em = $this->getDoctrine()->getManager();
+        $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
+
+        $navTab = $helpNodeRepository->getAll();
+        $nav = $this->getNav($navTab);
+
+        return $this->render('SalonramaMainBundle:Main:help.html.twig', array(
+                                                                            'nav_tab' => $nav[0],
+                                                                            'nav_tab_offset' => 0,
+                                                                            'nav_bar' => $nav[1],
+                                                                            'article' => '',
+                                                                            'query' => $request->query->get('query', '')
                                                                         ));
     }
 
@@ -37,11 +57,12 @@ class HelpController extends Controller
 
         if($request->isXmlHttpRequest())
         {
-            return $this->render('SalonramaMainBundle:Main:help_body.html.twig', array(
+            return $this->render('SalonramaMainBundle:Main:help_article.html.twig', array(
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => -$nav[3]*189,
                                                                                 'nav_bar' => $nav[1],
-                                                                                'article' => $article
+                                                                                'article' => $article,
+                                                                                'query' => ''
                                                                             ));
         }
         else
@@ -50,7 +71,8 @@ class HelpController extends Controller
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => -$nav[3]*189,
                                                                                 'nav_bar' => $nav[1],
-                                                                                'article' => $article
+                                                                                'article' => $article,
+                                                                                'query' => ''
                                                                             ));
         }
     }

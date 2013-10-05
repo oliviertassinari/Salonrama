@@ -25,7 +25,7 @@
 	{
 		$('#nav-bar a').click(function(event){ setPage(event, $(this)); });
 
-		$('#nav-tab-left a').click(function(event){
+		$('#nav-tab-left a, #nav-bar a:first-child').click(function(event){
 			var self = this;
 
 			if($(this).find('.icon-reply').length > 0)
@@ -92,12 +92,14 @@
 
 {% block body %}
 	<div id="help-search">
-		<input type="text" placeholder="Comment pouvons-nous vous aider ?">
-		<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
-		<div class="clear"></div>
+		<form method="get" action="{{ path('salonrama_main_help_search') }}">
+			<input type="text" name="query" placeholder="Comment pouvons-nous vous aider ?" value="{{ query }}">
+			<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
+			<div class="clear"></div>
+		</form>
 	</div>
 
 	<div id="smartLoad">
-	{{ include("SalonramaMainBundle:Main:help_body.html.twig") }}
+	{{ include("SalonramaMainBundle:Main:help_article.html.twig") }}
 	</div>
 {% endblock %}
