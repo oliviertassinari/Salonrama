@@ -41,16 +41,20 @@ class HelpController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
+        $helpArticleRepository = $em->getRepository('SalonramaMainBundle:HelpArticle');
 
         $navTab = $helpNodeRepository->getAll();
         $nav = $this->getNav($navTab);
+
+        $searchResult = $helpArticleRepository->search($request->query->get('query', ''));
 
         if($request->isXmlHttpRequest())
         {
             return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_search.html.twig")->renderBlock('help_nav', array(
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => 0,
-                                                                                'nav_bar' => $nav[1]
+                                                                                'nav_bar' => $nav[1],
+                                                                                'search_result' => $searchResult
                                                                             )));
         }
         else
@@ -59,7 +63,8 @@ class HelpController extends Controller
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => 0,
                                                                                 'nav_bar' => $nav[1],
-                                                                                'query' => $request->query->get('query', '')
+                                                                                'query' => $request->query->get('query', ''),
+                                                                                'search_result' => $searchResult
                                                                             ));
         }
 

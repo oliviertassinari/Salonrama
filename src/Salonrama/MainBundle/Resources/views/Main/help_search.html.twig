@@ -1,0 +1,21 @@
+{% extends "SalonramaMainBundle:Main:help.html.twig" %}
+
+{% block title %}Aide - Recherche{% endblock %}
+
+{% block help_body %}
+	{% if search_result %}
+	{% for key, value in search_result %}
+		{{ value.name }}<br>
+	{% endfor %}
+	{% else %}
+	<div class="frame-small frame-small-orange">
+		<i class="icon-info-sign"></i>Aucun résultat</a>.
+	</div>
+	{% endif %}
+
+	<script>
+
+	document.title = "Aide - Recherche";
+
+	</script>
+{% endblock %}
