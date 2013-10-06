@@ -34,12 +34,10 @@
 	text-align:left;
 	}
 
-
-
 	#bouton{
 	text-align:center;
 	margin-top:25px;
-	margin-bottom:80px;
+	margin-bottom:30px;
 	position:relative;
 	}
 	#bouton .button-big{
@@ -59,17 +57,19 @@
 	.popup-holder{ 
 	position:relative;
 	display:block;
+	text-align:center;
+	margin-bottom:40px;
 	}
 	.popup-holder .popup-link{
-	position: absolute;
-	top: 50%;
-	outline: none;
-	left: 50%;
-	width: 98px;
-	height: 98px; 
-	margin-top: -46px;
-	margin-left: -46px; 
-	background: url({{ asset('bundles/salonramamain/images/popup_link.png') }}) no-repeat 0 0; 
+	position:absolute;
+	top:50%;
+	outline:none;
+	left:50%;
+	width:98px;
+	height:98px; 
+	margin-top:-46px;
+	margin-left:-46px; 
+	background:url({{ asset('bundles/salonramamain/images/popup_link.png') }}) no-repeat 0 0; 
 	}
 	.popup-holder:hover .popup-link, .popup-holder:focus .popup-link{
 	background-position:center; 
@@ -81,7 +81,7 @@
 	#Slider2{
 	height:360px;
 	margin-top:15px;
-	margin-bottom:60px;
+	margin-bottom:30px;
 	}
 	#Slider2 .slide a{
 	box-shadow:0 0 4px rgba(0, 0, 0, 0.3);
@@ -144,17 +144,12 @@
 		<div class="slider-list">
 			<div class="slide">
 				<div class="div1">
-					<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-holder" data-lightbox="iframe" title="Vidéo de présentation">
-						<div class="popup-link"></div>
-						<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>
-					</a>
+						<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>		
 				</div>
 				<div class="div1">
-				<ul>
-					<li>Facile</li>
-					<li>Moderne</li>
-					<li>Gratuit</li>
-				</ul>
+					<p style="font-size:22px; line-height:40px; position:relative; margin-top:80px; margin-left:50px">Facile<br/>
+					Moderne<br/>
+					Gratuit</p>
 				</div>
 			</div>
 			<div class="slide">
@@ -199,6 +194,11 @@
 		</a>
 		<div id="extra">Fonctionne aussi pour la coiffure à domicile</div>
 	</div>
+
+	<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-holder" data-lightbox="iframe" title="Vidéo de présentation">
+		<div class="popup-link"></div>
+		<img src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}" width="626" height="228"/>
+	</a>
 
 	<div class="center">
 		<h1>Les thèmes</h1>
