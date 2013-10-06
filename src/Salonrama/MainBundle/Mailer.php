@@ -248,9 +248,9 @@ class Mailer
           <th width='13' scope='col'>&nbsp;</th>
           <th width='202' scope='col'><img src='http://www.apercite.fr/api/apercite/160x120/non/non/http://coiffeur-94.salonrama.fr/?i' width='160' height='120'></th>
           <th width='412' height='0' valign='top' scope='col'>
-<p style='font-size:14px; font-weight:bold;'>Votre site internet :<br/><span style='font-size:18px;'> <a href='<?php echo $site; ?>'><?php echo $site; ?></a></span>
-<br/><p style='margin-top:15px; font-size:14px; font-weight:bold;'>Votre identifiant : <br/><span style='font-size:18px;'> <?php echo $email; ?></span></p>
-<div style='text-align:left; '><a href='http://salonrama.fr/mon-compte.php?email=<?php echo $email; ?>'><a href='http://www.salonrama.fr/mon-compte.php?email=toto@toto.com'><img src='http://salonrama.fr/image/newsletter/modifier.png' alt='modifier mon site' /></a></th>
+<p style='font-size:14px; font-weight:bold;'>Votre site internet :<br/><span style='font-size:18px;'> <a href=".$link.">".$link."</a></span>
+<br/><p style='margin-top:15px; font-size:14px; font-weight:bold;'>Votre identifiant : <br/><span style='font-size:18px;'>".$to."</span></p>
+<div style='text-align:left; '><a href='http://salonrama.fr/mon-compte.php?email=".$to."><a href='http://www.salonrama.fr/mon-compte.php?email=toto@toto.com'><img src='http://salonrama.fr/image/newsletter/modifier.png' alt='modifier mon site' /></a></th>
         </tr>
       </table>
       <p><img src='http://salonrama.fr/image/newsletter/line-break-2.jpg' alt='' width='622' height='38'>Salonrama est aussi présent sur :</p>
