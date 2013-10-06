@@ -261,7 +261,8 @@ class Mailer
   </tr>
 
                           </tbody>
-                        </table>";
+                        </table>"; 
+                        
 
         return $this->send("Bienvenue sur Salonrama", $to, 'Bonjour, '.$name, $message);
     }
