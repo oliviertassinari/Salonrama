@@ -18,7 +18,7 @@ class HelpArticle
     private $id;
 
     /**
-     * @ORM\Column(name="name", type="string", length=40)
+     * @ORM\Column(name="name", type="string", length=100)
      */
     private $name;
 
