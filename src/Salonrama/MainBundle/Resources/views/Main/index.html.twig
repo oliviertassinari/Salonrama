@@ -55,30 +55,27 @@
 	}
 
 	.popup-holder{ 
-	text-align: center; 
-	position: relative;
+	position:relative;
+	display:block;
+	text-align:center;
 	margin-bottom:40px;
 	}
-	.popup-holder img{
-	box-shadow: -2px -2px 10px -3px #ccc, -2px -2px 10px -3px #ccc, 4px -2px 10px -3px #ccc;
+	.popup-holder .popup-link{
+	position:absolute;
+	top:50%;
+	outline:none;
+	left:50%;
+	width:98px;
+	height:98px; 
+	margin-top:-46px;
+	margin-left:-46px; 
+	background:url({{ asset('bundles/salonramamain/images/popup_link.png') }}) no-repeat 0 0; 
 	}
-	.popup-holder .popup-link
-	{
-	position: absolute;
-	top: 50%;
-	outline: none;
-	left: 50%;
-	width: 98px;
-	height: 98px; 
-	margin-top: -46px;
-	margin-left: -46px; 
-	background: url({{ asset('bundles/salonramamain/images/popup_link.png') }}) no-repeat 0 0; 
+	.popup-holder:hover .popup-link, .popup-holder:focus .popup-link{
+	background-position:center; 
 	}
-	.popup-holder:hover .popup-link{
-	background-position: center !important; 
-	}
-	.popup-holder .popup-link:active{
-	background-position: bottom !important; 
+	.popup-holder:active .popup-link{
+	background-position:bottom; 
 	}
 
 	#Slider2{
@@ -140,7 +137,7 @@
 {% block body %}
 	<div class="center">
 		<h1>Votre salon sur internet</h1>
-		<h2 style="font-style:weight;">Facile et intuitif, à vous de jouer !</h2>
+		<h2>Facile et intuitif, à vous de jouer !</h2>
 	</div>
 
 	<div id="Slider1" class="slider">
@@ -198,13 +195,10 @@
 		<div id="extra">Fonctionne aussi pour la coiffure à domicile</div>
 	</div>
 
-						 
-
-
-
-	<div class="popup-holder" >
-		<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-link" data-lightbox="iframe" title="Vidéo de présentation"></a><img alt="Créez le site de votre salon de coiffure gratuitement avec Salonrama" src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}">
-	</div>
+	<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-holder" data-lightbox="iframe" title="Vidéo de présentation">
+		<div class="popup-link"></div>
+		<img src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}" width="626" height="228"/>
+	</a>
 
 	<div class="center">
 		<h1>Les thèmes</h1>
