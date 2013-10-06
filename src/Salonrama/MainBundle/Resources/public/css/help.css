@@ -27,18 +27,18 @@ width:60px;
 padding:0;
 }
 
-#help-search-result{
+#help-result{
 margin:0;
 padding:0;
 list-style-type:none;
 }
-#help-search-result li{
+#help-result li{
 margin-bottom:20px;
 }
-#help-search-result a{
+#help-result a{
 font-size:16px;
 }
-#help-search-result div{
+#help-result div{
 margin-top:5px;
 }
 
@@ -87,10 +87,9 @@ transition:all 0.3s ease 0s;
 width:189px;
 }
 
-
 #nav-tab-right .center{
 font-size:12px;
-margin-top:20px;
+margin-top:30px;
 }
 #nav-tab-right .center .button-small{
 font-size:12px;

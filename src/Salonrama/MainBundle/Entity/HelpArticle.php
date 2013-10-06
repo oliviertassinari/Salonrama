@@ -44,6 +44,11 @@ class HelpArticle
     private $feedbackNo;
 
     /**
+     * @ORM\Column(name="view", type="integer", options={"unsigned"=true})
+     */
+    private $view;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -166,5 +171,28 @@ class HelpArticle
     public function getFeedbackNo()
     {
         return $this->feedbackNo;
+    }
+
+    /**
+     * Set view
+     *
+     * @param integer $view
+     * @return HelpArticle
+     */
+    public function setView($view)
+    {
+        $this->view = $view;
+    
+        return $this;
+    }
+
+    /**
+     * Get view
+     *
+     * @return integer 
+     */
+    public function getView()
+    {
+        return $this->view;
     }
 }

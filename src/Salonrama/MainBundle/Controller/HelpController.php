@@ -13,16 +13,20 @@ class HelpController extends Controller
         $request = $this->getRequest();
         $em = $this->getDoctrine()->getManager();
         $helpNodeRepository = $em->getRepository('SalonramaMainBundle:HelpNode');
+        $helpArticleRepository = $em->getRepository('SalonramaMainBundle:HelpArticle');
 
         $navTab = $helpNodeRepository->getAll();
         $nav = $this->getNav($navTab);
+
+        $helpFamous = $helpArticleRepository->getFamous();
 
         if($request->isXmlHttpRequest())
         {
             return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_index.html.twig")->renderBlock('help_nav', array(
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => 0,
-                                                                                'nav_bar' => $nav[1]
+                                                                                'nav_bar' => $nav[1],
+                                                                                'help_famous' => $helpFamous
                                                                             )));
         }
         else
@@ -31,7 +35,8 @@ class HelpController extends Controller
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => 0,
                                                                                 'nav_bar' => $nav[1],
-                                                                                'focus_query' => true
+                                                                                'focus_query' => true,
+                                                                                'help_famous' => $helpFamous
                                                                             ));
         }
     }
@@ -107,6 +112,9 @@ class HelpController extends Controller
             }
             else
             {
+                $article->setView($article->getView() + 1);
+                $em->flush();
+
                 return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_article.html.twig")->renderBlock('help_nav', array(
                                                                                     'nav_tab' => $nav[0],
                                                                                     'nav_tab_offset' => -$nav[3]*189,
@@ -117,6 +125,9 @@ class HelpController extends Controller
         }
         else
         {
+            $article->setView($article->getView() + 1);
+            $em->flush();
+
             return $this->render('SalonramaMainBundle:Main:help_article.html.twig', array(
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => -$nav[3]*189,

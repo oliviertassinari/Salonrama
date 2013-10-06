@@ -3,7 +3,15 @@
 {% block title %}Aide{% endblock %}
 
 {% block help_body %}
-	1
+	<h1>Principales questions</h1>
+
+	<ul id="help-result">
+	{% for key, value in help_famous %}
+		<li>
+			<a href="{{ path("salonrama_main_help_articles", { 'id': value.id }) }}" class="smartload">{{ value.name }}</a>
+		</li>
+	{% endfor %}
+</ul>
 
 	<script>
 
