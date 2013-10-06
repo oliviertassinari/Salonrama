@@ -69,7 +69,7 @@ load: function(url)
 			self.callback();
 		},
 		error: function(rs, e) {
-			console.log(rs.responseText);
+			alert(e);
 		}
 	});
 }

@@ -4,6 +4,7 @@ namespace Salonrama\MainBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class HelpController extends Controller
 {
@@ -89,12 +90,30 @@ class HelpController extends Controller
 
         if($request->isXmlHttpRequest())
         {
-            return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_article.html.twig")->renderBlock('help_nav', array(
-                                                                                'nav_tab' => $nav[0],
-                                                                                'nav_tab_offset' => -$nav[3]*189,
-                                                                                'nav_bar' => $nav[1],
-                                                                                'article' => $article
-                                                                            )));
+            if($request->request->has('feedback'))
+            {
+                if($request->request->get('feedback', '') == 'yes')
+                {
+                    $article->setFeedbackYes($article->getFeedbackYes() + 1);
+                    $em->flush();
+                }
+                else if($request->request->get('feedback', '') == 'no')
+                {
+                    $article->setFeedbackNo($article->getFeedbackNo() + 1);
+                    $em->flush();
+                }
+
+                return new JsonResponse(array('state' => 0, 'text' => 'Ok.'));
+            }
+            else
+            {
+                return new Response($this->get('twig')->loadTemplate("SalonramaMainBundle:Main:help_article.html.twig")->renderBlock('help_nav', array(
+                                                                                    'nav_tab' => $nav[0],
+                                                                                    'nav_tab_offset' => -$nav[3]*189,
+                                                                                    'nav_bar' => $nav[1],
+                                                                                    'article' => $article
+                                                                                )));
+            }
         }
         else
         {

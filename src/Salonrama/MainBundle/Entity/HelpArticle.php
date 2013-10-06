@@ -34,6 +34,16 @@ class HelpArticle
     private $parent;
 
     /**
+     * @ORM\Column(name="feedback_yes", type="smallint", options={"unsigned"=true})
+     */
+    private $feedbackYes;
+
+    /**
+     * @ORM\Column(name="feedback_no", type="smallint", options={"unsigned"=true})
+     */
+    private $feedbackNo;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -110,5 +120,51 @@ class HelpArticle
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * Set feedbackYes
+     *
+     * @param \SmallInt $feedbackYes
+     * @return HelpArticle
+     */
+    public function setFeedbackYes($feedbackYes)
+    {
+        $this->feedbackYes = $feedbackYes;
+    
+        return $this;
+    }
+
+    /**
+     * Get feedbackYes
+     *
+     * @return \SmallInt 
+     */
+    public function getFeedbackYes()
+    {
+        return $this->feedbackYes;
+    }
+
+    /**
+     * Set feedbackNo
+     *
+     * @param \SmallInt $feedbackNo
+     * @return HelpArticle
+     */
+    public function setFeedbackNo($feedbackNo)
+    {
+        $this->feedbackNo = $feedbackNo;
+    
+        return $this;
+    }
+
+    /**
+     * Get feedbackNo
+     *
+     * @return \SmallInt 
+     */
+    public function getFeedbackNo()
+    {
+        return $this->feedbackNo;
     }
 }

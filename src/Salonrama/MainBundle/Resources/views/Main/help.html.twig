@@ -72,7 +72,29 @@
 
 		$('#nav-tab-right .feedback a').click(function(event){
 			event.preventDefault();
-			$('#nav-tab-right .feedback').html('Nous vous remercions de nous avoir contactés.');
+
+			if(this.innerHTML == 'Oui')
+			{
+				var feedback = 'yes';
+			}
+			else
+			{
+				var feedback = 'no';
+			}
+
+			$.ajax({
+				type: "POST",
+				url: '',
+				data: { feedback: feedback },
+				dataType: "text",
+				success: function(response){
+					$('#nav-tab-right .feedback').html('Nous vous remercions de nous avoir contactés.');
+				},
+				error: function(rs, e) {
+					alert(e);
+				}
+			});
+			
 		});
 	}
 
