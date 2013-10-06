@@ -14,7 +14,7 @@ class Date
      * @param DateTime|null $end
      * @return string
      */
-    public static function formatDateDiff($start, $end=null)
+    public static function formatDateDiff($start, $end = null)
     {
         if(!($start instanceof \DateTime)) {
             $start = new \DateTime($start);

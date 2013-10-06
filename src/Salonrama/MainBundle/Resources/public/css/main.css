@@ -19,9 +19,6 @@ margin:0 45px 0;
 position:relative;
 padding-top:10px;
 }
-#header img{
-border:0;
-}
 #header h1{
 display:inline-block;
 background:#888;
@@ -185,7 +182,7 @@ width:600px;
 height:120px;
 width:1px;
 float:left;
-background:#808080;
+background:#DEDEDE;
 background:linear-gradient(to top, #f1f1f1, #D7D7D7, #f1f1f1);
 background:-webkit-linear-gradient(to top, #f1f1f1, #D7D7D7, #f1f1f1);
 }
@@ -302,4 +299,8 @@ cursor:pointer;
 a:hover, .corps a:focus{
 color:#02509d;
 text-decoration:underline;
+}
+
+a img{
+border:0;
 }

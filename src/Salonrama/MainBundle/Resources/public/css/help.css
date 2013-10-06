@@ -27,6 +27,22 @@ width:60px;
 padding:0;
 }
 
+#help-result{
+margin:0;
+padding:0;
+list-style-type:none;
+}
+#help-result li{
+margin-bottom:10px;
+}
+#help-result a{
+font-size:16px;
+}
+#help-result div{
+margin-top:3px;
+margin-bottom:25px;
+}
+
 #nav-bar{
 padding:25px 10px 10px;
 }
@@ -43,7 +59,7 @@ margin-right:10px;
 margin-right:10px;
 }
 #nav-bar li a i{
-margin-right:5px;
+margin:0 5px;
 text-decoration:none;
 }
 #nav-bar li:last-child a{
@@ -72,10 +88,9 @@ transition:all 0.3s ease 0s;
 width:189px;
 }
 
-
 #nav-tab-right .center{
 font-size:12px;
-margin-top:20px;
+margin-top:30px;
 }
 #nav-tab-right .center .button-small{
 font-size:12px;

@@ -160,7 +160,7 @@ class Parser
     public function __construct(Query $query)
     {
         $this->_query        = $query;
-        $this->_em           = $query->getManager();
+        $this->_em           = $query->getEntityManager();
         $this->_lexer        = new Lexer($query->getDql());
         $this->_parserResult = new ParserResult();
     }
