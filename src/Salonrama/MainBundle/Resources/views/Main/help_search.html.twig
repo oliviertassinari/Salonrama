@@ -4,9 +4,18 @@
 
 {% block help_body %}
 	{% if search_result %}
+	<h1>Résultats de recherche pour « {{ query }} »</h1>
+
+	<ul id="help-search-result">
+	{% autoescape false %}
 	{% for key, value in search_result %}
-		{{ value.name }}<br>
+		<li>
+			<a href="{{ path("salonrama_main_help_articles", { 'id': value.id }) }}" class="smartload">{{ value.name }}</a>
+			<div>{{ value.text }}</div>
+		</li>
 	{% endfor %}
+	{% endautoescape %}
+	</ul>
 	{% else %}
 	<div class="frame-small frame-small-orange">
 		<i class="icon-info-sign"></i>Aucun résultat</a>.

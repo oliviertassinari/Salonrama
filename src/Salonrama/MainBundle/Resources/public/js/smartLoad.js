@@ -1,13 +1,15 @@
-var SmartLoad = function(dom, callback){
+var Smartload = function(dom, ontrigger, callback){
 	var self = this;
 
 	this.dom = dom;
+	this.ontrigger = ontrigger;
 	this.callback = callback;
 
 	$(window).bind('popstate', function(event){
 		if(self.cache[window.location.href])
 		{
 			self.dom.html(self.cache[window.location.href]);
+			self.initLink();
 			self.callback();
 		}
 		else
@@ -17,16 +19,37 @@ var SmartLoad = function(dom, callback){
 	});
 
 	this.cache[window.location.href] = dom.html();
+
+	this.initLink();
 };
 
-SmartLoad.prototype = {
+Smartload.prototype = {
 
 cache: {},
 
-click: function(a, event)
+initLink: function()
 {
-	event.preventDefault();
-	this.load(a.href);
+	var self = this;
+
+	$('a.smartload').click(function(event)
+	{
+		if(history.pushState)
+		{
+			event.preventDefault();
+			self.ontrigger(this);
+			self.load(this.href);
+		}
+	});
+
+	$('form.smartload').off('submit').submit(function(event)
+	{
+		if(history.pushState)
+		{
+			event.preventDefault();
+			self.ontrigger(this);
+			self.load(this.action+'?'+$(this).serialize());
+		}
+	});
 },
 
 load: function(url)
@@ -42,6 +65,7 @@ load: function(url)
     		history.pushState({ path: this.path }, '', url);
 			self.cache[window.location.href] = response;
 			self.dom.html(response);
+			self.initLink();
 			self.callback();
 		},
 		error: function(rs, e) {

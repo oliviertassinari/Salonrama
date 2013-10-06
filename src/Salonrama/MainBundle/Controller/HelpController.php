@@ -46,7 +46,9 @@ class HelpController extends Controller
         $navTab = $helpNodeRepository->getAll();
         $nav = $this->getNav($navTab);
 
-        $searchResult = $helpArticleRepository->search($request->query->get('query', ''));
+        $query = trim($request->query->get('query', ''));
+
+        $searchResult = $helpArticleRepository->search($query);
 
         if($request->isXmlHttpRequest())
         {
@@ -54,6 +56,7 @@ class HelpController extends Controller
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => 0,
                                                                                 'nav_bar' => $nav[1],
+                                                                                'query' => $query,
                                                                                 'search_result' => $searchResult
                                                                             )));
         }
@@ -63,7 +66,7 @@ class HelpController extends Controller
                                                                                 'nav_tab' => $nav[0],
                                                                                 'nav_tab_offset' => 0,
                                                                                 'nav_bar' => $nav[1],
-                                                                                'query' => $request->query->get('query', ''),
+                                                                                'query' => $query,
                                                                                 'search_result' => $searchResult
                                                                             ));
         }

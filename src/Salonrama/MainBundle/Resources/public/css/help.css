@@ -27,6 +27,21 @@ width:60px;
 padding:0;
 }
 
+#help-search-result{
+margin:0;
+padding:0;
+list-style-type:none;
+}
+#help-search-result li{
+margin-bottom:20px;
+}
+#help-search-result a{
+font-size:16px;
+}
+#help-search-result div{
+margin-top:5px;
+}
+
 #nav-bar{
 padding:25px 10px 10px;
 }
