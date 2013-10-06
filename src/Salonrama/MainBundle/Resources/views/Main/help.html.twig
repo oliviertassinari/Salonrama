@@ -3,23 +3,40 @@
 {% extends "SalonramaMainBundle:Main:main.html.twig" %}
 
 {% block head %}
-	<title>Aide{% if article %} - {{ article.name }}{% endif %}</title>
+	<title>{% block title %}{% endblock %}</title>
 
 	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
 {% endblock %}
 
 {% block javascript %}
-	<script src="{{ asset('bundles/salonramamain/js/smartLoad.js') }}"></script>
+	<script src="{{ asset('bundles/salonramamain/js/smartload.js') }}"></script>
 
 	<script>
 
-	var smartLoad;
-
 	$(document).ready(function()
 	{
+		new Smartload($('#smartload'), ontrigger, initLink);
 		initLink();
-		smartLoad = new SmartLoad($('#smartLoad'), initLink);
+
+		{% if focus_query is defined %}
+		$('#help-search input').focus();
+		{% endif %}
 	});
+
+	function ontrigger(child)
+	{
+		var child = $(child);
+
+		if(child.parents('#nav-tab-left').length == 0)
+		{
+			child = $('#nav-bar li:first-child a');
+		}
+
+		if(child.find('.icon-spinner').length == 0)
+		{
+			child.append('<i class="icon-spinner icon-spin"></i>');
+		}
+	}
 
 	function initLink()
 	{
@@ -50,29 +67,46 @@
 					$('#nav-bar ul').append(li);
 					$('#nav-tab-offset').css('left', '-='+$('#nav-tab-left').width()+'px');
 				}
-				else
-				{
-					if($(this).find('.icon-spinner').length == 0)
-					{
-						$(this).append('<i class="icon-spinner icon-spin"></i>');
-					}
-					smartLoad.click(this, event);
-				}
 			}
 		});
 
 		$('#nav-tab-right .feedback a').click(function(event){
 			event.preventDefault();
-			$('#nav-tab-right .feedback').html('Nous vous remercions de nous avoir contactés.');
+
+			if(this.innerHTML == 'Oui')
+			{
+				var feedback = 'yes';
+			}
+			else
+			{
+				var feedback = 'no';
+			}
+
+			$.ajax({
+				type: "POST",
+				url: '',
+				data: { feedback: feedback },
+				dataType: "text",
+				success: function(response){
+					$('#nav-tab-right .feedback').html('Nous vous remercions de nous avoir contactés.');
+				},
+				error: function(rs, e) {
+					alert(e);
+				}
+			});
+			
 		});
 	}
 
 	function setPage(event, a)
 	{
-		event.preventDefault();
-		
 		var $a = $('#nav-bar a');
 		var length = $a.length - 1 - $a.index(a);
+		
+		if($a.index(a) > 0)
+		{
+			event.preventDefault();
+		}
 
 		if(length > 0)
 		{
@@ -92,12 +126,60 @@
 
 {% block body %}
 	<div id="help-search">
-		<input type="text" placeholder="Comment pouvons-nous vous aider ?">
-		<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
-		<div class="clear"></div>
+		<form method="get" action="{{ path('salonrama_main_help_search') }}" class="smartload">
+			<input type="text" name="query" placeholder="Comment pouvons-nous vous aider ?" value="{% if query is defined %}{{ query }}{% endif %}">
+			<button title="Rechercher" class="button-big button-big-blue" type="submit"><i class="icon-search"></i></button>
+			<div class="clear"></div>
+		</form>
 	</div>
 
-	<div id="smartLoad">
-	{{ include("SalonramaMainBundle:Main:help_body.html.twig") }}
+	<div id="smartload">
+	{% block help_nav %}
+	{% macro ul(node, isFirstNode, class) %}
+	    <ul{% if not isFirstNode %} class="nav-tab-nextlevel{% if class %} {{ class }}{% endif %}"{% endif %}>
+			{% for child in node %}
+			{% if 'name' in child|keys %}
+			<li>
+				{% if child.children %}
+				<a href="">{{ child.name }}<i class="icon-angle-right"></i></a>
+				{% else %}
+				<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}" class="smartload{% if 'class' in child|keys %} {{ child.class }}{% endif %}">{{ child.name }}</a>
+				{% endif %}
+				{% if child.children %}
+				{% if 'class' in child|keys %}
+				{{ _self.ul(child.children, false, child.class) }}
+				{% else %}
+				{{ _self.ul(child.children, false) }}
+				{% endif %}
+				{% endif %}
+			</li>
+			{% endif %}
+			{% endfor %}
+			{% if not isFirstNode %}
+			<li><a href="">Précédent<i class="icon-reply"></i></a></li>
+			{% endif %}
+	    </ul>
+	{% endmacro %}
+
+		<div id="nav-bar">
+			<ul>
+				{% for name in nav_bar %}
+				<li>{% if loop.first %}<a href="{{ path('salonrama_main_help') }}" class="smartload"><i class="icon-home"></i>{% else %}<a href="">{% endif %}{{ name }}</a><i class="icon-caret-right"></i></li>
+				{% endfor %}
+			</ul>
+			<div class="clear"></div>
+		</div>
+
+		<div id="nav-tab-left" class="nav-tab">
+			<div id="nav-tab-offset" style="left:{{ nav_tab_offset }}px;">
+				{{ _self.ul(nav_tab, true, '') }}
+			</div>
+		</div>
+		<div id="nav-tab-right">
+		{% block help_body %}
+		{% endblock %}
+		</div>
+		<div class="clear"></div>
+	{% endblock %}
 	</div>
 {% endblock %}
