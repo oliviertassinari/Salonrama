@@ -37,6 +37,7 @@ class HelpArticleRepository extends EntityRepository
 
 			$qb = $qb->add('where', $orX)
 				->setParameters($parameters)
+				->setMaxResults(40)
 				->getQuery();
 
 			$queryResult = $qb->getResult();
