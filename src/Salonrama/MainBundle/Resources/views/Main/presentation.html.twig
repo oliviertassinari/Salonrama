@@ -65,8 +65,7 @@
 	.bordure .etape{
 	color:#09f;
 	float:left;
-	font-size:19px;
-	font-weight:bold;
+	font-weight:bold !important;
 	margin-right:20px;
 	}
 	.bordure .texte_etape{
@@ -81,6 +80,21 @@
 	#bouton .button-big{
 	padding-left:100px;
 	padding-right:100px;
+	}
+
+	.ribbon{
+	width:615px;
+	height:69px;
+	margin:auto;
+	margin-top:40px;
+	margin-bottom:20px;
+	text-align:center;
+	background:url({{ asset('bundles/salonramamain/images/presentation/ribbon.png') }}) no-repeat;
+	}
+	.ribbon h1{
+	color:white;	
+	position:relative;
+	top:17px;
 	}
 
 	.fonctionnalite{
@@ -152,7 +166,7 @@
 	<div class="separation-vertical"></div>
 	<div class="clear"></div>
 
-	<div class="center title" id="1">
+	<div class="center title ribbon" id="1">
 		<h1>Votre salon et vos clients</h1>
 	</div>
 
@@ -160,7 +174,7 @@
 		<img src="{{ asset('bundles/salonramamain/images/presentation/votre salon de coiffure et vos clients.png') }}"/>
 	</div>
 
-	<div class="center title" id="2">
+	<div  class="center title ribbon" id="2">
 		<h1>Pourquoi créer un site internet ?</h1>
 	</div>
 
@@ -193,7 +207,7 @@
 		<div class="clear"></div>
 	</div>
 
-	<div class="center title" id="3">
+	<div  class="center title ribbon" id="3">
 		<h1>Votre salon et vos concurrents</h1>
 	</div>
 
@@ -204,7 +218,7 @@
 
 	<div style="background: url({{ asset('bundles/salonramamain/images/presentation/ribbon2.png') }}) no-repeat; width:815px; height:172px; font-size:45px; font-family:impact, sans-serif; padding-top:20px; text-align:center; margin:auto;"><p>DÉMARQUEZ-VOUS<br>MAINTENANT</p></div>
 
-	<div class="center title" id="4">
+	<div  class="center title ribbon" id="4">
 		<h1>Un site internet ou Facebook ?</h1>
 	</div>
 
@@ -224,7 +238,7 @@
 		- Transmettre votre style et l'atmosphère de votre salon.</p>
 	</div>
 
-	<div style="float:right; width:400px; background-color:#66CC99; border:1px solid #66CC99; color:white; padding:10px; height:347px; ">
+	<div style="float:right; width:400px; background-color:#66CC99; border:1px solid #66CC99; color:white; padding:10px; height:285px; ">
 		<i class="icon-globe" style="font-size:33px;"></i>
 		<h2 style="position:relative; margin-left:10px; display:inline; top:-5px;">Site internet</h2>
 		<div style="margin:auto; border-bottom:2px solid #B2E5CB; margin:10px 0;"></div>
@@ -243,9 +257,9 @@
 	</div>
 
 	<div style="background:url({{ asset('bundles/salonramamain/images/presentation/salonrama_ok.png') }}) no-repeat; height:190px;">
-		<p style="font-size:21px; color:#fff; position:relative; top:40px;left:90px;">Salonrama vous permet de<br> créer le site de votre salon de<br> coiffure et vous aide pour<br> votre page Facebook</p>
+		<p style="font-size:21px; color:#fff; position:relative; top:50px;left:90px;">Salonrama vous permet de<br> créer le site de votre salon de<br> coiffure et vous aide pour<br> votre page Facebook</p>
 	</div>
-	<div class="center title" id="5">
+	<div  class="center title ribbon" id="5">
 		<h1>Pourquoi avec Salonrama ?</h1>
 	</div>
 
@@ -299,7 +313,7 @@
 		<div class="clear"></div>
 	</div>
 
-	<div class="center title" id="6">
+	<div  class="center title ribbon" id="6">
 		<h1>Salonrama : comment ça marche ?</h1>
 	</div>
 
@@ -325,7 +339,7 @@
 		</div>
 	</div>
 
-	<div class="center title" id="7">
+	<div  class="center title ribbon" id="7">
 		<h1>Salonrama : en détails</h1>
 	</div>
 

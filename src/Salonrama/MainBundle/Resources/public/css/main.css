@@ -10,6 +10,10 @@ font:400 13px arial,verdana,tahoma,helvetica,sans-serif;
 background:#fff url(../images/fond_content.png) repeat-y;
 }
 
+#main p{
+font:400 16px arial,verdana,tahoma,helvetica,sans-serif;
+}
+
 #header{
 margin:0 45px 0;
 position:relative;

@@ -34,12 +34,10 @@
 	text-align:left;
 	}
 
-
-
 	#bouton{
 	text-align:center;
 	margin-top:25px;
-	margin-bottom:80px;
+	margin-bottom:30px;
 	position:relative;
 	}
 	#bouton .button-big{
@@ -57,10 +55,15 @@
 	}
 
 	.popup-holder{ 
-	position:relative;
-	display:block;
+	text-align: center; 
+	position: relative;
+	margin-bottom:40px;
 	}
-	.popup-holder .popup-link{
+	.popup-holder img{
+	box-shadow: -2px -2px 10px -3px #ccc, -2px -2px 10px -3px #ccc, 4px -2px 10px -3px #ccc;
+	}
+	.popup-holder .popup-link
+	{
 	position: absolute;
 	top: 50%;
 	outline: none;
@@ -71,17 +74,17 @@
 	margin-left: -46px; 
 	background: url({{ asset('bundles/salonramamain/images/popup_link.png') }}) no-repeat 0 0; 
 	}
-	.popup-holder:hover .popup-link, .popup-holder:focus .popup-link{
-	background-position:center; 
+	.popup-holder:hover .popup-link{
+	background-position: center !important; 
 	}
-	.popup-holder:active .popup-link{
-	background-position:bottom; 
+	.popup-holder .popup-link:active{
+	background-position: bottom !important; 
 	}
 
 	#Slider2{
 	height:360px;
 	margin-top:15px;
-	margin-bottom:60px;
+	margin-bottom:30px;
 	}
 	#Slider2 .slide a{
 	box-shadow:0 0 4px rgba(0, 0, 0, 0.3);
@@ -137,24 +140,19 @@
 {% block body %}
 	<div class="center">
 		<h1>Votre salon sur internet</h1>
-		<h2>Facile et intuitif, à vous de jouer !</h2>
+		<h2 style="font-style:weight;">Facile et intuitif, à vous de jouer !</h2>
 	</div>
 
 	<div id="Slider1" class="slider">
 		<div class="slider-list">
 			<div class="slide">
 				<div class="div1">
-					<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-holder" data-lightbox="iframe" title="Vidéo de présentation">
-						<div class="popup-link"></div>
-						<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>
-					</a>
+						<img src="{{ asset('bundles/salonramamain/images/index/salonrama_showcase.jpg') }}" width="468" height="265"/>		
 				</div>
 				<div class="div1">
-				<ul>
-					<li>Facile</li>
-					<li>Moderne</li>
-					<li>Gratuit</li>
-				</ul>
+					<p  style="font-size:22px; line-height:45px; position:relative; top:80px; left:50px">Facile<br/>
+					Moderne<br/>
+					Gratuit</p>
 				</div>
 			</div>
 			<div class="slide">
@@ -198,6 +196,14 @@
 			<div id="free"><img src="{{ asset('bundles/salonramamain/images/index/free.png') }}"  width="82" height="82"/></div>
 		</a>
 		<div id="extra">Fonctionne aussi pour la coiffure à domicile</div>
+	</div>
+
+						 
+
+
+
+	<div class="popup-holder" >
+		<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-link" data-lightbox="iframe" title="Vidéo de présentation"></a><img alt="Créez le site de votre salon de coiffure gratuitement avec Salonrama" src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}">
 	</div>
 
 	<div class="center">
