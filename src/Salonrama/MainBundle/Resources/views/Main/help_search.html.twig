@@ -11,7 +11,7 @@
 	{% for key, value in search_result %}
 		<li>
 			<a href="{{ path("salonrama_main_help_articles", { 'id': value.id }) }}" class="smartload">{{ value.name }}</a>
-			<div>{{ value.text }}</div>
+			<div>{{ value.template }}</div>
 		</li>
 	{% endfor %}
 	{% endautoescape %}
