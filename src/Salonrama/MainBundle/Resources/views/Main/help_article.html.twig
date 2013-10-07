@@ -5,7 +5,7 @@
 {% block help_body %}
 	<h1>{{ article.name }}</h1>
 
-	{{ include(template_from_string(article.text)) }}
+	{{ include(template_from_string(article.template)) }}
 
 	<div class="center">
 		<hr/>

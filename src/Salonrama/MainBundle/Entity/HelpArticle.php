@@ -23,9 +23,9 @@ class HelpArticle
     private $name;
 
     /**
-     * @ORM\Column(name="text", type="string", length=16777215)
+     * @ORM\Column(name="template", type="string", length=16777215)
      */
-    private $text;
+    private $template;
 
     /**
     * @ORM\ManyToOne(targetEntity="Salonrama\MainBundle\Entity\HelpNode", inversedBy="childrenArticle")
@@ -82,26 +82,26 @@ class HelpArticle
     }
 
     /**
-     * Set text
+     * Set template
      *
-     * @param string $text
+     * @param string $template
      * @return Help
      */
-    public function setText($text)
+    public function setTemplate($template)
     {
-        $this->text = $text;
+        $this->template = $template;
     
         return $this;
     }
 
     /**
-     * Get text
+     * Get template
      *
      * @return string 
      */
-    public function getText()
+    public function getTemplate()
     {
-        return $this->text;
+        return $this->template;
     }
 
     /**

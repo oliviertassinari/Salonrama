@@ -30,9 +30,9 @@ class HelpArticleRepository extends EntityRepository
 			foreach($queryList as $key => $value)
 			{
 				$orX->add($qb->expr()->like('a.name', ':name'.$key));
-				$orX->add($qb->expr()->like('a.text', ':text'.$key));
+				$orX->add($qb->expr()->like('a.template', ':template'.$key));
 				$parameters['name'.$key] = '%'.$value.'%';
-				$parameters['text'.$key] = '%'.$value.'%';
+				$parameters['template'.$key] = '%'.$value.'%';
 			}
 
 			$qb = $qb->add('where', $orX)
@@ -47,7 +47,7 @@ class HelpArticleRepository extends EntityRepository
 			foreach($queryResult as $key => $value)
 			{
 				$name = $value->getName();
-				$text = strip_tags($value->getText());
+				$template = strip_tags($value->getTemplate());
 				$score = 0;
 
 				preg_match_all('/'.implode('|',$queryList).'/i', $name, $matches, PREG_OFFSET_CAPTURE);
@@ -66,7 +66,7 @@ class HelpArticleRepository extends EntityRepository
 					}
 				}
 
-				preg_match_all('/'.implode('|',$queryList).'/i', $text, $matches, PREG_OFFSET_CAPTURE);
+				preg_match_all('/'.implode('|',$queryList).'/i', $template, $matches, PREG_OFFSET_CAPTURE);
 				
 				if($matches[0])
 				{
@@ -77,7 +77,7 @@ class HelpArticleRepository extends EntityRepository
 					{
 						if(strlen($value2[0]) > 2)
 						{
-							$text = substr($text, 0, $value2[1]) . '<b>' . substr($text, $value2[1], strlen($value2[0])) . '</b>' . substr($text, $value2[1] + strlen($value2[0]));
+							$template = substr($template, 0, $value2[1]) . '<b>' . substr($template, $value2[1], strlen($value2[0])) . '</b>' . substr($template, $value2[1] + strlen($value2[0]));
 						}
 					}
 				}
@@ -85,7 +85,7 @@ class HelpArticleRepository extends EntityRepository
 				$result[] = array(
 								'id' => $value->getId(),
 								'name' => $name,
-								'text' => $text,
+								'template' => $template,
 								'score' => $score
  							);
 
