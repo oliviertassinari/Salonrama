@@ -15,3 +15,8 @@ services:
     salonrama_main_subdomain:
         class: Salonrama\MainBundle\Subdomain
         arguments: ['@doctrine']
+
+    twig.extension.stringloader:
+        class: Twig_Extension_StringLoader
+        tags:
+            - { name: twig.extension }

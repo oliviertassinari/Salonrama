@@ -5,9 +5,7 @@
 {% block help_body %}
 	<h1>{{ article.name }}</h1>
 
-	{% autoescape false %}
-	{{ article.text }}
-	{% endautoescape %}
+	{{ include(template_from_string(article.text)) }}
 
 	<div class="center">
 		<hr/>
