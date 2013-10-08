@@ -16,7 +16,7 @@ class Step4Controller extends Controller
         $session = $request->getSession();
 		$this->subdomainService = $this->get('salonrama_main_subdomain');
 
-		$buildsite = new Buildsite($session, 4);
+		$buildsite = new Buildsite($this, 4);
 
 		if($buildsite->getStepReach() == 3)
 		{

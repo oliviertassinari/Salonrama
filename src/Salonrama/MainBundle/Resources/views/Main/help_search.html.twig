@@ -10,7 +10,7 @@
 	{% autoescape false %}
 	{% for key, value in search_result %}
 		<li>
-			<a href="{{ path("salonrama_main_help_articles", { 'id': value.id }) }}" class="smartload">{{ value.name }}</a>
+			<a href="{{ path("salonrama_main_help_article", { 'id': value.id }) }}" class="smartload">{{ value.name }}</a>
 			<div>{{ value.template }}</div>
 		</li>
 	{% endfor %}

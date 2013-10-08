@@ -8,7 +8,7 @@
 	<ul id="help-result">
 	{% for key, value in help_famous %}
 		<li>
-			<a href="{{ path("salonrama_main_help_articles", { 'id': value.id }) }}" class="smartload">{{ value.name }}</a>
+			<a href="{{ path("salonrama_main_help_article", { 'id': value.id }) }}" class="smartload">{{ value.name }}</a>
 		</li>
 	{% endfor %}
 </ul>

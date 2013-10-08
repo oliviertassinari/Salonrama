@@ -19,7 +19,7 @@ class Step5Controller extends Controller
 		$session = $request->getSession();
 		$error = '';
 
-		$buildsite = new Buildsite($session, 5);
+		$buildsite = new Buildsite($this, 5);
 
 		if(!$buildsite->isAllowed())
 		{

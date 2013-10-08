@@ -143,7 +143,7 @@
 				{% if child.children %}
 				<a href="">{{ child.name }}<i class="icon-angle-right"></i></a>
 				{% else %}
-				<a href="{{ path("salonrama_main_help_articles", { 'id': child.id }) }}" class="smartload{% if 'class' in child|keys %} {{ child.class }}{% endif %}">{{ child.name }}</a>
+				<a href="{{ path("salonrama_main_help_article", { 'id': child.id }) }}" class="smartload{% if 'class' in child|keys %} {{ child.class }}{% endif %}">{{ child.name }}</a>
 				{% endif %}
 				{% if child.children %}
 				{% if 'class' in child|keys %}

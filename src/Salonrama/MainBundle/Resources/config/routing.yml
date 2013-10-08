@@ -96,7 +96,7 @@ salonrama_main_help_search:
     pattern:  /aide/recherche
     defaults: { _controller: SalonramaMainBundle:Help:search }
 
-salonrama_main_help_articles:
+salonrama_main_help_article:
     pattern:  /aide/article/{id}
     defaults: { _controller: SalonramaMainBundle:Help:article }
 

@@ -88,6 +88,14 @@ transition:all 0.3s ease 0s;
 width:189px;
 }
 
+
+#nav-tab-right ul, #nav-tab-right ol{
+margin:0;
+padding:0 0 0 40px;
+}
+#nav-tab-right li{
+margin:0 0 5px 0;
+}
 #nav-tab-right .center{
 font-size:12px;
 margin-top:30px;

@@ -14,7 +14,7 @@ class Step2Controller extends Controller
         $request = $this->getRequest();
         $session = $request->getSession();
 
-		$buildsite = new Buildsite($session, 2);
+		$buildsite = new Buildsite($this, 2);
 
         if(!$buildsite->isAllowed())
         {

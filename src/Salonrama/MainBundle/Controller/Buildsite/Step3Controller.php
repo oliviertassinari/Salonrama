@@ -16,7 +16,7 @@ class Step3Controller extends Controller
         $themeList = $em->getRepository('SalonramaMainBundle:Theme')->getAllList();
         $galleryList = $em->getRepository('SalonramaMainBundle:Gallery')->getAllList();
 
-		$buildsite = new Buildsite($session, 3);
+		$buildsite = new Buildsite($this, 3);
 
 		if(!$buildsite->isAllowed())
 		{

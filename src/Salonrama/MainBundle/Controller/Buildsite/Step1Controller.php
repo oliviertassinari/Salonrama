@@ -16,7 +16,7 @@ class Step1Controller extends Controller
         $themeRepository = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Theme');
         $themeList = $themeRepository->getAllList();
 
-		$buildsite = new Buildsite($session, 1);
+		$buildsite = new Buildsite($this, 1);
 		$storyboard = $buildsite->getStoryboard();
 		$foot = $buildsite->getFoot();
         $message = '';

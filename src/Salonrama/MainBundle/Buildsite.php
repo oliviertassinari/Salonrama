@@ -7,21 +7,23 @@ class Buildsite
 	private $step;
 	private $stepCurrent;
 	private $stepReach;
+	private $controller;
 	private $session;
 
-    public function __construct($session, $stepCurrent)
+    public function __construct($controller, $stepCurrent)
     {
         $this->step = array(
-								1 => array('Thème', 'etape1.php'),
-								2 => array('Mon salon', 'etape2.php'),
-								3 => array('Mon site', 'etape3.php'),
-								4 => array('Adresse internet', 'etape4.php', 200),
-								5 => array('Publication', 'etape5.php')
+								1 => array('Thème', 20),
+								2 => array('Mon salon', 22),
+								3 => array('Mon site', 23),
+								4 => array('Adresse internet', 24, 200),
+								5 => array('Publication')
 							);
 
         $this->stepCurrent = $stepCurrent;
-		$this->stepReach = $session->get('buildsite/stepReach', 1);
-		$this->session = $session;
+		$this->controller = $controller;
+		$this->session = $controller->getRequest()->getSession();
+		$this->stepReach = $this->session->get('buildsite/stepReach', 1);
     }
 
 	public function isAllowed($redirect = true)
@@ -130,7 +132,11 @@ class Buildsite
 			$foot .= '<div id="EtapeSuivant" title="Etape '.($this->stepCurrent+1).' : '.$this->step[$this->stepCurrent+1][0].'"><p>Etape suivante</p></div>';
 		}
 
-		$foot .= '<div id="EtapeAide" onclick="Ot.openPopup(\'aide/etape'.$this->stepCurrent.'.php\', \'560\', \'650\')" title="Aide"><p>Aide</p></div>';
+		if(isset($this->step[$this->stepCurrent][1]))
+		{
+			$foot .= '<a id="EtapeAide" href="'.$this->controller->generateUrl('salonrama_main_help_article', array('id' => $this->step[$this->stepCurrent][1])).'" target="_blanc" title="Aide"><p>Aide</p></a>';
+		}
+
 
 		return $foot.'<div class="clear"></div>';
 	}
