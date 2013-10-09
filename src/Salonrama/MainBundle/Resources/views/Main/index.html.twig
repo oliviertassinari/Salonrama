@@ -11,6 +11,10 @@
 
 	<style>
 
+	.title{
+	margin:60px 0 15px;
+	}
+
 	#Slider1{
 	margin-top:30px;
 	}
@@ -37,7 +41,6 @@
 	#bouton{
 	text-align:center;
 	margin-top:25px;
-	margin-bottom:30px;
 	position:relative;
 	}
 	#bouton .button-big{
@@ -58,7 +61,6 @@
 	position:relative;
 	display:block;
 	text-align:center;
-	margin-bottom:40px;
 	}
 	.popup-holder .popup-link{
 	position:absolute;
@@ -80,8 +82,6 @@
 
 	#Slider2{
 	height:360px;
-	margin-top:15px;
-	margin-bottom:30px;
 	}
 	#Slider2 .slide a{
 	box-shadow:0 0 4px rgba(0, 0, 0, 0.3);
@@ -137,7 +137,7 @@
 {% block body %}
 	<div class="center">
 		<h1>Votre salon sur internet</h1>
-		<h2>Facile et intuitif, à vous de jouer !</h2>
+		<h3>Facile et intuitif, à vous de jouer !</h3>
 	</div>
 
 	<div id="Slider1" class="slider">
@@ -195,14 +195,18 @@
 		<div id="extra">Fonctionne aussi pour la coiffure à domicile</div>
 	</div>
 
+	<div class="center title">
+		<h2>Le concept</h2>
+	</div>
+
 	<a href="http://www.youtube.com/embed/_JnZC7MlgZ8?rel=0&autohide=1&autoplay=1&controls=1&fs=1&loop=0&showinfo=1&wmode=opaque" class="popup-holder" data-lightbox="iframe" title="Vidéo de présentation">
 		<div class="popup-link"></div>
 		<img src="{{ asset('bundles/salonramamain/images/index/salonrama_video.jpg') }}" width="626" height="228"/>
 	</a>
 
-	<div class="center">
-		<h1>Les thèmes</h1>
-		<h2>À vous de personnaliser le site de votre salon</h2>
+	<div class="center title">
+		<h2>Une multitude de thèmes</h2>
+		<h3>À vous de personnaliser le site de votre salon</h3>
 	</div>
 
 	<div id="Slider2" class="slider">
@@ -227,6 +231,10 @@
 				<li><a></a></li>
 			</ul>
 		</div>
+	</div>
+
+	<div class="center title">
+		<h2>Plein d'avantages</h2>
 	</div>
 
 	<div class="advantage"><i class="icon-check-sign"></i><br>Aucune connaissance informatique nécessaire</div>

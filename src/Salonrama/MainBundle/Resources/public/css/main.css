@@ -241,6 +241,13 @@ margin:0 0 2px;
 color:#000;
 }
 .center h2{
+color:#222;
+font-size:29px;
+font-weight:400;
+margin:0 0 2px;
+}
+.center h3{
+font-size:19px;
 color:#808080;
 margin:0;
 font-weight:400;
