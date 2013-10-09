@@ -55,4 +55,38 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="div6">
+			<div class="frame-box">
+				<div class="frame-box-head"><h2>Dossiers Salonrama</h2></div>
+				<div class="frame-box-body">
+					<ul>
+					{% autoescape false %}
+					{% for item in blog_advice %}
+						<li><a href="{{ item.link }}">{{ item.title }}</a></li>
+					{% endfor %}
+					{% endautoescape %}
+					</ul>
+					<a href="/actualite/category/dossier-salonrama/">Voir tous les dossiers et conseils</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="div6">
+			<div class="frame-box">
+				<div class="frame-box-head"><h2>Derniers actualités</h2></div>
+				<div class="frame-box-body">
+					<ul>
+					{% autoescape false %}
+					{% for item in blog_recent %}
+						<li><a href="{{ item.link }}">{{ item.title }}</a></li>
+					{% endfor %}
+					{% endautoescape %}
+					</ul>
+					<a href="/actualite/">Voir tous les articles</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 {% endblock %}

@@ -11,18 +11,6 @@
 
 	<style>
 
-	.div8{
-	float:right;
-	width:62%;
-	margin:0 2%;
-	}
-
-	.div4{
-	float:right;
-	width:31%;
-	margin:0 1%;
-	}
-
 	#policy{
 	font-size:12px;
 	margin-top:10px;
@@ -196,22 +184,24 @@
 	</fieldset> 
 	</form>
 
-	<div class="div4">	
-		<button type="button" class="button-big button-big-green" onclick="publishForm.valide()">
-			<span style="font-size:18px;"><i class="icon-upload-alt"></i>Publier mon site</span><br/>
-			<span style="font-size:12px;">et terminer l'inscription</span>
-		</button>
-		<div id="policy">
-			En cliquant sur « Publier mon site » vous acceptez <a href="{{ path('salonrama_main_policy') }}" target="_blank">les conditions d'utilisation</a>.
+	<div class="row">
+		<div class="div8">
+			<button type="button" class="button-small button-small-blue" onclick="redirectStep3()"><i class="icon-pencil"></i>Modifier mon site</button>
+			<br/><br/>
+			<button type="button" class="button-small button-small-blue" onclick="preview()">
+				<i class="icon-search"></i>Voir mon site
+			</button>
 		</div>
-		<div class="Clear"></div>
-	</div>
-	<div class="div8">
-		<button type="button" class="button-small button-small-blue" onclick="redirectStep3()"><i class="icon-pencil"></i>Modifier mon site</button>
-		<br/><br/>
-		<button type="button" class="button-small button-small-blue" onclick="preview()">
-			<i class="icon-search"></i>Voir mon site
-		</button>
+		<div class="div4">	
+			<button type="button" class="button-big button-big-green" onclick="publishForm.valide()">
+				<span style="font-size:18px;"><i class="icon-upload-alt"></i>Publier mon site</span><br/>
+				<span style="font-size:12px;">et terminer l'inscription</span>
+			</button>
+			<div id="policy">
+				En cliquant sur « Publier mon site » vous acceptez <a href="{{ path('salonrama_main_policy') }}" target="_blank">les conditions d'utilisation</a>.
+			</div>
+			<div class="Clear"></div>
+		</div>
 	</div>
 	<div class="clear"></div>
 {% endblock %}
