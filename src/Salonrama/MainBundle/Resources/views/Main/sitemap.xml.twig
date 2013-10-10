@@ -7,6 +7,9 @@
         {% if item.lastmod is defined %}
         <lastmod>{{ item.lastmod|date("Y-m-d") }}</lastmod>
 		{% endif %}
+        {% if item.priority is defined %}
+        <priority>{{ item.priority }}</priority>
+		{% endif %}
     </url>
 {% endfor %}
 </urlset>
