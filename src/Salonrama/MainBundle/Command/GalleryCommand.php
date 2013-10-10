@@ -70,7 +70,7 @@ class GalleryCommand extends ContainerAwareCommand
 
 		$em->flush();
 
-        $output->writeln('done');
+        $output->writeln('Update gallery bdd done.');
     }
 }
 

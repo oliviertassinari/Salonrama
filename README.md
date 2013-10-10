@@ -74,3 +74,9 @@ Mettre à jour la liste de themes
 ```bash
 php app/console theme:update
 ```
+
+Déploiement sur le serveur en prod
+
+```bash
+php app/console deployment:run --env=prod --location=server
+```

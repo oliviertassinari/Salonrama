@@ -54,7 +54,7 @@ class ThemeCommand extends ContainerAwareCommand
 
 		$em->flush();
 
-        $output->writeln('done');
+        $output->writeln('Update theme bdd done.');
     }
 }
 
