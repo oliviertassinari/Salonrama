@@ -24,7 +24,6 @@ class DeploymentCommand extends ContainerAwareCommand
 			        'Support de travail',
 			        'local'
 			    );
-		;
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
@@ -32,7 +31,7 @@ class DeploymentCommand extends ContainerAwareCommand
 		$location = $input->getOption('location');
 		$env = $input->getOption('env');
 
-		$output->writeln('Parametres : location = '.$location. ' & env = '.$env);
+		$output->writeln('Parametres : location = '.$location. ' & env = '.$env.'.');
 /*
 		$cacheClear = $this->getApplication()->find('cache:clear');
 
@@ -61,7 +60,10 @@ class DeploymentCommand extends ContainerAwareCommand
 		$assetsInstall->run(new ArrayInput($assetsInstallArguments), $output);
 
 		File::removeFolder('app/cache/prod/');
+		$output->writeln('Remove app/cache/prod/.');
+
 		File::removeFolder('app/cache/dev/');
+		$output->writeln('Remove app/cache/dev/.');
 
 	    $output->writeln('Deployment done.');
 	}

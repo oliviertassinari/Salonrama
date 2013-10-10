@@ -78,5 +78,13 @@ php app/console theme:update
 Déploiement sur le serveur en prod
 
 ```bash
-php app/console deployment:run --env=prod --location=server
+php app/console deployment:run --location=server
+```
+
+Modifier les permissions 
+
+```bash
+chmod -R 777 app/cache
+chmod -R 777 app/logs
+chmod -R 777 web/site
 ```
