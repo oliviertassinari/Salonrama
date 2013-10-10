@@ -33,17 +33,14 @@ class DeploymentCommand extends ContainerAwareCommand
 		$env = $input->getOption('env');
 
 		$output->writeln('Parametres : location = '.$location. ' & env = '.$env);
-
-		File::removeFolder('app/cache/dev');
-		File::removeFolder('app/cache/prod');
-
+/*
 		$cacheClear = $this->getApplication()->find('cache:clear');
 
 		$cacheClearArguments = array(
 		    'command' => 'cache:clear'
 		);
 		$cacheClear->run(new ArrayInput($cacheClearArguments), $output);
-
+*/
 		$doctrineSchemaUpdate = $this->getApplication()->find('doctrine:schema:update');
 		$doctrineSchemaUpdateArguments = array(
 		    'command' => 'doctrine:schema:update',
@@ -62,6 +59,9 @@ class DeploymentCommand extends ContainerAwareCommand
 		}
 
 		$assetsInstall->run(new ArrayInput($assetsInstallArguments), $output);
+
+		File::removeFolder('app/cache/prod/');
+		File::removeFolder('app/cache/dev/');
 
 	    $output->writeln('Deployment done.');
 	}
