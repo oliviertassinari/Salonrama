@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\ArrayInput;
+use Salonrama\MainBundle\File;
 
 class DeploymentCommand extends ContainerAwareCommand
 {
@@ -32,6 +33,9 @@ class DeploymentCommand extends ContainerAwareCommand
 		$env = $input->getOption('env');
 
 		$output->writeln('Parametres : location = '.$location. ' & env = '.$env);
+
+		File::removeFolder('app/cache/dev');
+		File::removeFolder('app/cache/prod');
 
 		$cacheClear = $this->getApplication()->find('cache:clear');
 
