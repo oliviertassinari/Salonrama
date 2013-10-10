@@ -13,7 +13,7 @@ class SitemapController extends Controller
     	$url = array();
     	$siteList = $this->getDoctrine()->getManager()->getRepository('SalonramaMainBundle:Site')->findAll();
 
-    	$hostname = $this->getRequest()->getHost();
+    	$hostname = 'http://'.$this->getRequest()->getHost();
 
     	$url[] = array('loc' => $hostname.$this->generateUrl('salonrama_main_index'));
     	$url[] = array('loc' => $hostname.$this->generateUrl('salonrama_main_contact'));
