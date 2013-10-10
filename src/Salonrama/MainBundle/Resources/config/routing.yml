@@ -2,6 +2,10 @@ salonrama_main_index:
     pattern:  /
     defaults: { _controller: SalonramaMainBundle:Index:index }
 
+salonrama_main_sitemap:
+    pattern:  /sitemap.xml
+    defaults: { _controller: SalonramaMainBundle:Sitemap:sitemap }
+
 salonrama_main_contact:
     pattern:  /contact
     defaults: { _controller: SalonramaMainBundle:Contact:contact }
@@ -159,7 +163,3 @@ salonrama_main_account_settings_password:
 salonrama_main_account_settings_delete:
     pattern:  /mon_compte/settings/delete
     defaults: { _controller: SalonramaMainBundle:Account/SettingsDelete:delete }
-
-salonrama_main_signin:
-    pattern:  /signin
-    defaults: { _controller: SalonramaMainBundle:Signin:signin }

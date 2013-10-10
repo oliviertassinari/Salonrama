@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="{{ asset('bundles/salonramamain/css/xml-sitemap.xsl') }}"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% for item in url %}
+    <url>
+        <loc>{{ item.loc }}</loc>
+        {% if item.lastmod is defined %}
+        <lastmod>{{ item.lastmod|date("Y-m-d") }}</lastmod>
+		{% endif %}
+    </url>
+{% endfor %}
+</urlset>
