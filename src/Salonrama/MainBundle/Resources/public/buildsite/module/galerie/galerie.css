@@ -32,8 +32,8 @@ margin:2px 0;
 #CadGalerieRight .CadBlue2 div.grille{
 background:url(image/grille.png) no-repeat 24px 4px;
 }
-#CadGalerieRight .CadBlue2 div.liste{
-background:url(image/liste.png) no-repeat 24px 4px;
+#CadGalerieRight .CadBlue2 div.thumbnail{
+background:url(image/thumbnail.png) no-repeat 24px 4px;
 }
 #CadGalerieRight .CadBlue2 label{
 padding-left:25px;

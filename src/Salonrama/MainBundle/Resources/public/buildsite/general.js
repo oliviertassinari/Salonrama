@@ -743,6 +743,7 @@ loadScript: function(Type, CallBack)
 		else if(Type == 'Galerie'){
 			this.addFile(Type, 'Style', 'galerie/galerie.css');
 			this.addFile(Type, 'Script', 'galerie/galerie.js');
+			this.addFile(Type, 'Script', 'galerie/galleria.js');
 		}
 	}
 	else{

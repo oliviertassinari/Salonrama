@@ -12,7 +12,8 @@ ImageList: [],
 Type: '',
 ImageListSave: '',
 TypeList: {
-	'lightbox': ['Lightbox', 'Afficher les images sous forme de grille', 'grille']
+	'lightbox': ['Grille', 'Afficher les images sous forme de grille', 'grille'],
+	'thumbnail': ['Miniatures', 'Afficher les images sous forme défilante', 'thumbnail']
 },
 
 open: function(Module)
@@ -102,7 +103,7 @@ setPage: function(Page)
 
 		Upload.initi(document.getElementById('CadGalerieUpload'),
 		{
-			SWFUrl: 'creator/upload.swf',
+			SWFUrl: '/bundles/salonramamain/buildsite/upload.swf',
 			uploadUrl: 'image',
 			DataPost: 'LocHomeSite='+LocHomeSite,
 			MaxFile: 0,
@@ -477,6 +478,20 @@ setBlock: function()
 		ImageListObj.innerHTML = Html+'<div class="Clear"></div>';
 
 		new Lightbox({ parent: $(this.ModuleObj) });
+	}
+	else if(this.Type == 'thumbnail')
+	{
+		var Html = '';
+		for(var i = 0, l = ImageList.length; i < l; i++)
+		{
+			var ImageInfo = GImage.getInfo(ImageList[i]);
+
+            Html += '<img src="'+ImageInfo.src+'" />';
+		}
+		ImageListObj.innerHTML = Html;
+
+	    Galleria.loadTheme('/bundles/salonramamain/buildsite/module/galerie/galleria.classic.js');
+	    Galleria.run(this.ModuleObj);
 	}
 }
 
