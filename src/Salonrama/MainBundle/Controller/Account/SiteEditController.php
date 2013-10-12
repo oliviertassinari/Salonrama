@@ -3,6 +3,7 @@
 namespace Salonrama\MainBundle\Controller\Account;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Salonrama\MainBundle\Encrypter;
 
 class SiteEditController extends Controller
 {
@@ -35,7 +36,8 @@ class SiteEditController extends Controller
                                                                                 'pageAct' => 'index',
                                                                                 'pathFront' => '/'.$session->get('buildsite/site/pathBack'),
                                                                                 'galleryList' => json_encode($galleryList),
-                                                                                'site_url' => $site->getUrl()
+                                                                                'site_url' => $site->getUrl(),
+                                                                                'session_id' => Encrypter::encode($session->getId())
                                                                                 ));
     }
 }

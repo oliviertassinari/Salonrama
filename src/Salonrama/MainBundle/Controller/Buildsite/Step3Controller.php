@@ -4,6 +4,7 @@ namespace Salonrama\MainBundle\Controller\Buildsite;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Salonrama\MainBundle\Buildsite;
+use Salonrama\MainBundle\Encrypter;
 
 class Step3Controller extends Controller
 {
@@ -43,7 +44,8 @@ class Step3Controller extends Controller
 																				'pageAct' => 'index',
 																				'pathFront' => '/'.$session->get('buildsite/site/pathBack'),
 																				'galleryList' => json_encode($galleryList),
-																				'onload' => $onload
+																				'onload' => $onload,
+																				'session_id' => Encrypter::encode($session->getId())
 																				));
     }
 }

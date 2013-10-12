@@ -105,7 +105,7 @@ setPage: function(Page)
 		{
 			SWFUrl: '/bundles/salonramamain/buildsite/upload.swf',
 			uploadUrl: 'image',
-			DataPost: 'LocHomeSite='+LocHomeSite,
+			DataPost: 'session_id='+sessionId,
 			MaxFile: 0,
 			ExtensionImage: ['jpg', 'jpeg', 'jpe', 'gif', 'png'],
 			BoutUploadStart: document.getElementById('CadGalerieUploadStart'),

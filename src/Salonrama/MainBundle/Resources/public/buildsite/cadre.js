@@ -2149,7 +2149,7 @@ setPage: function(Page)
 		{
 			SWFUrl: '/bundles/salonramamain/buildsite/upload.swf',
 			uploadUrl: 'image',
-			DataPost: 'LocHomeSite='+LocHomeSite,
+			DataPost: 'session_id='+sessionId,
 			MaxFile: 1,
 			ExtensionImage: ['jpg', 'jpeg', 'jpe', 'gif', 'png'],
 			BoutUploadStart: document.getElementById('CadImageUploadStart'),
@@ -2430,8 +2430,15 @@ addUrl: function(R)
 			data: { addUrl: Input.value },
 			dataType: 'json',
 			success: function(response){
-				GImage.add(response.text[0], response.text[1], response.text[2]);
-				CadImage.apply(response.text[0]);
+				if(response.state == 0)
+				{
+					GImage.add(response.text[0], response.text[1], response.text[2]);
+					CadImage.apply(response.text[0]);
+				}
+				else
+				{
+					this.error('', response.text);
+				}
 			},
 			error: function(rs, e) {
 				GFormF.setChampErr(Input, Input.nextSibling, false, e);

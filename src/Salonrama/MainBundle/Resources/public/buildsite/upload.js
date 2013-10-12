@@ -439,28 +439,27 @@ UploadComplet: function(isSucced, Rtext)
 
 	this.FileList = Ot.ArrayRemove(this.FileList, this.FileAct);
 
-	if(isSucced)
+	alert(Rtext);
+
+	var response = JSON.parse(Rtext);
+
+	if(typeof(response.state) != 'undefined' && response.state == 0)
 	{
-		var self = this;
+		UploadFile.className = 'UploadFile CadVert';
+		UploadFile.lastChild.innerHTML = 'Ajoutée';
+		UploadFile.removeChild(UploadFile.firstChild);
+		document.getElementById(Id+'_P').style.display = 'none';
+		window.setTimeout(function(){ Upload.removeFile(UploadFile); }, 3000);
 
-		Ot.decodeAjaxReturn(Rtext, function(description)
-		{
-			UploadFile.className = 'UploadFile CadVert';
-			UploadFile.lastChild.innerHTML = 'Ajoutée';
-			UploadFile.removeChild(UploadFile.firstChild);
-			document.getElementById(Id+'_P').style.display = 'none';
-			window.setTimeout(function(){ Upload.removeFile(UploadFile); }, 3000);
-
-			self.onUploadSuccess(description);
-		},
-		function(description)
-		{
-			Upload.setFileError(UploadFile, description);
-		});
+		this.onUploadSuccess(response.text);
+	}
+	else if(typeof(response.text) != 'undefined')
+	{
+		Upload.setFileError(UploadFile, response.text);
 	}
 	else
 	{
-		Upload.setFileError(UploadFile, Rtext);
+		Upload.setFileError(UploadFile, 'erreur');
 	}
 }
 
@@ -618,8 +617,6 @@ AddForm: function()
 
 removeForm: function(id)
 {
-	alert(id);
-	
 	this.UploadFormList.removeChild(document.getElementById('UploadForm'+id));
 },
 
@@ -717,13 +714,14 @@ UploadComplet: function()
 
 	if(Rtext != '')
 	{
-		var self = this;
 		var Id = this.FileList[this.FileAct];
 		var UploadFile = document.getElementById('UploadFile'+Id);
 		this.removeForm(Id);
 		this.FileList = Ot.ArrayRemove(this.FileList, this.FileAct);
 
-		Ot.decodeAjaxReturn(Rtext, function(description)
+		var response = JSON.parse(Rtext);
+
+		if(typeof(response.state) != 'undefined' && response.state == 0)
 		{
 			UploadFile.className = 'UploadFile CadVert';
 			UploadFile.lastChild.innerHTML = 'Ajoutée';
@@ -731,12 +729,16 @@ UploadComplet: function()
 
 			window.setTimeout(function(){ Upload.removeFile(UploadFile); }, 3000);
 
-			self.onUploadSuccess(description);
-		},
-		function(description)
+			this.onUploadSuccess(response.text);
+		}
+		else if(typeof(response.text) != 'undefined')
 		{
-			Upload.setFileError(UploadFile, description);
-		});
+			Upload.setFileError(UploadFile, response.text);
+		}
+		else
+		{
+			Upload.setFileError(UploadFile, 'erreur');
+		}
 
 		this.UploadNext(0);
 	}

@@ -4,6 +4,7 @@ namespace Salonrama\MainBundle\Controller\Buildsite;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Salonrama\MainBundle\File;
 
 class ImageController extends Controller
@@ -24,6 +25,7 @@ class ImageController extends Controller
 			if(isset($_FILES['addUploadFile']))
 			{
 				$state = $this->addUploadFile($_FILES['addUploadFile']);
+				return new Response(json_encode($state));
 			}
 			else if(isset($_POST['addUrl']))
 			{
@@ -88,61 +90,38 @@ class ImageController extends Controller
 			{
 				if(in_array($extension, $this->extensionImage))
 				{
-					$port = (!empty($url_ary[3])) ? $url_ary[3] : 80;
+			        try 
+			        {
+				        $ch = curl_init($url);
+				        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				        $data = curl_exec($ch);
+				        curl_close($ch);
 
-					if(@($fsock = fsockopen($url_ary[2], $port, $errno, $errstr)))
-					{
-						fputs($fsock, "GET /".$url_ary[4]." HTTP/1.1\r\n");
-						fputs($fsock, "Host: ".$url_ary[2]."\r\n");
-						fputs($fsock, "Accept-Language: fr\r\n");
-						fputs($fsock, "Accept-Encoding: none\r\n");
-						fputs($fsock, "User-Agent: PHP\r\n");
-						fputs($fsock, "Connection: close\r\n\r\n");
+						$size = strlen($data);
 
-						$data = '';
-						while(!feof($fsock))
+						if($size > 0)
 						{
-							$data .= fread($fsock, $this->sizeMax[1]);
-						}
-						fclose($fsock);
-
-						if(preg_match('(200 OK)', $data))
-						{
-							if(preg_match('#Content-Length\: ([0-9]+)[^ /][\s]+#i', $data, $size) && preg_match('#Content-Type\: image/[x\-]*([a-z]+)[\s]+#i', $data, $extension))
+							if($size < $this->sizeMax[1])
 							{
-								$size = $size[1]; //Octet
-								$extension = $extension[1]; 
+								$name = rand(0, 100000);
+								$path = $this->pathUpload.$name.'.'.$extension;
 
-								if($size > 0)
+								if(@File::addFile($data, $path))
 								{
-									if($size < $this->sizeMax[1])
-									{
-										if(in_array($extension, $this->extensionImage))
-										{
-											$data = substr($data, strlen($data) - $size, $size);
+									$size = $this->resizeImage($path);
 
-											$name = rand(0, 100000);
-											$path = $this->pathUpload.$name.'.'.$extension;
-
-											if(@File::addFile($data, $path))
-											{
-												$size = $this->resizeImage($path);
-
-												return array('state' => 0, 'text' => array($name.'.jpg', $size[0], $size[1]));
-											}
-											else{ return array('state' => 1, 'text' => 'Erreur de deplacement.'); }
-										}
-										else{ return array('state' => 1, 'text' => 'Extension invalide (.'.$extension.').'); }
-									}
-									else{ return array('state' => 1, 'text' => 'Taille limité a '.$this->sizeMax[0]); }
+									return array('state' => 0, 'text' => array($name.'.jpg', $size[0], $size[1]));
 								}
-								else{ return array('state' => 1, 'text' => 'Aucune donnée.'); }
+								else{ return array('state' => 1, 'text' => 'Erreur de deplacement.'); }
 							}
-							else{ return array('state' => 1, 'text' => 'Aucune donnée.'); }
+							else{ return array('state' => 1, 'text' => 'Taille limité a '.$this->sizeMax[0]); }
 						}
-						else{ return array('state' => 1, 'text' => 'Image introuvable.'); }
+						else{ return array('state' => 1, 'text' => 'Aucune donnée.'); }
+			        }
+			        catch (Exception $e)
+			        {
+						return array('state' => 1, 'text' => 'Connextion impossible.');
 					}
-					else{ return array('state' => 1, 'text' => 'Connextion impossible.'); }
 				}
 				else{ return array('state' => 1, 'text' => 'Extension invalide (.'.$extension.').'); }
 			}
