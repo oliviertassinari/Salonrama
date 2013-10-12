@@ -584,7 +584,30 @@ else
 			$Html .= '<div class="Clear"></div>';
 
 			$this->JsIniti .= "
-			var ".$ClassId." = new Lightbox();
+			new Lightbox({ parent: $('#".$Id."') });
+			";
+		}
+		else if($Type == 'thumbnail')
+		{
+			$this->addFile($this->pathPublic.'js/jquery.js', 'Script');
+			$this->addFile($this->pathPublic.'buildsite/module/galerie/galleria.js', 'Script');
+
+			$data = array();
+
+			foreach($ImageList as $Nom)
+			{
+				$ImageInfo = $this->getImageInfo($Nom);
+
+				array_push($data, array('image' => $ImageInfo['src']));
+			}
+
+			$this->JsIniti .= "
+		    Galleria.loadTheme('".$this->pathPublic."buildsite/module/galerie/galleria.classic.js');
+		    Galleria.run('#".$Id."', { 
+		    	dataSource: ".json_encode($data, true).",
+		    	autoplay: 7000,
+		    	height: 0.5625
+		    });
 			";
 		}
 

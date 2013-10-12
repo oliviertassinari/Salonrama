@@ -103,7 +103,8 @@ class Buildsite
 			}
 
 			if($i <= $this->stepReach){
-				$storyboard .= '<li class="'.$class.'"'.$more.'><a href="step'.$i.'" title="Retourner à l\'étape '.$i.'">'.$i.' - '.$this->step[$i][0].'</a></li>';
+				$storyboard .= '<li class="'.$class.'"'.$more.'><a href="'.$this->controller->generateUrl('salonrama_main_buildsite_step'.$i)
+								.'" title="Retourner à l\'étape '.$i.'">'.$i.' - '.$this->step[$i][0].'</a></li>';
 			}
 			else{
 				$storyboard .= '<li class="'.$class.'"'.$more.'>'.$i.' - '.$this->step[$i][0].'</li>';
@@ -119,14 +120,17 @@ class Buildsite
 
 		if($this->stepCurrent < $this->stepReach)
 		{
-			$foot .= '<div id="EtapeSuivant" onclick="document.location = \'step'.$this->stepReach.'\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
+			$foot .= '<div id="EtapeSuivant" onclick="document.location = \''.$this->controller->generateUrl('salonrama_main_buildsite_step'.$this->stepReach).
+				'\'" title="Etape '.$this->stepReach.' : '.$this->step[$this->stepReach][0].'"><p>retour à étape '.$this->stepReach.'</p></div>'.
 				  '<button type="button" id="EtapeValide" class="button-big button-big-yellow">Modifier</button>';
 		}
 		else
 		{
 			if($this->stepCurrent > 1)
 			{
-				$foot .= '<div id="EtapePrecedent" onclick="document.location = \'step'.($this->stepCurrent-1).'\'" title="Etape '.($this->stepCurrent-1).' : '.$this->step[$this->stepCurrent-1][0].'"><p>Etape précédente</p></div>';
+				$foot .= '<div id="EtapePrecedent" onclick="document.location = \'step'.
+						$this->controller->generateUrl('salonrama_main_buildsite_step'.($this->stepCurrent-1)).
+						'\'" title="Etape '.($this->stepCurrent-1).' : '.$this->step[$this->stepCurrent-1][0].'"><p>Etape précédente</p></div>';
 			}
 
 			$foot .= '<div id="EtapeSuivant" title="Etape '.($this->stepCurrent+1).' : '.$this->step[$this->stepCurrent+1][0].'"><p>Etape suivante</p></div>';

@@ -23,11 +23,10 @@ var Lightbox = (function()
 
 		var _this = this;
 		this.options.parent.find('a[data-lightbox]').click(function(e) {
+			_this.build();
 			_this.start($(e.currentTarget));
 			return false;
 		});
-
-		this.build();
 	}
 
 	Lightbox.prototype.build = function()
@@ -351,7 +350,10 @@ var Lightbox = (function()
 		var self = this;
 
 		this.disableKeyboardNav();
-		this.$lightbox.fadeOut(this.options.fadeDuration, function(){ self.$lightbox.find('.lightbox-image').remove(); });
+		this.$lightbox.fadeOut(this.options.fadeDuration, function(){
+			self.$lightbox.remove();
+			self.$overlay.remove();
+		});
 		this.$overlay.fadeOut(this.options.fadeDuration);
 		$('select, object, embed').css({
 			visibility: "visible"

@@ -59,7 +59,7 @@ setPage: function(Page)
 			'<div class="CadColor CadBlue2">'+
 				'<div class="Ratio">'+Html+'</div>'+
 			'</div>'+
-			'<button type="button" class="button-small button-small-green" onclick="GModule.ClassList[\'Galerie\'].setPage(\'Ajouter\')"><i class="icon-ok"></i>Ajouter des images</button>'+
+			'<button type="button" class="button-small button-small-green" onclick="GModule.ClassList[\'Galerie\'].setPage(\'Ajouter\')"><i class="icon-plus"></i>Ajouter des images</button>'+
 		'</div>';
 
 		document.getElementById('CadGalerieType'+this.Type).checked = true;
@@ -455,10 +455,9 @@ initi: function()
 
 setBlock: function()
 {
-	this.ModuleObj.innerHTML = '<div></div>';
+	this.ModuleObj.innerHTML = '';
 
 	var ImageList = this.ImageList;
-	var ImageListObj = this.ModuleObj.firstChild;
 
 	if(this.Type == 'lightbox')
 	{
@@ -475,23 +474,27 @@ setBlock: function()
 					'</a>'+
 					'</div>';
 		}
-		ImageListObj.innerHTML = Html+'<div class="Clear"></div>';
+		this.ModuleObj.innerHTML = Html+'<div class="Clear"></div>';
 
 		new Lightbox({ parent: $(this.ModuleObj) });
 	}
 	else if(this.Type == 'thumbnail')
 	{
-		var Html = '';
+		var data = [];
 		for(var i = 0, l = ImageList.length; i < l; i++)
 		{
 			var ImageInfo = GImage.getInfo(ImageList[i]);
-
-            Html += '<img src="'+ImageInfo.src+'" />';
+			data.push({ image: ImageInfo.src });
 		}
-		ImageListObj.innerHTML = Html;
+
+		//$(this.ModuleObj).css('height', '350px');
 
 	    Galleria.loadTheme('/bundles/salonramamain/buildsite/module/galerie/galleria.classic.js');
-	    Galleria.run(this.ModuleObj);
+	    Galleria.run(this.ModuleObj, { 
+	    	dataSource: data,
+	    	autoplay: 7000,
+	    	height: 0.5625
+	    });
 	}
 }
 
