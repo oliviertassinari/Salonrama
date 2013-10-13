@@ -443,6 +443,19 @@ initi: function()
 	this.BlockHeadOption.innerHTML = '<button type="button" class="button-small button-small-blue"><i class="icon-angle-right"></i>Modifier la galerie</button>';
 	this.BlockHeadOption.firstChild.onclick = function(){ Class.open(self); };
 
+	var Width;
+	GBlock.addEventOutOver(this.BlockObj, 'out', function()
+	{
+		if(self.Type == 'thumbnail')
+		{
+			if(Width && Width != self.BlockObj.offsetWidth)
+			{
+				self.setBlock();
+			}
+		}
+		Width = self.BlockObj.offsetWidth;
+	});
+
 	if(this.ImageList.length == 0)
 	{
 		Class.open(this);
@@ -458,6 +471,8 @@ setBlock: function()
 	this.ModuleObj.innerHTML = '';
 
 	var ImageList = this.ImageList;
+
+	$(this.ModuleObj).css('height', '');
 
 	if(this.Type == 'lightbox')
 	{
@@ -487,7 +502,7 @@ setBlock: function()
 			data.push({ image: ImageInfo.src });
 		}
 
-		//$(this.ModuleObj).css('height', '350px');
+		$(this.ModuleObj).css('height', $(this.ModuleObj).width()*0.5625+'px');
 
 	    Galleria.loadTheme('/bundles/salonramamain/buildsite/module/galerie/galleria.classic.js');
 	    Galleria.run(this.ModuleObj, { 

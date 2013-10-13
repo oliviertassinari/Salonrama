@@ -47,21 +47,6 @@ li{
 list-style:none;
 }
 
-form fieldset{
-font-family:arial,helvetica,sans-serif;
-background-color:#F7F7F7;
-border:1px solid #DEDEDE;
-padding:10px;
-}
-form legend{
-color:#519213;
-font-size:18px;
-font-weight:700;
-margin-bottom:5px;
-margin-left:16px;
-background:#fff;
-}
-
 .etoile{
 margin:0 4px;
 color:#f00;
