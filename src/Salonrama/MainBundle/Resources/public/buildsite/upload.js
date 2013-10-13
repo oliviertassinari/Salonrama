@@ -439,8 +439,6 @@ UploadComplet: function(isSucced, Rtext)
 
 	this.FileList = Ot.ArrayRemove(this.FileList, this.FileAct);
 
-	alert(Rtext);
-
 	var response = JSON.parse(Rtext);
 
 	if(typeof(response.state) != 'undefined' && response.state == 0)

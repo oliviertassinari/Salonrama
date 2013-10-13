@@ -19,7 +19,7 @@ class IndexController extends Controller
 
         $site = $this->getUser()->getAccount()->getSite();
 
-        include('/actualite/wp-load.php');
+        include('blog/wp-load.php');
 
         global $wp_query;
 
