@@ -1,0 +1,19 @@
+{% set add_noscript = true %}
+
+{% extends "SalonramaMainBundle:Main:main.html.twig" %}
+
+{% block head %}
+	<title>{{ title }}</title>
+{% endblock %}
+
+{% block javascript %}
+
+{% endblock %}
+
+{% block body %}
+	<div id="blog">
+	{% autoescape false %}
+	{{ body }}
+	{% endautoescape %}
+	</div>
+{% endblock %}

@@ -6,6 +6,16 @@ salonrama_main_sitemap:
     pattern:  /sitemap.xml
     defaults: { _controller: SalonramaMainBundle:Sitemap:sitemap }
 
+salonrama_main_blog_index:
+    pattern:  /actualite/
+    defaults: { _controller: SalonramaMainBundle:Blog:blog }
+
+salonrama_main_blog:
+    pattern:  /actualite/{url}
+    defaults: { _controller: SalonramaMainBundle:Blog:blog }
+    requirements:
+        url: ".+"
+
 salonrama_main_contact:
     pattern:  /contact
     defaults: { _controller: SalonramaMainBundle:Contact:contact }
