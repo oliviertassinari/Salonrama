@@ -23,33 +23,45 @@ class BuildsiteStepCommand extends ContainerAwareCommand
     {
         $path = 'web/site/step/';
         $folderList = File::getFolderList($path);
-        $timestampMax = time() - 86400*15; // plus de 15 jours
+        $dateTimeMax = date_modify(new \DateTime(), '-15 days');
 
         foreach($folderList as $folder)
         {
             $timestamp = substr($folder, 0, strpos($folder, '-'));
 
-            if($timestamp > $timestampMax)
+            if($timestamp < $dateTimeMax->getTimestamp())
             {
                 File::removeFolder($path.$folder.'/');
-                $output->writeln('delete '.$folder);
+                $output->writeln('Remove '.$folder);
             }
         }
 
         $em = $this->getContainer()->get('doctrine')->getManager();
 
-        $qb = $em->createQueryBuilder('a');
-        $qb->delete('User', 'u')
-            ->delete('Account', 'a')
-            ->delete('Site', 'si')
-            ->delete('Salon', 'sa')
-            ->leftJoin('s.project','p');
+        $qb = $em->createQueryBuilder('');
+        $qb = $qb->select('u')
+            ->add('from', 'Salonrama\MainBundle\Entity\User u')
+            ->leftJoin('u.account', 'a')
             ->add('where', $qb->expr()->andX(
-                $qb->expr()->eq('u.is_active', false)
-                $qb->expr()->eq('a.signin', ':project')
+                $qb->expr()->eq('u.isActive', 0),
+                $qb->expr()->lt('a.signin',':dateMax') // <
             ))
+            ->setParameters(array('dateMax' => $dateTimeMax))
+            ->getQuery()
         ;
 
+        $queryResult = $qb->getResult();
+
+        foreach($queryResult as $key => $value)
+        {
+           $em->remove($value->getAccount()->getSite());
+           $em->remove($value->getAccount()->getSalon());
+           $em->remove($value->getAccount());
+           $em->remove($value);
+           $output->writeln('Remove '.$value->getEmail());
+        }
+
+        $em->flush();
 
         $output->writeln('Clean buildsite step done.');
     }
