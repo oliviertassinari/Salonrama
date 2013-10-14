@@ -9,7 +9,7 @@ class HelpArticleRepository extends EntityRepository
 {
 	public function getFamous()
 	{
-		return $qb = $this->createQueryBuilder('a')
+		return $this->createQueryBuilder('a')
 			->add('orderBy', 'a.view DESC')
 			->setMaxResults(6)
 			->getQuery()

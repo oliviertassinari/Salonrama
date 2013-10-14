@@ -105,6 +105,11 @@ class File
 
 	public static function removeFolder($path)
 	{
+		if(substr($path, -1) != '/')
+		{
+			$path .= '/';
+		}
+
 		if(is_dir($path))
 		{
 			if($handle = opendir($path))
@@ -125,6 +130,31 @@ class File
 			}
 			rmdir($path);
 		}
+	}
+
+	public static function getFolderList($path)
+	{
+		$folderList = array();
+
+		if(is_dir($path))
+		{
+			if($handle = opendir($path))
+			{
+				while(($file = readdir($handle)) !== false)
+				{
+					if($file === '.' || $file === '..'){
+						continue;
+					}
+					if(is_dir($path.$file))
+					{
+						array_push($folderList, $file);
+					}
+				}
+			}
+			closedir($handle);
+		}
+
+		return $folderList;
 	}
 
 
@@ -194,31 +224,6 @@ class File
 		fclose($file);
 
 		return $read;
-	}
-
-	public static function getFolder($path)
-	{
-		$folder = array();
-
-		if(is_dir($path))
-		{
-			if($handle = opendir($path))
-			{
-				while(($file = readdir($handle)) !== false)
-				{
-					if($file === '.' || $file === '..'){
-						continue;
-					}
-					if(is_dir($path.$file))
-					{
-						array_push($folder, $file);
-					}
-				}
-			}
-			closedir($handle);
-		}
-
-		return $folder;
 	}
 }
 
