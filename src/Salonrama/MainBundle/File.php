@@ -103,6 +103,26 @@ class File
 		}
 	}
 
+	public static function emptyFolderFolder($path)
+	{
+		if(is_dir($path))
+		{
+			if($handle = opendir($path))
+			{
+				while(($file = readdir($handle)) !== false)
+				{
+					if($file === '.' || $file === '..'){
+						continue;
+					}
+					else if(is_dir($path.$file)){
+						unlink($path.$file);
+					}
+				}
+				closedir($handle);
+			}
+		}
+	}
+
 	public static function removeFolder($path)
 	{
 		if(substr($path, -1) != '/')
