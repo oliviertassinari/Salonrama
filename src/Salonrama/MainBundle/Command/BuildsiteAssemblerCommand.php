@@ -21,11 +21,20 @@ class BuildsiteAssemblerCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-       File::emptyFolderFolder('web/site/online/');
-       File::emptyFolderFolder('web/site/step/');
-       File::emptyFolderFolder('web/site/subdomain/');
+        File::emptyFolderFolder('web/site/online/');
+        File::emptyFolderFolder('web/site/step/');
+        File::emptyFolderFolder('web/site/subdomain/');
 
-       
+        $em = $this->getContainer()->get('doctrine')->getManager();
+
+        $cmd = $em->getClassMetadata('SalonramaMainBundle:User');
+
+        $connection = $em->getConnection();
+        $dbPlatform = $connection->getDatabasePlatform();
+        //$connection->query('SET FOREIGN_KEY_CHECKS=0');
+        $q = $dbPlatform->getTruncateTableSql($cmd->getTableName());
+        $connection->executeUpdate($q);
+        //$connection->query('SET FOREIGN_KEY_CHECKS=1');
     }
 }
 
