@@ -9,13 +9,13 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Salonrama\MainBundle\File;
 
-class BuildsiteAssemblerCommand extends ContainerAwareCommand
+class ResetCommand extends ContainerAwareCommand
 {
     protected function configure()
     {
         $this
-            ->setName('buildsite:assembler:all')
-            ->setDescription("Généere tout les sites")
+            ->setName('reset:all')
+            ->setDescription("Réinitisalisation")
         ;
     }
 
