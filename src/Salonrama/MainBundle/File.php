@@ -115,7 +115,7 @@ class File
 						continue;
 					}
 					else if(is_dir($path.$file)){
-						unlink($path.$file);
+						File::removeFolder($path.$file.'/');
 					}
 				}
 				closedir($handle);

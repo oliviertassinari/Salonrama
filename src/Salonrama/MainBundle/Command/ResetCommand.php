@@ -27,14 +27,16 @@ class ResetCommand extends ContainerAwareCommand
 
         $em = $this->getContainer()->get('doctrine')->getManager();
 
-        $cmd = $em->getClassMetadata('SalonramaMainBundle:User');
-
         $connection = $em->getConnection();
         $dbPlatform = $connection->getDatabasePlatform();
-        //$connection->query('SET FOREIGN_KEY_CHECKS=0');
-        $q = $dbPlatform->getTruncateTableSql($cmd->getTableName());
-        $connection->executeUpdate($q);
-        //$connection->query('SET FOREIGN_KEY_CHECKS=1');
+        $connection->query('SET FOREIGN_KEY_CHECKS=0');
+        $connection->executeUpdate($dbPlatform->getTruncateTableSql('user'));
+        $connection->executeUpdate($dbPlatform->getTruncateTableSql('account'));
+        $connection->executeUpdate($dbPlatform->getTruncateTableSql('site'));
+        $connection->executeUpdate($dbPlatform->getTruncateTableSql('salon'));
+        $connection->query('SET FOREIGN_KEY_CHECKS=1');
+
+        $output->writeln('Reset done.');
     }
 }
 
