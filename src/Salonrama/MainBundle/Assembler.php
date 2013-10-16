@@ -42,7 +42,7 @@ class Assembler
 
 		$this->id = $id;
 
-		if($_SERVER['SERVER_NAME'] == '127.0.0.1'){
+		if(!isset($_SERVER['SERVER_NAME']) || $_SERVER['SERVER_NAME'] == '127.0.0.1'){
 			$this->pathPublic = 'http://127.0.0.1/bundles/salonramamain/';
 		}
 		else{
@@ -53,13 +53,15 @@ class Assembler
 
 		$this->PageNomList = $this->getPageNomList();
 
-		require_once('../src/Salonrama/MainBundle/Resources/public/theme/'.$this->ThemeAct.'/theme.php');
+		$webDir = __DIR__.'/../../../web/';
+
+		require_once($webDir.'../src/Salonrama/MainBundle/Resources/public/theme/'.$this->ThemeAct.'/theme.php');
 
 		$this->BlockListWidth = eval('return '.$this->ThemeAct.'::$BlockListWidth;');
 
 		if($this->pathSiteBack != '' && stripos($this->pathSiteBack, 'site/') === 0)
 		{
-			File::emptyFolderFile($this->pathSiteBack);
+			File::emptyFolderFile($webDir.$this->pathSiteBack);
 
 			$IndexHtml = ''.
 '<?php
@@ -85,7 +87,7 @@ if(isset($_GET["page"]) && $_GET["page"] != "")
 				$PageHtml = $this->getPageHtml($name.' - '.$this->DataList['Nom'], $Structure);
 				$PageHtml = str_replace('<div id="ThemeBlockList"></div>', '<div id="ThemeBlockList">'.$BlockListHtml.'</div>', $PageHtml);
 
-				File::addFile($PageHtml, $this->pathSiteBack.$PageNom);
+				File::addFile($PageHtml, $webDir.$this->pathSiteBack.$PageNom);
 
 				$IndexHtml .= 'case "'.$id.'": header("location:'.$PageNom.'"); break;';
 			}
@@ -99,7 +101,7 @@ else
 }
 
 ?>';
-			File::addFile($IndexHtml, $this->pathSiteBack.'index.php');
+			File::addFile($IndexHtml, $webDir.$this->pathSiteBack.'index.php');
 		}
 	}
 

@@ -2,6 +2,7 @@
 
 namespace Salonrama\MainBundle;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Bundle\DoctrineBundle\Registry as Doctrine;
 use Salonrama\MainBundle\File;
 use SoapClient;
@@ -147,7 +148,8 @@ class Subdomain
 
 		if($state['state'] == 0)
 		{
-			$path = 'site/subdomain/'.$subdomain.'/';
+			$webDir = __DIR__.'/../../../web/';
+			$path = $webDir.'site/subdomain/'.$subdomain.'/';
 			$state = array('state' => 1, 'text' => 'Erreur.');
 
 			if(!is_dir($path))

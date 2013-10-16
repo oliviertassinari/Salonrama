@@ -119,6 +119,24 @@ class MigrateCommand extends ContainerAwareCommand
 
         mysql_close();
 
+        $userAll = $em->getRepository('SalonramaMainBundle:User')->findAll();
+
+        foreach($userAll as $user)
+        {
+            $site = $user->getAccount()->getSite();
+
+            $pathBackNew = 'site/online/'.$site->getId().'/';
+            File::addFolder('web/'.$pathBackNew);
+            //File::copyFolder($site->getPathBack(), $pathBackNew);
+
+            $site->setPathBack($pathBackNew);
+            $site->update();
+
+            $this->getContainer()->get('salonrama_main_subdomain')->addSite($site->getSubdomain(), $site->getId());
+        }
+
+        $em->flush();
+
         $output->writeln('Migration done.');
     }
 }
