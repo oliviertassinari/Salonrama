@@ -62,34 +62,39 @@ class MigrateCommand extends ContainerAwareCommand
 
         while($DecBdd = mysql_fetch_alias_array($ReqBdd))
         {
+            $block_list = preg_replace('#"V":{"Type":"MilkBox","ImageList":#', '"V":{"Type":"lightbox","ImageList":', utf8_encode($DecBdd['si.block_list']));
+            $block_list = preg_replace('#"V":{"Type":"MooFlow","ImageList":#', '"V":{"Type":"thumbnail","ImageList":', $block_list);
+
+            $adresse = preg_replace('#<br>#', ' ', utf8_encode($DecBdd['sa.adresse']));
+
             $site = new Site();
-            $site->setTheme($DecBdd['si.theme'])
+            $site->setTheme(utf8_encode($DecBdd['si.theme']))
                 ->setPathBack($DecBdd['si.loc_home_site'])
-                ->setSubdomain($DecBdd['si.sous_dom'])
-                ->setImageList($DecBdd['si.image_list'])
-                ->setBlockList($DecBdd['si.block_list'])
-                ->setPageList($DecBdd['si.page_list'])
-                ->setDataList($DecBdd['si.data_list'])
+                ->setSubdomain(utf8_encode($DecBdd['si.sous_dom']))
+                ->setImageList(utf8_encode($DecBdd['si.image_list']))
+                ->setBlockList($block_list)
+                ->setPageList(utf8_encode($DecBdd['si.page_list']))
+                ->setDataList(utf8_encode($DecBdd['si.data_list']))
                 ->setCreation(new\ DateTime($DecBdd['si.creation_date']))
                 ->setLastUpdate(new\ DateTime($DecBdd['si.miseajour_date']))
                 ->setIsOnline(($DecBdd['si.en_ligne'] == 'true') ? true : false);
 
             $salon = new Salon();
-            $salon->setName($DecBdd['sa.nom'])
-                ->setEmail($DecBdd['sa.email'])
-                ->setPhone($DecBdd['sa.telephone'])
-                ->setAddress($DecBdd['sa.adresse'])
-                ->setZipCode($DecBdd['sa.code_postal'])
-                ->setCity($DecBdd['sa.ville'])
-                ->setCountry($DecBdd['sa.pays'])
+            $salon->setName(utf8_encode($DecBdd['sa.nom']))
+                ->setEmail(utf8_encode($DecBdd['sa.email']))
+                ->setPhone(utf8_encode($DecBdd['sa.telephone']))
+                ->setAddress($adresse)
+                ->setZipCode(utf8_encode($DecBdd['sa.code_postal']))
+                ->setCity(utf8_encode($DecBdd['sa.ville']))
+                ->setCountry(utf8_encode($DecBdd['sa.pays']))
                 ->setMenAllowed(true)
                 ->setWomenAllowed(true)
                 ->setChildrenAllowed(true)
-                ->setSchedule($DecBdd['sa.horaire']);
+                ->setSchedule(utf8_encode($DecBdd['sa.horaire']));
 
             $account = new Account();
-            $account->setFirstName($DecBdd['cl.prenom'])
-                    ->setLastName($DecBdd['cl.nom'])
+            $account->setFirstName(utf8_encode($DecBdd['cl.prenom']))
+                    ->setLastName(utf8_encode($DecBdd['cl.nom']))
                     ->setSalon($salon)
                     ->setSite($site)
                     ->setLastLogin(new\ DateTime($DecBdd['co.connexion_date']))
@@ -97,8 +102,8 @@ class MigrateCommand extends ContainerAwareCommand
                     ->setNewsletterSend(true);
 
             $user = new User();
-            $user->setEmail($DecBdd['co.email'])
-                ->setPassword(Encrypter::decode($DecBdd['co.passe']))
+            $user->setEmail(utf8_encode($DecBdd['co.email']))
+                ->setPassword(Encrypter::decode(utf8_encode($DecBdd['co.passe'])))
                 ->setIsActive(($DecBdd['co.valide'] == 'true') ? true : false)
                 ->setAccount($account);
 
@@ -106,6 +111,8 @@ class MigrateCommand extends ContainerAwareCommand
             $em->persist($salon);
             $em->persist($account);
             $em->persist($user);
+
+            $output->writeln('Import '.$DecBdd['co.email']);
         }
 
         $em->flush();

@@ -9,7 +9,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Salonrama\MainBundle\File;
 
-class BuildsiteStepCommand extends ContainerAwareCommand
+class BuildsiteStepCleanCommand extends ContainerAwareCommand
 {
     protected function configure()
     {

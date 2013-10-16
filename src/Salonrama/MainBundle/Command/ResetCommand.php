@@ -14,7 +14,7 @@ class ResetCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('reset:all')
+            ->setName('reset:run')
             ->setDescription("Réinitisalisation")
         ;
     }
