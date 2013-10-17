@@ -127,7 +127,7 @@ class MigrateCommand extends ContainerAwareCommand
 
             $pathBackNew = 'site/online/'.$site->getId().'/';
             File::addFolder('web/'.$pathBackNew);
-            File::copyFolder('../www/'.$site->getPathBack(), $pathBackNew);
+            File::copyFolder('../www/'.$site->getPathBack(), 'web/'.$pathBackNew);
 
             $site->setPathBack($pathBackNew);
             $site->update();
