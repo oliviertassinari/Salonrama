@@ -206,7 +206,6 @@ class Logger implements LoggerInterface
         }
 
         if (!static::$timezone) {
-            date_default_timezone_set('Europe/Paris');
             static::$timezone = new \DateTimeZone(date_default_timezone_get() ?: 'UTC');
         }
 

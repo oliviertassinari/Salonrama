@@ -1,9 +1,10 @@
 <?php
 
-umask(0000); // Définit une permission 0777
-
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Debug\Debug;
+
+umask(0000); // Définit une permission 0777
+date_default_timezone_set('Europe/Paris');
 
 // If you don't want to setup permissions the proper way, just uncomment the following PHP line
 // read http://symfony.com/doc/current/book/installation.html#configuration-and-setup for more information

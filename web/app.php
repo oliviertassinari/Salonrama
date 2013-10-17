@@ -1,9 +1,10 @@
 <?php
 
-umask(0000); // Définit une permission 0777
-
 use Symfony\Component\ClassLoader\ApcClassLoader;
 use Symfony\Component\HttpFoundation\Request;
+
+umask(0000); // Définit une permission 0777
+date_default_timezone_set('Europe/Paris');
 
 $loader = require_once __DIR__.'/../app/bootstrap.php.cache';
 
