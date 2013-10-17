@@ -57,46 +57,12 @@ Use it to make something cool, have fun, and share what you've learned with othe
  * ----------------------------------------------------------------------------
  */
 
-#blog * {
+.corps * {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing:    border-box;
 	box-sizing:         border-box;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-nav,
-section,
-summary {
-	display: block;
-}
-
-audio,
-canvas,
-video {
-	display: inline-block;
-}
-
-audio:not([controls]) {
-	display: none;
-	height: 0;
-}
-
-[hidden] {
-	display: none;
-}
-
-html {
-	font-size: 100%;
-	overflow-y: scroll;
-	-webkit-text-size-adjust: 100%;
-	-ms-text-size-adjust: 100%;
-}
 
 html,
 button,
@@ -106,72 +72,72 @@ textarea {
 	font-family: "Source Sans Pro", Helvetica, sans-serif;
 }
 
-body {
+#blog {
 	color: #141412;
 	line-height: 1.5;
 	margin: 0;
 }
 
-a {
+.corps a {
 	color: #ca3c08;
 	text-decoration: none;
 }
 
-a:visited {
+.corps a:visited {
 	color: #ac0404;
 }
 
-a:focus {
+.corps a:focus {
 	outline: thin dotted;
 }
 
-a:active,
-a:hover {
+.corps a:active,
+.corps a:hover {
 	color: #ea9629;
 	outline: 0;
 }
 
-a:hover {
+.corps a:hover {
 	text-decoration: underline;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.corps h1,
+.corps h2,
+.corps h3,
+.corps h4,
+.corps h5,
+.corps h6 {
 	clear: both;
 	font-family: Bitter, Georgia, serif;
 	line-height: 1.3;
 }
 
-h1 {
+.corps h1 {
 	font-size: 48px;
 	margin: 33px 0;
 }
 
-h2 {
+.corps h2 {
 	font-size: 30px;
 	margin: 25px 0;
 }
 
-h3 {
+.corps h3 {
 	font-size: 22px;
 	margin: 22px 0;
 }
 
-h4 {
+.corps h4 {
 	font-size: 20px;
 	margin: 25px 0;
 }
 
-h5 {
+.corps h5 {
 	font-size: 18px;
 	margin: 30px 0;
 }
 
-h6 {
+.corps h6 {
 	font-size: 16px;
 	margin: 36px 0;
 }
@@ -326,12 +292,6 @@ nav ol {
 li > ul,
 li > ol {
 	margin: 0;
-}
-
-img {
-	-ms-interpolation-mode: bicubic;
-	border: 0;
-	vertical-align: middle;
 }
 
 svg:not(:root) {
@@ -857,7 +817,7 @@ div.nav-menu > ul {
 	position: relative;
 }
 
-.nav-menu li a {
+#blog .nav-menu li a {
 	color: #141412;
 	display: block;
 	font-size: 15px;
@@ -866,8 +826,8 @@ div.nav-menu > ul {
 	text-decoration: none;
 }
 
-.nav-menu li:hover > a,
-.nav-menu li a:hover {
+#blog .nav-menu li:hover > a,
+#blog .nav-menu li a:hover {
 	background-color: #220e10;
 	color: #fff;
 }
@@ -942,8 +902,8 @@ ul.nav-menu li:hover > ul,
 	background-size: 24px 24px;
 	border: none;
 	cursor: pointer;
-	height: 37px;
-	margin: 3px 0;
+	height: 30px;
+	margin: 5px 0;
 	padding: 0 0 0 34px;
 	position: relative;
 	-webkit-transition: width 400ms ease, background 400ms ease;
@@ -1005,16 +965,16 @@ ul.nav-menu li:hover > ul,
 	margin-bottom: 30px;
 }
 
-.entry-title {
+#blog .entry-title {
 	font-weight: normal;
 	margin: 0 0 5px;
 }
 
-.entry-title a {
+#blog .entry-title a {
 	color: #141412;
 }
 
-.entry-title a:hover {
+#blog .entry-title a:hover {
 	color: #ea9629;
 }
 
@@ -2361,9 +2321,9 @@ footer.entry-meta {
 }
 
 .site-main .mu_register input[type="submit"],
-.site-main .mu_register #blog_title,
+.site-main .mu_register .corps_title,
 .site-main .mu_register #user_email,
-.site-main .mu_register #blogname,
+.site-main .mu_register .corpsname,
 .site-main .mu_register #user_name {
 	font-size: inherit;
 	width: 270px;

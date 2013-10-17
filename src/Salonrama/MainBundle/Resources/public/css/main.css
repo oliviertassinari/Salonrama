@@ -324,14 +324,10 @@ background:#fff;
 a{
 color:#0367CB;
 text-decoration:none;
-outline-style:none;
+outline-style:none !important;
 cursor:pointer;
 }
 a:hover, .corps a:focus{
 color:#02509d;
 text-decoration:underline;
-}
-
-a img{
-border:0;
 }

@@ -11,7 +11,7 @@ font:700 14px arial,verdana,tahoma,helvetica,sans-serif;
 overflow:visible;
 border-radius:4px;
 box-shadow:0 1px rgba(0, 0, 0, 0.05) inset;
-outline:none;
+outline:0;
 display:inline-block;
 }
 .button-small img{
@@ -109,6 +109,7 @@ text-decoration:none !important;
 color:#fff !important;
 cursor:pointer;
 margin:0;
+outline:0;
 }
 .button-big:focus{
 border-color:#51A7E8;
