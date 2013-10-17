@@ -161,7 +161,7 @@ class Subdomain
 
 	$Num = "'.$id.'";
 
-	include("../sous_dom.php");
+	include("../subdomain.php");
 
 ?>';
 
