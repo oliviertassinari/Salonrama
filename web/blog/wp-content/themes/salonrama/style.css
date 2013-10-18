@@ -725,8 +725,6 @@ img.wp-smiley,
 
 .site {
 	background-color: #fff;
-	border-left: 1px solid #f2f2f2;
-	border-right: 1px solid #f2f2f2;
 	margin: 0 auto;
 	max-width: 1600px;
 	width: 100%;
@@ -2526,12 +2524,6 @@ footer.entry-meta {
  * 8.0 Media Queries
  * ----------------------------------------------------------------------------
  */
-
-@media (max-width: 1599px) {
-	.site {
-		border: 0;
-	}
-}
 
 @media (max-width: 1069px) {
 	.sidebar img.alignleft,
