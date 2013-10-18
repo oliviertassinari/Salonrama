@@ -42,7 +42,7 @@ class Assembler
 
 		$this->id = $id;
 
-		if(!isset($_SERVER['SERVER_NAME']) || $_SERVER['SERVER_NAME'] == '127.0.0.1'){
+		if(isset($_SERVER['SERVER_NAME']) && $_SERVER['SERVER_NAME'] == '127.0.0.1'){
 			$this->pathPublic = 'http://127.0.0.1/bundles/salonramamain/';
 		}
 		else{
