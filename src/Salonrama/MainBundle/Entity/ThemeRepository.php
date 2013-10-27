@@ -11,7 +11,8 @@ class ThemeRepository extends EntityRepository
         $themeAll = $this->findAll();
 		$themeList = array();
 
-		foreach ($themeAll as $key => $value) {
+		foreach($themeAll as $key => $value)
+		{
 			array_push($themeList, $value->getName());
 		}
 

@@ -2,7 +2,8 @@ web/bundles/*
 web/site/step/*
 web/site/subdomain/*
 web/site/online/*
-web/actualite/wp-config.php
+web/blog/wp-config.php
 app/cache/*
 app/logs/*
 app/config/parameters.yml
+desktop.ini
