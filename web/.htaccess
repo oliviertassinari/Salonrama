@@ -28,6 +28,9 @@ DirectoryIndex app.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    RewriteCond %{HTTP_HOST} ^salonrama.fr$ [NC]
+    RewriteRule ^(.*)$ http://www.salonrama.fr/$1 [L,R=301]
+
     RewriteCond %{HTTP_HOST} !^www.salonrama.fr$ [NC]
     RewriteCond %{HTTP_HOST} !^dev.salonrama.fr$ [NC]
     RewriteCond %{HTTP_HOST} !^prod.salonrama.fr$ [NC]
