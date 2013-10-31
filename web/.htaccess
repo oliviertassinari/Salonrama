@@ -28,10 +28,12 @@ DirectoryIndex app.php
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # RewriteCond %{HTTP_HOST} !www.salonrama.fr$ [NC]
-    # RewriteCond %{HTTP_HOST} ^([a-z0-9-]+).salonrama.fr$ [NC]
-    # RewriteCond %{REQUEST_URI} !^/site/subdomain/ [NC]
-    # RewriteRule ^(.*)$ site/subdomain/%1/index.php?page=$1 [L]
+    RewriteCond %{HTTP_HOST} !^www.salonrama.fr$ [NC]
+    RewriteCond %{HTTP_HOST} !^dev.salonrama.fr$ [NC]
+    RewriteCond %{HTTP_HOST} !^prod.salonrama.fr$ [NC]
+    RewriteCond %{HTTP_HOST} ^([a-z0-9-]+).salonrama.fr$ [NC]
+    RewriteCond %{REQUEST_URI} !^/site/subdomain/ [NC]
+    RewriteRule ^(.*)$ site/subdomain/%1/index.php?page=$1 [L]
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
