@@ -32,14 +32,7 @@ class DeploymentCommand extends ContainerAwareCommand
 		$env = $input->getOption('env');
 
 		$output->writeln('Parametres : location = '.$location. ' & env = '.$env.'.');
-/*
-		$cacheClear = $this->getApplication()->find('cache:clear');
 
-		$cacheClearArguments = array(
-		    'command' => 'cache:clear'
-		);
-		$cacheClear->run(new ArrayInput($cacheClearArguments), $output);
-*/
 		$doctrineSchemaUpdate = $this->getApplication()->find('doctrine:schema:update');
 		$doctrineSchemaUpdateArguments = array(
 		    'command' => 'doctrine:schema:update',
@@ -51,13 +44,17 @@ class DeploymentCommand extends ContainerAwareCommand
 		$assetsInstallArguments = array(
 		    'command' => 'assets:install web'
 		);
-
 		if($location == 'local')
 		{
 			$assetsInstallArguments['--symlink'] = true;
 		}
-
 		$assetsInstall->run(new ArrayInput($assetsInstallArguments), $output);
+
+		$asseticDump = $this->getApplication()->find('assetic:dump');
+		$asseticDumpArguments = array(
+			'write_to' => 'web'
+		);
+		$asseticDump->run(new ArrayInput($asseticDumpArguments), $output);
 
 		File::removeFolder('app/cache/prod/');
 		$output->writeln('Remove app/cache/prod/.');

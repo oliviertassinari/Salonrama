@@ -4,11 +4,15 @@
 	<meta charset="utf-8">
 	<link rel="shortcut icon" href="{{ asset('bundles/salonramamain/images/favicon.ico') }}"/>
 
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/normalize.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/main.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/font_awesome.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/frame.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/button.css') }}"/>
+	{% stylesheets 
+		'bundles/salonramamain/css/normalize.css'
+		'bundles/salonramamain/css/main.css'
+		'bundles/salonramamain/css/font_awesome.css'
+		'bundles/salonramamain/css/frame.css'
+		'bundles/salonramamain/css/button.css'
+		filter='cssrewrite' %}
+	<link rel="stylesheet" href="{{ asset_url }}"/>
+	{% endstylesheets %}
 
 	{% block head %}
 	{% endblock %}

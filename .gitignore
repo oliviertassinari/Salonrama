@@ -3,6 +3,7 @@ web/site/step/*
 web/site/subdomain/*
 web/site/online/*
 web/blog/wp-config.php
+web/css
 app/cache/*
 app/logs/*
 app/config/parameters.yml
