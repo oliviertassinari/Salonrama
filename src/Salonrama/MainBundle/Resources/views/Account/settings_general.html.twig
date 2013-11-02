@@ -3,11 +3,15 @@
 {% block head %}
 	<title>Paramètres - Général</title>
 
-    <link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/form.css') }}"/>
+	{% stylesheets 'bundles/salonramamain/css/form.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}"/>
+	{% endstylesheets %}
 {% endblock %}
 
 {% block javascript %}
-	<script src="{{ asset('bundles/salonramamain/js/form.js') }}"></script>
+	{% javascripts 'bundles/salonramamain/js/form.js' %}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 
 	<script>
 
