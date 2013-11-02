@@ -40,6 +40,7 @@ class DeploymentCommand extends ContainerAwareCommand
 		);
 		$doctrineSchemaUpdate->run(new ArrayInput($doctrineSchemaUpdateArguments), $output);
 
+
 		$assetsInstall = $this->getApplication()->find('assets:install');
 		$assetsInstallArguments = array(
 		    'command' => 'assets:install web'
