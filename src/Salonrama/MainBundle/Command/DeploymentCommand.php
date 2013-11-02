@@ -32,14 +32,7 @@ class DeploymentCommand extends ContainerAwareCommand
 		$env = $input->getOption('env');
 
 		$output->writeln('Parametres : location = '.$location. ' & env = '.$env.'.');
-/*
-		$cacheClear = $this->getApplication()->find('cache:clear');
 
-		$cacheClearArguments = array(
-		    'command' => 'cache:clear'
-		);
-		$cacheClear->run(new ArrayInput($cacheClearArguments), $output);
-*/
 		$doctrineSchemaUpdate = $this->getApplication()->find('doctrine:schema:update');
 		$doctrineSchemaUpdateArguments = array(
 		    'command' => 'doctrine:schema:update',
@@ -51,12 +44,10 @@ class DeploymentCommand extends ContainerAwareCommand
 		$assetsInstallArguments = array(
 		    'command' => 'assets:install web'
 		);
-
 		if($location == 'local')
 		{
 			$assetsInstallArguments['--symlink'] = true;
 		}
-
 		$assetsInstall->run(new ArrayInput($assetsInstallArguments), $output);
 
 		File::removeFolder('app/cache/prod/');
@@ -64,6 +55,18 @@ class DeploymentCommand extends ContainerAwareCommand
 
 		File::removeFolder('app/cache/dev/');
 		$output->writeln('Remove app/cache/dev/.');
+
+		File::removeFolder('web/css/');
+		$output->writeln('Remove web/css/.');
+
+		File::removeFolder('web/js/');
+		$output->writeln('Remove web/js/.');
+
+		$asseticDump = $this->getApplication()->find('assetic:dump');
+		$asseticDumpArguments = array(
+			'write_to' => 'web'
+		);
+		$asseticDump->run(new ArrayInput($asseticDumpArguments), $output);
 
 	    $output->writeln('Deployment done.');
 	}
