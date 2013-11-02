@@ -8,14 +8,13 @@ else{
 	$Page = 'index.php';
 }
 
+if($Page == 'app.php')
+{
+	$Page = 'index.php';
+}
+
 $Page = str_replace('../', '', $Page);
 $Num = str_replace('/', '', $Num);
-$Extension = strtolower(substr(strrchr($Page, '.'), 1));
-
-if($Extension == 'jpg')
-{
-	header('Content-type: image/jpeg');
-}
 
 if(!@include('../../online/'.$Num.'/'.$Page))
 {
