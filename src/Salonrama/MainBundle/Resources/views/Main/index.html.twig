@@ -6,8 +6,12 @@
 	<meta name="description" content="Créez le site internet de votre salon de coiffure en 5 minutes"/>
 	<meta name="keywords" content="création, créer, crée, site, internet, salon, coiffure, gratuit, coiffeur, web, vitrine, logiciel, en ligne, salonrama, tassi, conseil, agence, sans difficultés, facile, sans connaissances informatique, sans jargon informatique, simple, simplicité, hébergement, nom de domaine, outil, webmaster, gratuitement, construire, facile, débutant, pas cher, coder, programmer, propre, comment, annuaire, notoriété, pub"/>
 
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/slider.css') }}"/>
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/lightbox.css') }}"/>
+	{% stylesheets 'bundles/salonramamain/css/slider.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}"/>
+	{% endstylesheets %}
+	{% stylesheets 'bundles/salonramamain/css/lightbox.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}"/>
+	{% endstylesheets %}
 
 	<style>
 
@@ -114,8 +118,12 @@
 {% endblock %}
 
 {% block javascript %}
-	<script src="{{ asset('bundles/salonramamain/js/slider.js') }}"></script>
-	<script src="{{ asset('bundles/salonramamain/js/lightbox.js') }}"></script>
+	{% javascripts 'bundles/salonramamain/js/slider.js' %}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	{% javascripts 'bundles/salonramamain/js/lightbox.js' %}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 
 	<script>
 
