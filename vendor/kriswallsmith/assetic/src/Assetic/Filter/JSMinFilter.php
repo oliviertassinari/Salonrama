@@ -12,10 +12,9 @@
 namespace Assetic\Filter;
 
 use Assetic\Asset\AssetInterface;
-use Assetic\Filter\JSMin;
 
 /**
- * Filters assets through JsMin.
+ * Filters assets through JSMin.
  *
  * All credit for the filter itself is mentioned in the file itself.
  *

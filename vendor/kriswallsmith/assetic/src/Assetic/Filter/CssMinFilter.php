@@ -12,7 +12,6 @@
 namespace Assetic\Filter;
 
 use Assetic\Asset\AssetInterface;
-use Assetic\Filter\CssMin;
 
 /**
  * Filters assets through CssMin.

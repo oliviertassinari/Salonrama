@@ -56,11 +56,11 @@ class DeploymentCommand extends ContainerAwareCommand
 		File::removeFolder('app/cache/dev/');
 		$output->writeln('Remove app/cache/dev/.');
 
-		File::removeFolder('web/css/');
-		$output->writeln('Remove web/css/.');
+		File::emptyFolderFile('web/css/');
+		$output->writeln('Empty web/css/.');
 
-		File::removeFolder('web/js/');
-		$output->writeln('Remove web/js/.');
+		File::emptyFolderFile('web/js/');
+		$output->writeln('Empty web/js/.');
 
 		$asseticDump = $this->getApplication()->find('assetic:dump');
 		$asseticDumpArguments = array(
