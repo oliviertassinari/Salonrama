@@ -32,7 +32,8 @@ assetic:
     bundles:        ["SalonramaMainBundle"]
     #java: /usr/bin/java
     filters:
-        cssrewrite: ~
+        cssrewrite:
+            apply_to: "\.css$"
         cssmin: ~
         jsmin: ~
         #closure:
