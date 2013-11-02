@@ -50,17 +50,23 @@ class DeploymentCommand extends ContainerAwareCommand
 		}
 		$assetsInstall->run(new ArrayInput($assetsInstallArguments), $output);
 
-		$asseticDump = $this->getApplication()->find('assetic:dump');
-		$asseticDumpArguments = array(
-			'write_to' => 'web'
-		);
-		$asseticDump->run(new ArrayInput($asseticDumpArguments), $output);
-
 		File::removeFolder('app/cache/prod/');
 		$output->writeln('Remove app/cache/prod/.');
 
 		File::removeFolder('app/cache/dev/');
 		$output->writeln('Remove app/cache/dev/.');
+
+		File::removeFolder('web/css/');
+		$output->writeln('Remove web/css/.');
+
+		File::removeFolder('web/js/');
+		$output->writeln('Remove web/js/.');
+
+		$asseticDump = $this->getApplication()->find('assetic:dump');
+		$asseticDumpArguments = array(
+			'write_to' => 'web'
+		);
+		$asseticDump->run(new ArrayInput($asseticDumpArguments), $output);
 
 	    $output->writeln('Deployment done.');
 	}

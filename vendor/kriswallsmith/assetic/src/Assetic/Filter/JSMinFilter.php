@@ -12,6 +12,7 @@
 namespace Assetic\Filter;
 
 use Assetic\Asset\AssetInterface;
+use Assetic\Filter\JSMin;
 
 /**
  * Filters assets through JsMin.
@@ -29,6 +30,6 @@ class JSMinFilter implements FilterInterface
 
     public function filterDump(AssetInterface $asset)
     {
-        $asset->setContent(\JSMin::minify($asset->getContent()));
+        $asset->setContent(JSMin::minify($asset->getContent()));
     }
 }

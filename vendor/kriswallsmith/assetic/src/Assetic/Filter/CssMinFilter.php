@@ -12,6 +12,7 @@
 namespace Assetic\Filter;
 
 use Assetic\Asset\AssetInterface;
+use Assetic\Filter\CssMin;
 
 /**
  * Filters assets through CssMin.
@@ -69,6 +70,8 @@ class CssMinFilter implements FilterInterface
             }
         }
 
-        $asset->setContent(\CssMin::minify($asset->getContent(), $filters, $plugins));
+        $cssMin = new CssMin();
+
+        $asset->setContent($cssMin->run($asset->getContent()));
     }
 }

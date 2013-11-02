@@ -10,7 +10,7 @@
 		'bundles/salonramamain/css/font_awesome.css'
 		'bundles/salonramamain/css/frame.css'
 		'bundles/salonramamain/css/button.css'
-		filter='cssrewrite' %}
+		filter='cssrewrite,cssmin' %}
 	<link rel="stylesheet" href="{{ asset_url }}"/>
 	{% endstylesheets %}
 
@@ -109,7 +109,9 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('bundles/salonramamain/js/jquery.js') }}"></script>
+	{% javascripts 'bundles/salonramamain/js/jquery.js' filter='jsmin' %}
+    	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 
 	{% block javascript %}
 	{% endblock %}
