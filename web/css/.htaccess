@@ -1,8 +1,0 @@
-<IfModule mod_headers.c>
-    <FilesMatch "\.(js|css)$">
-        Header echo ^.*
-        Header unset Cookie
-        Header unset Set-Cookie
-    </FilesMatch>
-</IfModule>
-
