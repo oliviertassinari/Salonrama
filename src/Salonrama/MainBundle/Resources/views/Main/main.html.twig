@@ -17,6 +17,7 @@
 	{% endblock %}
 </head>
 <body>
+	{% spaceless %}
 	{% if add_noscript|default(false) == true %}
 	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
 	{% endif %}
@@ -117,5 +118,6 @@
 
 	{{ include("SalonramaMainBundle:Main:google_analytics.html.twig") }}
 	{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}
+	{% endspaceless %}
 </body>
 </html>
