@@ -9,8 +9,7 @@
 		'bundles/salonramamain/css/main.css'
 		'bundles/salonramamain/css/font_awesome.css'
 		'bundles/salonramamain/css/frame.css'
-		'bundles/salonramamain/css/button.css'
-		%}
+		'bundles/salonramamain/css/button.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}"/>
 	{% endstylesheets %}
 
@@ -51,7 +50,7 @@
 
 		<div id="menu">
 			<div id="nav">
-				<ul>
+				<ul> 
 		        	{% for key, value in nav %}
 		            <li{% if key in route or route in value[1]|keys %}
 		            	{% if value[1] %}
