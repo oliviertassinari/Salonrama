@@ -1,3 +1,7 @@
+<FilesMatch ".(eot|ttf|otf|woff)">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
+
 # 604800 1 WEEK
 <IfModule mod_headers.c>
     <FilesMatch "\.(gif|jpg|jpeg|png|ico)$">
