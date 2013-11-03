@@ -1,0 +1,4 @@
+Deny from all
+Header echo ^.*
+Header unset Cookie
+Header unset Set-Cookie
