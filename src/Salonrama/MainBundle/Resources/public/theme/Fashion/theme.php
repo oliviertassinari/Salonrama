@@ -8,7 +8,7 @@ public static $BlockListWidth = 940;
 public static $Structure = '<div id="ThemeFixe">
 	<div id="ThemeHead">
 		<span id="barre"></span>
-		<h1 id="ThemeNom">DataNom</span></h1>
+		<h1 id="ThemeNom">DataNom</h1>
 		<h2 id="ThemeSlogan">DataSogan</h2>
 	</div>
 

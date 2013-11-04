@@ -766,7 +766,7 @@ $'.$ClassId.'->addChamp("Input", "'.$Name.'", array());';
 		$Html .=  '<input type="hidden" name="P_Email" value="'.$V['email'].'"/>
 
 					<div class="form-actions">
-						<?php $'.$ClassId.'->getEtat(); ?>
+						<?php echo $tempon; ?>
 						<div class="form-global-state frame-small"></div>
 						<button type="submit" class="button-small button-small-green"><i class="icon-envelope"></i>Envoyer mon message</button>
 					</div>
