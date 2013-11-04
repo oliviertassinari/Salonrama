@@ -1,5 +1,8 @@
 # 604800 1 WEEK
 <IfModule mod_headers.c>
+    <FilesMatch ".(eot|ttf|otf|woff|xsl)">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
     <FilesMatch "\.(gif|jpg|jpeg|png|ico)$">
         Header set Cache-Control "max-age=604800, public"
     </FilesMatch>
@@ -33,7 +36,7 @@ DirectoryIndex app.php
 
     RewriteCond %{HTTP_HOST} !^www.salonrama.fr$ [NC]
     RewriteCond %{HTTP_HOST} !^dev.salonrama.fr$ [NC]
-    RewriteCond %{HTTP_HOST} !^prod.salonrama.fr$ [NC]
+    RewriteCond %{HTTP_HOST} !^static.salonrama.fr$ [NC]
     RewriteCond %{HTTP_HOST} ^([a-z0-9-]+).salonrama.fr$ [NC]
     RewriteCond %{REQUEST_URI} !^/site/subdomain/ [NC]
     RewriteRule ^(.*)$ site/subdomain/%1/index.php?page=$1 [L]

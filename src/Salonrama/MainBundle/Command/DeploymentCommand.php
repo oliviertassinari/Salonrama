@@ -33,12 +33,19 @@ class DeploymentCommand extends ContainerAwareCommand
 
 		$output->writeln('Parametres : location = '.$location. ' & env = '.$env.'.');
 
+		File::removeFolder('app/cache/prod/');
+		$output->writeln('Remove app/cache/prod/.');
+
+		File::removeFolder('app/cache/dev/');
+		$output->writeln('Remove app/cache/dev/.');
+
 		$doctrineSchemaUpdate = $this->getApplication()->find('doctrine:schema:update');
 		$doctrineSchemaUpdateArguments = array(
 		    'command' => 'doctrine:schema:update',
 		    '--force' => true
 		);
 		$doctrineSchemaUpdate->run(new ArrayInput($doctrineSchemaUpdateArguments), $output);
+
 
 		$assetsInstall = $this->getApplication()->find('assets:install');
 		$assetsInstallArguments = array(
@@ -50,17 +57,17 @@ class DeploymentCommand extends ContainerAwareCommand
 		}
 		$assetsInstall->run(new ArrayInput($assetsInstallArguments), $output);
 
+		File::emptyFolderFile('web/css/');
+		$output->writeln('Empty web/css/.');
+
+		File::emptyFolderFile('web/js/');
+		$output->writeln('Empty web/js/.');
+
 		$asseticDump = $this->getApplication()->find('assetic:dump');
 		$asseticDumpArguments = array(
 			'write_to' => 'web'
 		);
 		$asseticDump->run(new ArrayInput($asseticDumpArguments), $output);
-
-		File::removeFolder('app/cache/prod/');
-		$output->writeln('Remove app/cache/prod/.');
-
-		File::removeFolder('app/cache/dev/');
-		$output->writeln('Remove app/cache/dev/.');
 
 	    $output->writeln('Deployment done.');
 	}

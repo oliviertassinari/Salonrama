@@ -9,15 +9,15 @@
 		'bundles/salonramamain/css/main.css'
 		'bundles/salonramamain/css/font_awesome.css'
 		'bundles/salonramamain/css/frame.css'
-		'bundles/salonramamain/css/button.css'
-		filter='cssrewrite' %}
-	<link rel="stylesheet" href="{{ asset_url }}"/>
+		'bundles/salonramamain/css/button.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}"/>
 	{% endstylesheets %}
 
 	{% block head %}
 	{% endblock %}
 </head>
 <body>
+	{% spaceless %}
 	{% if add_noscript|default(false) == true %}
 	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
 	{% endif %}
@@ -51,7 +51,7 @@
 
 		<div id="menu">
 			<div id="nav">
-				<ul>
+				<ul> 
 		        	{% for key, value in nav %}
 		            <li{% if key in route or route in value[1]|keys %}
 		            	{% if value[1] %}
@@ -109,12 +109,15 @@
 		</div>
 	</div>
 
-	<script src="{{ asset('bundles/salonramamain/js/jquery.js') }}"></script>
+	{% javascripts 'bundles/salonramamain/js/jquery.js' %}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 
 	{% block javascript %}
 	{% endblock %}
 
 	{{ include("SalonramaMainBundle:Main:google_analytics.html.twig") }}
 	{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}
+	{% endspaceless %}
 </body>
 </html>

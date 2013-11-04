@@ -5,11 +5,15 @@
 {% block head %}
 	<title>{% block title %}{% endblock %}</title>
 
-	<link rel="stylesheet" href="{{ asset('bundles/salonramamain/css/help.css') }}"/>
+	{% stylesheets 'bundles/salonramamain/css/help.css' %}
+		<link rel="stylesheet" href="{{ asset_url }}"/>
+	{% endstylesheets %}
 {% endblock %}
 
 {% block javascript %}
-	<script src="{{ asset('bundles/salonramamain/js/smartload.js') }}"></script>
+	{% javascripts 'bundles/salonramamain/js/smartload.js' %}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
 
 	<script>
 

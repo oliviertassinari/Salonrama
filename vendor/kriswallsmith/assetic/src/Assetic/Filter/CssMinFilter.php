@@ -69,6 +69,8 @@ class CssMinFilter implements FilterInterface
             }
         }
 
-        $asset->setContent(\CssMin::minify($asset->getContent(), $filters, $plugins));
+        $cssMin = new CssMin();
+
+        $asset->setContent($cssMin->run($asset->getContent()));
     }
 }
