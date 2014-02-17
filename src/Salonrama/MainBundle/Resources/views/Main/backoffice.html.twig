@@ -1,0 +1,30 @@
+{% extends "SalonramaMainBundle:Main:main_2.html.twig" %}
+
+{% block head %}
+	<title>Backoffice</title>
+	
+
+{% endblock %}
+
+{% block body %}
+
+
+
+	<h1>Backoffice</h1>
+	
+	
+  {% for subdomain in themeList %}
+   <li>{{ subdomain }}</li>
+  {% endfor %}
+
+	
+Sites créés 
+<hr/>
+Liste des sites créés : <hr/>
+
+{% endblock %}
+
+
+
+
+

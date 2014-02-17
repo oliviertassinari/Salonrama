@@ -118,26 +118,37 @@
 	font-size:25px;
 	color:#5A5A5A;
 	}
+
+	article
+	{
+	font-size:16px;
+	}
+
 	</style>
 {% endblock %}
 
 {% block javascript %}
-	<script>
 
-	$(document).ready(function()
-	{
-		$('a[href^="#"]').click(function(){ 
-			var id = $(this).attr("href");
-			var offset = $(id).offset().top
-			$('html, body').animate({scrollTop: offset}, 'slow');
-			return false; 
-		}); 
-	});
+<script src="bundles/salonramamain/js/jquery.readmore.js"></script>
 
-	</script>
+  <script>
+  
+ $('article').readmore({
+  speed: 200,
+  maxHeight: 0,
+  moreLink: '<a style="font-size: 13px" href="#">>> En savoir plus</a>',
+  lessLink: '<a href="#"></a>',
+  sectionCSS: 'display: block; margin-left:80px;'
+});
+  
+  </script>
+
+	
 {% endblock %}
 
 {% block body %}
+
+
 	<div class="center">
 		<h1>Votre salon sur internet</h1>
 		<h3>Le concept Salonrama</h3> 
@@ -178,29 +189,30 @@
 	<div class="argument">
 		<i class="icon-group"></i>
 		<h2>Trouvez de nouveaux clients</h2>
-		<p>Votre site internet sera enregistré dans les moteurs de recherche tels que Google, Bing ou Yahoo.<br>
-			Lorsqu’une personne cherchera alors un salon de coiffure dans votre ville, il verra votre site internet.</p>
-		<div class="clear"></div>
+		<article>
+		Votre site internet sera enregistré dans les moteurs de recherche tels que Google, Bing ou Yahoo.<br>
+		Lorsqu’une personne cherchera alors un salon de coiffure dans votre ville, il verra votre site internet.
+		</article>
 	</div>
 
 	<div class="argument">
 		<i class="icon-time"></i>
 		<h2>Ne perdez plus votre temps</h2>
-		<p>Rien de plus désagréable quand vous vous occupez d'un client lorsque le téléphone ne cesse de sonner. Le temps passé à répondre nuit alors à votre concentration et pourrait déranger votre client. Avec un site internet et aux informations présentes (horaires d’ouverture, tarifs…), le nombre d’appels diminuera fortement.</p>
+		<article>Rien de plus désagréable quand vous vous occupez d'un client lorsque le téléphone ne cesse de sonner. Le temps passé à répondre nuit alors à votre concentration et pourrait déranger votre client. Avec un site internet et aux informations présentes (horaires d’ouverture, tarifs…), le nombre d’appels diminuera fortement.</article>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument">
 		<i class="icon-bullhorn"></i>
 		<h2>Augmentez votre notoriété</h2>
-		<p>Sur votre site internet vous pourrez ajouter des photos de vos réalisations et ainsi impressionner vos visiteurs. </p>
+		<article>Sur votre site internet vous pourrez ajouter des photos de vos réalisations et ainsi impressionner vos visiteurs. </article>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument">
 		<i class="icon-cut"></i>
 		<h2>Présentez votre savoir-faire</h2>
-		<p>Sur votre site internet vous pourrez ajouter des photos de vos réalisations et ainsi impressionner vos visiteurs. </p>
+		<article>Sur votre site internet vous pourrez ajouter des photos de vos réalisations et ainsi impressionner vos visiteurs. </article>
 		<div class="clear"></div>
 	</div>
 
@@ -263,50 +275,50 @@
 	<div class="argument">
 		<i class="icon-thumbs-up-alt"></i>
 		<h2>C'est facile !</h2>
-		<p>Vous créez le site de votre salon de coiffure en temps réel en ligne, comme sur un logiciel de traitement de texte. Il n'y a rien à installer sur votre ordinateur et aucune connaissance informatique n'est requise.</p>
+		<article>Vous créez le site de votre salon de coiffure en temps réel en ligne, comme sur un logiciel de traitement de texte. Il n'y a rien à installer sur votre ordinateur et aucune connaissance informatique n'est requise.</p>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument">
 		<i class="icon-cut"></i>
 		<h2>Exclusivement dédié aux salons de coiffure</h2>
-		<p>Nous connaissons parfaitement les salons de coiffure et sommes ainsi mieux à même de répondre à vos besoins. Votre site internet sera pré-rempli avec les pages les plus demandés pour un salon !</p>
+		<article>Nous connaissons parfaitement les salons de coiffure et sommes ainsi mieux à même de répondre à vos besoins. Votre site internet sera pré-rempli avec les pages les plus demandés pour un salon !</article>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument" >
 		<i class="icon-briefcase"></i>
 		<h2>Vous créez un site professionnel</h2>
-		<p>Choissisez le thème de votre site parmi liste proposée et personnalisez le pour vous démarquer !</p>
+		<article>Choissisez le thème de votre site parmi liste proposée et personnalisez le pour vous démarquer !</article>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument" >
 		<i class="icon-pencil"></i>
 		<h2>Modifiez votre site à tout moment</h2>
-		<p>Ne passer pas par quelqu'un pour modifier votre site. Modifiez-le vous même, immédiatement et sans perdre de temps. L'internet n'attend pas !</p>
+		<article>Ne passer pas par quelqu'un pour modifier votre site. Modifiez-le vous même, immédiatement et sans perdre de temps. L'internet n'attend pas !</article>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument">
 		<i class="icon-google-plus-sign"></i>
 		<h2>Le site de votre salon en première page sur les moteurs de recherche</h2>
-		<p>Soyez visible immédiatement sur les moteurs de recherche (ex: Google) grâce aux outils techniques spécifiquement développés par Salonrama et nos conseils  ! </p>
+		<article>Soyez visible immédiatement sur les moteurs de recherche (ex: Google) grâce aux outils techniques spécifiquement développés par Salonrama et nos conseils  ! </article>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument">
 		<i class="icon-minus-sign"></i>
 		<h2>Aucune publicité sur votre site</h2>
-		<p>Nous avons décidé de ne pas mettre de publicité sur votre site car elles pourraient distraire vos clients et nuire à votre image.</p>
+		<article>Nous avons décidé de ne pas mettre de publicité sur votre site car elles pourraient distraire vos clients et nuire à votre image.</article>
 		<div class="clear"></div>
 	</div>
 
 	<div class="argument">
 		<i class="icon-comments"></i>
 		<h2>Une aide gratuite avec une réponse rapide</h2>
-		<p>Parce que nous savons que l'internet n'est pas toujours facile à prendre en main, nous sommes présent pour vous aider à tout moment pour la création de votre site ou vous aider à le faire connaître. 
-		</p>
+		<article>Parce que nous savons que l'internet n'est pas toujours facile à prendre en main, nous sommes présent pour vous aider à tout moment pour la création de votre site ou vous aider à le faire connaître. 
+		</article>
 		<div class="clear"></div>
 	</div>
 
@@ -343,7 +355,7 @@
 	<div class="fonctionnalite">
 		<img class="gauche" src="{{ asset('bundles/salonramamain/images/presentation/traitementdetexte.jpg') }}" alt="traitement_de_texte"/>
 		<h2>Facile, comme un logiciel de traitement de texte </h2>
-		<p>La modification de votre site se fait directement en ligne et en temps réel. Parce que nous savons que la création d'un site internet n'est pas évidente, nous avons décidé de la simplifier au maximum. Pour modifier un texte, cliquez dessus, écrivez, et voilà ! Comme sur Word !</p>
+		La modification de votre site se fait directement en ligne et en temps réel. Parce que nous savons que la création d'un site internet n'est pas évidente, nous avons décidé de la simplifier au maximum. Pour modifier un texte, cliquez dessus, écrivez, et voilà ! Comme sur Word !
 		<div class="clear"></div>
 	</div>
 
@@ -351,7 +363,7 @@
 	<div class="fonctionnalite">
 		<img class="droite" src="{{ asset('bundles/salonramamain/images/presentation/menu.jpg') }}" alt="menu"/>
 		<h2>Votre site déjà pré-rempli ! </h2>
-		<p>Parce que Salonrama est exclusivement dédié aux salons de coiffure, nous connaissons au mieux ce qu'attendent vos clients sur votre site. Vos pages sont alors pré-rempli et vous facilitent la vie !</p>
+		Parce que Salonrama est exclusivement dédié aux salons de coiffure, nous connaissons au mieux ce qu'attendent vos clients sur votre site. Vos pages sont alors pré-rempli et vous facilitent la vie !</p>
 		<div class="clear"></div>
 	</div>
 
