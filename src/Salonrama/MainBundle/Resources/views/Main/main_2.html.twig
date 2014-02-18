@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="{{ asset('bundles/salonramamain/images/favicon.ico') }}"/>
+
+	{% stylesheets 
+		'bundles/salonramamain/css/normalize.css'
+		'bundles/salonramamain/css/main.css'
+		'bundles/salonramamain/css/font_awesome.css'
+		'bundles/salonramamain/css/frame.css'
+		'bundles/salonramamain/css/button.css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}"/>
+	{% endstylesheets %}
+
+	{% block head %}
+	{% endblock %}
+</head>
+<body>
+	{% if add_noscript|default(false) == true %}
+	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
+	{% endif %}
+
+	<div id="main">
+		<div id="header">
+			<a href="{{ path('salonrama_main_index') }}" title="Accueil"><img src="{{ asset('bundles/salonramamain/images/logo.png') }}" width="300" height="43"/></a><br/>
+			<h1>Créez le site internet de votre salon de coiffure</h1>
+			<div id="header-top-right">
+				{% if app.user and is_granted('ROLE_USER') %}
+				<b>{{ app.user.email }}</b> | <a href="{{ path('salonrama_main_logout') }}"><i class="icon-unlock-alt"></i>Se déconnecter</a>
+				{% else %}
+				<a href="{{ path('salonrama_main_login') }}"><i class="icon-lock"></i>Se connecter</a>
+				{% endif %}
+			</div>
+		</div>
+
+		{% set nav = {
+			'salonrama_main_index' : ['Accueil', []],
+			'salonrama_main_presentation' : ['Présentation', []],
+			'salonrama_main_blog_index' : ['Actualités', []],
+			'salonrama_main_help' : ['Aide', []],
+			'salonrama_main_account' : ['Mon compte', {
+					'salonrama_main_account_site': 'Mon site',
+					'salonrama_main_account_salon': 'Mon salon',
+					'salonrama_main_account_settings': 'Paramètres'
+				}]
+		} %}
+		{% set route = app.request.attributes.get('_route') %}
+		{% set nav_sub = false %}
+
+		<div id="menu">
+			<div id="nav">
+				<ul>
+		        	{% for key, value in nav %}
+		            <li{% if key in route or route in value[1]|keys %}
+		            	{% if value[1] %}
+		            	{% set nav_sub = true %}
+		            	{% endif %} class="select"{% endif %}>
+		            	<a href="{{ path(key) }}" title="{{ value[0] }}"{% if loop.first %} class="first-child"{% endif %}>
+	            			{% if loop.first %}
+	            			<i class="icon-home"></i>
+	            			{% else %}
+	            			{{ value[0] }}
+	            			{% endif %}
+		            	</a>
+		            	<div class="nav-sub">
+		            		<ul>
+			            		{% for key_sub, value_sub in value[1] %}
+			            		<li{% if key_sub in route %} class="select"{% endif %}><a href="{{ path(key_sub) }}">{{ value_sub }}</a></li>
+			            		{% endfor %}
+		            		</ul>
+		            	</div>
+		           	</li>
+		        	{% endfor %}
+		    	</ul>
+		    	<span class="clear"></span>
+			</div>
+			{% if nav_sub %}
+			<div id="nav-sub"></div>
+			{% endif %}
+		</div>
+
+		<div id="corps" class="corps">
+			{% block body %}
+			{% endblock %}
+		</div>
+
+		<div id="footer">
+			<div id="footer-link">
+				<a href="{{ path('salonrama_main_contact') }}">Contact</a>
+				| <a href="{{ path('salonrama_main_presse') }}">Presse</a>
+				| <a href="{{ path('salonrama_main_about') }}">A propos</a>
+				| <a href="{{ path('salonrama_main_legal') }}">Mentions légales</a>
+			</div>
+			<div id="footer-copyright">
+				<a href="{{ path('salonrama_main_index') }}">Copyright © {{ 'now'|date("Y") }}<strong> - Salonrama</strong></a>
+			</div>
+			<div class="clear"></div>
+			<div id="footer-social">
+				<strong>Restons connectés</strong>
+				<ul>
+					<li><a href="https://twitter.com/salonrama" target="_blank"><i class="icon-twitter"></i>Twitter</a></li>
+					<li><a href="https://www.facebook.com/salonrama" target="_blank"><i class="icon-facebook-sign"></i>Facebook</a></li>
+					<li><a href="http://www.youtube.com/user/salonrama" target="_blank"><i class="icon-youtube"></i>Youtube</a></li>
+				</ul>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+
+	{% javascripts 'bundles/salonramamain/js/jquery.js' %}
+		<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	{% block javascript %}
+	{% endblock %}
+
+	{{ include("SalonramaMainBundle:Main:google_analytics.html.twig") }}
+	{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}
+</body>
+</html>
+
+	<?php
+
+require('{{ asset("bundles/salonramamain/backoffice/setup.php") }}');
+try{
+
+
+}
+catch(PDOException $e){}
+
+?>	

@@ -173,3 +173,6 @@ salonrama_main_account_settings_password:
 salonrama_main_account_settings_delete:
     pattern:  /mon_compte/settings/delete
     defaults: { _controller: SalonramaMainBundle:Account/SettingsDelete:delete }
+salonrama_main_backoffice:
+    pattern:  /backoffice
+    defaults: { _controller: SalonramaMainBundle:Backoffice:backoffice }
