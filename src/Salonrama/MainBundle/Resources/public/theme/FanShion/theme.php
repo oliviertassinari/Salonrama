@@ -3,7 +3,7 @@
 class FanShion
 {
 
-public static $BlockListWidth = 600;
+public static $BlockListWidth = 768;
 
 public static $Structure = '<div id="ThemeFixe">
 	<div id="ThemeHead">

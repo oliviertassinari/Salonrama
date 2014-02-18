@@ -33,6 +33,12 @@ class DeploymentCommand extends ContainerAwareCommand
 
 		$output->writeln('Parametres : location = '.$location. ' & env = '.$env.'.');
 
+		File::removeFolder('app/cache/prod/');
+		$output->writeln('Remove app/cache/prod/.');
+
+		File::removeFolder('app/cache/dev/');
+		$output->writeln('Remove app/cache/dev/.');
+
 		$doctrineSchemaUpdate = $this->getApplication()->find('doctrine:schema:update');
 		$doctrineSchemaUpdateArguments = array(
 		    'command' => 'doctrine:schema:update',
@@ -50,12 +56,6 @@ class DeploymentCommand extends ContainerAwareCommand
 			$assetsInstallArguments['--symlink'] = true;
 		}
 		$assetsInstall->run(new ArrayInput($assetsInstallArguments), $output);
-
-		File::removeFolder('app/cache/prod/');
-		$output->writeln('Remove app/cache/prod/.');
-
-		File::removeFolder('app/cache/dev/');
-		$output->writeln('Remove app/cache/dev/.');
 
 		File::emptyFolderFile('web/css/');
 		$output->writeln('Empty web/css/.');

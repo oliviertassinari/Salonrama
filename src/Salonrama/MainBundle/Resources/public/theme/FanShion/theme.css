@@ -11,7 +11,7 @@ font-size:14px;
 }
 
 #ThemeFixe{
-width:600px;
+width:800px;
 padding-bottom:20px;
 margin-left:70px;
 }
@@ -40,15 +40,14 @@ font-family:"Century Gothic";
 #ThemeMenu{
 margin:auto;
 text-align:right;
-margin-bottom:5px;
+margin-bottom:10px;
 margin-top:40px;
-width:630px;
 }
 #ThemeMenu ul{ 
 display:inline;
 }
 #ThemeMenu li{ 
-display:inline;
+display:inline-block;
 border-right:1px solid white;
 padding-left:10px;
 }
@@ -64,7 +63,6 @@ font-weight:700;
 
 #ThemeCon{
 background: rgba(59, 59, 59, 0.8);
-width:600px;
 border:1px #666666 solid;
 padding:20px 15px;
 }

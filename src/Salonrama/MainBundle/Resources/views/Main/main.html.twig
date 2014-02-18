@@ -9,8 +9,7 @@
 		'bundles/salonramamain/css/main.css'
 		'bundles/salonramamain/css/font_awesome.css'
 		'bundles/salonramamain/css/frame.css'
-		'bundles/salonramamain/css/button.css'
-		%}
+		'bundles/salonramamain/css/button.css' %}
 		<link rel="stylesheet" href="{{ asset_url }}"/>
 	{% endstylesheets %}
 
@@ -18,6 +17,7 @@
 	{% endblock %}
 </head>
 <body>
+	{% spaceless %}
 	{% if add_noscript|default(false) == true %}
 	{{ include("SalonramaMainBundle:Main:noscript.html.twig") }}
 	{% endif %}
@@ -51,7 +51,7 @@
 
 		<div id="menu">
 			<div id="nav">
-				<ul>
+				<ul> 
 		        	{% for key, value in nav %}
 		            <li{% if key in route or route in value[1]|keys %}
 		            	{% if value[1] %}
@@ -118,5 +118,6 @@
 
 	{{ include("SalonramaMainBundle:Main:google_analytics.html.twig") }}
 	{{ include("SalonramaMainBundle:Main:feedback.html.twig") }}
+	{% endspaceless %}
 </body>
 </html>

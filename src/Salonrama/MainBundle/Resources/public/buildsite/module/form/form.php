@@ -4,17 +4,8 @@ function EmailModuleForm($LocFileHome, $Num)
 {
 	if(isset($_POST['P_Email']) && $_POST['P_Email'] != '' && sizeof($_POST) > 1)
 	{
-		require_once($LocFileHome.'php/email.php');
-		require_once($LocFileHome.'php/Env.php');
-		require_once($LocFileHome.'php/Bdd.php');
-		require_once($LocFileHome.'admin/get-site-url.php');
-
-		connectBdd();
-		selectBdd('compte');
-
-		$SiteUrl = getSiteUrl($Num);
-
-		mysql_close();
+		require_once('email.php');
+		require_once('Env.php');
 
 		$Message = '<em><ins>Champs remplit par le visiteur</ins></em> :<br/><br/>';
 
