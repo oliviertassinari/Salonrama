@@ -1,6 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
 GModule.ClassList['Form'] = {
 
 Module: function()

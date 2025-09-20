@@ -126,7 +126,7 @@ open: function(Nom, Question, Act, CallBack, LocFileHome)
 		if(!LocFileHome){
 			LocFileHome = '';
 		}
-	
+
 		this.Busy = true;
 		this.CallBack = CallBack;
 
@@ -164,7 +164,7 @@ valide: function(event)
 		}
 	}
 	else
-	{	
+	{
 		var Var = this.Cad.Cadre.getElementsByTagName('input')[0].value;
 
 		this.CallBack(Var);
@@ -185,9 +185,6 @@ close: function()
 };
 
 
-
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
 
 var GCadre = {
 
@@ -254,7 +251,7 @@ event: function(event)
 		if(Ot.hasClass(Obj, 'CadGlobal') || Ot.hasClass(Obj, 'CadImagePreVis'))
 		{
 			isOut = false;
-			Obj = false; 
+			Obj = false;
 		}
 		else{
 			Obj = Obj.parentNode;
@@ -380,7 +377,7 @@ close: function()
 	document.body.removeChild(document.getElementById('CadScreenFull'));
 	document.body.removeChild(document.getElementById('CadScreenFullClose'));
 	this.Cad.suprFont();
-	
+
 	if(Ot.isFonc(this.CallBack))
 	{
 		this.CallBack();
@@ -463,7 +460,7 @@ closeAll: function(event)
 		{
 			if(Ot.hasClass(Obj, 'CadWin')){
 				isOut = false;
-				Obj = false; 
+				Obj = false;
 			}
 			else{
 				Obj = Obj.parentNode;
@@ -526,7 +523,7 @@ var CadContextMenu = {
 
 open: function(event)
 {
-	Ot.cancelEvent(event); 
+	Ot.cancelEvent(event);
 
 	var Obj = document.getElementById('CadContextMenu');
 	var PosObjRelative = Ot.getObjPosition(GWys.Act.Iframe);
@@ -588,7 +585,7 @@ open: function(event, Mode)
 	{
 		if(Mode == 'Police'){
 			var td = 0;
-		} 
+		}
 		else{
 			var td = 2;
 		}
@@ -615,7 +612,7 @@ setVarAct: function(Mode)
 	if(Mode == 'Police'){
 		var nbr = 3;
 		var VarDef = GWys.PoliceAct;
-	} 
+	}
 	else{
 		var nbr = 2;
 		var VarDef = GWys.SizeAct;
@@ -637,7 +634,7 @@ resetVarAct: function(Mode)
 {
 	if(Mode == 'Police'){
 		var nbr = 3;
-	} 
+	}
 	else{
 		var nbr = 2;
 	}
@@ -692,7 +689,7 @@ open: function()
 setRecent: function(Couleur)
 {
 	var CadCouleurRecent = document.getElementById('CadCouleurRecent');
-	var TdList = CadCouleurRecent.getElementsByTagName('table')[0].getElementsByTagName('td'); 
+	var TdList = CadCouleurRecent.getElementsByTagName('table')[0].getElementsByTagName('td');
 	var isIn = false;
 
 	var a = document.createElement('a');
@@ -707,7 +704,7 @@ setRecent: function(Couleur)
 	}
 
 	if(isIn == false)
-	{	
+	{
 		CadCouleurRecent.style.display = 'block';
 		TdList[9].firstChild.style.background = Couleur;
 		TdList[9].style.visibility = 'visible';
@@ -852,7 +849,7 @@ startMap: function(event)
 	CadACouleur.moveMap(event);
 },
 
-moveMap: function(event) 
+moveMap: function(event)
 {
 	Ot.cancelEvent(event);
 
@@ -1045,7 +1042,7 @@ setTable: function(Nom)
 	Html += '</table>';
 
 	CadCaractereTable.innerHTML = Html;
-	
+
 	this.setTableEvent(CadCaractereTable);
 },
 
@@ -1261,7 +1258,7 @@ modif: function()
 remove: function()
 {
 	this.close();
-	CadLien.removeLien(this.Lien);	
+	CadLien.removeLien(this.Lien);
 	GWys.PreSuiv('Save');
 },
 
@@ -1398,7 +1395,7 @@ open: function(Lien)
 	this.setExempleLien(CadLienTxt);
 
 	CadLienSiteInput.innerHTML = '<option value="empty" disabled="disabled" selected="selected">Sélectionner une page :</option>';
-	
+
 	for(var i = 0; i < GPage.List.length; i++)
 	{
 		var option = document.createElement('option');
@@ -1802,7 +1799,7 @@ setDragList: function(isOnly)
 },
 
 GDrag: function()
-{	
+{
 	var CadPageList = document.getElementById('CadPageList').childNodes;
 
 	this.ModifList = [];
@@ -1902,7 +1899,7 @@ remove: function()
 		else
 		{
 			this.ModifAct = this.ModifList[this.ModifList.length-1].id;
-		}		
+		}
 
 		this.setDragList();
 	}
@@ -2201,7 +2198,7 @@ setPage: function(Page)
 	else if(Page == 'Url')
 	{
 		document.getElementById('CadImageCon').innerHTML = '<div id="CadImageUrlCon">'+
-																'Adresse de l\'image (.jpg .jpeg .jpe .gif .png), 10Mo max :<br/>'+																
+																'Adresse de l\'image (.jpg .jpeg .jpe .gif .png), 10Mo max :<br/>'+
 																'<input size="60" class="FormInputText"/>'+
 																'<div class="TextLittle">exemple : http://www.salonrama.fr/image/logo.png</div>'+
 															'</div>';
@@ -2222,7 +2219,7 @@ setImageList: function()
 	var CadImageList = document.getElementById('CadImageList');
 	var CadImageSelect;
 	var Nbr = Ot.getArrayLength(GImage.List);
-	
+
 	if(Nbr > 1){
 		var Info = ' ('+Nbr+' images)';
 	}
@@ -2411,7 +2408,7 @@ addBdd: function(Nom)
 			alert('Erreur : ' + e);
 		},
 		complete: function(jqXHR, textStatus) {
-			bsCadreLoad.hide();				
+			bsCadreLoad.hide();
 		}
 	});
 },
@@ -2444,7 +2441,7 @@ addUrl: function(R)
 				GFormF.setChampErr(Input, Input.nextSibling, false, e);
 			},
 			complete: function(jqXHR, textStatus) {
-				bsCadreLoad.hide();				
+				bsCadreLoad.hide();
 			}
 		});
 	}

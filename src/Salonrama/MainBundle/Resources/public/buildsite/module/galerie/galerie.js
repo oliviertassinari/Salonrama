@@ -1,6 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
 GModule.ClassList['Galerie'] = {
 
 Module: function()
@@ -344,8 +341,8 @@ move: function(event)
 
 	var Left = MousePosition.x - data.dX;
 	var	Top = MousePosition.y - data.dY + Parent.parentNode.scrollTop;
-	Left = (Left < 0) ? 0 : Left; 
-	Top = (Top < 0) ? 0 : Top; 
+	Left = (Left < 0) ? 0 : Left;
+	Top = (Top < 0) ? 0 : Top;
 
 	Ot.setLeftTop(Obj, Left, Top);
 
@@ -379,7 +376,7 @@ move: function(event)
 stop: function()
 {
 	var Class = GModule.ClassList['Galerie'];
-	
+
 	Ot.stopEvent(document ,'mousemove', Class.Drag.move);
 	Ot.stopEvent(document, 'mouseup', Class.Drag.stop);
 
@@ -505,7 +502,7 @@ setBlock: function()
 		$(this.ModuleObj).css('height', $(this.ModuleObj).width()*0.5625+'px');
 
 	    Galleria.loadTheme('/bundles/salonramamain/buildsite/module/galerie/galleria.classic.js');
-	    Galleria.run(this.ModuleObj, { 
+	    Galleria.run(this.ModuleObj, {
 	    	dataSource: data,
 	    	autoplay: 7000,
 	    	height: 0.5625

@@ -1,6 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
 var CClient;
 
 function Initi()
@@ -495,11 +492,11 @@ getSizeOpt: function(ActW, ActH, OptW, OptH)
 	var testH = Math.round((OptW / ActW) * ActH);
 	var testW = Math.round((OptH / ActH) * ActW);
 
-	if(testH > OptH){ 
-		OptW = testW; 
+	if(testH > OptH){
+		OptW = testW;
 	}
 	else{
-		OptH = testH; 
+		OptH = testH;
 	}
 
 	return { w: OptW, h: OptH };
@@ -596,7 +593,7 @@ move: function(event)
 	var Parent = Obj.parentNode;
 	var MousePosition = Ot.getMousePosition(event);
 	var Top = MousePosition.y - GDrag.data.dY + Parent.scrollTop;
-	Top = (Top < -10) ? -10 : Top; 
+	Top = (Top < -10) ? -10 : Top;
 
 	Obj.style.top = Top + 'px';
 
@@ -783,7 +780,7 @@ actLoadEtat: function(Type)
 	if(this.LoadList[Type].Etat == 'Chargement')
 	{
 		var Script = this.LoadList[Type].Script;
-		
+
 		for(var i in Script)
 		{
 			if(Script[i] == 0){

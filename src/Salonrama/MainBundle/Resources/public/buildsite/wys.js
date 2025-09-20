@@ -1,6 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
 var GWys = {
 
 List: {},
@@ -236,7 +233,7 @@ load: function(Id, Mode)
 			GWys.resize(Wys);
 		});
 		Ot.addEvent(Wys.Win.document, 'contextmenu', CadContextMenu.open);
-	
+
 		Ot.addEvent(Wys.Win.document, 'keyup', function(event)
 		{
 			if(GWys.Act.Win)
@@ -277,7 +274,7 @@ load: function(Id, Mode)
 				GWys.PreSuiv('Save');
 			}
 		});
-		
+
 		if(CClient[0] == 'IExploreur' || CClient[0] == 'Opera' || CClient[0] == 'Safari')
 		{
 			Ot.addEvent(Wys.Win.document, 'keydown', GWys.BugEnter);
@@ -291,7 +288,7 @@ load: function(Id, Mode)
 	}
 },
 
-BugEnter: function() 
+BugEnter: function()
 {
 	GWys.Act.Doc.execCommand('formatblock', false, '<div>');
 	Ot.stopEvent(GWys.Act.Win.document, 'keydown', GWys.BugEnter);
@@ -736,7 +733,7 @@ resize: function(Wys)
 			var BlockColone = GBlock.isAChildOfColone(GBlock.getBlockObj(Iframe));
 			if(Wys.Type == 'Block' && BlockColone != false)
 			{
-				BlockColone.style.height = GBlock.getColoneHeightOpt(BlockColone) + 'px'; 
+				BlockColone.style.height = GBlock.getColoneHeightOpt(BlockColone) + 'px';
 			}
 		}});
 	}
@@ -814,7 +811,7 @@ showMove: function(event)
 			if(Obj.id == 'CadPolice' || Obj.id == 'CadTaille' || Obj.id == 'CadCouleur')
 			{
 				OverWin = true;
-				Obj = false; 
+				Obj = false;
 			}
 			else{
 				Obj = Obj.parentNode;
@@ -959,8 +956,8 @@ getSave: function(Iframe)
 		var Html = this.List[Id].DefHtml;
 	}
 
-	Html = Html.replace(/<[^>]*>/g, function(m){ return m.toLowerCase();}); //Replace le nom des elements par des minuscules 
-	Html = Html.replace(/<[^>]*>/g, function(m){  // Replace le nom des atribue par des minuscules 
+	Html = Html.replace(/<[^>]*>/g, function(m){ return m.toLowerCase();}); //Replace le nom des elements par des minuscules
+	Html = Html.replace(/<[^>]*>/g, function(m){  // Replace le nom des atribue par des minuscules
 		m = m.replace(/ [^=]+=/g, function(m2){ return m2.toLowerCase(); });
 		return m;
 	});

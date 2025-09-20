@@ -1,6 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
 var GBlock = {
 
 List: {},
@@ -603,7 +600,7 @@ getSaveBlock: function(BlockList, BlockObj)
 	}
 	else if(Type.substring(0, 6) == 'Module')
 	{
-		V = GModule.getSave(ModuleObj, Type);		
+		V = GModule.getSave(ModuleObj, Type);
 	}
 
 	if(Type != 'BlockColone')
@@ -611,7 +608,7 @@ getSaveBlock: function(BlockList, BlockObj)
 		var ThemeBlockList = document.getElementById('ThemeBlockList');
 		var BlockListWidthMax = GTheme.BlockListWidth;
 
-		var Left = Math.round((this.getBlockLeft(BlockObj) / BlockListWidthMax) * 100);		
+		var Left = Math.round((this.getBlockLeft(BlockObj) / BlockListWidthMax) * 100);
 		var Width = Math.round((BlockObj.offsetWidth / BlockListWidthMax) * 100);
 		var Height = BlockCon.offsetHeight - 5; //Border + padding
 		var P = [Height, Width, Left];
@@ -674,7 +671,7 @@ start: function(event, BlockObj)
 
 	this.data.BlockObj = BlockObj;
 	this.data.BlockCon = GBlock.getBlockCon(BlockObj);
-	this.data.BlockProtect = GBlock.getBlockProtect(BlockObj);	
+	this.data.BlockProtect = GBlock.getBlockProtect(BlockObj);
 	this.data.left = GBlock.getBlockLeft(BlockObj);
 	this.data.BlockColone = GBlock.isAChildOfColone(BlockObj);
 
@@ -813,7 +810,7 @@ start: function(event, BlockObj)
 			BlockColone.insertBefore(BlockGhost, BlockObj);
 
 			ThemeBlockList.appendChild(BlockObj);
-			
+
 			this.data.Colone = BlockColone;
 		}
 		else
@@ -830,7 +827,7 @@ start: function(event, BlockObj)
 		var Left = MousePosition.x - this.data.dX;
 		var	Top = MousePosition.y - this.data.dY + document.getElementById('CreatorCon').scrollTop;
 		Top = (Top < 0) ? 0 : Top;
-		Ot.setLeftTop(BlockObj, Left, Top);		
+		Ot.setLeftTop(BlockObj, Left, Top);
 
 		GBlock.setProtect('block', 'move');
 		GBlock.startUseBlock(BlockObj);
@@ -924,7 +921,7 @@ move: function(event)
 				ThemeBlockList.insertBefore(BlockGhost, BlockColone);
 			}
 			else //Bas
-			{ 
+			{
 				if(!BlockColone.nextSibling){
 					ThemeBlockList.appendChild(BlockGhost);
 				}

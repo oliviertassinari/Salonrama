@@ -1,6 +1,3 @@
-/* JavaScript, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
-
 GModule.ClassList['Tab'] = {
 
 Module: function()
@@ -277,8 +274,8 @@ getColWidthMax: function(Col)
 		}
 	}
 
-	return WidthMax; 
-},	
+	return WidthMax;
+},
 
 setColWidth: function(Col, Width)
 {
@@ -358,7 +355,7 @@ removeLigne: function(event, Obj)
 	this.setMarque('rouge', 0, LigneNum, function()
 	{
 		Ot.stopEvent(document, 'mousemove', onMouseMove);
-	
+
 		self.Table.removeChild(self.Table.childNodes[LigneNum]);
 		self.actResize('Height');
 		GBlock.resizeBlockCon(self.ModuleObj.parentNode);
@@ -393,12 +390,12 @@ setMarque: function(Couleur, Avanc, LigneNum, CallBack)
 		LigneList[LigneNum].childNodes[0].style.border = '1px solid #' +Degrader[Avanc];
 		LigneList[LigneNum].childNodes[1].style.border = '1px solid #' +Degrader[Avanc];
 
-		if(LigneList.length != LigneNum-1) 
+		if(LigneList.length != LigneNum-1)
 		{
 			LigneList[LigneNum-1].childNodes[0].style.borderBottom = '1px solid #' +Degrader[Avanc];
 			LigneList[LigneNum-1].childNodes[1].style.borderBottom = '1px solid #' +Degrader[Avanc];
 		}
-		if(LigneList.length != LigneNum+1) 
+		if(LigneList.length != LigneNum+1)
 		{
 			LigneList[LigneNum+1].childNodes[0].style.borderTop = '1px solid #' +Degrader[Avanc];
 			LigneList[LigneNum+1].childNodes[1].style.borderTop = '1px solid #' +Degrader[Avanc];
@@ -432,7 +429,7 @@ getLigneNum: function(Obj)
 	for(var i = 0; i < LigneList.length; i++)
 	{
        	if(Obj.parentNode == LigneList[i])
-		{	
+		{
 			LigneNum = i;
 			break;
 		}
@@ -532,7 +529,7 @@ onKeyDown: function(event, Input)
 
 	if(keyCode == Ot.Key.Tab) // tab
 	{
-		if(Input.size == '40') 
+		if(Input.size == '40')
 		{
 			Ot.cancelEvent(event);
 			Ot.setCursorPosition(LigneList[LigneNum].childNodes[1], 'Start');
@@ -546,7 +543,7 @@ onKeyDown: function(event, Input)
 		}
 	}
 	else if(keyCode == Ot.Key.Enter || keyCode == Ot.Key.Down)
-	{					
+	{
 		if(Input.size == '40' && LigneList.length != LigneNum+1)
 		{
 			Ot.setCursorPosition(LigneList[LigneNum+1].childNodes[0], 'End');
