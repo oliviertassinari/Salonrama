@@ -1,5 +1,3 @@
-/* CSS, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
 
 #Theme{
 font-family:arial,helvetica,sans-serif;
@@ -72,7 +70,7 @@ width:530px;
 background:url(image/menu.png) repeat;
 border-bottom:1px solid #999;
 }
-#ThemeMenu li{ 
+#ThemeMenu li{
 display:inline;
 }
 #ThemeMenu a{

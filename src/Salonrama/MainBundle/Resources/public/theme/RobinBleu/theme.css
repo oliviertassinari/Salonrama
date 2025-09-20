@@ -1,5 +1,3 @@
-/* CSS, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
 
 #Theme{
 font-family:arial,verdana,tahoma,helvetica,sans-serif;
@@ -48,10 +46,10 @@ background:#a3a3a3;
 text-align:right;
 padding:2px 5px 0;
 }
-#ThemeMenu ul{ 
+#ThemeMenu ul{
 display:inline;
 }
-#ThemeMenu li{ 
+#ThemeMenu li{
 display:inline;
 }
 #ThemeMenu a{

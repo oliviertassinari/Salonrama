@@ -175,8 +175,6 @@ vertical-align:middle;
 }
 
 
-/* CSS, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
 
 .CadGlobalHead{
 cursor:move;
@@ -465,7 +463,7 @@ width:16px;
 cursor:pointer;
 text-align:center;
 padding:2px;
-} 
+}
 #CadCaractere td:hover{
 background:#e6efc2;
 }
@@ -586,7 +584,7 @@ border-top:1px solid #aaa;
 border-right:1px solid #aaa;
 font-size:11px;
 }
-#CadPageList .Drag{ 
+#CadPageList .Drag{
 background:#fff url(image/icone/page.png) no-repeat 3px 5px;
 cursor:pointer;
 height:21px;

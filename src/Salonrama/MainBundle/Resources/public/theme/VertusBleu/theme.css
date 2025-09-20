@@ -1,5 +1,3 @@
-/* CSS, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
 
 #Theme{
 font-family:"Times New Roman","Trebuchet MS",verdana,arial,sans-serif;
@@ -51,10 +49,10 @@ color:#fff;
 margin:0 21px;
 padding:0 5px;
 }
-#ThemeMenu ul{ 
+#ThemeMenu ul{
 display:inline;
 }
-#ThemeMenu li{ 
+#ThemeMenu li{
 display:inline;
 padding-left:2px;
 background:url(image/separateur.png) no-repeat;

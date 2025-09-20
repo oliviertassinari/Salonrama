@@ -1,5 +1,3 @@
-/* CSS, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
 
 #Theme{
 color:#dbdbdb;
@@ -20,14 +18,14 @@ background:url(image/header.jpg) no-repeat;
 position:relative;
 }
 #ThemeHead #ThemeNom{
-width:740px; 
+width:740px;
 font-size:35px;
 position:absolute;
 left:20px;
 top:40px;
 }
 #ThemeHead #ThemeSlogan{
-width:740px; 
+width:740px;
 font-size:15px;
 position:absolute;
 left:24px;
@@ -47,7 +45,7 @@ display:inline;
 display:inline-block;
 font-size:17px;
 padding:5px 10px;
-color:#998158; 
+color:#998158;
 }
 #ThemeMenu ul li a:hover, #Menu ul li span{
 color:#9D180A;

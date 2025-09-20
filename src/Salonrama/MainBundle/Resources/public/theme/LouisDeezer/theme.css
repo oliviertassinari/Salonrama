@@ -1,5 +1,3 @@
-/* CSS, By Olivier (olivier.tassinari@gmail.com)
------------------------*/
 
 #Theme{
 background:#505050;
@@ -47,7 +45,7 @@ color:#fff;
 width:430px;
 text-align:right;
 }
-#ThemeMenu li{ 
+#ThemeMenu li{
 display:inline-block;
 padding-right:5px;
 padding-left:3px;
